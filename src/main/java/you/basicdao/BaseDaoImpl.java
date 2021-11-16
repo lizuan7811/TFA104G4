@@ -11,8 +11,10 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Map;
 
 import you.conn.BaseConn;
+import you.contents.FinalStaticFile;
 
 
 public class BaseDaoImpl implements BaseDao{
@@ -173,22 +175,39 @@ public class BaseDaoImpl implements BaseDao{
 		return modifyRowNum;
 	}
 
-	@Override
-	public ResultSet selectData(Connection conn,PreparedStatement ps,String sql,String param) {
+	public ResultSet selectData(Connection conn,PreparedStatement ps,String sql,Map param) {
 		ResultSet rs=null;
 		try 
 		{
 			conn.setAutoCommit(false);
-			ps=conn.prepareStatement(sql);
-			if(!"".equals(param) && param!=null && Integer.parseInt(param)>0) 
+			Object admin=param.get("admin");
+			Object user=param.get("user");
+			String adminStr=admin==null?null:admin.toString();
+			String userStr=user==null?null:user.toString();
+
+			if(admin!=null || user!=null || !"".equals(adminStr) || "".equals(userStr)) 
 			{
-				System.out.println("執行ps.setInt(1,Integer.parseInt(param));了");
-				ps.setInt(1,Integer.parseInt(param));
+				if(admin!=null && !"".equals(admin)){
+					sql=FinalStaticFile.SGADMIN_SELECT;
+					ps=conn.prepareStatement(sql);
+					System.out.println("selectData	admin執行的sql指令為:"+sql);
+					ps.setString(1,adminStr);
+					
+				}else if(user!=null && !"".equals(user) && Integer.valueOf(userStr)>Integer.MIN_VALUE)
+				{
+					sql=FinalStaticFile.SGUSER_SELECT;
+					ps=conn.prepareStatement(sql);
+					System.out.println("selectData	userT執行的sql指令為:"+sql);
+					ps.setString(1,userStr);
+				}
 			}
-			else {
+			if(ps==null) {
 				ps=conn.prepareStatement(sql);
+				System.out.println("selectData	if(!\"\".equals(param) && param!=null && param.length()!=0) 執行的sql指令為:"+sql);
 			}
+			System.out.println("selectData finalSQL="+sql);
 			rs=ps.executeQuery();
+			return rs;
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();

@@ -12,5 +12,5 @@ public interface UserService {
 //	修
 	public void alterUser(Integer usPos,Object...paras);
 //	查
-	public JSONArray selectUser(Integer usPos);
+	public JSONArray selectUser(String usPos);
 }

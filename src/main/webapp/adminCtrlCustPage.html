@@ -5,34 +5,9 @@
 		<title>AdminControlCustomPage</title>
 		<link rel="stylesheet" href="css/adminCtrlCustPage.css" type="text/css">
 		<link rel="stylesheet" href="font/style.css" type="text/css">
-		<script type="text/javascript" src="jquery/practice/vendors/jquery/jquery-3.6.0.min.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function(){
-				$.ajax({
-					url:"ajaxServlet",
-					data:{},
-					type:"post",
-					success:function(data){
-						console.log(data);
-						var data2=JSON.parse(data);
-						console.log(data2.count);
-						$("#try1").click(function(){
-							$("#try1").append("\<li>"+data2.username+"\</li>");
-						});
-					},
-					error:function(data)
-					{
-						
-					}
-				})
-				
-			})
-		
-		
-		
-		
-		</script>
-	
+		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+		<script src="https://code.jquery.com/jquery-migrate-3.3.2.js"></script>
+		<script type="text/javascript" src="js/ACCP.js"></script>
 	
 	</head>
 	<body>
@@ -72,29 +47,19 @@
 				<div id="mainBox_Content_div">
 					<form action="IDASServlet" method="POST">
 						<table class="mainBox_table"><tr>
-							<th id="top_tbox"></th>
+							<th id="top_tbox">&nbsp;&nbsp;&nbsp;</th>
 							<th id="sec_tbox">項次</th>
 							<th>姓名</th>
+							<th>暱稱</th>
 							<th>帳號</th>
 							<th>信箱網址</th>
 							<th>消費次數</th>
-							<th>受檢舉次數</th>
+							<th>文章受檢舉次數</th>
+							<th>日誌受檢舉次數</th>
 							<th id="neerend_tbox">帳號權限</th>
 							<th id="end_tbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>					
 						</tr>
-						<tr>
-							<td id="top_tbox"><input type="checkbox"/></td>
-							<td id="sec_tbox">1</td>
-							<td>2</td>
-							<td>3</td>
-							<td>4</td>
-							<td>5</td>
-							<td>6</td>
-							<td id="neerend_tbox">7</td>
-							<td id="end_tbox1">
-								<input type="button" id="btnDetail"name="userChoice" value="詳細資料">
-								<input type="submit" name="userChoice" value="權限禁止" class="icon-blocked"/></td>	
-						</tr></table>
+						</table>
 					</form>
 				</div>
 			</main>

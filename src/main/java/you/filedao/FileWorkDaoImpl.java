@@ -283,6 +283,8 @@ public class FileWorkDaoImpl {
 		JSONObject jsonObj=new JSONObject();
 		JSONArray jsonArr=new JSONArray();
 //		TreeMap<String,Object> mpObj=new TreeMap<String,Object>();
+		System.out.println("執行getUssToJsArr()");
+		System.out.println(rs);
 		try {
 			while(rs.next())
 			{
@@ -304,8 +306,6 @@ public class FileWorkDaoImpl {
 				jsonArr.put(jsonObj.toMap());
 //				System.out.println(jsonObj.toString());
 			}
-//				System.out.println(jsonArr);
-
 //			System.out.println(jsonArr);
 //			System.out.println(jsArr.getJSONObject(1));
 		} catch (SQLException | IllegalArgumentException e2) {

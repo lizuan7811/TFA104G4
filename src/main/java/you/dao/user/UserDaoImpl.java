@@ -4,19 +4,23 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import javax.swing.text.AbstractDocument.Content;
-
+import java.util.HashMap;
+import java.util.Map;
 import you.basicdao.BaseDao;
 import you.basicdao.BaseDaoImpl;
 import you.contents.FinalStaticFile;
+import you.pojo.AdminVO;
 
 
 public class UserDaoImpl implements UserDao{
 	private BaseDao bdi;
+	private AdminVO admin;
+	Map<String,String> datas;
 	public UserDaoImpl()
 	{
-		bdi=new BaseDaoImpl();		
+		admin=new AdminVO();
+		bdi=new BaseDaoImpl();
+		datas=new HashMap<String,String>();
 	}
 
 	public void deleteUser(Connection conn, PreparedStatement ps, Integer usPos) {
@@ -27,9 +31,57 @@ public class UserDaoImpl implements UserDao{
 		int tempN=bdi.updateData(conn, ps, FinalStaticFile.USER_UPDATE,usPos.toString());
 	}
 
-	public ResultSet selectUsers(Connection conn, PreparedStatement ps, Integer usPos) {
-		ResultSet rs=bdi.selectData(conn, ps, FinalStaticFile.USER_SELECT,usPos.toString());
+	public ResultSet selectUsers(Connection conn, PreparedStatement ps, String username) {
+		
+		datas.put("user",username);
+		System.out.println("username="+username);
+		ResultSet rs=bdi.selectData(conn, ps, FinalStaticFile.USER_SELECT,datas);
+		System.out.println("FinalStaticFile.USER_SELECT="+FinalStaticFile.USER_SELECT);
+		if(rs==null)
+		{
+			System.out.println("沒有搜尋到任何資料!");
+		}
+		
 		return rs;
 	}
 
+	public AdminVO adminLogin(Connection conn,PreparedStatement ps,String username,String password)
+	{
+		datas.put("admin", username);
+		ResultSet rs=bdi.selectData(conn,ps,FinalStaticFile.ADMIN_SELECT,datas);
+		if(rs==null)
+		{
+			System.out.println(username+"\t尚未未註冊!");
+			return null;
+		}
+		try {
+			while(rs.next())
+			{
+//				System.out.println("賦值給ADMIN");
+				admin.setAdminID(rs.getInt("adminID"));
+				admin.setAdminAcco(rs.getString("adminAcco"));
+				admin.setAdminPass(rs.getString("adminPass"));
+				admin.setCreatedTime(rs.getTimestamp("createdTime"));
+				admin.setAdminAuthority(rs.getBoolean("adminAuthority"));
+			}
+			System.out.println(admin.getAdminPass());
+			if(admin.getAdminPass()!=null) {
+				if((admin.getAdminPass()).equals(password)) {
+					System.out.println("使用者帳號及密碼相符，驗證成功!");
+					return admin;
+				}
+			}
+			else
+			{
+				System.out.println("登入密碼錯誤!");
+				return null;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }

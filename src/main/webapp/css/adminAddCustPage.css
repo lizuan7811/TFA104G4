@@ -29,7 +29,13 @@ main #mainBox_Content_div{
 form{
 	margin-top:10px;
 	padding:0px;
+	height:300px;
 }
+
+.autoScrollY{
+	overflow:scroll;
+}
+
 .div_imainBox_Content_div{
 	position:relative;
 	margin-left:40px;

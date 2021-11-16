@@ -27,7 +27,8 @@ public class BaseConn {
 //		System.out.println(path);
 //		resource資料夾中的檔案，如果沒有放在build資料夾中，讀取的時候會產生錯誤。
 		try {
-			is=FileInOutDao.getInputStr(new File(BaseConn.class.getResource("../jdbc.properties").getPath()));
+//			System.out.println(BaseConn.class.getResource("../../../").getPath()+"lib/jdbc.properties");
+			is=FileInOutDao.getInputStr(new File(BaseConn.class.getResource("../../../").getPath()+"lib/jdbc.properties"));
 			System.out.println("JDBC註冊檔讀取正確!\t"+is);
 			Properties pros=new Properties();
 			pros.load(is);

@@ -13,6 +13,14 @@ public class AdminVO implements Serializable{
 	private String adminPass;
 	private Timestamp createdTime;
 	private Boolean adminAuthority;
+	public AdminVO()
+	{
+//		adminID=0;
+//		adminAcco="";
+//		adminPass="";
+//		createdTime=null;
+//		adminAuthority=null;
+	}
 	
 	public int getAdminID() {
 		return adminID;

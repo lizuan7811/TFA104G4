@@ -7,5 +7,5 @@ import java.sql.ResultSet;
 import org.json.JSONArray;
 
 public interface UserBO {
-	public JSONArray getUsersToJSON(Connection conn,PreparedStatement ps,Integer usPos);
+	public JSONArray getUsersToJSON(Connection conn,PreparedStatement ps,String userName);
 }

@@ -3,6 +3,7 @@ package you.basicdao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Map;
 
 public interface BaseDao {
 //	增加
@@ -12,6 +13,6 @@ public interface BaseDao {
 //	修改
 	public int updateData(Connection conn,PreparedStatement ps,String sql,Object... para);	
 //	查詢
-	public ResultSet selectData(Connection conn,PreparedStatement ps,String sql,String param);
+	public ResultSet selectData(Connection conn,PreparedStatement ps,String sql,Map param);
 	
 }

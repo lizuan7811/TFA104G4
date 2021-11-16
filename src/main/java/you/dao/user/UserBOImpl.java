@@ -21,11 +21,11 @@ public class UserBOImpl implements UserBO{
 		udl=new UserDaoImpl();
 	}
 	
-	public JSONArray getUsersToJSON(Connection conn,PreparedStatement ps,Integer usPos)
+	public JSONArray getUsersToJSON(Connection conn,PreparedStatement ps,String userName)
 	{
 		JSONArray usJsonArr=new JSONArray();
 		System.out.println(usJsonArr);
-		ResultSet rs=udl.selectUsers(conn,ps,usPos);
+		ResultSet rs=udl.selectUsers(conn,ps,userName);
 		
 		if(rs!=null)
 		{

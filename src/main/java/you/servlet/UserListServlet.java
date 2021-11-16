@@ -14,7 +14,6 @@ import you.service.UserServiceImpl;
 
 
 //管理者呼叫方法讀取使用者列表
-@WebServlet("/userList")
 public class UserListServlet extends HttpServlet{
 	/**
 	 * 
@@ -37,7 +36,7 @@ public class UserListServlet extends HttpServlet{
 	{
 		UserService usv=new UserServiceImpl();
 //		Integer.parseInt(request.getParameter("usPos"))
-		JSONArray jsonArr=usv.selectUser((Integer)0);
+		JSONArray jsonArr=usv.selectUser(""+Integer.MIN_VALUE);
 		try {
 			response.setContentType("text/html;charset=utf-8");
 			response.getWriter().write(jsonArr.toString());

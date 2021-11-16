@@ -33,10 +33,10 @@ public class UserServiceImpl implements UserService{
 		usd.alterUser(conn, ps, usPos,paras);
 	}
 
-	public JSONArray selectUser(Integer usPos) {
+	public JSONArray selectUser(String username) {
 		Connection conn=BaseConn.getConnection();
 		PreparedStatement ps=null;
-		JSONArray userJsonArr=usbo.getUsersToJSON(conn, ps, usPos);
+		JSONArray userJsonArr=usbo.getUsersToJSON(conn, ps, username);
 		return userJsonArr;
 	}
 
