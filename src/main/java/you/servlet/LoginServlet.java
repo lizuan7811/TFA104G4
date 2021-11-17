@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import you.contents.*;
 import you.pojo.*;
@@ -34,6 +35,7 @@ public class LoginServlet extends HttpServlet {
 		if((admin=adm.login(username,password))!=null)
 		{
 			try {
+				HttpSession sess=req.getSession();
 				req.getSession().setAttribute(FinalStaticFile.ADMIN_SESSION,admin);
 				System.out.println("ADMIN_SESSION="+req.getAttribute(FinalStaticFile.ADMIN_SESSION));
 				resp.sendRedirect("adminCtrlCustPage.html");

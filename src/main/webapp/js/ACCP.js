@@ -16,18 +16,20 @@ $.fn.pageTurnFunc=(function(receiveData)
 	var dataArr=new Array();
 	dataArr=receiveData;
 	var allTB=$(".mainBox_table");
-	var curTB=$("#curTB");
-	var allTB=$("#allTB");
+	var curPG=$("#curTB");
+	var allPG=$("#allTB");
 	// 將直傳入
 	$(function(dataArr)
 	{
 		var tpallTB=Math.floor(dataArr.length/limitRows);
 		if(Math.floor(dataArr.length%limitRows)==0)
 		{
-			allTB=tpallTB+1;
+			allPG=tpallTB+1;
 		}else{
-			allTB=tpallTB;
+			allPG=tpallTB;
 		}
+		curPG.html(curPage);
+		allPG.html(endPage);
 	});
 	
 });
