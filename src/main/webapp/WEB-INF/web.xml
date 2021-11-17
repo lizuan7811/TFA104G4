@@ -17,4 +17,12 @@
   	<servlet-name>UserListServlet</servlet-name>
   	<url-pattern>/userlist</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<servlet-class>you.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<url-pattern>/adminlogin</url-pattern>
+  </servlet-mapping>
 </web-app>

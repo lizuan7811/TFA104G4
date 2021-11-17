@@ -33,9 +33,14 @@ public class BaseConn {
 			Properties pros=new Properties();
 			pros.load(is);
 			driver=pros.getProperty("driver");
+			System.out.println(driver);
 			username=pros.getProperty("username");
+			System.out.println(username);
 			password=pros.getProperty("password");
+			System.out.println(username);
 			url=pros.getProperty("url");
+			System.out.println(url);
+
 			Class.forName(driver);
 		} catch (IOException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block

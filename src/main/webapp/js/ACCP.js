@@ -1,15 +1,36 @@
-// $(function()
-// {
-// 	var startPage=1;
-// 	var endPage;
-// 	var curPage;
-// 	var limitRows;
-// 	var totoalRows;
-// 	var endRows;
+$.fn.pageTurnFunc=(function(receiveData)
+{
+	// 開始頁
+	var startPage=1;
+	// 結束頁
+	var endPage;
+	// 目前頁
+	var curPage;
+	// 每頁限制row數
+	var limitRows=20;
+	// 資料的總row數
+	var totoalRows;
+	// 結束row數
+	var endRows;
+	// 所有資料的陣列(有序)
+	var dataArr=new Array();
+	dataArr=receiveData;
+	var allTB=$(".mainBox_table");
+	var curTB=$("#curTB");
+	var allTB=$("#allTB");
+	// 將直傳入
+	$(function(dataArr)
+	{
+		var tpallTB=Math.floor(dataArr.length/limitRows);
+		if(Math.floor(dataArr.length%limitRows)==0)
+		{
+			allTB=tpallTB+1;
+		}else{
+			allTB=tpallTB;
+		}
+	});
 	
-	
-	
-// });
+});
 
 
 // <!-- <script type="text/javascript">

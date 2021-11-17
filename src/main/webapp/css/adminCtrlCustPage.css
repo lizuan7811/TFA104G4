@@ -181,18 +181,47 @@ aside .sideBox_ul_li,.sideBox_ul_li_Rep{
 	text-align: right;
 }
 main #mainBox_Content_div{
-	position:fixed;
+	position:sticky;
 	top:135px;
 	width:1337px;
-	height:615px;
+	height:580px;
+	overflow-y: auto;
 	/* background-color: white; */
 	margin-left:10px;
 	border-top:none;
 	border-right:none;
 	box-sizing: border-box;
-	
+	border:1px solid black;
 }
-
+.goDv{
+	display:flex;
+	width:95%;
+	margin-left: 20px;
+	/* align-items: center; */
+	justify-content: space-around;
+	border:1px solid black;
+	border-radius: 12px;
+}
+.goDvItems{
+	border:1px solid black;
+	
+	display: inline-block;
+	font-size: 18px;
+	width:90px;
+	border-radius: 12px;
+}
+.curSpan{
+	width:280px;
+	border:1px solid black;
+	display:flex;
+	justify-content: space-around;
+	border-radius: 12px;
+	background-color: lightyellow;
+	opacity: 90%;
+}
+.curSpan:hover,.goDvItems:hover{
+	box-shadow: 0 0 12px lightcoral;
+}
 #fixed_div{
 	width:1000px;
 }
@@ -288,7 +317,8 @@ a:hover{
 #firForm_in_mainBox{
 	display: inline-block;
 	margin:20px 10px;
-	font-size: 20px;
+	font-size: 18px;
+	height:400px;
 }
 
 .icon-search{
