@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 		if((admin=adm.login(username,password))!=null)
 		{
 			try {
-				req.getSession(false).setAttribute(FinalStaticFile.ADMIN_SESSION,admin);
+				req.getSession().setAttribute(FinalStaticFile.ADMIN_SESSION,admin);
 				System.out.println("ADMIN_SESSION="+req.getAttribute(FinalStaticFile.ADMIN_SESSION));
 				resp.sendRedirect("adminCtrlCustPage.html");
 			} catch (IOException e) {
