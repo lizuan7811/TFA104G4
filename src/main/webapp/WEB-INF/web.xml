@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+    <servlet>
+    <servlet-name>IngreServlet</servlet-name>
+    <servlet-class>hantest.servlet.IngreServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IngreServlet</servlet-name>
+    <url-pattern>/IngreServletuser</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
