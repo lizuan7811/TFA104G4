@@ -17,5 +17,9 @@ public interface UserDao {
 //	帳號登入
 	public AdminVO adminLogin(Connection conn,PreparedStatement ps, String username, String password);
 	
-
+	public void insDiaryLike(Connection conn,PreparedStatement ps,Integer idCustomer,Integer diaryID);
+	
+	public void delDiaryLike(Connection conn,PreparedStatement ps,Integer diaryLikeID,Integer diaryID);
+	
+	public Integer selDiaryLike(Connection conn,PreparedStatement ps,Integer diaryID);
 }

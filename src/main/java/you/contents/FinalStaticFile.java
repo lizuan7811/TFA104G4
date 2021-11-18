@@ -17,12 +17,12 @@ public class FinalStaticFile {
 
 	public final static String ADMIN_SESSION="ADMIN_SESSION";
 	
-	public final static String DIARYLIKE_SELECT_="SELECT * FROM DiaryLike;";
+	public final static String DIARYLIKE_SELECT="SELECT * FROM DiaryLike;";
 
 	public final static String DIARYLIKESG_SELECT="SELECT * FROM `DiaryLike` WHERE idCustomer=?;";
 	
 	public final static String DIARYLIKESG_INSERT="INSERT INTO `DiaryLike`(diaryLikeID,diaryID,idCustomer,createdTime)values(?,?,?,?);";
 
-	public final static String DIARYLIKESG_DELETE="DELETE FROM `DiaryLike` WHERE diaryLikeID=?;";
+	public final static String DIARYLIKESG_DELETE="DELETE FROM `DiaryLike` WHERE diarylikeID=?;";
 
 }

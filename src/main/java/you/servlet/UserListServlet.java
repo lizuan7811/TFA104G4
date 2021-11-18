@@ -15,6 +15,8 @@ import you.service.UserServiceImpl;
 
 //管理者呼叫方法讀取使用者列表
 public class UserListServlet extends HttpServlet{
+	
+
 	/**
 	 * 
 	 */

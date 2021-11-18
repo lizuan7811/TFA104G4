@@ -41,7 +41,6 @@ public class UserDaoImpl implements UserDao{
 		{
 			System.out.println("沒有搜尋到任何資料!");
 		}
-		
 		return rs;
 	}
 
@@ -83,5 +82,45 @@ public class UserDaoImpl implements UserDao{
 		}
 		return null;
 	}
+//增加like數量
+	@Override
+	public void insDiaryLike(Connection conn, PreparedStatement ps, Integer idCustomer, Integer diaryID) {
+		// TODO Auto-generated method stub
+		try {
+			ps=conn.prepareStatement(FinalStaticFile.DIARYLIKESG_INSERT);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+//刪除like數量
+	@Override
+	public void delDiaryLike(Connection conn, PreparedStatement ps, Integer diaryLikeID,Integer diaryID) {
+		// TODO Auto-generated method stub
+		try {
+			ps=conn.prepareStatement(FinalStaticFile.DIARYLIKESG_DELETE);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+//更新like數量
+	@Override
+	public Integer selDiaryLike(Connection conn, PreparedStatement ps, Integer diaryID) {
+		// TODO Auto-generated method stub
+		try {
+			ps=conn.prepareStatement(FinalStaticFile.DIARYLIKESG_SELECT);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	
 	
 }
