@@ -1,0 +1,1263 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+a{
+  color: black;
+  text-decoration: none;
+}
+
+  header {
+    /* border: solid black; */
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    box-sizing: border-box;
+  }
+  header a {
+    font-size: 20px;
+    letter-spacing: 10px;
+    font-weight: 800;
+    color: #474b22;
+    text-decoration: none;
+  }
+  header a.menu_title:hover {
+    background-color: #daecdc;
+    color: rgb(20, 19, 19);
+    border-bottom: none;
+  }
+  header.logo {
+    /* border: solid blue; */
+    width: 180px;
+    position: relative;
+    display: block;
+    font-size: 0;
+  }
+  header .logo a img {
+    height: 80px;
+    font-size: 0;
+  }
+  header .header_li {
+    list-style: none;
+    display: flex;
+    margin-left: 28px;
+  }
+  header .header_li li {
+    padding: 0 35px;
+    margin: 10px;
+    position: relative;
+  }
+  header .icon {
+    display: flex;
+    position: absolute;
+    top: 5px;
+    left: auto;
+    right: 20px;
+  }
+  header .search_icon,
+  .QA_icon,
+  .cart_icon {
+    padding: 0 20px;
+    font-size: 30px;
+    color: #474b22;
+  }
+  header .search_icon:hover,
+  .QA_icon:hover,
+  .cart_icon:hover {
+    background-color: #daecdc;
+    color: rgb(20, 19, 19);
+  }
+  
+  footer {
+    z-index: 1;
+    /* border: solid red; */
+    width: 100%;
+    height: 80px;
+    position: relative;
+    padding-top: 10px;
+    margin-top: 88px;
+    box-sizing: border-box;
+  }
+  footer section .myfooter {
+    display: inline-block;
+  }
+  footer img {
+    height: 60px;
+    position: absolute;
+    left: 0;
+  }
+  footer .contact_info {
+    /* border: violet solid; */
+    position: relative;
+    text-align: center;
+  }
+  footer .box_1 {
+    display: inline-block;
+    top: 3px;
+    padding: 20px;
+    color: #474b22;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  footer #all_rights_reserve {
+    position: relative;
+    text-align: center;
+    font-size: 12px;
+    color: #474b22;
+    font-weight: bold;
+    bottom: 5px;
+  }
+  main {
+    position: relative;
+    top: 90px;
+    border:1px solid black;
+    box-sizing: border-box;
+    width: 100%;
+    /* height: 700px; */
+    background-color: #ececec;
+  }
+
+  main .big{
+    position: relative;
+    margin: 0px auto;
+    /* border: solid red; */
+    width: 1100px;
+    
+    /* height: 1200px; */
+
+  }
+  main .big1{
+    height: 500px;
+
+  }
+/* 空車 */
+
+  main .empty{
+    display: inline-block;
+    position: absolute;
+    box-sizing: border-box;
+    /* border:1px black solid ; */
+    width: 1200px;
+    height: 70%;
+    top: 50px;
+    right: 420px;
+    left: 30px;
+    overflow: hidden;
+  }
+
+  main div a .empty_cart{
+    width: 1200px;
+    height: 100%;
+    padding-top: px;
+  }
+  
+  main .right_emtpy{
+    display: inline-block;
+    position:absolute;
+    box-sizing: border-box;
+  /*   border: black solid; */
+    width: 400px;
+    height: 30%;
+    top: 420px;
+    right: 420px
+  }
+  
+
+
+  main div .back_to_mall{
+    display: inline;
+    position:absolute;
+    box-sizing: border-box;
+    border-radius: 10px;
+    /* border: black solid; */
+    width: 300px;
+    height: 40%;
+    right: 45px;
+    font-size: 32px;
+    text-align: center;
+    line-height: 65px;
+    background-color: #F16736;
+  }
+  main div .back_to_mall_font{
+    color:white;
+    text-decoration: none;
+  }
+
+  
+  /* main div .back_to_mall_btn{
+    
+    position:absolute;
+    box-sizing: border-box;
+    border: black solid;
+    width: 200px;
+    height: 40%;
+    top:25px;
+    right: 50px;
+    
+  } */
+  
+  
+
+  
+/* 購物車 */
+
+
+main  .title_step{
+  /* display: ; */
+  position:relative;
+  margin: auto;
+  /* border: black solid; */
+  width: 1000px;
+  height: 50px;
+  top:10px;
+
+}
+
+
+main  ul .first_step{
+  display:flex;
+  position: absolute;
+  /* border: black solid; */
+  width: 100px;
+  right: 750px;
+  top: 10px;
+  color: gray
+}
+main  ul .first_arrow{
+  display:flex;
+  position: absolute;
+  /* border: black solid; */
+  width: 100px;
+  right: 630px;
+  top: 10px;
+  font-size: 24px;
+}
+
+main  ul .second_step{
+  display:flex;
+  position: absolute;
+  /* border: black solid */
+  width: 200px;
+  right: 450px;
+  top: 3px;
+  font-size: 24px;
+
+}
+main  ul .second_arrow{
+  display:flex;
+  position: absolute;
+  /* border: black solid; */
+  width: 100px;
+  right: 380px;
+  top: 10px;
+  font-size: 24px;
+}
+
+main  ul .third_step{
+  display:flex;
+  position: absolute;
+  /* border: black solid */
+  width: 100px;
+  top: 10px;
+  right: 320px;
+  color: gray
+}
+main  ul .third_arrow{
+  display:flex;
+  position: absolute;
+  /* border: black solid; */
+  width: 100px;
+  right: 200px;
+  top: 10px;
+  font-size: 24px;
+}
+
+main  ul .forth_step{
+  display:flex;
+  position: absolute;
+  /* border: black solid */
+  width: 100px;
+  top: 10px;
+  right: 130px;
+  color: gray
+  ;
+  
+}
+
+main .cart_bar{
+  display: inline-block;
+  position:relative;
+  /* border:1px black solid; */
+  width:90%;
+  height:30px;
+  top:10%;
+  left:5%;
+  background-color: white;
+}
+
+main div .cart_bar_product{
+  display:inline;
+  position:absolute;
+  top:5px;
+  left:55px;
+  /* border:1px black solid; */
+  width:200px;
+  text-align:center;
+}
+
+main div .cart_bar_des{
+  display:inline;
+  position:absolute;
+  top:5px;
+  right:550px;
+  /* border:1px black solid; */
+  width:300px;
+  text-align:center;
+}
+main div .cart_bar_price{
+  display:inline;
+  position:absolute;
+  top:5px;
+  right:350px;
+  /* border:1px black solid; */
+  width:130px;
+  text-align:center;
+}
+main div .cart_bar_number{
+  display:inline;
+  position:absolute;
+  top:5px;
+  right:150px;
+  /* border:1px black solid; */
+  width:150px;
+  text-align:center;
+  
+}
+main div .cart_bar_impl{
+  display:inline;
+  position:absolute;
+  top:5px;
+  right:5px;
+  /* border:1px black solid; */
+  width:100px;
+  text-align:center
+}
+
+main .product_cart{
+  position:relative;
+  margin: auto;
+  /* border: blue solid; */
+  width:90%;
+  height:90px;
+  background-color: white;
+  margin-bottom: 5px;
+}
+
+main div .check_position{
+  display:inline;
+  position:absolute;
+  top:12px;
+  right:935px;
+  /* border: black solid; */
+  width:30px;
+  height:40px;
+  text-align:center;
+  
+}
+
+main div .check_box{
+  position:relative;
+  margin: auto;
+ 
+  width:20px;
+  height:50px;
+}
+
+
+main div .product_pic{
+  display:inline;
+  position:absolute;
+  top:9px;
+  right:790px;
+  /* border: 1px black solid; */
+  width:100px;
+  height:70%;
+  text-align:center;
+  
+}
+
+main div div .product_pic1{
+  position: absolute;
+  right:5px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+main div .product_des{
+  display:inline;
+  position:absolute;
+  top:9px;
+  right:490px;
+  /* border:1px black solid; */
+  width:350px;
+  height:80px;
+  text-align:center;
+  line-height: 70px;
+  text-overflow : ellipsis;  
+  white-space:nowrap;
+  overflow: hidden;
+}
+
+main div .product_price{
+  display:inline;
+  position:absolute;
+  top:9px;
+  right:350px;
+  /* border:1px black solid; */
+  width:130px;
+  height:80px;
+  text-align:center;
+  line-height: 70px;
+  overflow: hidden;
+}
+
+main div .product_number{
+  display:inline;
+  position:absolute;
+  top:9px;
+  right:150px;
+  /* border:1px black solid; */
+  width:150px;
+  height:70%;
+  text-align:center; 
+}
+main div .product_numbers{
+  display:inline;
+  position:absolute;
+  top:15px;
+  right:50px;
+  border:1px rgb(219, 219, 219) solid;
+  width:50px;
+  height:40px;
+  text-align:center; 
+  line-height: 40px
+}
+
+main div .product_minus{
+  display:inline;
+  position:absolute;
+  top:15px;
+  right:110px;
+  border:1px rgb(219, 219, 219) solid;
+  width:30px;
+  height:40px;
+  text-align:center; 
+  line-height: 40px
+}
+main div div .product_minus_btn{ 
+display: inline;
+width: 30px;
+height: 100%;
+background-color: none;
+z-index: 1;
+}
+
+main div div .product_minus_btn_i { 
+  display: inline-block;
+  position: absolute;
+  width: 0px;
+  right: 22px;
+  height: 0px;
+  z-index: 2;
+  }
+
+
+main div .product_plus{
+  display:inline;
+  position:absolute;
+  top:15px;
+  right:10px;
+  border:1px rgb(219, 219, 219) solid;
+  width:30px;
+  height:40px;
+  text-align:center;
+  line-height: 40px ;
+}
+main div div .product_plus_btn{ 
+  display: inline;
+  width: 30px;
+  height: 100%;
+  background-color: none;
+  z-index: 1;
+  }
+  
+  main div div .product_plus_btn_i { 
+    display: inline-block;
+    position: absolute;
+    width: 0px;
+    right: 22px;
+    height: 0px;
+    z-index: 2;
+    }
+
+
+main div .product_delete{
+  display:inline;
+  position:absolute;
+  top:25px;
+  right:5px;
+  /* border:1px black solid; */
+  width:100px;
+  height:30px;
+  text-align:center;
+  color: black;
+  line-height: 40px;
+}
+/* main div .product_total{
+  display:inline;
+  position:absolute;
+  top:37px;
+  right:5px;
+  border:1px black solid;
+  width:100px;
+  height:20px;
+  text-align:center
+} */
+
+main .pay_bar{
+  position:relative;
+  /* border:1px black solid; */
+  width:90%;
+  height:70px;
+  /* top:130px; */
+  left:5%;
+  margin-top: 0px;
+  background-color: white;
+  margin-bottom: 5px;
+}
+
+main div .check_box_all{
+  position:absolute;
+  left:25px;
+  width:20px;
+  height:35px;
+  top: 20px;
+}
+
+main div .pay_check_all{
+  display:inline;
+  position:absolute;
+  top:4px;
+  right:780px;
+  /* border: black solid; */
+  width:140px;
+  height:70%;
+  text-align:center;
+  top: 25px;
+}
+
+main .pay_total_money1{
+  display:inline;
+  position:absolute;
+  top:4px;
+  right:210px;
+  /* border: black solid; */
+  width:140px;
+  height:70%;
+  text-align:center;
+  top:25px;
+}
+
+main div .pay_payment{
+  display:inline;
+  position:absolute;
+  top:4px;
+  right:10px;
+  /* border: black solid; */
+  width:140px;
+  height:70%;
+  text-align:center;
+  top: 25px;
+}
+
+main div div a:hover{
+  color: orange;
+}
+/* 付款 */
+main  .title_step2{
+  /* display: ; */
+  position:relative;
+  margin: auto;
+  /* border: black solid; */
+  width: 1000px;
+  height: 50px;
+  top:10px;
+
+}
+
+
+main  ul .first_step2{
+  display:flex;
+  position: absolute;
+  /* border: black solid; */
+  width: 100px;
+  right: 750px;
+  top: 10px;
+  color: gray
+}
+main  ul .first_arrow2{
+  display:flex;
+  position: absolute;
+  /* border: black solid; */
+  width: 100px;
+  right: 630px;
+  top: 10px;
+  font-size: 24px;
+}
+
+main  ul .second_step2{
+  display:flex;
+  position: absolute;
+  /* border: black solid */
+  width: 200px;
+  right: 450px;
+  top: 10px;
+  /* font-size: 24px; */
+  color: gray;
+
+}
+main  ul .second_arrow2{
+  display:flex;
+  position: absolute;
+  /* border: black solid; */
+  width: 100px;
+  right: 430px;
+  top: 10px;
+  font-size: 24px;
+}
+
+main  ul .third_step2{
+  display:flex;
+  position: absolute;
+  /* border: black solid */
+  width: 100px;
+  top: 4px;
+  right: 350px;
+  color: black;
+  font-size: 24px;
+}
+main  ul .third_arrow2{
+  display:flex;
+  position: absolute;
+  /* border: black solid; */
+  width: 100px;
+  right: 200px;
+  top: 10px;
+  font-size: 24px;
+}
+
+main  ul .forth_step2{
+  display:flex;
+  position: absolute;
+  /* border: black solid */
+  width: 100px;
+  top: 10px;
+  right: 130px;
+  color: gray
+  ;
+  
+}
+
+main .inf{
+  position:relative;
+  /* display: inline-block; */
+  /* border:1px blue solid; */
+  width:1050px;
+  height:250px;
+  overflow-x: auto;
+  margin: auto;
+}
+
+main  div .pro_inf_div{
+  /* display: inline-block; */
+  position:relative;
+  /* border:1px black solid; */
+  width:1000px;
+  height:50px;
+  margin:auto;
+}
+main  div .pro_inf{
+  /* display: inline-block; */
+  position:relative;
+  /* border:1px black solid; */
+  width:1000px;
+  height:50px;
+  margin:auto;
+  background-color: white;
+}
+main  div  .pro_inf_pic{
+  position:relative;
+  /* display: block; */
+  /* border: black solid; */
+  width:100px;
+  height:40px;
+  margin: 2 0 0 0;
+  text-align: center;
+  line-height: 40px;
+}
+main  div  .pro_inf_pic1{
+display: inline;
+width: 100%;
+height: 40px;
+}
+
+main  div  .pro_inf_des{
+  position:absolute;
+  /* display: inline-block; */
+  /* border: black solid; */
+  width:550px;
+  height:40px;
+  top: 3px;
+  left: 150px;
+  text-align: center;
+  line-height: 40px;
+}
+main  div  .pro_inf_number{
+  position:absolute;
+  display: block;
+  /* border: black solid; */
+  width:80px;
+  height:40px;
+  top:3px;
+  left:750px;
+  text-align: center;
+  line-height: 40px;
+}
+main  div  .pro_inf_price{
+  position:absolute;
+  display: block;
+  /* border: black solid; */
+  width:90px;
+  height:40px;
+  top:3px;
+  left:900px;
+  text-align: center;
+  line-height: 40px;
+}
+main  div .pro_num_price{
+  position:absolute;
+  /* border: black solid; */
+  width:680px;
+  height:30px;
+  top:120px;
+  left:30px;
+} 
+
+
+main .user{
+  position:relative;
+  border:1px black solid;
+  width:703px;
+  height:140px;
+  margin-top:30px;
+  margin-left:40px;
+  
+}
+
+/* main div .user_inf{
+  position:absolute;
+  border: black solid;
+  width:670px;
+  height:120px;
+  top:10px;
+  left:30px;
+} */
+
+main div div .user_inf_name{
+  position:absolute;
+  display:inline;
+  /* border:1px black solid; */
+  width:600px;
+  top:15px;
+  left:25px;
+}
+main div div .user_inf_phone{
+  position:absolute;
+  display:inline;
+  /* border:1px black solid; */
+  width:600px;
+  top:45px;
+  left:25px;
+}
+main div div .user_inf_mail{
+  position:absolute;
+  display:inline;
+  /* border:1px black solid; */
+  width:600px;
+  top:75px;
+  left:25px;
+}
+main div div .user_inf_adress{
+  position:absolute;
+  display:inline;
+  /* border:1px black solid; */
+  width:600px;
+  top:100px;
+  left:25px;
+}
+main .pay_container{
+  display:inline-block;
+  position:relative;
+  border: 1px black solid;
+  width:300px;
+  height:138px;
+  margin-top: -1px;
+  margin-left: 730px;
+}
+
+main div .pay_total_money{
+  display:inline;
+  position:absolute;
+  border:1px black solid;
+  border-radius: 10px;
+  width:200px;
+  height:50px;
+  top:10px;
+  right:50px;
+  font-size:20px;
+  text-align: center;
+  line-height: 25px;
+  /* background-color: #F16736; */
+  color: rgb(34, 32, 32);
+}
+main div .pay_confirm_payment{
+  /* display:inline; */
+  position:absolute;
+  border: 1px black solid;
+  border-radius: 10px;
+  width:200px;
+  height:50px;
+  top:80px;
+  right:50px;
+  text-align:center;
+  font-size:24px;
+  line-height: 50px;
+  /* background-color: #F16736; */
+}
+/* main div div .user_message{
+  position:absolute;
+  border: black solid;
+  width:170px;
+  height:120px;
+  top:40px;
+  right:35px;
+  text-align:center;
+}
+
+main div div .user_message_text{
+  width:150px;
+  height:90px;
+  
+} */
+
+main .pay_inf{
+  position:relative;
+  border:1px black solid;
+  width:703px;
+  height:100px;
+  margin-top:50px;
+  margin-left:40px;
+  margin-bottom: 10px;
+}
+
+main div .pay_user{
+  position:absolute;
+  /* border:1px black solid; */
+  width:200px;
+  height:20px;
+  top:10px;
+  left:25px;
+}
+
+main div .pay_credit{
+  position:absolute;
+  /* border:1px black solid; */
+  width:250px;
+  top:40px;
+  left:25px;
+}
+main div .pay_revise{
+  position:absolute;
+  /* border: black solid; */
+  width:50px;
+  top:40px;
+  left:340px;
+}
+main div .pay_revise1{
+  width:50px;
+
+}
+main div .pay_delete{
+  position:absolute;
+  /* border: black solid; */
+  width:50px;
+  top:40px;
+  left:400px;
+}
+main div .pay_delete1{
+  width:50px;
+}
+main div .pay_expired{
+  display:inline;
+  position:absolute;
+  /* border:1px black solid; */
+  width:300px;
+  top:70px;
+  left:25px;
+}
+main div .pay_expired2{
+  position:absolute;
+  /* border:1px black solid; */
+  top:2px;
+  width:100px;
+  left:55px;
+}
+main div .pay_confirmed{
+  display:inline;
+  position:absolute;
+  /* border: black solid; */
+  width:220px;
+  height:22px;
+  top:70px;
+  left:340px;
+}
+main div .pay_confirmed2{
+  display:inline;
+  position:absolute;
+  border:1px black solid;
+  width:100px;
+  height:22px;
+  left:60px;
+  
+ 
+}
+
+
+main  .pay_back_to_cart{
+  /* display:; */
+  position:absolute;
+  border: 1px solid black;
+  border-radius: 10px;
+  width:200px;
+  height:70px;
+  margin-left:780px;
+  margin-top: 10px;
+  text-align:center;
+  line-height: 70px;
+  font-size:32px;
+  
+}
+/* 付款完成 */
+main .finished_pay{
+  display:inline;
+  position:absolute;
+  border:1px black solid;
+  width:800px;
+  height:400px;
+  top:40px;
+  right:220px;
+  text-align:center;
+  font-size:72px;
+  line-height:150px;
+}
+
+main .finished_inquire{
+  display:inline;
+  position:absolute;
+  border:1px black solid;
+  width:300px;
+  height:100px;
+  top:140px;
+  right:240px;
+  font-size:32px;
+  line-height:100px;
+}
+
+main .finished_back_to_mall{
+  display:inline;
+  position:absolute;
+  border:1px black solid;
+  width:300px;
+  height:100px;
+  top:270px;
+  right:240px;
+  font-size:32px;
+  line-height:100px;
+}
+/* 配送 */
+main .order_container{
+height:600px;
+}
+
+
+  main div .order_bought{
+    position: relative;
+    /* display: inline; */
+    /* border: black solid; */
+    /* left:15px; */
+    top:5px;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+    }
+    main div .order_bar{
+      position: relative;
+      /* display: inline; */
+      /* border: black solid; */
+      /* left:15px; */
+      top:5px;
+      text-align: center;
+      }
+      main div .order_bar_pic{
+        position: relative;
+        display: inline;
+        /* border: black solid; */
+        right:220px;
+        text-align: center;
+        }
+        main div .order_bar_des{
+          position: relative;
+          display: inline;
+          /* border: black solid; */
+          right:60px;
+          text-align: center;
+          }
+          main div .order_bar_num{
+            position: relative;
+            display: inline;
+            /* border: black solid; */
+            left: 125px;
+
+            text-align: center;
+            }
+            main div .order_bar_pri{
+              position: relative;
+              display: inline;
+              /* border: black solid; */
+              left: 218px;
+              text-align: center;
+              }
+              main div .order_container2{
+                position: relative;
+                /* border: black solid; */
+                margin: 0 auto;
+                width: 1200px;
+                top:10px;
+                }
+main .order_inf{
+  position:relative;
+  border:1px black solid;
+  width:800px;
+  height:300px;
+  margin: auto;
+  overflow-y: auto;
+}
+
+
+
+
+main div  .order_pro_inf{
+  /* display:inline; */
+  position:relative;
+  border:1px black solid;
+  width:720px;
+  /* height:50px; */
+  margin: auto;
+}
+
+main div  .order_pro_pic{
+  position:absolute;
+  display: inline-block;
+  border:1px black solid;
+  width:80px;
+  height: 50px;
+  /* overflow: hidden; */
+  left:0px
+
+}
+main div div .order_pro_pic2{
+  width: 100%;
+}
+main div  .order_pro_pro{
+  position:relative;
+  display: inline-block;
+  /* border:1px black solid; */
+  width:300px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  left: 120px;
+}
+main div  .order_pro_num{
+  position:relative;
+  display: inline-block;
+  /* border:1px black solid; */
+  width:150px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  left: 140px;
+}
+main div  .order_pro_price{
+  position:relative;
+  display: inline-block;
+  /* border:1px black solid; */
+  width:80px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  left:177px;
+}
+
+
+
+main div .order_number{
+  display:inline;
+  position:absolute;
+  border: black dotted;
+  width:500px;
+  height:200px;
+  top:50px;
+  left:700px;
+  
+}
+
+main div .order_numbers{
+  display:inline;
+  position:absolute;
+  border:1px black solid;
+  width:400px;
+  height:80px;
+  top:0px;
+  left:50px;
+  font-size:32px;
+  text-align:center;
+  line-height:80px;
+}
+
+
+main div div .order_code{
+
+  display:inline;
+  position:absolute;
+  border:1px black solid;
+  width:400px;
+  height:80px;
+  top:118px;
+  left:50px;
+  font-size:32px;
+  text-align:center;
+  line-height:80px;
+}
+
+main .receiver{
+  display:inline;
+  position:absolute;
+  /* border: black solid; */
+  width:1200px;
+  height:200px;
+  top:380px;
+  right:30px;
+  
+}
+
+main div .receiver_info1{
+  display:inline-block;
+  position:absolute;
+  border:1px black solid;
+  width:805px;
+  height:150px;
+  top:45px;
+  left:208px;
+}
+main div div .receiver_info2{
+  display:inline-block;
+  position:absolute;
+  /* border: black solid; */
+  width:420px;
+  height:30px;
+  left:400px;
+  top: 5px;
+  text-align: center;
+  font-size: 24px;
+}
+
+
+main div div .receiver_name{
+  display:inline-block;
+  position:absolute;
+  /* border: black solid; */
+  width:420px;
+  height:30px;
+  top:25px;
+  left:45px;
+}
+
+main div div .receiver_email{
+  display:inline-block;
+  position:absolute;
+  /* border: black solid; */
+  width:420px;
+  height:30px;
+  top:65px;
+  left:45px;
+}
+
+main div div .receiver_adress{
+  display:inline-block;
+  position:absolute;
+  /* border: black solid; */
+  width:420px;
+  height:30px;
+  top:105px;
+  left:45px;
+}
+
+main div div .receiver_progress{
+  display:inline-block;
+  position:absolute;
+  border-left: 1px black solid;
+  width:400px;
+  height:130px;
+  top:10px;
+  right:50px;
+  
+}
+
+main div div div .receiver_progress_code{
+  display:inline-block;
+  position:absolute;
+  /* border:1px black solid; */
+  width:300px;
+  height:50px;
+  top:5px;
+  right:50px;
+  text-align: center;
+  line-height: 25px;
+}
+main div div div .receiver_progress_inf{
+  display:inline-block;
+  position:absolute;
+  /* border:1px black solid; */
+  width:300px;
+  height:50px;
+  top:70px;
+  right:50px;
+  text-align: center;
+  line-height: 25px;
+}
+

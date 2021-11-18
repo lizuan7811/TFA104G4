@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        body{
+            border: 1px solid;
+            margin:0;
+        }
+
+        img{
+            max-width: 100%;
+
+        }
+
+        html{
+            font-size: 62.5%;
+            --header-height:60px;
+            --aside-width:240px;
+
+        }
+
+        .header{
+            border:1px solid black ;
+            width:100%;
+            height: var(--header-height);
+            background-color: lightgray;
+            /* position:fixed;
+            top: 0;
+            left: 0; */
+            position: sticky;
+            top:0;
+        }   
+        
+        .aside{
+            border: 1px solid red;
+            background-color: orange;
+            position: fixed;
+            left: 0;
+            top: 60px;
+            /* top: var(--header-height); */
+            width: var(--aside-width);
+            height: calc(100% - 60px);
+        }
+
+        .main{
+            border: 1px solid blue;
+            /* height: 1000px; */
+            width: calc(100% - var(--aside-width));
+            margin-left: 240px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <header class="header">這是頭</header>
+    <aside class="aside">這是邊</aside>
+    <main class="main">這是主</main>
+
+
+
+
+    <script></script>
+</body>
+</html>
