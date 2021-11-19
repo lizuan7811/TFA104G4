@@ -3,8 +3,8 @@ package model;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class OrderVO implements Serializable{
-	private Integer idOrder;
+public class FinalOrderVO implements Serializable{
+	private Integer idFinalOrder;
 	private Integer idCustomer;
 	private String recipient;
 	private String recipientAddress;
@@ -14,16 +14,16 @@ public class OrderVO implements Serializable{
 	private Timestamp arrivalTime;
 	private String footnote;
 
-	public OrderVO() {
+	public FinalOrderVO() {
 		
 	}
 
-	public Integer getIdOrder() {
-		return idOrder;
+	public Integer getIdFinalOrder() {
+		return idFinalOrder;
 	}
 
-	public void setIdOrder(Integer idOrder) {
-		this.idOrder = idOrder;
+	public void setIdFinalOrder(Integer idFinalOrder) {
+		this.idFinalOrder = idFinalOrder;
 	}
 
 	public Integer getIdCustomer() {
