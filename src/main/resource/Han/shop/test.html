@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="slick-1.8.1\slick\slick.css" />
+    <link rel="stylesheet" href="slick-1.8.1\slick\slick-theme.css" />
+</head>
+<style>
+*,
+body,
+html {
+
+        margin: 0;
+
+        ​padding: 0;
+
+        ​
+}
+
+.one {
+
+margin: 50px auto;
+
+width: 200px;
+
+height: 600px;
+
+        ​
+}
+
+.one .slick-slide {
+width: 200px;
+
+height: 200px;
+
+background: aqua;
+
+margin: 0 auto;
+
+text-align: center;
+
+        ​
+}
+
+.slick-arrow::before {
+ color: black !important;
+        ​
+}
+</style>
+
+<body>
+    <div class="one">
+
+        <div>1</div>
+
+        <div>2</div>
+
+        <div>3</div>
+
+        <div>4</div>
+
+        ​
+    </div>
+
+    ​ <button type="button" class="slick-prev">Previous</button>
+
+    <script type="text/javascript" src="jqery\jquery.js"></script>
+    <script type="text/javascript" src="slick-1.8.1\slick\slick.js"></script>
+
+    <script>
+
+        const di = $('.slick-slide')
+
+        $(function () {
+
+            $('.one')
+
+                .slick({
+
+                    arrows: true,
+
+                    dots: true,
+
+                    // centerMode:true,
+
+                    centerPadding: '80px',
+
+                    cssEase: 'linear',
+
+                    easing: 'ease',
+
+                    edgeFriction: 0.9,
+
+                    // initialSlide:2,
+
+                    autoplay: true,
+
+                    // pauseOnHover:false,
+
+                    slidesToShow: 3,
+
+                    swipeToSlide: true,
+
+                    vertical: true,
+
+                    verticalSwiping: true
+
+                })
+
+                .on('swipe', (slick, direction) => {
+
+                    console.log('11111 = ' + slick, '22222 = ' + direction);
+
+                })
+
+            console.log($('.one').slick('slickCurrentSlide'))
+
+        })
+
+    </script>
+</body>
+
+</html>
