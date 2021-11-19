@@ -7,10 +7,10 @@ public class IngreTypeJDBCTest {
 		IngreTypeDAO dao = new IngreTypeDAOImpl();
 		
 		// 新增
-//		IngreTypeVO type1 = new IngreTypeVO();
-//		type1.setIdIngreType(1);
-//		type1.setTypeName("肉類");
-//		dao.insert(type1);
+		IngreTypeVO type1 = new IngreTypeVO();
+		type1.setIdIngreType(1);
+		type1.setTypeName("肉類");
+		dao.insert(type1);
 
 		// 修改
 //		IngreTypeVO type2 = new IngreTypeVO();
