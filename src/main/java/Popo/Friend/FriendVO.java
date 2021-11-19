@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class FriendVO implements Serializable {
-	private int friendChatID;
-	private int custID;
-	private int myFriendID;
-	private int friendStatusNum;
+	private Integer friendChatID;
+	private Integer custID;
+	private Integer myFriendID;
+	private Integer friendStatusNum;
 	private Date statusUpdate;
 
 
@@ -16,7 +16,7 @@ public class FriendVO implements Serializable {
 	}
 
 
-	public FriendVO(int friendChatID, int custID, int myFriendID, int friendStatusNum, Date statusUpdate) {
+	public FriendVO(Integer friendChatID, Integer custID, Integer myFriendID, Integer friendStatusNum, Date statusUpdate) {
 		super();
 		this.friendChatID = friendChatID;
 		this.custID = custID;
@@ -26,42 +26,42 @@ public class FriendVO implements Serializable {
 	}
 
 
-	public int getFriendChatID() {
+	public Integer getFriendChatID() {
 		return friendChatID;
 	}
 
 
-	public void setFriendChatID(int friendChatID) {
+	public void setFriendChatID(Integer friendChatID) {
 		this.friendChatID = friendChatID;
 	}
 
 
-	public int getCustID() {
+	public Integer getCustID() {
 		return custID;
 	}
 
 
-	public void setCustID(int custID) {
+	public void setCustID(Integer custID) {
 		this.custID = custID;
 	}
 
 
-	public int getMyFriendID() {
+	public Integer getMyFriendID() {
 		return myFriendID;
 	}
 
 
-	public void setMyFriendID(int myFriendID) {
+	public void setMyFriendID(Integer myFriendID) {
 		this.myFriendID = myFriendID;
 	}
 
 
-	public int getFriendStatusNum() {
+	public Integer getFriendStatusNum() {
 		return friendStatusNum;
 	}
 
 
-	public void setFriendStatusNum(int friendStatusNum) {
+	public void setFriendStatusNum(Integer friendStatusNum) {
 		this.friendStatusNum = friendStatusNum;
 	}
 

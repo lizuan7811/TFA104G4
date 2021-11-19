@@ -5,46 +5,46 @@ import java.sql.Date;
 
 public class FriendChatVO implements Serializable {
 
-	private int friendChatID;
-	private int custID;
-	private int myFriendID;
+	private Integer friendChatID;
+	private Integer custID;
+	private Integer myFriendID;
 	private String chatText;
-	private Date creatTime;
+	private Date createdTime;
 	
 	public FriendChatVO() {
 		
 	}
 	
-	public FriendChatVO(int friendChatID, int custID, int myFriendID, String chatText, Date creatTime) {
+	public FriendChatVO(Integer friendChatID, Integer custID, Integer myFriendID, String chatText, Date createdTime) {
 		super();
 		this.friendChatID = friendChatID;
 		this.custID = custID;
 		this.myFriendID = myFriendID;
 		this.chatText = chatText;
-		this.creatTime = creatTime;
+		this.createdTime = createdTime;
 	}
 
-	public int getFriendChatID() {
+	public Integer getFriendChatID() {
 		return friendChatID;
 	}
 
-	public void setFriendChatID(int friendChatID) {
+	public void setFriendChatID(Integer friendChatID) {
 		this.friendChatID = friendChatID;
 	}
 
-	public int getCustID() {
+	public Integer getCustID() {
 		return custID;
 	}
 
-	public void setCustID(int custID) {
+	public void setCustID(Integer custID) {
 		this.custID = custID;
 	}
 
-	public int getMyFriendID() {
+	public Integer getMyFriendID() {
 		return myFriendID;
 	}
 
-	public void setMyFriendID(int myFriendID) {
+	public void setMyFriendID(Integer myFriendID) {
 		this.myFriendID = myFriendID;
 	}
 
@@ -56,12 +56,12 @@ public class FriendChatVO implements Serializable {
 		this.chatText = chatText;
 	}
 
-	public Date getCreatTime() {
-		return creatTime;
+	public Date getCreatedTime() {
+		return createdTime;
 	}
 
-	public void setCreatTime(Date creatTime) {
-		this.creatTime = creatTime;
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
 	}
 	
 	

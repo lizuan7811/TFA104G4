@@ -4,9 +4,9 @@ import java.util.List;
 
 
 public interface ChatRoomDAO {
-		void add(ChatRoomVO chatRoomVO);
+		void insert(ChatRoomVO chatRoomVO);
 		void update(ChatRoomVO chatRoomVO);
-		void delete(int mesgID);
+		void delete(Integer mesgID);
 		ChatRoomVO findByPK(int mesgID);
 		List<ChatRoomVO> getAll();
 	}

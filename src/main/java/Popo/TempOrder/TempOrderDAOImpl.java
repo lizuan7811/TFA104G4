@@ -10,11 +10,11 @@ import java.util.List;
 
 
 public class TempOrderDAOImpl implements TempOrderDAO {
-	private static final String INSERT_STMT = "INSERT INTO TEMPORDER(CUSTID, INGRElID, ORDERQUAN, PRICE) VALUES (?, ?, ?, ?)";
-	private static final String UPDATE_STMT = "UPDATE TEMPORDER SET INGRElID = ?, ORDERQUAN = ?, PRICE = ? WHERE CUSTID = ?";
-	private static final String DELETE_STMT = "DELETE FROM TEMPORDER WHERE CUSTID = ?";
-	private static final String FIND_BY_PK = "SELECT * FROM TEMPORDER WHERE CUSTID = ?";
-	private static final String GET_ALL = "SELECT * FROM TEMPORDER";
+	public static final String INSERT_STMT = "INSERT INTO TEMPORDER(CUSTID, INGRElID, ORDERQUAN, PRICE) VALUES (?, ?, ?, ?)";
+	public static final String UPDATE_STMT = "UPDATE TEMPORDER SET INGRElID = ?, ORDERQUAN = ?, PRICE = ? WHERE CUSTID = ?";
+	public static final String DELETE_STMT = "DELETE FROM TEMPORDER WHERE CUSTID = ?";
+	public static final String FIND_BY_PK = "SELECT * FROM TEMPORDER WHERE CUSTID = ?";
+	public static final String GET_ALL = "SELECT * FROM TEMPORDER";
 	
 	static {
 		try {
@@ -25,7 +25,7 @@ public class TempOrderDAOImpl implements TempOrderDAO {
 	}
 
 	@Override
-	public void add(TempOrderVO tempOrderVO) {
+	public void insert(TempOrderVO tempOrderVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -104,7 +104,7 @@ public class TempOrderDAOImpl implements TempOrderDAO {
 	}
 
 	@Override
-	public void delete(int custID) {
+	public void delete(Integer custID) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -140,7 +140,7 @@ public class TempOrderDAOImpl implements TempOrderDAO {
 	}
 
 	@Override
-	public TempOrderVO findByPK(int custID, int IngrelID) {
+	public TempOrderVO findByPK(Integer custID, Integer IngrelID) {
 		TempOrderVO tem = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;

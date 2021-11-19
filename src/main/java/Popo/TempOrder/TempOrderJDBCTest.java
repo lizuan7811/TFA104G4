@@ -7,12 +7,12 @@ public class TempOrderJDBCTest {
 		TempOrderDAO dao = new TempOrderDAOImpl();
 
 //		新增
-//		TempOrder tem = new TempOrder();
-//		tem.setCustID(7016);
-//		tem.setIngrelID(1001);
-//		tem.setOrderQuan(1005);
-//		tem.setPrice(1006);
-//		dao.add(tem);
+		TempOrderVO tem = new TempOrderVO();
+		tem.setCustID(7016);
+		tem.setIngrelID(1001);
+		tem.setOrderQuan(1005);
+		tem.setPrice(1006);
+		dao.insert(tem);
 
 //		// 修改
 		TempOrderVO tem2 = new TempOrderVO();

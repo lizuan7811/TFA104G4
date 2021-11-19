@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FriendDAOImpl implements FriendDAO {
-	private static final String INSERT_STMT = "INSERT INTO FRIEND(FRIENDCHATID, CUSTID, MYFRIENDID, FRIENDSTATUSNUM, STATUSUPDATE) VALUES (?, ?, ?, ?, ?)";
-	private static final String UPDATE_STMT = "UPDATE FRIEND SET CUSTID = ?, MYFRIENDID = ?, FRIENDSTATUSNUM = ?, STATUSUPDATE = ? WHERE FRIENDCHATID = ?";
-	private static final String DELETE_STMT = "DELETE FROM FRIEND WHERE FRIENDCHATID = ?";
-	private static final String FIND_BY_PK = "SELECT * FROM FRIEND WHERE FRIENDCHATID = ?";
-	private static final String GET_ALL = "SELECT * FROM FRIEND";
+	public static final String INSERT_STMT = "INSERT INTO FRIEND(FRIENDCHATID, CUSTID, MYFRIENDID, FRIENDSTATUSNUM, STATUSUPDATE) VALUES (?, ?, ?, ?, ?)";
+	public static final String UPDATE_STMT = "UPDATE FRIEND SET CUSTID = ?, MYFRIENDID = ?, FRIENDSTATUSNUM = ?, STATUSUPDATE = ? WHERE FRIENDCHATID = ?";
+	public static final String DELETE_STMT = "DELETE FROM FRIEND WHERE FRIENDCHATID = ?";
+	public static final String FIND_BY_PK = "SELECT * FROM FRIEND WHERE FRIENDCHATID = ?";
+	public static final String GET_ALL = "SELECT * FROM FRIEND";
 	
 	static {
 		try {
@@ -23,7 +23,7 @@ public class FriendDAOImpl implements FriendDAO {
 		}
 	}
 	@Override
-	public void add(FriendVO friendVO) {
+	public void insert(FriendVO friendVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -107,7 +107,7 @@ public class FriendDAOImpl implements FriendDAO {
 	}
 
 	@Override
-	public void delete(int friendChatID) {
+	public void delete(Integer friendChatID) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -144,7 +144,7 @@ public class FriendDAOImpl implements FriendDAO {
 	}
 
 	@Override
-	public FriendVO findByPK(int friendChatID) {
+	public FriendVO findByPK(Integer friendChatID) {
 		FriendVO frie = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;

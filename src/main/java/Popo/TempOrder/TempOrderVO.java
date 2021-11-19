@@ -4,17 +4,17 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class TempOrderVO implements Serializable{
-	private int custID;
-	private int IngrelID;
-	private int orderQuan;
-	private int price;
+	private Integer custID;
+	private Integer IngrelID;
+	private Integer orderQuan;
+	private Integer price;
 
 
 	public TempOrderVO() {
 		}
 
 
-	public TempOrderVO(int custID, int ingrelID, int orderQuan, int price) {
+	public TempOrderVO(Integer custID, Integer ingrelID, Integer orderQuan, Integer price) {
 		this.custID = custID;
 		this.IngrelID = ingrelID;
 		this.orderQuan = orderQuan;
@@ -22,42 +22,42 @@ public class TempOrderVO implements Serializable{
 	}
 
 
-	public int getCustID() {
+	public Integer getCustID() {
 		return custID;
 	}
 
 
-	public void setCustID(int custID) {
+	public void setCustID(Integer custID) {
 		this.custID = custID;
 	}
 
 
-	public int getIngrelID() {
+	public Integer getIngrelID() {
 		return IngrelID;
 	}
 
 
-	public void setIngrelID(int ingrelID) {
+	public void setIngrelID(Integer ingrelID) {
 		this.IngrelID = ingrelID;
 	}
 
 
-	public int getOrderQuan() {
+	public Integer getOrderQuan() {
 		return orderQuan;
 	}
 
 
-	public void setOrderQuan(int orderQuan) {
+	public void setOrderQuan(Integer orderQuan) {
 		this.orderQuan = orderQuan;
 	}
 
 
-	public int getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 
 
-	public void setPrice(int price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 	

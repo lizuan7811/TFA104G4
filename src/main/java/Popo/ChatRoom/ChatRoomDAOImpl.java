@@ -10,11 +10,11 @@ import java.util.List;
 
 
 public class ChatRoomDAOImpl implements ChatRoomDAO{
-	private static final String INSERT_STMT = "INSERT INTO CHATROOM(MESGID, CUSTID, CUSTMESG, CREATTIME, MESSAGE) VALUES (?, ?, ?, ?, ?)";
-	private static final String UPDATE_STMT = "UPDATE CHATROOM SET  CUSTID = ?, CUSTMESG = ?, CREATTIME = ?, MESSAGE = ? WHERE MESGID = ?";
-	private static final String DELETE_STMT = "DELETE FROM CHATROOM WHERE MESGID = ?";
-	private static final String FIND_BY_PK = "SELECT * FROM CHATROOM WHERE MESGID = ?";
-	private static final String GET_ALL = "SELECT * FROM CHATROOM";
+	public static final String INSERT_STMT = "INSERT INTO CHATROOM(MESGID, CUSTID, CUSTMESG, CREATEDTIME, MESSAGE) VALUES (?, ?, ?, ?, ?)";
+	public static final String UPDATE_STMT = "UPDATE CHATROOM SET  CUSTID = ?, CUSTMESG = ?, CREATEDTIME = ?, MESSAGE = ? WHERE MESGID = ?";
+	public static final String DELETE_STMT = "DELETE FROM CHATROOM WHERE MESGID = ?";
+	public static final String FIND_BY_PK = "SELECT * FROM CHATROOM WHERE MESGID = ?";
+	public static final String GET_ALL = "SELECT * FROM CHATROOM";
 	
 	static {
 		try {
@@ -24,7 +24,7 @@ public class ChatRoomDAOImpl implements ChatRoomDAO{
 		}
 	}
 	@Override
-	public void add(ChatRoomVO chatRoomVO) {
+	public void insert(ChatRoomVO chatRoomVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
@@ -33,11 +33,11 @@ public class ChatRoomDAOImpl implements ChatRoomDAO{
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setInt(1, chatRoomVO.getmesgID());
-			pstmt.setInt(2, chatRoomVO.getcustID());
+			pstmt.setInt(1, chatRoomVO.getMesgID());
+			pstmt.setInt(2, chatRoomVO.getCustID());
 			pstmt.setBoolean(3, chatRoomVO.getCustMesg());
-			pstmt.setDate(4, chatRoomVO.getCreatTime());
-			pstmt.setString(5, chatRoomVO.getmessage());
+			pstmt.setDate(4, chatRoomVO.getCreatedTime());
+			pstmt.setString(5, chatRoomVO.getMessage());
 
 			pstmt.executeUpdate();
 			
@@ -78,11 +78,11 @@ public class ChatRoomDAOImpl implements ChatRoomDAO{
 
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(UPDATE_STMT);
-			pstmt.setInt(1, chatRoomVO.getcustID());
+			pstmt.setInt(1, chatRoomVO.getCustID());
 			pstmt.setBoolean(2, chatRoomVO.getCustMesg());
-			pstmt.setDate(3, chatRoomVO.getCreatTime());
-			pstmt.setString(4, chatRoomVO.getmessage());
-			pstmt.setInt(5, chatRoomVO.getmesgID());
+			pstmt.setDate(3, chatRoomVO.getCreatedTime());
+			pstmt.setString(4, chatRoomVO.getMessage());
+			pstmt.setInt(5, chatRoomVO.getMesgID());
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
@@ -109,7 +109,7 @@ public class ChatRoomDAOImpl implements ChatRoomDAO{
 	}
 
 	@Override
-	public void delete(int mesgID) {
+	public void delete(Integer mesgID) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -161,11 +161,11 @@ public class ChatRoomDAOImpl implements ChatRoomDAO{
 
 			while (rs.next()) {
 				chat = new ChatRoomVO();
-				chat.setmesgID(rs.getInt("MESGID"));
-				chat.setcustID(rs.getInt("CUSTID"));
+				chat.setMesgID(rs.getInt("MESGID"));
+				chat.setCustID(rs.getInt("CUSTID"));
 				chat.setBoolean(rs.getBoolean("CUSTMESG"));
-				chat.setcreatTime(rs.getDate("CREATTIME"));
-				chat.setmessage(rs.getString("Message"));
+				chat.setCreatedTime(rs.getDate("CREATEDTIME"));
+				chat.setMessage(rs.getString("Message"));
 			
 			}
 
@@ -215,11 +215,11 @@ public class ChatRoomDAOImpl implements ChatRoomDAO{
 
 			while (rs.next()) {
 				chat = new ChatRoomVO();
-				chat.setmesgID(rs.getInt("MESGID"));
-				chat.setcustID(rs.getInt("CUSTID"));
+				chat.setMesgID(rs.getInt("MESGID"));
+				chat.setCustID(rs.getInt("CUSTID"));
 				chat.setBoolean(rs.getBoolean("CUSTMESG"));
-				chat.setcreatTime(rs.getDate("CREATTIME"));
-				chat.setmessage(rs.getString("Message"));
+				chat.setCreatedTime(rs.getDate("CREATEDTIME"));
+				chat.setMessage(rs.getString("Message"));
 				chatList.add(chat);
 			}
 

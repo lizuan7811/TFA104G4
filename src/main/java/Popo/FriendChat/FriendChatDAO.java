@@ -3,9 +3,9 @@ package po;
 import java.util.List;
 
 public interface FriendChatDAO {
-	void add(FriendChatVO friendChatVO);
+	void insert(FriendChatVO friendChatVO);
 	void update(FriendChatVO friendChatVO);
-	void delete(int friendChatID);
-	FriendChatVO findByPK(int friendChatID);
+	void delete(Integer friendChatID);
+	FriendChatVO findByPK(Integer friendChatID);
 	List<FriendChatVO> getAll();
 }

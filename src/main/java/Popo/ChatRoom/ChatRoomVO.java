@@ -6,52 +6,52 @@ import java.sql.Date;
 
 public class ChatRoomVO implements Serializable {
 
-	private int mesgID;
-	private int custID;
-	private boolean custMesg;
-	private Date creatTime;
+	private Integer mesgID;
+	private Integer custID;
+	private Boolean custMesg;
+	private Date createdTime;
 	private String message;
 	
 	public ChatRoomVO() {
 		
 	}
 	
-	public ChatRoomVO(int mesgID, int custID, boolean custMesg, Date creatTime, String message) {
+	public ChatRoomVO(Integer mesgID, Integer custID, Boolean custMesg, Date createdTime, String message) {
 		super();
 		this.mesgID = mesgID;
 		this.custID = custID;
 		this.custMesg = custMesg;
-		this.creatTime = creatTime;
+		this.createdTime = createdTime;
 		this.message = message;
 	}
-	public int getmesgID() {
+	public Integer getMesgID() {
 		return mesgID;
 	}
-	public void setmesgID(int mesgID) {
+	public void setMesgID(Integer mesgID) {
 		this.mesgID = mesgID;
 	}
-	public int getcustID() {
+	public Integer getCustID() {
 		return custID;
 	}
-	public void setcustID(int custID) {
+	public void setCustID(Integer custID) {
 		this.custID = custID;
 	}
-	public boolean getCustMesg() {
+	public Boolean getCustMesg() {
 		return custMesg;
 	}
-	public void setBoolean(boolean custMesg) {
+	public void setBoolean(Boolean custMesg) {
 		this.custMesg = custMesg;
 	}
-	public Date getCreatTime() {
-		return creatTime;
+	public Date getCreatedTime() {
+		return createdTime;
 	}
-	public void setcreatTime(Date creatTime) {
-		this.creatTime = creatTime;
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
 	}
-	public String getmessage() {
+	public String getMessage() {
 		return message;
 	}
-	public void setmessage(String message) {
+	public void setMessage(String message) {
 		this.message = message;
 	}
 	

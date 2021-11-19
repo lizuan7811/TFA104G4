@@ -11,11 +11,11 @@ import java.util.List;
 
 
 public class FriendChatDAOImpl implements FriendChatDAO{
-	private static final String INSERT_STMT = "INSERT INTO FRIENDCHAT(FRIENDCHATID, CUSTID, MYFRIENDID, CHATTEXT, CREATTIME) VALUES (?, ?, ?, ?, ?)";
-	private static final String UPDATE_STMT = "UPDATE FRIENDCHAT SET CUSTID = ?, MYFRIENDID = ?, CHATTEXT = ?, CREATTIME = ? WHERE FRIENDCHATID = ?";
-	private static final String DELETE_STMT = "DELETE FROM FRIENDCHAT WHERE FRIENDCHATID = ?";
-	private static final String FIND_BY_PK = "SELECT * FROM FRIENDCHAT WHERE FRIENDCHATID = ?";
-	private static final String GET_ALL = "SELECT * FROM FRIENDCHAT";
+	public static final String INSERT_STMT = "INSERT INTO FRIENDCHAT(FRIENDCHATID, CUSTID, MYFRIENDID, CHATTEXT, CREATEDTIME) VALUES (?, ?, ?, ?, ?)";
+	public static final String UPDATE_STMT = "UPDATE FRIENDCHAT SET CUSTID = ?, MYFRIENDID = ?, CHATTEXT = ?, CREATEDTIME = ? WHERE FRIENDCHATID = ?";
+	public static final String DELETE_STMT = "DELETE FROM FRIENDCHAT WHERE FRIENDCHATID = ?";
+	public static final String FIND_BY_PK = "SELECT * FROM FRIENDCHAT WHERE FRIENDCHATID = ?";
+	public static final String GET_ALL = "SELECT * FROM FRIENDCHAT";
 	
 	static {
 		try {
@@ -25,7 +25,7 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 		}
 	}
 	@Override
-	public void add(FriendChatVO friendChatVO) {
+	public void insert(FriendChatVO friendChatVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -38,7 +38,7 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 			pstmt.setInt(2, friendChatVO.getCustID());
 			pstmt.setInt(3, friendChatVO.getMyFriendID());
 			pstmt.setString(4, friendChatVO.getChatText());
-			pstmt.setDate(5, friendChatVO.getCreatTime());
+			pstmt.setDate(5, friendChatVO.getCreatedTime());
 
 
 			pstmt.executeUpdate();
@@ -80,7 +80,7 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 			pstmt.setInt(1, friendChatVO.getCustID());
 			pstmt.setInt(2, friendChatVO.getMyFriendID());
 			pstmt.setString(3, friendChatVO.getChatText());
-			pstmt.setDate(4, friendChatVO.getCreatTime());
+			pstmt.setDate(4, friendChatVO.getCreatedTime());
 			pstmt.setInt(5, friendChatVO.getFriendChatID());
 			pstmt.executeUpdate();
 
@@ -109,7 +109,7 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 	}
 
 	@Override
-	public void delete(int friendChatID) {
+	public void delete(Integer friendChatID) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -146,7 +146,7 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 	}
 
 	@Override
-	public FriendChatVO findByPK(int friendChatID) {
+	public FriendChatVO findByPK(Integer friendChatID) {
 		FriendChatVO fri = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -165,7 +165,7 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 				fri.setCustID(rs.getInt("CUSTID"));
 				fri.setMyFriendID(rs.getInt("MYFRIENDID"));
 				fri.setChatText(rs.getString("CHATTEXT"));
-				fri.setCreatTime(rs.getDate("CREATTIME"));
+				fri.setCreatedTime(rs.getDate("CREATEDTIME"));
 			}
 
 		} catch (SQLException se) {
@@ -217,7 +217,7 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 				fri.setCustID(rs.getInt("CUSTID"));
 				fri.setMyFriendID(rs.getInt("MYFRIENDID"));
 				fri.setChatText(rs.getString("CHATTEXT"));
-				fri.setCreatTime(rs.getDate("CREATTIME"));
+				fri.setCreatedTime(rs.getDate("CREATEDTIME"));
 				friList.add(fri);
 			}
 
