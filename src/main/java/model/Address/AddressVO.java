@@ -1,4 +1,4 @@
-package model;
+package model.Address;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

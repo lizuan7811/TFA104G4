@@ -1,4 +1,4 @@
-package model;
+package model.Address;
 
 import java.util.List;
 

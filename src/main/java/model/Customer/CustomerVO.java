@@ -1,4 +1,4 @@
-package model;
+package model.Customer;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Timestamp;

@@ -1,4 +1,4 @@
-package model;
+package model.Card;
 
 import java.io.*;
 import java.sql.Date;

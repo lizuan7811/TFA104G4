@@ -1,4 +1,4 @@
-package model;
+package model.FinalOrder;
 
 import java.util.Date;
 import java.sql.Timestamp;

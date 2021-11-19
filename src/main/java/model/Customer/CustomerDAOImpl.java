@@ -1,6 +1,7 @@
-package model;
+package model.Customer;
 import java.sql.*;
 import java.util.*;
+import model.Util;
 
 public class CustomerDAOImpl implements CustomerDAO {
 	

@@ -1,4 +1,4 @@
-package model;
+package model.FinalOrder;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

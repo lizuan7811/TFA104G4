@@ -1,4 +1,4 @@
-package model;
+package model.Customer;
 import java.util.*;
 
 public interface CustomerDAO {

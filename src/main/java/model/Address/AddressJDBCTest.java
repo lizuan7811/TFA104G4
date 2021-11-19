@@ -1,4 +1,4 @@
-package model;
+package model.Address;
 
 import java.sql.Timestamp;
 import java.util.List;

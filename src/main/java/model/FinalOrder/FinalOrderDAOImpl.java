@@ -1,24 +1,25 @@
-package model;
+package model.FinalOrder;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import model.Util;
 
+public class FinalOrderDAOImpl implements FinalOrderDAO {
 
-public class AddressDAOImpl implements AddressDAO {
-	
-	private static final String INSERT_STMT = "INSERT INTO Address (idAddress, idCustomer, "
-			+ "address, tag, longitude, latitude, createdTime, defaultOption)"
-			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-	private static final String UPDATE_STMT = "UPDATE Address SET idCustomer = ?, address = ?, "
-			+ "tag = ?, longitude = ?, latitude = ?, createdTime = ?, defaultOption = ? WHERE idAddress = ?";
-	private static final String DELETE_STMT = "DELETE FROM Address WHERE idAddress = ?";
-	private static final String FIND_BY_PK = "SELECT * FROM Address WHERE idAddress = ?";
-	private static final String GET_ALL = "SELECT * FROM Address";
+	private static final String INSERT_STMT = "INSERT INTO FinalOrder (idFinalOrder, idCustomer, recipient, "
+			+ "recipientAddress, orderAmount, createdTime, shipTime, arrivalTime, footnote)"
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String UPDATE_STMT = "UPDATE FinalOrder SET idCustomer = ?, recipient = ?, recipientAddress = ?, "
+			+ "orderAmount = ?, createdTime = ?, shipTime = ?, arrivalTime = ?, footnote = ? WHERE idFinalOrder = ?";
+	private static final String DELETE_STMT = "DELETE FROM FinalOrder WHERE idFinalOrder = ?";
+	private static final String FIND_BY_PK = "SELECT * FROM FinalOrder WHERE idFinalOrder = ?";
+	private static final String GET_ALL = "SELECT * FROM FinalOrder";
 
 	static {
 		try {
@@ -29,7 +30,7 @@ public class AddressDAOImpl implements AddressDAO {
 	}
 	
 	@Override
-	public void insert(AddressVO addressVO) {
+	public void insert(FinalOrderVO finalOrderVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -38,14 +39,15 @@ public class AddressDAOImpl implements AddressDAO {
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setInt(1, addressVO.getIdAddress());
-			pstmt.setInt(2, addressVO.getIdCustomer());
-			pstmt.setString(3, addressVO.getAddress());
-			pstmt.setString(4, addressVO.getTag());
-			pstmt.setDouble(5, addressVO.getLongitude());
-			pstmt.setDouble(6, addressVO.getLatitude());
-			pstmt.setTimestamp(7, addressVO.getCreatedTime());
-			pstmt.setBoolean(8, addressVO.getDefaultOption());
+			pstmt.setInt(1, finalOrderVO.getIdFinalOrder());
+			pstmt.setInt(2, finalOrderVO.getIdCustomer());
+			pstmt.setString(3, finalOrderVO.getRecipient());
+			pstmt.setString(4, finalOrderVO.getRecipientAddress());
+			pstmt.setDouble(5, finalOrderVO.getOrderAmount());
+			pstmt.setTimestamp(6, finalOrderVO.getCreatedTime());
+			pstmt.setTimestamp(7, finalOrderVO.getShipTime());
+			pstmt.setTimestamp(8, finalOrderVO.getArrivalTime());
+			pstmt.setString(9, finalOrderVO.getFootnote());
 				
 			pstmt.executeUpdate();
 			
@@ -72,7 +74,7 @@ public class AddressDAOImpl implements AddressDAO {
 	}
 
 	@Override
-	public void update(AddressVO addressVO) {
+	public void update(FinalOrderVO finalOrderVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -81,14 +83,15 @@ public class AddressDAOImpl implements AddressDAO {
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(UPDATE_STMT);
 			
-			pstmt.setInt(1, addressVO.getIdCustomer());
-			pstmt.setString(2, addressVO.getAddress());
-			pstmt.setString(3, addressVO.getTag());
-			pstmt.setDouble(4, addressVO.getLongitude());
-			pstmt.setDouble(5, addressVO.getLatitude());
-			pstmt.setTimestamp(6, addressVO.getCreatedTime());
-			pstmt.setBoolean(7, addressVO.getDefaultOption());
-			pstmt.setInt(8, addressVO.getIdAddress());
+			pstmt.setInt(1, finalOrderVO.getIdCustomer());
+			pstmt.setString(2, finalOrderVO.getRecipient());
+			pstmt.setString(3, finalOrderVO.getRecipientAddress());
+			pstmt.setDouble(4, finalOrderVO.getOrderAmount());
+			pstmt.setTimestamp(5, finalOrderVO.getCreatedTime());
+			pstmt.setTimestamp(6, finalOrderVO.getShipTime());
+			pstmt.setTimestamp(7, finalOrderVO.getArrivalTime());
+			pstmt.setString(8, finalOrderVO.getFootnote());
+			pstmt.setInt(9, finalOrderVO.getIdFinalOrder());
 				
 			pstmt.executeUpdate();
 			
@@ -115,7 +118,7 @@ public class AddressDAOImpl implements AddressDAO {
 	}
 
 	@Override
-	public void delete(Integer idAddress) {
+	public void delete(Integer idFinalOrder) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -124,7 +127,7 @@ public class AddressDAOImpl implements AddressDAO {
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(DELETE_STMT);
 			
-			pstmt.setInt(1, idAddress);
+			pstmt.setInt(1, idFinalOrder);
 			
 			pstmt.executeUpdate();
 			
@@ -151,29 +154,31 @@ public class AddressDAOImpl implements AddressDAO {
 	}
 
 	@Override
-	public AddressVO findByPK(Integer idAddress) {
+	public FinalOrderVO findByPK(Integer idFinalOrder) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		AddressVO addressVO = null;
+		FinalOrderVO finalOrderVO = null;
 		
 		try {
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(FIND_BY_PK);
-			pstmt.setInt(1, idAddress);
+			pstmt.setInt(1, idFinalOrder);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				addressVO = new AddressVO();
-				addressVO.setIdAddress(rs.getInt("idAddress"));
-				addressVO.setIdCustomer(rs.getInt("idCustomer"));
-				addressVO.setAddress(rs.getString("address"));
-				addressVO.setTag(rs.getString("tag"));
-				addressVO.setLongitude(rs.getDouble("longitude"));
-				addressVO.setLatitude(rs.getDouble("latitude"));
-				addressVO.setCreatedTime(rs.getTimestamp("createdTime"));
-				addressVO.setDefaultOption(rs.getBoolean("defaultOption"));			
+
+				finalOrderVO = new FinalOrderVO();
+				finalOrderVO.setIdFinalOrder(rs.getInt("idFinalOrder"));
+				finalOrderVO.setIdCustomer(rs.getInt("idCustomer"));
+				finalOrderVO.setRecipient(rs.getString("recipient"));
+				finalOrderVO.setRecipientAddress(rs.getString("recipientAddress"));
+				finalOrderVO.setOrderAmount(rs.getDouble("orderAmount"));
+				finalOrderVO.setCreatedTime(rs.getTimestamp("createdTime"));
+				finalOrderVO.setShipTime(rs.getTimestamp("shipTime"));
+				finalOrderVO.setArrivalTime(rs.getTimestamp("arrivalTime"));
+				finalOrderVO.setFootnote(rs.getString("footnote"));			
 			}
 			
 		} catch (SQLException se) {
@@ -203,13 +208,13 @@ public class AddressDAOImpl implements AddressDAO {
 			}
 		}
 		
-		return addressVO;
+		return finalOrderVO;
 	}
 
 	@Override
-	public List<AddressVO> getAll() {
-		List<AddressVO> addressList = new ArrayList<>();
-		AddressVO addressVO = null;
+	public List<FinalOrderVO> getAll() {
+		List<FinalOrderVO> finalOrderList = new ArrayList<>();
+		FinalOrderVO finalOrderVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -221,16 +226,17 @@ public class AddressDAOImpl implements AddressDAO {
 			
 			while (rs.next()) {
 				
-				addressVO = new AddressVO();
-				addressVO.setIdAddress(rs.getInt("idAddress"));
-				addressVO.setIdCustomer(rs.getInt("idCustomer"));
-				addressVO.setAddress(rs.getString("address"));
-				addressVO.setTag(rs.getString("tag"));
-				addressVO.setLongitude(rs.getDouble("longitude"));
-				addressVO.setLatitude(rs.getDouble("latitude"));
-				addressVO.setCreatedTime(rs.getTimestamp("createdTime"));
-				addressVO.setDefaultOption(rs.getBoolean("defaultOption"));	
-				addressList.add(addressVO);
+				finalOrderVO = new FinalOrderVO();
+				finalOrderVO.setIdFinalOrder(rs.getInt("idFinalOrder"));
+				finalOrderVO.setIdCustomer(rs.getInt("idCustomer"));
+				finalOrderVO.setRecipient(rs.getString("recipient"));
+				finalOrderVO.setRecipientAddress(rs.getString("recipientAddress"));
+				finalOrderVO.setOrderAmount(rs.getDouble("orderAmount"));
+				finalOrderVO.setCreatedTime(rs.getTimestamp("createdTime"));
+				finalOrderVO.setShipTime(rs.getTimestamp("shipTime"));
+				finalOrderVO.setArrivalTime(rs.getTimestamp("arrivalTime"));
+				finalOrderVO.setFootnote(rs.getString("footnote"));			
+				finalOrderList.add(finalOrderVO);
 			}
 			
 		} catch (SQLException se) {
@@ -260,7 +266,8 @@ public class AddressDAOImpl implements AddressDAO {
 			}
 		}
 		
-		return addressList;
+		return finalOrderList;
 	}
+
 
 }
