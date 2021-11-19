@@ -1,4 +1,6 @@
-10001	305	5	15
-10001	101	2	159
-10002	203	6	40
-10002	101	1	159
+insert into Group4_db.OrderIngreList(idOrder, idIngre, orderQuan, price)
+values
+(10001, 305, 5, 14), 
+(10001, 101, 2, 159),
+(10002, 203, 6, 40), 
+(10002, 101, 1, 159);
