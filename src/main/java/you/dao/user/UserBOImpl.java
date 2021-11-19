@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import com.mysql.cj.xdevapi.JsonArray;
 
 import you.conn.BaseConn;
+import you.conn.JRedis;
 import you.filedao.FileWorkDaoImpl;
 
 
@@ -56,6 +57,13 @@ public class UserBOImpl implements UserBO{
 		udl.delDiaryLike(conn, ps, diaryLike, diaryID);
 		likeNum=udl.selDiaryLike(conn, ps, diaryID);
 		BaseConn.closeConnection(conn, ps);
+		return likeNum;
+	}
+
+	@Override
+	public Integer addOrDelClickBO(Integer idCustomer, Integer diaryID) {
+		Integer likeNum=JRedis.clickLike(diaryID, idCustomer);
+		
 		return likeNum;
 	}
 }

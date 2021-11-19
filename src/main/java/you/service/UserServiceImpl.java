@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 
 import org.json.JSONArray;
 
-import ga.cf_eat_healthy.FoodDiaryVO;
 import you.conn.BaseConn;
 import you.dao.user.UserBO;
 import you.dao.user.UserBOImpl;
@@ -44,23 +43,21 @@ public class UserServiceImpl implements UserService{
 //	如果like數量增加或減少，就要執行到select count(*) from liketable更新讚數
 //	回傳SELECT * FROM DiaryLike;
 	@Override
-	public Integer addClickService(Integer idCustomer, Integer diaryID) {
+	public Integer addOrDelLikeService(Integer diaryID,Integer idCustomer) {
 		// TODO Auto-generated method stub
-		Connection conn=BaseConn.getConnection();
-		PreparedStatement ps=null;
 		Integer likeNum=0;
-		likeNum=usbo.addClickBO(conn,ps,idCustomer,diaryID);
-		return 0;
-	}
-	@Override
-	public Integer delClickService(Integer diaryLikeID,Integer diaryID) {
-		// TODO Auto-generated method stub
-		Connection conn=BaseConn.getConnection();
-		PreparedStatement ps=null;
-		Integer likeNum=0;
-		likeNum=usbo.delClickBO(conn,ps,diaryLikeID,diaryID);
+		likeNum=usbo.addOrDelClickBO(idCustomer,diaryID);
 		return likeNum;
 	}
+//	@Override
+//	public Integer delClickService(Integer diaryLikeID,Integer diaryID) {
+//		// TODO Auto-generated method stub
+//		Connection conn=BaseConn.getConnection();
+//		PreparedStatement ps=null;
+//		Integer likeNum=0;
+//		likeNum=usbo.delClickBO(conn,ps,diaryLikeID,diaryID);
+//		return likeNum;
+//	}
 //	public int selClickService()
 //	{
 //		

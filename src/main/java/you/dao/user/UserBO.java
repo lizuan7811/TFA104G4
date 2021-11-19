@@ -11,7 +11,11 @@ public interface UserBO {
 
 	public Integer addClickBO(Connection conn,PreparedStatement ps,Integer idCustomer,Integer diaryID);
 
+	public Integer addOrDelClickBO(Integer idCustomer,Integer diaryID);
+
 	public Integer delClickBO(Connection conn,PreparedStatement ps,Integer diaryLike,Integer diaryID);
+	
+//	public Integer delClickBO(Integer diaryLike,Integer diaryID);
 
 
 }
