@@ -1,4 +1,4 @@
-package liuMadi;
+package model;
 
 import java.io.*;
 import java.sql.Date;
