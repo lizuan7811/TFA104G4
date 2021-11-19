@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `Group4_db`.`FriendChat` (
   `custID` INT NOT NULL COMMENT '會員ID (custID): int, not null',
   `myFriendID` INT NOT NULL COMMENT '朋友會員ID (myFriendID): int, not null',
   `chatText` VARCHAR(200) NOT NULL COMMENT '訊息內容 (chatText): varchar(200), not null',
-  `creatTime` TIMESTAMP NOT NULL COMMENT '創建時間 (creatTime): TimeStamp, not null',
+  `createdTime` TIMESTAMP NOT NULL COMMENT '創建時間 (creatTime): TimeStamp, not null',
   PRIMARY KEY (`friendChatID`),
   constraint FK_FriendChat_cust_id FOREIGN KEY(`custId`) REFERENCES Customer(`idCustomer`),
   constraint FK_FriendChat_myFriend_cust_id FOREIGN KEY(`myFriendID`) REFERENCES Customer(`idCustomer`))
@@ -166,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `Group4_db`.`ChatRoom` (
   `mesgID` INT AUTO_INCREMENT NOT NULL COMMENT '聊天訊息編號 (mesgID): int, not null ',
   `custID` INT NOT NULL COMMENT '會員編號 (custID): int, not null',
   `custMesg` TINYINT(1) NOT NULL COMMENT '會員訊息(custMesg): boolean, not null',
-  `creatTime` TIMESTAMP NOT NULL COMMENT '創建時間 (createdTime): TimeStamp, not null',
+  `createdTime` TIMESTAMP NOT NULL COMMENT '創建時間 (createdTime): TimeStamp, not null',
   `message` VARCHAR(200) NOT NULL COMMENT '訊息內容 (message): varchar(200), not null',
   PRIMARY KEY (`mesgID`),
   constraint FK_chatRoom_cust_id FOREIGN KEY(`custId`) REFERENCES Customer(`idCustomer`))
@@ -265,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `Group4_db`.`Admin` (
   `adminID` INT NOT NULL AUTO_INCREMENT COMMENT '管理者ID\n0:沒有權限、1:有權限',
   `adminAcco` VARCHAR(45) NOT NULL COMMENT '帳號',
   `adminPass` VARCHAR(45) NOT NULL COMMENT '密碼',
-  `createdTIme` TIMESTAMP NOT NULL COMMENT '創建時間',
+  `createdTime` TIMESTAMP NOT NULL COMMENT '創建時間',
   `adminAuthority` TINYINT(1) NOT NULL COMMENT '聊天室回覆權限\n',
   PRIMARY KEY (`adminID`))
 ENGINE = InnoDB;
