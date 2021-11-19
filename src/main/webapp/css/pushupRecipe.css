@@ -1,0 +1,119 @@
+h1::after{
+	content:"食譜上架";
+	margin-left:10px;
+	font-size:20px;
+}
+textarea{
+	resize:none;
+}
+div{
+	border-color:none;
+}
+
+.icon-controller-play{
+	display:inline-block;
+	color:black;
+	margin-left:10px;
+	font-size: 22px;
+}
+.icon-upload1{
+	display:inline-block;
+	color:lightblue;
+	margin:30px 0px 0px 10px;
+	font-size: 25px;
+	font-weight: bold;
+}
+.icon-upload1:hover{
+	color:darkblue;
+}
+form {
+	display:flex;
+	flex-flow:column;
+	justify-content: start;
+	align-items: start;
+	flex-direction: column;
+}
+.food_in_mbContent{
+	background-color:white;
+}
+.food_in_mbContent,#photobox_in_FMbContent2,#inputfordescripte_inmainBox{
+	/* border:blue solid 3px; */
+	font-size:24px;
+}
+#food_in_mbContent1{
+	width:90%;
+	padding:10px;
+	display:flex;
+	justify-content:space-between;
+}
+
+#food_in_mbContent1 input{
+	border:none;
+	background-color:#F0F3F5;
+}
+
+#food_in_mbContent2{
+	width:90.8%;
+	padding-left:10px;
+	display:flex;
+	flex-flow:row;
+	justify-content:start;
+}
+#labforDescription_in_FMbContent2{
+	height:30px;
+}
+#photobox_in_FMbContent2,#inputfordescripte_inmainBox0{
+	width:250px;
+	height:180px;
+	margin:10px 40px 0px 0px;
+	/* background-color: yellow; */
+}
+#inputfordescripte_inmainBox0{
+	width:55%;
+	background-color:#F0F3F5;
+	border:none;
+	margin-bottom:10px;
+	font-size: 24px;
+}
+
+#food_in_mbContent3{
+	width:90%;
+	padding:10px;
+	display:flex;
+	flex-flow:row;
+	justify-content:start;
+}
+#inputfordescripte_inmainBox{
+	background-color:#F0F3F5;
+	height:300px;
+	border:none;
+}
+
+.lbls_inmainBox{
+	height:30px;
+}
+
+#labforRecipeTips{
+	margin:20px 100px 10px 0px;
+	height:35px;
+}
+
+#inputfordescripte_inmainBox{
+	width:80%;
+}
+
+#inputfordescripte_inmainBox,#food_in_mbContent2,#labforphotobox_in_FMbContent2,#labforDescription_in_FMbContent2{
+	margin:20px 0px 10px 0px;
+	/* border-style:dashed; */
+}
+
+.lbls_inmainBox,.lbls_inlbls_inmainBox{
+	background-color:#F0F3F5;
+}
+.mianBox_div_input,#inputfordescripte_inmainBox,#inputfordescripte_inmainBox0{
+	font-size:24px;
+}
+.mianBox_div_input:focus,#inputfordescripte_inmainBox:focus,#inputfordescripte_inmainBox0:focus{
+	outline:none;
+	background-color:#f2f8f8;
+}

@@ -1,0 +1,62 @@
+@import url("header_footer.css");
+
+
+main {
+    z-index: 1;
+    position:relative;
+    top: 90px;
+    border: solid black;
+    box-sizing: border-box;
+    width: 100%;
+    height: 800px;
+    background-color:white;
+}
+.about_us_pic1{
+    width: 100%;
+    height: 250px;
+    border: solid black;
+}
+.about_us_content_1{
+    display: block;
+}
+.about_us_pic2{
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    margin: 5px;
+    width: 30%;
+    border: blue solid;
+    height: calc(100% - 33.5%);
+}
+.our_story{
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    margin: 5px;
+    width: 68%;
+    height: 25%;
+    border: chocolate solid;
+}
+.about_us_content_2{
+    display: block;
+}
+.our_concept{
+    display: inline-block;
+    position: absolute;
+    left: 40%;
+    top: 58%;
+    bottom: 0;
+    width: 28%;
+    margin: 5px;
+    border: solid rebeccapurple;
+}
+.about_us_pic3{
+    display: inline-block;
+    position: absolute;
+    left: 0%;
+    top: 58%;
+    bottom: 0;
+    width: 39.3%;
+    margin: 5px;
+    border: solid rebeccapurple;
+}
