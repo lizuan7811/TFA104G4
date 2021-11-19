@@ -3,10 +3,10 @@ package hantest.servlet;
 import java.io.Serializable;
 
 public class RecipeIngreVO implements Serializable {
-	private int idRecipeIngre; //食譜食材編號
-	private int idRecipe; //食譜編號
-	private int idIngre; //食材編號
-	private int ingreQuan; //食材數量
+	private Integer idRecipeIngre; //食譜食材編號
+	private Integer idRecipe; //食譜編號
+	private Integer idIngre; //食材編號
+	private Integer ingreQuan; //食材數量
 	
 	public RecipeIngreVO() {
 		

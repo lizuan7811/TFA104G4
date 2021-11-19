@@ -8,8 +8,8 @@ public class IngreTypeJDBCTest {
 		
 		// 新增
 //		IngreTypeVO type1 = new IngreTypeVO();
-//		type1.setIdIngreType(2);
-//		type1.setTypeName("55555");
+//		type1.setIdIngreType(1);
+//		type1.setTypeName("肉類");
 //		dao.insert(type1);
 
 		// 修改
@@ -28,12 +28,12 @@ public class IngreTypeJDBCTest {
 //		System.out.println("---------------------");
 
 		//查詢全部
-//		List<IngreTypeVO> list = dao.getAll();
-//		for (IngreTypeVO type : list) {
-//			System.out.print(type.getIdIngreType() + ",");
-//			System.out.print(type.getTypeName()+ ",");
-//			System.out.println();
-//		}
+		List<IngreTypeVO> list = dao.getAll();
+		for (IngreTypeVO type : list) {
+			System.out.print(type.getIdIngreType() + ",");
+			System.out.print(type.getTypeName()+ ",");
+			System.out.println();
+		}
 	}
 
 }

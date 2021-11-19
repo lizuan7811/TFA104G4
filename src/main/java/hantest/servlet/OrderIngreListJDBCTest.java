@@ -7,12 +7,12 @@ public class OrderIngreListJDBCTest {
 		OrderIngreListDAO dao = new OrderIngreListDAOImpl();
 		
 		// 新增
-		OrderIngreListVO orderil1 = new OrderIngreListVO();
-		orderil1.setIdOrder(5);
-		orderil1.setIdIngre(2);
-		orderil1.setOrderQuan(4);
-		orderil1.setPrice(4);
-		dao.insert(orderil1);
+//		OrderIngreListVO orderil1 = new OrderIngreListVO();
+//		orderil1.setIdOrder(5);
+//		orderil1.setIdIngre(2);
+//		orderil1.setOrderQuan(4);
+//		orderil1.setPrice(4);
+//		dao.insert(orderil1);
 		
 		// 修改
 //		OrderIngreListVO orderil2 = new OrderIngreListVO();

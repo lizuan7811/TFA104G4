@@ -3,17 +3,17 @@ package hantest.servlet;
 import java.io.Serializable;
 
 public class IngreVO implements Serializable {
-	private int idIngre; // 食材編號
-	private int idIngreType; // 食材類別編號
+	private Integer idIngre; // 食材編號
+	private Integer idIngreType; // 食材類別編號
 	private String name; // 食材品名
 	private double purPrice; // 進貨價格
 	private double price; // 單價
 	private String unit; // 單位
-	private int gran; // 克
-	private int sell; // 銷售數量
+	private Integer gran; // 克
+	private Integer sell; // 銷售數量
 	private String descrip; // 食品描述
 	private byte[] photo; // 圖片
-	private boolean launch; // 上架狀態\n0:未上架\n1:上架
+	private Boolean launch; // 上架狀態\n0:未上架\n1:上架
 	
 	public IngreVO() {
 

@@ -17,16 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class IngreServlet extends HttpServlet {
-	/**
-	 * 
-	 */
 
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
 		
-		
-
 		try {
 			req.setCharacterEncoding("utf-8");
 			resp.setContentType("text/html");
@@ -37,7 +32,9 @@ public class IngreServlet extends HttpServlet {
 			IngreVO ingre = ingre(ps);
 			PrintWriter pw = resp.getWriter();
 			pw.write(String.valueOf(ingre.getIdIngre()));
+			pw.write("\t");
 			pw.write(String.valueOf(ingre.getIdIngreType()));
+			pw.write("\t");
 			pw.write(ingre.getName());
 			
 		} catch (UnsupportedEncodingException e) {

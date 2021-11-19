@@ -7,12 +7,12 @@ public class ReceipIngreJDBCTest {
 		RecipeIngreDAO dao = new RecipeIngreDAOImpl();
 		
 		// 新增
-//		RecipeIngreVO rcpingre1 = new RecipeIngreVO();
-//		rcpingre1.setIdRecipeIngre(04);
-//		rcpingre1.setIdRecipe(03);
-//		rcpingre1.setIdIngre(03);
-//		rcpingre1.setIngreQuan(01);	
-//		dao.insert(rcpingre1);
+		RecipeIngreVO rcpingre1 = new RecipeIngreVO();
+		rcpingre1.setIdRecipeIngre(04);
+		rcpingre1.setIdRecipe(03);
+		rcpingre1.setIdIngre(03);
+		rcpingre1.setIngreQuan(01);	
+		dao.insert(rcpingre1);
 		
 		// 修改
 //		RecipeIngreVO rcpingre2 = new RecipeIngreVO();

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 
 public class IngreTypeVO implements Serializable{
-	private int idIngreType; //類別編號
+	private Integer idIngreType; //類別編號
 	private String typeName; //食材類別名稱
 	
 	public IngreTypeVO() {

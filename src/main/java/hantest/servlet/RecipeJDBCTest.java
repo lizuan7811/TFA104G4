@@ -10,13 +10,13 @@ public class RecipeJDBCTest {
 		RecipeDAO dao = new RecipeDAOImpl();
 		
 		// 新增
-//		RecipeVO rcp1 = new RecipeVO();
-//		rcp1.setIdRecipe(4);
-//		rcp1.setText("444444444444444444");
-//		rcp1.setDescrip("444444444444444");
-//		byte[] pic1 = writePicture("C:\\Users\\Tibame_T14\\Desktop\\img\\香煎雞胸肉.png");
-//		rcp1.setPhoto(pic1);
-//		dao.insert(rcp1);
+		RecipeVO rcp1 = new RecipeVO();
+		rcp1.setIdRecipe(4);
+		rcp1.setText("444444444444444444");
+		rcp1.setDescrip("444444444444444");
+		byte[] pic1 = writePicture("C:\\Users\\Tibame_T14\\Desktop\\img\\香煎雞胸肉.png");
+		rcp1.setPhoto(pic1);
+		dao.insert(rcp1);
 		
 		// 修改
 //		RecipeVO rcp2 = new RecipeVO();

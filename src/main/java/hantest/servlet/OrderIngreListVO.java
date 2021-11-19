@@ -3,10 +3,10 @@ package hantest.servlet;
 import java.io.Serializable;
 
 public class OrderIngreListVO implements Serializable {
-	private int idOrder; //訂單編號
-	private int idIngre; //食材編號
-	private int orderQuan; //購買數量
-	private int price; //單價
+	private Integer idOrder; //訂單編號
+	private Integer idIngre; //食材編號
+	private Integer orderQuan; //購買數量
+	private Integer price; //單價
 
 	public OrderIngreListVO() {
 

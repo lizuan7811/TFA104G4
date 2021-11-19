@@ -3,9 +3,9 @@ package hantest.servlet;
 import java.util.List;
 
 public interface RecipeIngreDAO {
-	void insert(RecipeIngreVO recipeIngreVO);
-	void update(RecipeIngreVO recipeIngreVO);
-	void delete(int idRecipeIngre);
-	RecipeIngreVO findByPK(int idRecipeIngre);
-	List<RecipeIngreVO> getAll();
+	public void insert(RecipeIngreVO recipeIngreVO);
+	public void update(RecipeIngreVO recipeIngreVO);
+	public void delete(int idRecipeIngre);
+	public RecipeIngreVO findByPK(int idRecipeIngre);
+	public List<RecipeIngreVO> getAll();
 }

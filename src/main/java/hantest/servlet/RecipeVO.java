@@ -3,7 +3,7 @@ package hantest.servlet;
 import java.io.Serializable;
 
 public class RecipeVO implements Serializable{
-	private int idRecipe; //食譜編號
+	private Integer idRecipe; //食譜編號
 	private String text; //內容
 	private String descrip; //步驟說明
 	private byte[] photo; //圖片

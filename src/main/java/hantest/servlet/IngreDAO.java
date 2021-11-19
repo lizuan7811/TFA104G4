@@ -3,9 +3,9 @@ package hantest.servlet;
 import java.util.List;
 
 public interface IngreDAO {
-	void insert(IngreVO ingreVO);
-	void update(IngreVO ingreVO);
-	void delete(int idIngre);
-	IngreVO findByPK(int idIngre);
-	List<IngreVO> getAll();
+	public void insert(IngreVO ingreVO);
+	public void update(IngreVO ingreVO);
+	public void delete(int idIngre);
+	public IngreVO findByPK(int idIngre);
+	public List<IngreVO> getAll();
 }
