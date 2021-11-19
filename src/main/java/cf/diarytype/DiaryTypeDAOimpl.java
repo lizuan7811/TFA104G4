@@ -8,8 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import cf.cf_util.DB;
-
+import util.DB;
 
 public class DiaryTypeDAOimpl implements DiaryTypeDAO {
 	
