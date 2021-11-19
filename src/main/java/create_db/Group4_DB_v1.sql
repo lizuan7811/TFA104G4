@@ -42,7 +42,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Group4_db`.`Address` (
   `idAddress` INT AUTO_INCREMENT NOT NULL COMMENT '送達地址ID',
   `idCustomer` INT NOT NULL COMMENT '會員ID',
-  `address` VARCHAR(45) NULL COMMENT '地址',
+  `address` VARCHAR(50) NULL COMMENT '地址',
   `tag` VARCHAR(25) NOT NULL COMMENT '地址標籤(家, 工作...etc)',
   `longitude` DECIMAL(5) NOT NULL COMMENT '經度',
   `latitude` DECIMAL(5) NOT NULL COMMENT '緯度',
@@ -70,12 +70,12 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Group4_db`.`foodDiary`
+-- Table `Group4_db`.`FoodDiary`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Group4_db`.`FoodDiary` (
   `diaryID` INT AUTO_INCREMENT NOT NULL  COMMENT  '日誌編號' ,
   `custID` INT NOT NULL COMMENT '會員ID',
-  `subject` VARCHAR(25) NOT NULL COMMENT '日誌標題',
+  `subject` VARCHAR(50) NOT NULL COMMENT '日誌標題',
   `text` TEXT NOT NULL COMMENT '日誌文章',
   `createdTime` TIMESTAMP NOT NULL COMMENT '創建時間',
   `photo_video_1` BLOB NULL COMMENT '圖片/影片檔案',
@@ -92,7 +92,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Group4_db`.`comment`
+-- Table `Group4_db`.`Comment`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Group4_db`.`Comment` (
   `commentID` INT AUTO_INCREMENT NOT NULL COMMENT '留言ID',
@@ -108,7 +108,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Group4_db`.`diaryType`
+-- Table `Group4_db`.`DiaryType`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Group4_db`.`DiaryType` (
   `diaryTypeID` INT AUTO_INCREMENT NOT NULL COMMENT '日誌分類ID',
@@ -160,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `Group4_db`.`Friend` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `Group4_db`.`chatRoom`
+-- Table `Group4_db`.`ChatRoom`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Group4_db`.`ChatRoom` (
   `mesgID` INT AUTO_INCREMENT NOT NULL COMMENT '聊天訊息編號 (mesgID): int, not null ',
@@ -204,27 +204,27 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Group4_db`.`Recipe` (
   `idRecipe` INT AUTO_INCREMENT NOT NULL COMMENT '食譜編號\n',
-  `text` VARCHAR(400) NOT NULL COMMENT '內容',
+  `text` VARCHAR(2000) NOT NULL COMMENT '內容',
   `descrip` VARCHAR(2000) NOT NULL COMMENT '步驟說明',
   `photo` LONGBLOB NOT NULL COMMENT '圖片',
   PRIMARY KEY (`idRecipe`))
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `Group4_db`.`Order`
+-- Table `Group4_db`.`FinalOrder`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Group4_db`.`Order` (
-  `idOrder` INT AUTO_INCREMENT NOT NULL COMMENT '訂單ID',
+CREATE TABLE IF NOT EXISTS `Group4_db`.`FinalOrder` (
+  `idFinalOrder` INT AUTO_INCREMENT NOT NULL COMMENT '訂單ID',
   `idCustomer` INT NOT NULL COMMENT '會員ID',
-  `recipient` VARCHAR(25) NOT NULL COMMENT '收件人姓名',
-  `recipientAddress` VARCHAR(45) NOT NULL COMMENT '收件地址',
+  `recipient` VARCHAR(50) NOT NULL COMMENT '收件人姓名',
+  `recipientAddress` VARCHAR(50) NOT NULL COMMENT '收件地址',
   `orderAmount` DECIMAL(10) NOT NULL COMMENT '交易金額',
   `createdTime` TIMESTAMP(6) NULL COMMENT '訂單成立時間',
   `shipTime` TIMESTAMP(6) NULL COMMENT '出貨時間',
   `arrivalTime` TIMESTAMP(6) NULL COMMENT '送達時間',
-  `footnote` VARCHAR(45) NULL COMMENT '備註',
-  PRIMARY KEY (`idOrder`),
-  constraint FK_Order_cust_id FOREIGN KEY(`idCustomer`) REFERENCES Customer(`idCustomer`))
+  `footnote` VARCHAR(200) NULL COMMENT '備註',
+  PRIMARY KEY (`idFinalOrder`),
+  constraint FK_FinalOrder_cust_id FOREIGN KEY(`idCustomer`) REFERENCES Customer(`idCustomer`))
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -275,7 +275,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Group4_db`.`IngreType` (
   `idIngreType` INT AUTO_INCREMENT NOT NULL COMMENT '類別編號',
-  `typeName` VARCHAR(25) NOT NULL COMMENT '食材類別名稱',
+  `typeName` VARCHAR(50) NOT NULL COMMENT '食材類別名稱',
   PRIMARY KEY (`idIngreType`))
 ENGINE = InnoDB;
 
