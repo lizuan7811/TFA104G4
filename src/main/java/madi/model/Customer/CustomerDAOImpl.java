@@ -1,7 +1,8 @@
 package madi.model.Customer;
 import java.sql.*;
 import java.util.*;
-import model.Util;
+
+import basicutil.Util;
 
 public class CustomerDAOImpl implements CustomerDAO {
 	
@@ -15,13 +16,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 	private static final String FIND_BY_PK = "SELECT * FROM Customer WHERE idCustomer = ?";
 	private static final String GET_ALL = "SELECT * FROM Customer";
 	
-	static {
-		try {
-			Class.forName(Util.DRIVER);
-		} catch (ClassNotFoundException ce) {
-			ce.printStackTrace();
-		}
-	}
 	
 	@Override
 	public void insert(CustomerVO customerVO) {
@@ -30,7 +24,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 		try {
 			
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setInt(1, customerVO.getIdCustomer());
@@ -77,7 +71,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 		try {
 			
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(UPDATE_STMT);
 			
 			pstmt.setString(1, customerVO.getName());
@@ -125,7 +119,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 		try {
 			
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(DELETE_STMT);
 			
 			pstmt.setInt(1, idCustomer);
@@ -162,7 +156,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		CustomerVO customerVO = null;
 		
 		try {
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, idCustomer);
 			rs = pstmt.executeQuery();
@@ -225,7 +219,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		ResultSet rs = null;
 
 		try {
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 			

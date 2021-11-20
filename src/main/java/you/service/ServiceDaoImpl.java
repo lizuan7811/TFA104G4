@@ -3,7 +3,7 @@ package you.service;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import you.conn.BaseConn;
+import basicutil.Util;
 import you.dao.user.UserDao;
 import you.dao.user.UserDaoImpl;
 import you.pojo.AdminVO;
@@ -18,7 +18,7 @@ public class ServiceDaoImpl implements ServiceDao{
 	
 	public AdminVO login(String username,String password)
 	{
-		Connection conn=BaseConn.getConnection();
+		Connection conn=Util.getConnection();
 		PreparedStatement ps=null;
 		AdminVO admin=userDao.adminLogin(conn, ps,username, password);
 		if(admin!=null)

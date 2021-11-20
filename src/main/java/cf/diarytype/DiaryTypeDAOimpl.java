@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import basicutil.Util;
 import util.DB;
 
 public class DiaryTypeDAOimpl implements DiaryTypeDAO {
@@ -18,21 +19,13 @@ public class DiaryTypeDAOimpl implements DiaryTypeDAO {
 	private static final String FIND_BY_PK = "SELECT * FROM DiaryType WHERE DiaryTypeID = ?";
 	private static final String GET_ALL = "SELECT * FROM DiaryType";
 
-	static {
-		try {
-			Class.forName(DB.DRIVER);
-		} catch (ClassNotFoundException ce) {
-			ce.printStackTrace();
-		}
-	}
-
 	@Override
 	public void insert(DiaryTypeVO diaryTypeVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
-			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(INSERT_DIARYTYPE);
 			
 			pstmt.setInt(1, diaryTypeVO.getDiaryTypeID());
@@ -70,7 +63,7 @@ public class DiaryTypeDAOimpl implements DiaryTypeDAO {
 
 		try {
 
-			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(UPDATE_DIARYTYPE);
 
 			pstmt.setString(1, diaryTypeVO.getDiaryTypeName());
@@ -107,7 +100,7 @@ public class DiaryTypeDAOimpl implements DiaryTypeDAO {
 
 		try {
 
-			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(DELETE_DIARYTYPE);
 
 			pstmt.setInt(1, diaryTypeID);
@@ -146,7 +139,7 @@ public class DiaryTypeDAOimpl implements DiaryTypeDAO {
 
 		try {
 
-			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, diaryTypeID);
 			rs = pstmt.executeQuery();
@@ -197,7 +190,7 @@ public class DiaryTypeDAOimpl implements DiaryTypeDAO {
 
 		try {
 
-			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 

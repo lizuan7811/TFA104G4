@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import basicutil.Util;
+
 public class RecipeIngreDAOImpl implements RecipeIngreDAO{
 	private static final String INSERT_STMT = "INSERT INTO RECIPEINGRE(IDRECIPEINGRE, IDRECIPE, IDINGRE, INGREQUAN) VALUES (?, ?, ?, ?)";
 	private static final String UPDATE_STMT = "UPDATE RECIPEINGRE SET IDRECIPE = ?, IDINGRE = ?, INGREQUAN = ? WHERE IDRECIPEINGRE = ?";
@@ -15,13 +17,6 @@ public class RecipeIngreDAOImpl implements RecipeIngreDAO{
 	private static final String FIND_BY_PK = "SELECT * FROM RECIPEINGRE WHERE IDRECIPEINGRE = ?";
 	private static final String GET_ALL = "SELECT * FROM RECIPEINGRE";
 	
-	static {
-		try {
-			Class.forName(Util.DRIVER);
-		} catch (ClassNotFoundException ce) {
-			ce.printStackTrace();
-		}
-	}
 
 	@Override
 	public void insert(RecipeIngreVO recipeIngreVO) {
@@ -30,7 +25,7 @@ public class RecipeIngreDAOImpl implements RecipeIngreDAO{
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setInt(1,recipeIngreVO.getIdRecipeIngre());
@@ -70,7 +65,7 @@ public class RecipeIngreDAOImpl implements RecipeIngreDAO{
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(UPDATE_STMT);
 
 			
@@ -111,7 +106,7 @@ public class RecipeIngreDAOImpl implements RecipeIngreDAO{
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(DELETE_STMT);
 
 			pstmt.setInt(1, idRecipeIngre);
@@ -151,7 +146,7 @@ public class RecipeIngreDAOImpl implements RecipeIngreDAO{
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, idRecipeIngre);
 			rs = pstmt.executeQuery();
@@ -205,7 +200,7 @@ public class RecipeIngreDAOImpl implements RecipeIngreDAO{
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 

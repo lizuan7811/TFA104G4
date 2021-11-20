@@ -8,7 +8,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import model.Util;
+
+import basicutil.Util;
 
 public class FinalOrderDAOImpl implements FinalOrderDAO {
 
@@ -20,14 +21,6 @@ public class FinalOrderDAOImpl implements FinalOrderDAO {
 	private static final String DELETE_STMT = "DELETE FROM FinalOrder WHERE idFinalOrder = ?";
 	private static final String FIND_BY_PK = "SELECT * FROM FinalOrder WHERE idFinalOrder = ?";
 	private static final String GET_ALL = "SELECT * FROM FinalOrder";
-
-	static {
-		try {
-			Class.forName(Util.DRIVER);
-		} catch (ClassNotFoundException ce) {
-			ce.printStackTrace();
-		}
-	}
 	
 	@Override
 	public void insert(FinalOrderVO finalOrderVO) {
@@ -36,7 +29,7 @@ public class FinalOrderDAOImpl implements FinalOrderDAO {
 
 		try {
 			
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, finalOrderVO.getIdFinalOrder());
@@ -124,7 +117,7 @@ public class FinalOrderDAOImpl implements FinalOrderDAO {
 
 		try {
 			
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(DELETE_STMT);
 			
 			pstmt.setInt(1, idFinalOrder);
@@ -162,7 +155,7 @@ public class FinalOrderDAOImpl implements FinalOrderDAO {
 		FinalOrderVO finalOrderVO = null;
 		
 		try {
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, idFinalOrder);
 			rs = pstmt.executeQuery();
@@ -220,7 +213,7 @@ public class FinalOrderDAOImpl implements FinalOrderDAO {
 		ResultSet rs = null;
 
 		try {
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 			

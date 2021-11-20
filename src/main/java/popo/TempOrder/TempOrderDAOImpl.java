@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import basicutil.Util;
+
 
 public class TempOrderDAOImpl implements TempOrderDAO {
 	public static final String INSERT_STMT = "INSERT INTO TEMPORDER(CUSTID, INGRElID, ORDERQUAN, PRICE) VALUES (?, ?, ?, ?)";
@@ -16,14 +18,6 @@ public class TempOrderDAOImpl implements TempOrderDAO {
 	public static final String FIND_BY_PK = "SELECT * FROM TEMPORDER WHERE CUSTID = ?";
 	public static final String GET_ALL = "SELECT * FROM TEMPORDER";
 	
-	static {
-		try {
-			Class.forName(Util.DRIVER);
-		} catch (ClassNotFoundException ce) {
-			ce.printStackTrace();
-		}
-	}
-
 	@Override
 	public void insert(TempOrderVO tempOrderVO) {
 		Connection con = null;
@@ -31,7 +25,7 @@ public class TempOrderDAOImpl implements TempOrderDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, tempOrderVO.getCustID());
@@ -71,7 +65,7 @@ public class TempOrderDAOImpl implements TempOrderDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(UPDATE_STMT);
 
 			pstmt.setInt(1, tempOrderVO.getIngrelID());
@@ -110,7 +104,7 @@ public class TempOrderDAOImpl implements TempOrderDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(DELETE_STMT);
 
 			pstmt.setInt(1, custID);
@@ -148,7 +142,7 @@ public class TempOrderDAOImpl implements TempOrderDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, custID);
 			rs = pstmt.executeQuery();
@@ -202,7 +196,7 @@ public class TempOrderDAOImpl implements TempOrderDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 

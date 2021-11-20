@@ -6,14 +6,15 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Calendar;
 
-import you.conn.BaseConn;
+import basic.conn.BaseConn;
+import basicutil.Util;
 import you.contents.FinalStaticFile;
 
 public class  DiaryLikeBOImpl implements DiaryLikeBO{
 
 	@Override
 	public void clickAddLike(Connection conn, PreparedStatement ps, Integer diaryId, Integer custId) {
-		conn=BaseConn.getConnection();
+		conn=Util.getConnection();
 		int doResult=0;
 		try {
 //			"INSERT INTO `DiaryLike`(diaryLikeID,diaryID,idCustomer,createdTime)values(?,?,?,?);";

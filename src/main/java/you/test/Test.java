@@ -5,15 +5,15 @@ import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import basicutil.Util;
 import you.basicdao.BaseDaoImpl;
-import you.conn.BaseConn;
 import you.contents.FinalStaticFile;
 
 
 public class Test {
 	public static void main(String[] args)
 	{
-		Connection conn=BaseConn.getConnection();
+		Connection conn=Util.getConnection();
 		PreparedStatement ps=null;
 		BaseDaoImpl bdi=new BaseDaoImpl();
 		bdi.updateData(conn, ps, FinalStaticFile.ADMIN_UPDATE);

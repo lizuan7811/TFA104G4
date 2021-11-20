@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import basicutil.Util;
+
 
 
 public class FriendChatDAOImpl implements FriendChatDAO{
@@ -17,13 +19,6 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 	public static final String FIND_BY_PK = "SELECT * FROM FRIENDCHAT WHERE FRIENDCHATID = ?";
 	public static final String GET_ALL = "SELECT * FROM FRIENDCHAT";
 	
-	static {
-		try {
-			Class.forName(Util.DRIVER);
-		} catch (ClassNotFoundException ce) {
-			ce.printStackTrace();
-		}
-	}
 	@Override
 	public void insert(FriendChatVO friendChatVO) {
 		Connection con = null;
@@ -31,7 +26,7 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, friendChatVO.getFriendChatID());
@@ -73,7 +68,7 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(UPDATE_STMT);
 
 			
@@ -115,7 +110,7 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(DELETE_STMT);
 
 			pstmt.setInt(1, friendChatID);
@@ -154,7 +149,7 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, friendChatID);
 			rs = pstmt.executeQuery();
@@ -207,7 +202,7 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 

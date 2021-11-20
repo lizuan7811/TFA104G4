@@ -8,20 +8,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import basicutil.Util;
+
 public class FriendDAOImpl implements FriendDAO {
 	public static final String INSERT_STMT = "INSERT INTO FRIEND(FRIENDCHATID, CUSTID, MYFRIENDID, FRIENDSTATUSNUM, STATUSUPDATE) VALUES (?, ?, ?, ?, ?)";
 	public static final String UPDATE_STMT = "UPDATE FRIEND SET CUSTID = ?, MYFRIENDID = ?, FRIENDSTATUSNUM = ?, STATUSUPDATE = ? WHERE FRIENDCHATID = ?";
 	public static final String DELETE_STMT = "DELETE FROM FRIEND WHERE FRIENDCHATID = ?";
 	public static final String FIND_BY_PK = "SELECT * FROM FRIEND WHERE FRIENDCHATID = ?";
 	public static final String GET_ALL = "SELECT * FROM FRIEND";
-	
-	static {
-		try {
-			Class.forName(Util.DRIVER);
-		} catch (ClassNotFoundException ce) {
-			ce.printStackTrace();
-		}
-	}
 	@Override
 	public void insert(FriendVO friendVO) {
 		Connection con = null;
@@ -29,7 +23,7 @@ public class FriendDAOImpl implements FriendDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, friendVO.getFriendChatID());
@@ -71,7 +65,7 @@ public class FriendDAOImpl implements FriendDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(UPDATE_STMT);
 
 			pstmt.setInt(1, friendVO.getCustID());
@@ -113,7 +107,7 @@ public class FriendDAOImpl implements FriendDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(DELETE_STMT);
 
 			pstmt.setInt(1, friendChatID);
@@ -152,7 +146,7 @@ public class FriendDAOImpl implements FriendDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, friendChatID);
 			rs = pstmt.executeQuery();
@@ -206,7 +200,7 @@ public class FriendDAOImpl implements FriendDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 

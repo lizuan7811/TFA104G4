@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import basicutil.Util;
 import util.DB;
 
 
@@ -19,20 +20,13 @@ public class DiaryLikeDAOimpl implements DiaryLikeDAO{
 	private static final String FIND_BY_PK = "SELECT * FROM DiaryLike WHERE DiaryLikeID = ?";
 	private static final String GET_ALL = "SELECT * FROM DiaryLike";
 
-	static {
-		try {
-			Class.forName(DB.DRIVER);
-		} catch (ClassNotFoundException ce) {
-			ce.printStackTrace();
-		}
-	}
 	@Override
 	public void insert(DiaryLikeVO diarylikeVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
-			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(INSERT_LIKE);
 			
 			pstmt.setInt(1, diarylikeVO.getDiaryid());
@@ -71,7 +65,7 @@ public class DiaryLikeDAOimpl implements DiaryLikeDAO{
 
 		try {
 
-			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(UPDATE_LIKE);
 
 			pstmt.setInt(1, diarylikeVO.getDiaryid());
@@ -110,7 +104,7 @@ public class DiaryLikeDAOimpl implements DiaryLikeDAO{
 
 		try {
 
-			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(DELETE_LIKE);
 
 			pstmt.setInt(1, diarylikeVO);
@@ -148,7 +142,7 @@ public class DiaryLikeDAOimpl implements DiaryLikeDAO{
 
 		try {
 
-			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, diarylikeVO);
 			rs = pstmt.executeQuery();
@@ -201,7 +195,7 @@ public class DiaryLikeDAOimpl implements DiaryLikeDAO{
 
 		try {
 
-			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 

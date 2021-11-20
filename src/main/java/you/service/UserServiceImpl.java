@@ -5,12 +5,11 @@ import java.sql.PreparedStatement;
 
 import org.json.JSONArray;
 
-import you.conn.BaseConn;
+import Basic.util.BaseConn;
 import you.dao.user.UserBO;
 import you.dao.user.UserBOImpl;
 import you.dao.user.UserDao;
 import you.dao.user.UserDaoImpl;
-import you.pojo.UserVO;
 
 
 public class UserServiceImpl implements UserService{

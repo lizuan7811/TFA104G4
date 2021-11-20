@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import basicutil.Util;
+
 public class IngreTypeDAOImpl implements IngreTypeDAO {
 	private static final String INSERT_STMT = "INSERT INTO INGRETYPE(IDINGRETYPE, TYPENAME) VALUES (?, ?)";
 	private static final String UPDATE_STMT = "UPDATE INGRETYPE SET TYPENAME = ? WHERE IDINGRETYPE = ?";
@@ -15,22 +17,13 @@ public class IngreTypeDAOImpl implements IngreTypeDAO {
 	private static final String FIND_BY_PK = "SELECT * FROM INGRETYPE WHERE IDINGRETYPE = ?";
 	private static final String GET_ALL = "SELECT * FROM INGRETYPE";
 	
-	static {
-		try {
-			Class.forName(Util.DRIVER);
-		} catch (ClassNotFoundException ce) {
-			ce.printStackTrace();
-		}
-	}
-	
 	@Override
 	public void insert(IngreTypeVO ingreTypeVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
-
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setInt(1,ingreTypeVO.getIdIngreType());
@@ -68,7 +61,7 @@ public class IngreTypeDAOImpl implements IngreTypeDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(UPDATE_STMT);
 
 			pstmt.setString(1,ingreTypeVO.getTypeName());
@@ -107,7 +100,7 @@ public class IngreTypeDAOImpl implements IngreTypeDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(DELETE_STMT);
 
 			pstmt.setInt(1, idIngreType);
@@ -147,7 +140,7 @@ public class IngreTypeDAOImpl implements IngreTypeDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, idIngreType);
 			rs = pstmt.executeQuery();
@@ -197,7 +190,7 @@ public class IngreTypeDAOImpl implements IngreTypeDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 

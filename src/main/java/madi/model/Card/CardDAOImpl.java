@@ -21,13 +21,6 @@ public class CardDAOImpl implements CardDAO{
 	private static final String FIND_BY_PK = "SELECT * FROM Card WHERE idCard = ?";
 	private static final String GET_ALL = "SELECT * FROM Card";
 
-	static {
-		try {
-			Class.forName(Util.DRIVER);
-		} catch (ClassNotFoundException ce) {
-			ce.printStackTrace();
-		}
-	}
 	
 	@Override
 	public void insert(CardVO cardVO) {
@@ -36,7 +29,7 @@ public class CardDAOImpl implements CardDAO{
 		
 		try {
 			
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setInt(1, cardVO.getIdCard());
@@ -77,7 +70,7 @@ public class CardDAOImpl implements CardDAO{
 		
 		try {
 			
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(UPDATE_STMT);
 			
 			pstmt.setInt(1, cardVO.getIdCustomer());
@@ -119,7 +112,7 @@ public class CardDAOImpl implements CardDAO{
 		
 		try {
 			
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(DELETE_STMT);
 			
 			pstmt.setInt(1, idCard);
@@ -157,7 +150,7 @@ public class CardDAOImpl implements CardDAO{
 		CardVO cardVO = null;
 		
 		try {
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, idCard);
 			rs = pstmt.executeQuery();
@@ -212,7 +205,7 @@ public class CardDAOImpl implements CardDAO{
 		ResultSet rs = null;
 
 		try {
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 			

@@ -8,20 +8,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import basicutil.Util;
+
 public class IngreDAOImpl implements IngreDAO {
 	private static final String INSERT_STMT = "INSERT INTO INGRE(IDINGRE, IDINGRETYPE, NAME, PURPRICE, PRICE, UNIT, GRAN, SELL, DESCRIP, PHOTO, LAUNCH) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String UPDATE_STMT = "UPDATE INGRE SET IDINGRETYPE = ?, NAME = ?, PURPRICE = ?, PRICE = ?, UNIT = ?, GRAN = ?, SELL = ?, DESCRIP = ?, PHOTO = ?, LAUNCH = ? WHERE IDINGRE = ?";
 	private static final String DELETE_STMT = "DELETE FROM INGRE WHERE IDINGRE = ?";
 	private static final String FIND_BY_PK = "SELECT * FROM INGRE WHERE IDINGRE = ?";
 	private static final String GET_ALL = "SELECT * FROM INGRE";
-	
-	static {
-		try {
-			Class.forName(Util.DRIVER);
-		} catch (ClassNotFoundException ce) {
-			ce.printStackTrace();
-		}
-	}
 
 	
 	@Override
@@ -31,7 +25,7 @@ public class IngreDAOImpl implements IngreDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setInt(1,ingreVO.getIdIngre());
@@ -78,7 +72,7 @@ public class IngreDAOImpl implements IngreDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(UPDATE_STMT);
 
 	
@@ -126,7 +120,7 @@ public class IngreDAOImpl implements IngreDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(DELETE_STMT);
 
 			pstmt.setInt(1, idIngre);
@@ -166,7 +160,7 @@ public class IngreDAOImpl implements IngreDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, idIngre);
 			rs = pstmt.executeQuery();
@@ -226,7 +220,7 @@ public class IngreDAOImpl implements IngreDAO {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 
