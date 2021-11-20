@@ -1,0 +1,100 @@
+h1::after{
+	content:"食材上架";
+	margin-left:10px;
+	font-size:20px;
+}
+
+#mainBox_Content_div,#food_in_mbContent3{
+	display:flex;
+	justify-content:start;
+}
+#food_in_mbContent4{
+	position:relative;
+	display:flex;
+	justify-content:start;
+	flex-direction:row;
+	flex-wrap:nowrap;
+	padding-left:13px;
+	border:#F0F3F5 solid 12px;
+	border-top:none;
+	border-left:none;
+	border-right:none;
+	
+}
+#foodPhoto_in_mbContent5{
+	flex-basis:30%;
+	margin-left:60px;
+	height:180px;
+	flex-grow: 1;
+	flex-shrink: 1;
+	background-color:#FEFFE7;
+	box-shadow:  2px 2px 1px rgba(0, 0, 0, 0.2);
+	
+}
+
+.food_in_mbContent,#food_in_mbContent4{
+	margin:20px 0px 0px 0px;
+}
+.lbls_inmainBox{
+	margin:0px 5px 0px 22px;
+	font-size:22px;
+}
+#inputforphoto_inmainBox{
+	margin-right:20px;
+	width:320px;
+	background-color: white;
+	margin:140px 30px 0px 45px;
+	font-size:14px;
+	
+	/* border:blue solid 1px; */
+}
+#inputfordescripte_inmainBox{
+	margin:0px 200px 7px 0px;
+	flex-basis:75%;
+	width:600px;
+	height:180px;
+	flex-grow: 1;
+	flex-shrink: 1;
+	background-color:#FEFFE7;
+	font-size: 18px;;
+	border:none;
+	outline:none;
+	box-shadow:  2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+#mainBox_Content_div form{
+	width: 97%;
+	display:flex;
+	justify-content:start;
+	flex-wrap:wrap;
+}
+
+main,form{
+	display:flex;
+	flex-direction:column;
+	background-color:white;
+	border:none;
+}
+input{
+	border:none;
+	background-color: #FEFFE7;
+	height:40px;
+}
+.lbls_inlbls_inmainBox{
+		margin:0px 15px 0px 0px;
+		flex-basis:14%;
+		height:180px;
+		flex-grow: 1;
+		flex-shrink: 1;
+		font-size:22px;
+		
+}	
+#food_in_mbContent1{
+	width:100%;
+	margin-right:75px;
+	/* border:blue solid 1px; */
+}
+
+textarea{
+	resize: none;;
+}

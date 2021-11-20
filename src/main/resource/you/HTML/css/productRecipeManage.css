@@ -1,0 +1,11 @@
+h1::after{
+	content:"食譜管理";
+	margin-left:10px;
+	font-size:20px;
+}
+.icon-controller-play{
+	display:inline-block;
+	color:black;
+	margin-left:10px;
+	font-size: 20px;
+}
