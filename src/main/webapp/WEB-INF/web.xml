@@ -19,4 +19,13 @@
     <url-pattern>/IngreServletuser</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+    <servlet-name>IngreTypeServlet</servlet-name>
+    <servlet-class>hantest.servlet.IngreTypeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IngreTypeServlet</servlet-name>
+    <url-pattern>/IngreTypeServletuser</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

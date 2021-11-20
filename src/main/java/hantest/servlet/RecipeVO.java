@@ -13,8 +13,6 @@ public class RecipeVO implements Serializable{
 		
 	}
 	
-	
-
 	public RecipeVO(int idRecipe, String text, String descrip, byte[] photo) {
 		this.idRecipe = idRecipe;
 		this.text = text;
