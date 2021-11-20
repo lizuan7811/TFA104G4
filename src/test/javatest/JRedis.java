@@ -19,6 +19,7 @@ public class JRedis
 	
 	static {
 		jRedis=new Jedis("",6379);
+		jRedis=new Jedis("localhost",6379);
 		mp=jRedis.hgetAll(FinalStaticFile.DIARYLIKE);
 		count=0L;
 	}
