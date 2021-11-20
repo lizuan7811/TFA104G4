@@ -1,5 +1,0 @@
-insert into Group4_db.IngreType(idIngreType, typeName)
-values
-(1, '肉類'), 
-(2, '蔬菜'), 
-(3, '鮮果');
