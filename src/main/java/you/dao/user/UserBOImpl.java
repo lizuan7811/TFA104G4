@@ -10,7 +10,8 @@ import org.json.JSONArray;
 
 import com.mysql.cj.xdevapi.JsonArray;
 
-import you.conn.BaseConn;
+import basicutil.JRedis;
+import basicutil.Util;
 import you.filedao.FileWorkDaoImpl;
 
 
@@ -35,7 +36,34 @@ public class UserBOImpl implements UserBO{
 			mp.put("empty","This Customer List is Empty!");
 			usJsonArr.put(mp);
 		}
-		BaseConn.closeConnection(conn, ps);
+		Util.closeConnection(conn, ps);
 		return usJsonArr;
+	}
+
+	@Override
+	public Integer addClickBO(Connection conn, PreparedStatement ps, Integer idCustomer, Integer diaryID) {
+		// TODO Auto-generated method stub
+		Integer likeNum=0;
+		udl.insDiaryLike(conn, ps, idCustomer, diaryID);
+		likeNum=udl.selDiaryLike(conn, ps, diaryID);
+		Util.closeConnection(conn, ps);
+		return likeNum;
+	}
+
+	@Override
+	public Integer delClickBO(Connection conn, PreparedStatement ps, Integer diaryLike,Integer diaryID) {
+		// TODO Auto-generated method stub
+		Integer likeNum=0;
+		udl.delDiaryLike(conn, ps, diaryLike, diaryID);
+		likeNum=udl.selDiaryLike(conn, ps, diaryID);
+		Util.closeConnection(conn, ps);
+		return likeNum;
+	}
+
+	@Override
+	public Integer addOrDelClickBO(Integer idCustomer, Integer diaryID) {
+		Integer likeNum=JRedis.clickLike(diaryID, idCustomer);
+		
+		return likeNum;
 	}
 }

@@ -5,14 +5,41 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry excluding="Popo/|Popo/|Popo/" kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/PO"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v9.0">
+=======
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v9.0">
+>>>>>>> 69fe9422f04f6cd384e2957bf4891f4b1eca1827
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+=======
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Users/Tibame/Desktop/Github/tbmgf/src/main/webapp/WEB-INF/lib/commons-beanutils-1.9.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tibame/Desktop/Github/tbmgf/src/main/webapp/WEB-INF/lib/commons-collections-3.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tibame/Desktop/Github/tbmgf/src/main/webapp/WEB-INF/lib/commons-collections4-4.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tibame/Desktop/Github/tbmgf/src/main/webapp/WEB-INF/lib/commons-lang3-3.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tibame/Desktop/Github/tbmgf/src/main/webapp/WEB-INF/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tibame/Desktop/Github/tbmgf/src/main/webapp/WEB-INF/lib/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tibame/Desktop/Github/tbmgf/src/main/webapp/WEB-INF/lib/json-20210307.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tibame/Desktop/Github/tbmgf/src/main/resource/you/jedis-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lizuan/Desktop/ProJSection/GitHubSection/tbmgf/src/main/resource/you/jedis-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lizuan/Desktop/ProJSection/GitHubSection/tbmgf/src/main/webapp/WEB-INF/lib/commons-beanutils-1.9.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lizuan/Desktop/ProJSection/GitHubSection/tbmgf/src/main/webapp/WEB-INF/lib/commons-collections-3.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lizuan/Desktop/ProJSection/GitHubSection/tbmgf/src/main/webapp/WEB-INF/lib/commons-collections4-4.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lizuan/Desktop/ProJSection/GitHubSection/tbmgf/src/main/webapp/WEB-INF/lib/commons-lang3-3.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lizuan/Desktop/ProJSection/GitHubSection/tbmgf/src/main/webapp/WEB-INF/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lizuan/Desktop/ProJSection/GitHubSection/tbmgf/src/main/webapp/WEB-INF/lib/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lizuan/Desktop/ProJSection/GitHubSection/tbmgf/src/main/webapp/WEB-INF/lib/json-20210307.jar"/>
+>>>>>>> 69fe9422f04f6cd384e2957bf4891f4b1eca1827
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

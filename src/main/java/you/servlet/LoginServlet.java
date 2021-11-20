@@ -13,11 +13,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import you.contents.*;
 import you.pojo.*;
 import you.service.*;
-@WebServlet("/LoginServlet")
+//@WebServlet("/adminlogin")
 public class LoginServlet extends HttpServlet {
 	/**
 	 * 
@@ -25,7 +26,7 @@ public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public void doPost(HttpServletRequest req,HttpServletResponse resp)
 	{
-//		ZQUBI67487	Jwwx68545
+
 		ServiceDao adm=new ServiceDaoImpl();
 		String username=req.getParameter("main_form_userName");
 		String password=req.getParameter("main_form_Password");
@@ -34,9 +35,10 @@ public class LoginServlet extends HttpServlet {
 		if((admin=adm.login(username,password))!=null)
 		{
 			try {
+				HttpSession sess=req.getSession();
 				req.getSession().setAttribute(FinalStaticFile.ADMIN_SESSION,admin);
+				System.out.println("ADMIN_SESSION="+req.getAttribute(FinalStaticFile.ADMIN_SESSION));
 				resp.sendRedirect("adminCtrlCustPage.html");
-				System.out.println("ADMIN_SESSION="+req.getSession().getAttribute(FinalStaticFile.ADMIN_SESSION));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

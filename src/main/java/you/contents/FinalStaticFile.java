@@ -16,4 +16,20 @@ public class FinalStaticFile {
 	public final static String USER_INSERT="INSERT INTO Customer(idCustomer,name,profic,nickName,account,password,email,phone,createdTime,suspended,externalAcc,externalIdToken,commentReportedNum,diaryReportedNum)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
 	public final static String ADMIN_SESSION="ADMIN_SESSION";
+	
+	public final static String DIARYLIKE_SELECT="SELECT * FROM DiaryLike;";
+
+	public final static String DIARYLIKESG_SELECT="SELECT * FROM `DiaryLike` WHERE idCustomer=?;";
+	
+	public final static String DIARYLIKESG_INSERT="INSERT INTO `DiaryLike`(diaryLikeID,diaryID,idCustomer,createdTime)values(?,?,?,?);";
+
+	public final static String DIARYLIKESG_DELETE="DELETE FROM `DiaryLike` WHERE diarylikeID=?;";
+//	會員登入後，取得所有文章的每個按讚數，前端網頁使用
+	
+//	會員按讚後，資料寫入Jedis
+	
+	public final static String DIARYLIKE="DiaryLikeVO";
+
+	
+
 }

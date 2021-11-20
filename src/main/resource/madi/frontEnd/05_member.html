@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員中心</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../js/05_member.js">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="#首頁連結">
+                <img src="../images/食健logo.png" alt="logo">
+            </a>
+        </div>
+
+        <ul class="header_li">
+            <li>
+                <a class="menu_title" href="#">關於我們</a>
+            </li>
+            <li>
+                <a class="menu_title" href="#">食健商城</a>
+                <!-- <div class="header_menu">
+                    <a href="#" class="menu_link">商城分類1</a>
+                    <a href="#" class="menu_link">商城分類2</a>                
+                </div> -->
+            </li>
+            <li>
+                <a class="menu_title" href="#">食健生活</a>
+            </li>
+            <li>
+                <a class="menu_title" href="#">會員登入</a>
+            </li>
+        </ul>
+
+        <div class="icon">
+            <div class="search_icon"><i class="fas fa-search"></i></div>
+            <div class="QA_icon"><i class="far fa-question-circle"></i></div>
+            <div class="cart_icon"><i class="fas fa-shopping-cart"></i></div>
+        </div>
+    </header>
+    <!-- https://codepen.io/chriscoyier/pen/qyELzd?editors=1000 -->
+    <main>
+        <aside class="sidebar">
+            <nav>
+                <ul>
+                    <li id="member_center_li"><strong id="member_center_title">會員中心</strong></li>
+                    <div class="ul_div_li">
+                        <li><a href="#basic-info">基本資料</a></li>
+                        <li><a href="#notification">通知設定</a></li>
+                        <li><a href="#delivery-address">送達地址</a></li>
+                        <li><a href="#card">信用卡設定</a></li>
+                        <li><a href="#">歷史訂單</a></li>
+                    </div>
+                </ul>
+            </nav>
+        </aside>
+        <div class="main_content page_container_member">
+            <section id="basic_info">
+                <h2 class="title">基本資料</h2>
+                <form action="#" method="POST">
+                    <div></div>
+                    <div><label>姓名</label><input type="text" name="name" class="input_text" value="王小明"></div>
+                    <div><label>大頭貼</label></div>
+                    <div class="div_profic_frame" id="preview"></div>
+                    <div><input type="file" name="profic" class="input_profic_upload_btn" id="p_file"></div>
+                    <div><label>暱稱</label></div>
+                    <div><input type="text" name="nickname" class="input_text" value="小明"></div>
+                    <div><label>帳號</label></div>
+                    <div><input type="text" name="account" class="input_text" value="mingW"></div>
+                    <div><label>密碼</label></div>
+                    <div><input type="password" name="password" class="input_text" value="111111"></div>
+                    <div><label>Email</label></div>
+                    <div><input type="email" name="email" class="input_text" value="ming@gmail.com"></div>
+                    <div><label>手機</label></div>
+                    <div><input type="tel" name="cellphone" class="input_text" value="0912345678"></div>
+                    <div><input type="submit" class="submit_btn" value="儲存"></div>
+                </form>
+            </section>
+
+            <section id="notification">
+                <h2 class="title">通知設定</h2>
+                <form action="#" method="POST">
+                    <div><input type="radio" name="notification" class="td_radio"> 是否想收到優惠及訂單的email訊息</div>
+                </form>
+            </section>
+
+            <section id="delivery_address">
+                <h2 class="title">送達地址</h2>
+                <form action="#" method="POST">
+                    <div>
+                        <input type="radio" name="default_address" value="1" checked>
+                        <label class="label_item">住家</label>
+                    </div>
+                    <div>
+                        <input type="text" class="input_text" value="台北市信義區信義路五段108號">
+                    </div>
+                    <div><input type="radio" name="default_address" value="2">
+                        <label class="label_item">工作</label>
+                    </div>
+                    <div><input type="text" class="input_text" value="台北市信義區信義路五段108號"></div>
+                    <div><input type="submit" class="submit_btn" value="儲存"></div>
+                </form>
+                <h3 class="subtitle">新增地址</h3>
+                <form action="#" method="POST">
+                    <div><input type="text" class="input_text" placeholder="地址"></div>
+                </form>
+            </section>
+
+            <section id="card" class="form_table">
+                <h2 class="title">信用卡設定</h2>
+                <h3 class="subtitle">常用信用卡</h3>
+                <div>
+                    <input type="radio" name="default_card" value="1" checked>
+                    <label>
+                        <span>MasterCard</span>
+                        <span>1111-1111-xxxx-xxxx</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" name="default_card" value="2">
+                    <label>
+                        <span>Visa</span>
+                        <span>2222-2222-xxxx-xxxx</span>
+                    </label>
+                </div>
+
+                <h3 class="subtitle">新增信用卡</h3>
+                <form action="#" method="POST">
+                    <div><label class="label_item">種類</label></div>
+                    <div><select name="cardType" class="input_text">
+                            <option value="1">Visa</option>
+                            <option value="2">MasterCard</option>
+                        </select></div>
+                    <div><label class="label_item">卡號</label></div>
+                    <div><input type="text" maxlength="16" class="input_text"></div>
+                    <div><label class="label_item">到期月份</label></div>
+                    <div><input type="month" class="input_text"></div>
+                    <div><label class="label_item">安全碼</label></div>
+                    <div><input type="text" maxlength="3" class="input_text"></div>
+                    <div><input type="submit" class="submit_btn" value="儲存"></div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <section class="myfooter">
+            <div class="contact_info">
+                <img src="../images/食健logo.png" alt="logo">
+                <div class="box_1">連絡電話:0800-000-000</div>
+                <div class="box_1">聯絡地址:台北市南京復興</div>
+                <div class="box_1">E-MAIL:abc@123.com</div>
+            </div>
+            <div id="all_rights_reserve">©2021 食健 All Rights Reserve.</div>
+        </section>
+
+
+    </footer>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"> //載入font icon </script>
+</body>
+
+</html>

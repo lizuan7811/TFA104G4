@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 
 import org.json.JSONArray;
 
-import you.conn.BaseConn;
+import Basic.util.BaseConn;
 import you.dao.user.UserBO;
 import you.dao.user.UserBOImpl;
 import you.dao.user.UserDao;
@@ -39,5 +39,29 @@ public class UserServiceImpl implements UserService{
 		JSONArray userJsonArr=usbo.getUsersToJSON(conn, ps, username);
 		return userJsonArr;
 	}
+//	如果like數量增加或減少，就要執行到select count(*) from liketable更新讚數
+//	回傳SELECT * FROM DiaryLike;
+	@Override
+	public Integer addOrDelLikeService(Integer diaryID,Integer idCustomer) {
+		// TODO Auto-generated method stub
+		Integer likeNum=0;
+		likeNum=usbo.addOrDelClickBO(idCustomer,diaryID);
+		return likeNum;
+	}
+//	@Override
+//	public Integer delClickService(Integer diaryLikeID,Integer diaryID) {
+//		// TODO Auto-generated method stub
+//		Connection conn=BaseConn.getConnection();
+//		PreparedStatement ps=null;
+//		Integer likeNum=0;
+//		likeNum=usbo.delClickBO(conn,ps,diaryLikeID,diaryID);
+//		return likeNum;
+//	}
+//	public int selClickService()
+//	{
+//		
+//		return 0;
+//	}
+	
 
 }
