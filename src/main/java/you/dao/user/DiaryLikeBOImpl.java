@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Calendar;
 
-import basic.conn.BaseConn;
 import basicutil.Util;
 import you.contents.FinalStaticFile;
 

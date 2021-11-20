@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import basicutil.Util;
-import util.DB;
 
 
 public class CommentDAOimpl implements CommentDAO {

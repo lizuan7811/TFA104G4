@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 
 import org.json.JSONArray;
 
-import Basic.util.BaseConn;
+import basicutil.Util;
 import you.dao.user.UserBO;
 import you.dao.user.UserBOImpl;
 import you.dao.user.UserDao;
@@ -22,19 +22,19 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	public void deleteUser(Integer usPos) {
-		Connection conn=BaseConn.getConnection();
+		Connection conn=Util.getConnection();
 		PreparedStatement ps=null;
 		usd.deleteUser(conn, ps, usPos);
 	}
 
 	public void alterUser(Integer usPos,Object...paras) {
-		Connection conn=BaseConn.getConnection();
+		Connection conn=Util.getConnection();
 		PreparedStatement ps=null;
 		usd.alterUser(conn, ps, usPos,paras);
 	}
 
 	public JSONArray selectUser(String username) {
-		Connection conn=BaseConn.getConnection();
+		Connection conn=Util.getConnection();
 		PreparedStatement ps=null;
 		JSONArray userJsonArr=usbo.getUsersToJSON(conn, ps, username);
 		return userJsonArr;

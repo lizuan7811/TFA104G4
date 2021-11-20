@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>常見問題</title>
-    <link href="cf_css/group4_FAQ.css" rel="stylesheet" type="text/css"/>
+    <title>食健文章</title>
+    <link href="cf_css/gorup4_diary_page.css" rel="stylesheet" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src="js/gp4_diary_pg.js"></script>
 </head>
 <body>
     <div class="bottom_box">
@@ -49,26 +51,33 @@
     </header>
 
     <main>
-        <div class="faq_title">
-            <h1>常 見 問 題</h1>
-        </div>
-        <div class="search_item">
-            <input type="text" size="60px" style="font-size: 20px; padding: 0px 2px;" placeholder="問題關鍵字搜尋">
-            <button class="search_btn"><i class="fas fa-search"></i></button>
-
-            <article class="task_container">
-                <h1 class="title1">問題分類</h1>
-                <div class="task_add_block">
-                  <ul>
-                      <li class="faq_li">問題1</li><hr>
-                      <li class="faq_li">問題2</li><hr>
-                      <li class="faq_li">問題3</li><hr>
-                      <li class="faq_li">問題4</li><hr>
-                      <li class="faq_li">問題5</li><hr>
-                  </ul>
+        <p class="breadcrumb">食健生活 > 文章分類類別 > 文章主題</p>
+       
+        <div class="article">
+            <div class="article_header">
+                <h1 class="article_title">文章主題</h1>
+                <div class="article_info">
+                    <span class="info_item">作者(帳號) XXX</span>
+                    <span class="info_item">發表於 xxxx/xx/xx</span>
+                    <span class="info_item"><span class="click_times">1314</span> 次點閱</span>
+                    <span class="info_item"><span class="thumbs_up_num">123</span> 人給讚</span>
                 </div>
-              </article>
-        </div>
+                <div class="like_share_btn">
+                    <div class="like_btn">
+                        <i class="far fa-thumbs-up"></i>
+                        <span>給讚</span>
+                    </div>
+                    <div class="share_btn">
+                        <i class="fas fa-share-alt"></i>
+                        <span>分享</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main_article">
+                <p>文章內容/含圖</p>					
+			</div>
+        </div>   
     </main>
 
     <footer>
@@ -81,8 +90,7 @@
             </div>
             <div id="all_rights_reserve">©2021 食健 All Rights Reserve.</div>
         </section>
-        
-        
+         
     </footer>
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"> //載入font icon </script> 

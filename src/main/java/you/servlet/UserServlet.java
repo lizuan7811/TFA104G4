@@ -31,19 +31,20 @@ public class UserServlet extends HttpServlet{
 	
 	protected void doPost(HttpServletRequest request,HttpServletResponse response)
 	{
-//		String metChoice=request.getParameter("metChoice");
-//		if(metChoice!=null && !"".equals(metChoice))
-//		{
-		try {
-			request.setCharacterEncoding("utf-8");
-			response.setContentType("text/html;charset=utf-8");
-			doClick(request,response);
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		String metChoice=request.getParameter("metChoice");
+		if(metChoice!=null && "clickLike".equals(metChoice))
+		{
+			System.out.println("若想執行的方法與clickLike相同，執行clicklike()");
+			try {
+				request.setCharacterEncoding("utf-8");
+				response.setContentType("text/html;charset=utf-8");
+				doClick(request,response);
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-			
-//		}
 	}
 	
 	protected void doGet(HttpServletRequest request,HttpServletResponse response)
@@ -56,31 +57,36 @@ public class UserServlet extends HttpServlet{
 		PrintWriter pw=null;
 		us=new UserServiceImpl();
 //		DiaryLikeVO拿到dlv物件
-//		DiaryLikeVO dlv=(DiaryLikeVO)request.getAttribute("diarylikeID");
-//		Integer diaryLikeID=dlv.getDiaryLikeid();
-////		FoodDiaryVO物件
-//		FoodDiaryVO diaryID=(FoodDiaryVO)request.getAttribute("");
-////		UserVO
-//		UserVO user=(UserVO)request.getAttribute("");
-		
+//		DiaryLikeVO diaryLikeVO=(DiaryLikeVO)request.getAttribute("diarylikeID");
+//		Integer diaryLikeID=diaryLikeVO.getDiaryLikeid();
+//		FoodDiaryVO物件
+		System.out.println("開始執行");
+		Integer curDiaryID=Integer.valueOf(request.getParameter("curDiaryID"));
+//		UserVO
+		Integer curCustID=Integer.valueOf(request.getParameter("curCustID"));
 		Integer likeCount=0;
-//		若diaryLikiId為空，執行加like，否則執行刪除like
-		try {
-			pw=response.getWriter();
-			pw.write(likeCount.toString());
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-//			if(diaryID==null && diaryLikeID==0)
-//			{
-//				System.out.println("diaryLikeId為空!");
-//			}else {
-////				likeCount=us.addOrDelLikeService(diaryID.getDiaryID(),user.getIdCustomer());				
-//			}
-			likeCount=us.addOrDelLikeService(1,34);				
-			likeCount=us.addOrDelLikeService(2,35);				
-			likeCount=us.addOrDelLikeService(3,34);	
+		System.out.println(curDiaryID+"\t"+curCustID);
+			if(curDiaryID==0 || curCustID==0 || curDiaryID==null ||curCustID==null)
+			{
+				System.out.println("沒有得到curDiaryID or curCustID或使用者沒有呼叫此功能!");
+			}else {
+//				若curDiaryID為空，執行加like，否則執行刪除like。
+//				若呼叫此方法的當下，diaryID以及customerID不為空值或非正常值，就將程式正常執行，呼叫點了like的方法。
+				likeCount=us.addOrDelLikeService(curDiaryID,curCustID);				
+			}
+//			likeCount=us.addOrDelLikeService(1,34);				
+//			likeCount=us.addOrDelLikeService(2,35);				
+//			likeCount=us.addOrDelLikeService(3,34);	
+			System.out.println(likeCount);
+
+			try {
+				pw=response.getWriter();
+				System.out.println(likeCount);
+				pw.write(likeCount.toString());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 	}
 	
 }

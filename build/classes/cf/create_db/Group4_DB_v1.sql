@@ -189,7 +189,7 @@ ENGINE = InnoDB;
 -- Table `Group4_db`.`RecipeIngre`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Group4_db`.`RecipeIngre` (
-  `idRecipeIngre` INT AUTO_INCREMENT NOT NULL COMMENT '食譜食材編號',
+  `idRecipeIngre` INT NOT NULL COMMENT '食譜食材編號',
   `idRecipe` INT NOT NULL COMMENT '食譜編號',
   `idIngre` INT NOT NULL COMMENT '食材編號',
   `ingreQuan` INT NOT NULL COMMENT '食材數量',
@@ -203,9 +203,10 @@ ENGINE = InnoDB;
 -- Table `Group4_db`.`Recipe`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Group4_db`.`Recipe` (
-  `idRecipe` INT AUTO_INCREMENT NOT NULL COMMENT '食譜編號\n',
-  `text` VARCHAR(2000) NOT NULL COMMENT '內容',
+  `idRecipe` INT NOT NULL COMMENT '食譜編號\n',
+  `recipeName` VARCHAR(45) NOT NULL COMMENT '食譜名稱\n',
   `descrip` VARCHAR(2000) NOT NULL COMMENT '步驟說明',
+  `text` VARCHAR(400) NOT NULL COMMENT '內容',
   `photo` LONGBLOB NOT NULL COMMENT '圖片',
   PRIMARY KEY (`idRecipe`))
 ENGINE = InnoDB;
@@ -274,7 +275,7 @@ ENGINE = InnoDB;
 -- Table `Group4_db`.`IngreType`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Group4_db`.`IngreType` (
-  `idIngreType` INT AUTO_INCREMENT NOT NULL COMMENT '類別編號',
+  `idIngreType` INT NOT NULL COMMENT '類別編號',
   `typeName` VARCHAR(50) NOT NULL COMMENT '食材類別名稱',
   PRIMARY KEY (`idIngreType`))
 ENGINE = InnoDB;
@@ -299,7 +300,7 @@ CREATE TABLE IF NOT EXISTS `Group4_db`.`Ingre` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `Group4_db`.`Temporder`
+-- Table `Group4_db`.`TempOrder`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Group4_db`.`Temporder` (
   `custID` INT AUTO_INCREMENT NOT NULL COMMENT '會員編號 (custID): int, not null',

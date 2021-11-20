@@ -9,7 +9,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import model.Util;
+
+import basicutil.Util;
 
 public class CardDAOImpl implements CardDAO{
 	
