@@ -73,7 +73,7 @@ public class FinalOrderDAOImpl implements FinalOrderDAO {
 
 		try {
 			
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = Util.getConnection();
 			pstmt = con.prepareStatement(UPDATE_STMT);
 			
 			pstmt.setInt(1, finalOrderVO.getIdCustomer());
