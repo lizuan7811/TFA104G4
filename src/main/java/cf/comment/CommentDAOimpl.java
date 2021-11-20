@@ -9,6 +9,10 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+import basicutil.Util;
+>>>>>>> LizBranch
 import util.DB;
 
 
@@ -22,6 +26,7 @@ public class CommentDAOimpl implements CommentDAO {
 	private static final String FIND_BY_PK = "SELECT * FROM Comment WHERE CommentID = ?";
 	private static final String GET_ALL = "SELECT * FROM Comment";
 
+<<<<<<< HEAD
 	static {
 		try {
 			Class.forName(DB.DRIVER);
@@ -29,6 +34,8 @@ public class CommentDAOimpl implements CommentDAO {
 			ce.printStackTrace();
 		}
 	}
+=======
+>>>>>>> LizBranch
 
 	@Override
 	public void insert(CommentVO commentVO) {
@@ -36,7 +43,11 @@ public class CommentDAOimpl implements CommentDAO {
 		PreparedStatement pstmt = null;
 		
 		try {
+<<<<<<< HEAD
 			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(INSERT_COMMENT);
 			
 			pstmt.setInt(1, commentVO.getCommentID());
@@ -79,7 +90,11 @@ public class CommentDAOimpl implements CommentDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(UPDATE_COMMENT);
 
 			pstmt.setInt(1, commentVO.getDiaryID());
@@ -121,7 +136,11 @@ public class CommentDAOimpl implements CommentDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(DELETE_COMMENT);
 
 			pstmt.setInt(1, commentID);
@@ -159,7 +178,11 @@ public class CommentDAOimpl implements CommentDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, commentID);
 			rs = pstmt.executeQuery();
@@ -214,7 +237,11 @@ public class CommentDAOimpl implements CommentDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 

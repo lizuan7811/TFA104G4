@@ -8,6 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+import basicutil.Util;
+
+>>>>>>> LizBranch
 public class RecipeDAOImpl implements RecipeDAO {
 	private static final String INSERT_STMT = "INSERT INTO RECIPE(IDRECIPE,RECIPENAME, DESCRIP, TEXT, PHOTO) VALUES (?, ?, ?, ?, ?)";
 	private static final String UPDATE_STMT = "UPDATE RECIPE SET RECIPENAME = ?, DESCRIP = ?, TEXT = ?, PHOTO = ? WHERE IDRECIPE = ?";
@@ -15,6 +20,7 @@ public class RecipeDAOImpl implements RecipeDAO {
 	private static final String FIND_BY_PK = "SELECT * FROM RECIPE WHERE IDRECIPE = ?";
 	private static final String GET_ALL = "SELECT * FROM RECIPE";
 	
+<<<<<<< HEAD
 	static {
 		try {
 			Class.forName(Util.DRIVER);
@@ -23,6 +29,8 @@ public class RecipeDAOImpl implements RecipeDAO {
 		}
 	}
 	
+=======
+>>>>>>> LizBranch
 	@Override
 	public void insert(RecipeVO recipeVO) {
 		Connection con = null;
@@ -30,7 +38,11 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setInt(1,recipeVO.getIdRecipe());
@@ -71,7 +83,11 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(UPDATE_STMT);
 			
 			pstmt.setString(1,recipeVO.getRecipeName());
@@ -112,7 +128,11 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(DELETE_STMT);
 
 			pstmt.setInt(1, idRecipe);
@@ -152,7 +172,11 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, idRecipe);
 			rs = pstmt.executeQuery();
@@ -207,7 +231,11 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 

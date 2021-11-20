@@ -8,6 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+import basicutil.Util;
+
+>>>>>>> LizBranch
 public class OrderIngreListDAOImpl implements OrderIngreListDAO {
 	private static final String INSERT_STMT = "INSERT INTO ORDERINGRELIST(IDORDER, IDINGRE, ORDERQUAN, PRICE) VALUES (?, ?, ?, ?)";
 	private static final String UPDATE_STMT = "UPDATE ORDERINGRELIST SET ORDERQUAN = ?, PRICE = ? WHERE IDORDER = ? and IDINGRE = ?";
@@ -15,6 +20,7 @@ public class OrderIngreListDAOImpl implements OrderIngreListDAO {
 	private static final String FIND_BY_PK = "SELECT * FROM ORDERINGRELIST WHERE IDORDER = ? and IDINGRE = ?";
 	private static final String GET_ALL = "SELECT * FROM ORDERINGRELIST";
 	
+<<<<<<< HEAD
 	static {
 		try {
 			Class.forName(Util.DRIVER);
@@ -26,6 +32,8 @@ public class OrderIngreListDAOImpl implements OrderIngreListDAO {
 	
 	
 	
+=======
+>>>>>>> LizBranch
 	@Override
 	public void insert(OrderIngreListVO orderingrelistVO) {
 		Connection con = null;
@@ -33,7 +41,11 @@ public class OrderIngreListDAOImpl implements OrderIngreListDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setInt(1,orderingrelistVO.getIdOrder());
@@ -72,7 +84,11 @@ public class OrderIngreListDAOImpl implements OrderIngreListDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(UPDATE_STMT);
 
 		
@@ -113,7 +129,11 @@ public class OrderIngreListDAOImpl implements OrderIngreListDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(DELETE_STMT);
 
 			pstmt.setInt(1, idOrder);
@@ -155,7 +175,11 @@ public class OrderIngreListDAOImpl implements OrderIngreListDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, idOrder);
 			pstmt.setInt(2, idIngre);
@@ -210,7 +234,11 @@ public class OrderIngreListDAOImpl implements OrderIngreListDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 

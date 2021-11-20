@@ -8,6 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+import basicutil.Util;
+
+>>>>>>> LizBranch
 
 
 public class FriendChatDAOImpl implements FriendChatDAO{
@@ -17,6 +22,7 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 	public static final String FIND_BY_PK = "SELECT * FROM FRIENDCHAT WHERE FRIENDCHATID = ?";
 	public static final String GET_ALL = "SELECT * FROM FRIENDCHAT";
 	
+<<<<<<< HEAD
 	static {
 		try {
 			Class.forName(Util.DRIVER);
@@ -24,6 +30,8 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 			ce.printStackTrace();
 		}
 	}
+=======
+>>>>>>> LizBranch
 	@Override
 	public void insert(FriendChatVO friendChatVO) {
 		Connection con = null;
@@ -31,7 +39,11 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, friendChatVO.getFriendChatID());
@@ -73,7 +85,11 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(UPDATE_STMT);
 
 			
@@ -115,7 +131,11 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(DELETE_STMT);
 
 			pstmt.setInt(1, friendChatID);
@@ -154,7 +174,11 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, friendChatID);
 			rs = pstmt.executeQuery();
@@ -207,7 +231,11 @@ public class FriendChatDAOImpl implements FriendChatDAO{
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 

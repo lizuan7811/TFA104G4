@@ -8,6 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+import basicutil.Util;
+>>>>>>> LizBranch
 import util.DB;
 
 
@@ -19,6 +23,7 @@ public class DiaryLikeDAOimpl implements DiaryLikeDAO{
 	private static final String FIND_BY_PK = "SELECT * FROM DiaryLike WHERE DiaryLikeID = ?";
 	private static final String GET_ALL = "SELECT * FROM DiaryLike";
 
+<<<<<<< HEAD
 	static {
 		try {
 			Class.forName(DB.DRIVER);
@@ -26,13 +31,19 @@ public class DiaryLikeDAOimpl implements DiaryLikeDAO{
 			ce.printStackTrace();
 		}
 	}
+=======
+>>>>>>> LizBranch
 	@Override
 	public void insert(DiaryLikeVO diarylikeVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
+<<<<<<< HEAD
 			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(INSERT_LIKE);
 			
 			pstmt.setInt(1, diarylikeVO.getDiaryid());
@@ -71,7 +82,11 @@ public class DiaryLikeDAOimpl implements DiaryLikeDAO{
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(UPDATE_LIKE);
 
 			pstmt.setInt(1, diarylikeVO.getDiaryid());
@@ -110,7 +125,11 @@ public class DiaryLikeDAOimpl implements DiaryLikeDAO{
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(DELETE_LIKE);
 
 			pstmt.setInt(1, diarylikeVO);
@@ -148,7 +167,11 @@ public class DiaryLikeDAOimpl implements DiaryLikeDAO{
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, diarylikeVO);
 			rs = pstmt.executeQuery();
@@ -201,7 +224,11 @@ public class DiaryLikeDAOimpl implements DiaryLikeDAO{
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 

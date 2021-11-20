@@ -7,7 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD
 import model.Util;
+=======
+
+import basicutil.Util;
+>>>>>>> LizBranch
 
 public class AddressDAOImpl implements AddressDAO {
 	
@@ -20,6 +25,7 @@ public class AddressDAOImpl implements AddressDAO {
 	private static final String FIND_BY_PK = "SELECT * FROM Address WHERE idAddress = ?";
 	private static final String GET_ALL = "SELECT * FROM Address";
 
+<<<<<<< HEAD
 	static {
 		try {
 			Class.forName(Util.DRIVER);
@@ -27,6 +33,8 @@ public class AddressDAOImpl implements AddressDAO {
 			ce.printStackTrace();
 		}
 	}
+=======
+>>>>>>> LizBranch
 	
 	@Override
 	public void insert(AddressVO addressVO) {
@@ -35,7 +43,11 @@ public class AddressDAOImpl implements AddressDAO {
 
 		try {
 			
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, addressVO.getIdAddress());
@@ -78,7 +90,11 @@ public class AddressDAOImpl implements AddressDAO {
 
 		try {
 			
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(UPDATE_STMT);
 			
 			pstmt.setInt(1, addressVO.getIdCustomer());
@@ -121,7 +137,11 @@ public class AddressDAOImpl implements AddressDAO {
 
 		try {
 			
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(DELETE_STMT);
 			
 			pstmt.setInt(1, idAddress);
@@ -159,7 +179,11 @@ public class AddressDAOImpl implements AddressDAO {
 		AddressVO addressVO = null;
 		
 		try {
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, idAddress);
 			rs = pstmt.executeQuery();
@@ -215,7 +239,11 @@ public class AddressDAOImpl implements AddressDAO {
 		ResultSet rs = null;
 
 		try {
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 			

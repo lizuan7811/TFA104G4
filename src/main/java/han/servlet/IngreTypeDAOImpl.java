@@ -8,6 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+import basicutil.Util;
+
+>>>>>>> LizBranch
 public class IngreTypeDAOImpl implements IngreTypeDAO {
 	private static final String INSERT_STMT = "INSERT INTO INGRETYPE(IDINGRETYPE, TYPENAME) VALUES (?, ?)";
 	private static final String UPDATE_STMT = "UPDATE INGRETYPE SET TYPENAME = ? WHERE IDINGRETYPE = ?";
@@ -15,6 +20,7 @@ public class IngreTypeDAOImpl implements IngreTypeDAO {
 	private static final String FIND_BY_PK = "SELECT * FROM INGRETYPE WHERE IDINGRETYPE = ?";
 	private static final String GET_ALL = "SELECT * FROM INGRETYPE";
 	
+<<<<<<< HEAD
 	static {
 		try {
 			Class.forName(Util.DRIVER);
@@ -23,14 +29,20 @@ public class IngreTypeDAOImpl implements IngreTypeDAO {
 		}
 	}
 	
+=======
+>>>>>>> LizBranch
 	@Override
 	public void insert(IngreTypeVO ingreTypeVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
+<<<<<<< HEAD
 
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setInt(1,ingreTypeVO.getIdIngreType());
@@ -68,7 +80,11 @@ public class IngreTypeDAOImpl implements IngreTypeDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(UPDATE_STMT);
 
 			pstmt.setString(1,ingreTypeVO.getTypeName());
@@ -107,7 +123,11 @@ public class IngreTypeDAOImpl implements IngreTypeDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(DELETE_STMT);
 
 			pstmt.setInt(1, idIngreType);
@@ -147,7 +167,11 @@ public class IngreTypeDAOImpl implements IngreTypeDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, idIngreType);
 			rs = pstmt.executeQuery();
@@ -197,7 +221,11 @@ public class IngreTypeDAOImpl implements IngreTypeDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 

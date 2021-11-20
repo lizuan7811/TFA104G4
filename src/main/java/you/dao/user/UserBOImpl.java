@@ -10,8 +10,13 @@ import org.json.JSONArray;
 
 import com.mysql.cj.xdevapi.JsonArray;
 
+<<<<<<< HEAD
 import you.conn.BaseConn;
 import you.conn.JRedis;
+=======
+import basicutil.JRedis;
+import basicutil.Util;
+>>>>>>> LizBranch
 import you.filedao.FileWorkDaoImpl;
 
 
@@ -36,7 +41,11 @@ public class UserBOImpl implements UserBO{
 			mp.put("empty","This Customer List is Empty!");
 			usJsonArr.put(mp);
 		}
+<<<<<<< HEAD
 		BaseConn.closeConnection(conn, ps);
+=======
+		Util.closeConnection(conn, ps);
+>>>>>>> LizBranch
 		return usJsonArr;
 	}
 
@@ -46,7 +55,11 @@ public class UserBOImpl implements UserBO{
 		Integer likeNum=0;
 		udl.insDiaryLike(conn, ps, idCustomer, diaryID);
 		likeNum=udl.selDiaryLike(conn, ps, diaryID);
+<<<<<<< HEAD
 		BaseConn.closeConnection(conn, ps);
+=======
+		Util.closeConnection(conn, ps);
+>>>>>>> LizBranch
 		return likeNum;
 	}
 
@@ -56,7 +69,11 @@ public class UserBOImpl implements UserBO{
 		Integer likeNum=0;
 		udl.delDiaryLike(conn, ps, diaryLike, diaryID);
 		likeNum=udl.selDiaryLike(conn, ps, diaryID);
+<<<<<<< HEAD
 		BaseConn.closeConnection(conn, ps);
+=======
+		Util.closeConnection(conn, ps);
+>>>>>>> LizBranch
 		return likeNum;
 	}
 

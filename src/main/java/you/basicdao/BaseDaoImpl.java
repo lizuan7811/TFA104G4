@@ -13,7 +13,11 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Map;
 
+<<<<<<< HEAD
 import you.conn.BaseConn;
+=======
+import basicutil.Util;
+>>>>>>> LizBranch
 import you.contents.FinalStaticFile;
 
 
@@ -55,7 +59,11 @@ public class BaseDaoImpl implements BaseDao{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+<<<<<<< HEAD
 			BaseConn.closeConnection(conn, ps);
+=======
+			Util.closeConnection(conn, ps);
+>>>>>>> LizBranch
 		}
 		return modifyRowNum;
 	}
@@ -93,7 +101,11 @@ public class BaseDaoImpl implements BaseDao{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+<<<<<<< HEAD
 			BaseConn.closeConnection(conn, ps);
+=======
+			Util.closeConnection(conn, ps);
+>>>>>>> LizBranch
 		}
 		return modifyRowNum;
 	}
@@ -170,7 +182,11 @@ public class BaseDaoImpl implements BaseDao{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+<<<<<<< HEAD
 			BaseConn.closeConnection(conn, ps);
+=======
+			Util.closeConnection(conn, ps);
+>>>>>>> LizBranch
 		}
 		return modifyRowNum;
 	}

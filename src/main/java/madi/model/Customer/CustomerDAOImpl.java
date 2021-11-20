@@ -1,7 +1,12 @@
 package madi.model.Customer;
 import java.sql.*;
 import java.util.*;
+<<<<<<< HEAD
 import model.Util;
+=======
+
+import basicutil.Util;
+>>>>>>> LizBranch
 
 public class CustomerDAOImpl implements CustomerDAO {
 	
@@ -15,6 +20,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	private static final String FIND_BY_PK = "SELECT * FROM Customer WHERE idCustomer = ?";
 	private static final String GET_ALL = "SELECT * FROM Customer";
 	
+<<<<<<< HEAD
 	static {
 		try {
 			Class.forName(Util.DRIVER);
@@ -22,6 +28,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 			ce.printStackTrace();
 		}
 	}
+=======
+>>>>>>> LizBranch
 	
 	@Override
 	public void insert(CustomerVO customerVO) {
@@ -30,7 +38,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 		try {
 			
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setInt(1, customerVO.getIdCustomer());
@@ -77,7 +89,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 		try {
 			
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(UPDATE_STMT);
 			
 			pstmt.setString(1, customerVO.getName());
@@ -125,7 +141,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 		try {
 			
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(DELETE_STMT);
 			
 			pstmt.setInt(1, idCustomer);
@@ -162,7 +182,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 		CustomerVO customerVO = null;
 		
 		try {
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, idCustomer);
 			rs = pstmt.executeQuery();
@@ -225,7 +249,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 		ResultSet rs = null;
 
 		try {
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 			

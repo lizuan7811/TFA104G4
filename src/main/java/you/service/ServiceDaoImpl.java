@@ -3,7 +3,11 @@ package you.service;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+<<<<<<< HEAD
 import you.conn.BaseConn;
+=======
+import basicutil.Util;
+>>>>>>> LizBranch
 import you.dao.user.UserDao;
 import you.dao.user.UserDaoImpl;
 import you.pojo.AdminVO;
@@ -18,7 +22,11 @@ public class ServiceDaoImpl implements ServiceDao{
 	
 	public AdminVO login(String username,String password)
 	{
+<<<<<<< HEAD
 		Connection conn=BaseConn.getConnection();
+=======
+		Connection conn=Util.getConnection();
+>>>>>>> LizBranch
 		PreparedStatement ps=null;
 		AdminVO admin=userDao.adminLogin(conn, ps,username, password);
 		if(admin!=null)

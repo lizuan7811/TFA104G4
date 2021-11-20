@@ -5,12 +5,19 @@ import java.sql.PreparedStatement;
 
 import org.json.JSONArray;
 
+<<<<<<< HEAD
 import you.conn.BaseConn;
+=======
+import Basic.util.BaseConn;
+>>>>>>> LizBranch
 import you.dao.user.UserBO;
 import you.dao.user.UserBOImpl;
 import you.dao.user.UserDao;
 import you.dao.user.UserDaoImpl;
+<<<<<<< HEAD
 import you.pojo.UserVO;
+=======
+>>>>>>> LizBranch
 
 
 public class UserServiceImpl implements UserService{

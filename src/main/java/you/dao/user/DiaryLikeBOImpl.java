@@ -6,14 +6,23 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Calendar;
 
+<<<<<<< HEAD
 import you.conn.BaseConn;
+=======
+import basic.conn.BaseConn;
+import basicutil.Util;
+>>>>>>> LizBranch
 import you.contents.FinalStaticFile;
 
 public class  DiaryLikeBOImpl implements DiaryLikeBO{
 
 	@Override
 	public void clickAddLike(Connection conn, PreparedStatement ps, Integer diaryId, Integer custId) {
+<<<<<<< HEAD
 		conn=BaseConn.getConnection();
+=======
+		conn=Util.getConnection();
+>>>>>>> LizBranch
 		int doResult=0;
 		try {
 //			"INSERT INTO `DiaryLike`(diaryLikeID,diaryID,idCustomer,createdTime)values(?,?,?,?);";

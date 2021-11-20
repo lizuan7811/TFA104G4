@@ -16,6 +16,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+<<<<<<< HEAD
+=======
+import basicutil.Util;
+
+>>>>>>> LizBranch
 public class IngreServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -27,7 +32,12 @@ public class IngreServlet extends HttpServlet {
 			resp.setContentType("text/html");
 			resp.setCharacterEncoding("utf-8");
 
+<<<<<<< HEAD
 			Connection con1 = conn();
+=======
+			Connection con1 = Util.getConnection();
+
+>>>>>>> LizBranch
 			PreparedStatement ps = con1.prepareStatement("SELECT * FROM INGRE"); // PreparedStatement 欲執行指令
 			IngreVO ingre = ingre(ps);
 			PrintWriter pw = resp.getWriter();
@@ -55,6 +65,7 @@ public class IngreServlet extends HttpServlet {
 		this.doPost(req, resp);
 	}
 
+<<<<<<< HEAD
 	public Connection conn() {
 		try {
 			Class.forName(Util.DRIVER);
@@ -73,6 +84,9 @@ public class IngreServlet extends HttpServlet {
 		}
 		return conn;
 	}
+=======
+	
+>>>>>>> LizBranch
 
 	public IngreVO ingre(PreparedStatement ps) {
 		ResultSet rs = null;

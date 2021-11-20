@@ -8,6 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+import basicutil.Util;
+>>>>>>> LizBranch
 import util.DB;
 
 
@@ -23,6 +27,7 @@ public class FoodDiaryDAOimpl implements FoodDiaryDAO {
 	private static final String FIND_BY_PK = "SELECT * FROM FoodDiary where DiaryID = ?";
 	private static final String GET_ALL = "SELECT * FROM FoodDiary";
 	
+<<<<<<< HEAD
 	static {
 		try {
 			Class.forName(DB.DRIVER);
@@ -31,13 +36,19 @@ public class FoodDiaryDAOimpl implements FoodDiaryDAO {
 		}
 	}
 	
+=======
+>>>>>>> LizBranch
 	@Override
 	public void insert(FoodDiaryVO foodDiaryVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
+<<<<<<< HEAD
 			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(INSERT_FOODDIARY);
 			
 			pstmt.setInt(1, foodDiaryVO.getDiaryID());
@@ -84,7 +95,11 @@ public class FoodDiaryDAOimpl implements FoodDiaryDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(UPDATE_FOODDIARY);
 
 			pstmt.setInt(1, foodDiaryVO.getCustID());
@@ -131,7 +146,11 @@ public class FoodDiaryDAOimpl implements FoodDiaryDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(DELETE_FOODDIARY);
 
 			pstmt.setInt(1, diaryID);
@@ -168,7 +187,11 @@ public class FoodDiaryDAOimpl implements FoodDiaryDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, diaryID);
 			rs = pstmt.executeQuery();
@@ -229,7 +252,11 @@ public class FoodDiaryDAOimpl implements FoodDiaryDAO {
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(DB.URL, DB.USER, DB.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 

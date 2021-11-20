@@ -8,6 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+import basicutil.Util;
+
+>>>>>>> LizBranch
 
 public class ChatRoomDAOImpl implements ChatRoomDAO{
 	public static final String INSERT_STMT = "INSERT INTO CHATROOM(MESGID, CUSTID, CUSTMESG, CREATEDTIME, MESSAGE) VALUES (?, ?, ?, ?, ?)";
@@ -16,6 +21,7 @@ public class ChatRoomDAOImpl implements ChatRoomDAO{
 	public static final String FIND_BY_PK = "SELECT * FROM CHATROOM WHERE MESGID = ?";
 	public static final String GET_ALL = "SELECT * FROM CHATROOM";
 	
+<<<<<<< HEAD
 	static {
 		try {
 			Class.forName(Util.DRIVER);
@@ -23,6 +29,8 @@ public class ChatRoomDAOImpl implements ChatRoomDAO{
 			ce.printStackTrace();
 		}
 	}
+=======
+>>>>>>> LizBranch
 	@Override
 	public void insert(ChatRoomVO chatRoomVO) {
 		Connection con = null;
@@ -30,7 +38,11 @@ public class ChatRoomDAOImpl implements ChatRoomDAO{
 		
 		try {
 			
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, chatRoomVO.getMesgID());
@@ -76,7 +88,11 @@ public class ChatRoomDAOImpl implements ChatRoomDAO{
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(UPDATE_STMT);
 			pstmt.setInt(1, chatRoomVO.getCustID());
 			pstmt.setBoolean(2, chatRoomVO.getCustMesg());
@@ -115,7 +131,11 @@ public class ChatRoomDAOImpl implements ChatRoomDAO{
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(DELETE_STMT);
 
 			pstmt.setInt(1, mesgID);
@@ -154,7 +174,11 @@ public class ChatRoomDAOImpl implements ChatRoomDAO{
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, mesgID);
 			rs = pstmt.executeQuery();
@@ -209,7 +233,11 @@ public class ChatRoomDAOImpl implements ChatRoomDAO{
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 

@@ -8,6 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+import basicutil.Util;
+
+>>>>>>> LizBranch
 public class RecipeIngreDAOImpl implements RecipeIngreDAO{
 	private static final String INSERT_STMT = "INSERT INTO RECIPEINGRE(IDRECIPEINGRE, IDRECIPE, IDINGRE, INGREQUAN) VALUES (?, ?, ?, ?)";
 	private static final String UPDATE_STMT = "UPDATE RECIPEINGRE SET IDRECIPE = ?, IDINGRE = ?, INGREQUAN = ? WHERE IDRECIPEINGRE = ?";
@@ -15,6 +20,7 @@ public class RecipeIngreDAOImpl implements RecipeIngreDAO{
 	private static final String FIND_BY_PK = "SELECT * FROM RECIPEINGRE WHERE IDRECIPEINGRE = ?";
 	private static final String GET_ALL = "SELECT * FROM RECIPEINGRE";
 	
+<<<<<<< HEAD
 	static {
 		try {
 			Class.forName(Util.DRIVER);
@@ -22,6 +28,8 @@ public class RecipeIngreDAOImpl implements RecipeIngreDAO{
 			ce.printStackTrace();
 		}
 	}
+=======
+>>>>>>> LizBranch
 
 	@Override
 	public void insert(RecipeIngreVO recipeIngreVO) {
@@ -30,7 +38,11 @@ public class RecipeIngreDAOImpl implements RecipeIngreDAO{
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setInt(1,recipeIngreVO.getIdRecipeIngre());
@@ -70,7 +82,11 @@ public class RecipeIngreDAOImpl implements RecipeIngreDAO{
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(UPDATE_STMT);
 
 			
@@ -111,7 +127,11 @@ public class RecipeIngreDAOImpl implements RecipeIngreDAO{
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(DELETE_STMT);
 
 			pstmt.setInt(1, idRecipeIngre);
@@ -151,7 +171,11 @@ public class RecipeIngreDAOImpl implements RecipeIngreDAO{
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, idRecipeIngre);
 			rs = pstmt.executeQuery();
@@ -205,7 +229,11 @@ public class RecipeIngreDAOImpl implements RecipeIngreDAO{
 
 		try {
 
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 

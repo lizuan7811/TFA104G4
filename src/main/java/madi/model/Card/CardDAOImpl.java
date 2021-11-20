@@ -21,6 +21,7 @@ public class CardDAOImpl implements CardDAO{
 	private static final String FIND_BY_PK = "SELECT * FROM Card WHERE idCard = ?";
 	private static final String GET_ALL = "SELECT * FROM Card";
 
+<<<<<<< HEAD
 	static {
 		try {
 			Class.forName(Util.DRIVER);
@@ -28,6 +29,8 @@ public class CardDAOImpl implements CardDAO{
 			ce.printStackTrace();
 		}
 	}
+=======
+>>>>>>> LizBranch
 	
 	@Override
 	public void insert(CardVO cardVO) {
@@ -36,7 +39,11 @@ public class CardDAOImpl implements CardDAO{
 		
 		try {
 			
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setInt(1, cardVO.getIdCard());
@@ -77,7 +84,11 @@ public class CardDAOImpl implements CardDAO{
 		
 		try {
 			
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(UPDATE_STMT);
 			
 			pstmt.setInt(1, cardVO.getIdCustomer());
@@ -119,7 +130,11 @@ public class CardDAOImpl implements CardDAO{
 		
 		try {
 			
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(DELETE_STMT);
 			
 			pstmt.setInt(1, idCard);
@@ -157,7 +172,11 @@ public class CardDAOImpl implements CardDAO{
 		CardVO cardVO = null;
 		
 		try {
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(FIND_BY_PK);
 			pstmt.setInt(1, idCard);
 			rs = pstmt.executeQuery();
@@ -212,7 +231,11 @@ public class CardDAOImpl implements CardDAO{
 		ResultSet rs = null;
 
 		try {
+<<<<<<< HEAD
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+=======
+			con = Util.getConnection();
+>>>>>>> LizBranch
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 			
