@@ -1,4 +1,4 @@
-package po;
+package popo.Friend;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

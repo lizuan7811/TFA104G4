@@ -1,4 +1,4 @@
-package po;
+package popo.Friend;
 
 import java.io.Serializable;
 import java.sql.Date;

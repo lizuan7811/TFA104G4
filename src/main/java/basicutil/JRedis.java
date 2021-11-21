@@ -46,10 +46,11 @@ public class JRedis
 			System.out.println("沒找到會員"+custID+"，建立後=\t"+mp);
 			count++;
 		}
-		System.out.println(mp);
+		
+		System.out.println(mp.size());
 		
 		if(mp!=null && mp.size()>0) {
-			jRedis.hmset(FinalStaticFile.DIARYLIKE,mp);
+			jRedis.hmset(diaryID.toString(),mp);
 		}
 			return mp.size();			
 //		return true;

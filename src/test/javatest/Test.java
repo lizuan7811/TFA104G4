@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import basicutil.JRedis;
+
 
 public class Test {
 	public static void main(String[] args)

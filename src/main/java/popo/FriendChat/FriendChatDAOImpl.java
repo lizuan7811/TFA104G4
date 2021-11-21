@@ -1,4 +1,4 @@
-package po;
+package popo.FriendChat;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
