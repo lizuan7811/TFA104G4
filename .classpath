@@ -14,13 +14,13 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Users/Lizuan/Desktop/ProJSection/GitHubSection/tbmgf/src/main/webapp/WEB-INF/lib/commons-beanutils-1.9.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Lizuan/Desktop/ProJSection/GitHubSection/tbmgf/src/main/webapp/WEB-INF/lib/commons-collections-3.2.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Lizuan/Desktop/ProJSection/GitHubSection/tbmgf/src/main/webapp/WEB-INF/lib/commons-collections4-4.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Lizuan/Desktop/ProJSection/GitHubSection/tbmgf/src/main/webapp/WEB-INF/lib/commons-lang3-3.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Lizuan/Desktop/ProJSection/GitHubSection/tbmgf/src/main/webapp/WEB-INF/lib/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Lizuan/Desktop/ProJSection/GitHubSection/tbmgf/src/main/webapp/WEB-INF/lib/ezmorph-1.0.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Lizuan/Desktop/ProJSection/GitHubSection/tbmgf/src/main/webapp/WEB-INF/lib/jedis-2.9.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Lizuan/Desktop/ProJSection/GitHubSection/tbmgf/src/main/webapp/WEB-INF/lib/json-20210307.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tibame/Desktop/Github/tbmgf/src/main/webapp/WEB-INF/lib/commons-beanutils-1.9.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tibame/Desktop/Github/tbmgf/src/main/webapp/WEB-INF/lib/commons-collections-3.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tibame/Desktop/Github/tbmgf/src/main/webapp/WEB-INF/lib/commons-collections4-4.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tibame/Desktop/Github/tbmgf/src/main/webapp/WEB-INF/lib/commons-lang3-3.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tibame/Desktop/Github/tbmgf/src/main/webapp/WEB-INF/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tibame/Desktop/Github/tbmgf/src/main/webapp/WEB-INF/lib/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tibame/Desktop/Github/tbmgf/src/main/webapp/WEB-INF/lib/jedis-2.9.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tibame/Desktop/Github/tbmgf/src/main/webapp/WEB-INF/lib/json-20210307.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
