@@ -25,25 +25,28 @@ public class UserServlet extends HttpServlet{
 	private UserService us;
 	public void init()
 	{
+		us=new UserServiceImpl();
 //		設定定時器，每過一天，晚上凌晨執行將Redis資料存到SQL中
 //		Jedis jRedis=new Jedis("localhost",3679);
 	}
 	
 	protected void doPost(HttpServletRequest request,HttpServletResponse response)
 	{
-		
+		try {
+			request.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;charset=utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String metChoice=request.getParameter("metChoice");
 		if(metChoice!=null && "clickLike".equals(metChoice))
 		{
 			System.out.println("若想執行的方法與clickLike相同，執行clicklike()");
-			try {
-				request.setCharacterEncoding("utf-8");
-				response.setContentType("text/html;charset=utf-8");
-				doClick(request,response);
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				doLikeClick(request,response);
+		}else if(metChoice!=null && "commentReport".equals(metChoice))
+		{
+			doCommentReport(request,response);
 		}
 	}
 	
@@ -52,7 +55,7 @@ public class UserServlet extends HttpServlet{
 		this.doPost(request,response);
 	}
 	
-	private void doClick(HttpServletRequest request,HttpServletResponse response)
+	private void doLikeClick(HttpServletRequest request,HttpServletResponse response)
 	{
 		PrintWriter pw=null;
 		us=new UserServiceImpl();
@@ -74,9 +77,6 @@ public class UserServlet extends HttpServlet{
 //				若呼叫此方法的當下，diaryID以及customerID不為空值或非正常值，就將程式正常執行，呼叫點了like的方法。
 				likeCount=us.addOrDelLikeService(curDiaryID,curCustID);				
 			}
-//			likeCount=us.addOrDelLikeService(1,34);				
-//			likeCount=us.addOrDelLikeService(2,35);				
-//			likeCount=us.addOrDelLikeService(3,34);	
 			System.out.println(likeCount);
 
 			try {
@@ -87,6 +87,18 @@ public class UserServlet extends HttpServlet{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+	}
+	
+	private Integer doCommentReport(HttpServletRequest request,HttpServletResponse response)
+	{
+//		custID、reportReason reportResult
+		Integer successNum=0;
+		String diaryID=request.getParameter("diaryID");
+		String custID=request.getParameter("custID");
+		String reportReason=request.getParameter("reportReason");
+		System.out.println(reportReason);
+		successNum=us.serviceCommReport(diaryID, custID, reportReason);
+		return successNum;
 	}
 	
 }

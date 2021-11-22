@@ -120,6 +120,14 @@ public class UserDaoImpl implements UserDao{
 		}
 		return 0;
 	}
+
+	@Override
+	public void userAddFriend(Connection conn, PreparedStatement ps, String authorName, Integer custID) {
+		
+		
+		
+		
+	}
 	
 	
 	

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>食健文章</title>
     <link href="cf_css/gorup4_diary_page.css" rel="stylesheet" type="text/css"/>
+    <!-- <link href="cf_css/group4_diary.css" rel="stylesheet" type="text/css"/> -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script type="text/javascript" src="js/gp4_diary_pg.js"></script>
 </head>
@@ -57,12 +58,17 @@
             <div class="article_header">
                 <h1 class="article_title">文章主題</h1>
                 <div class="article_info">
-                    <span class="info_item">作者(帳號) XXX</span>
-                    <span class="info_item">發表於 xxxx/xx/xx</span>
+                    <div class="author">    
+                        <img class="pro_pic" src="cf_css/cat_toby.jpg">    
+                        <span class="author_name">作者 貪吃的貓</span>
+                        <input class="add_friend" type="button" name="加好友" value="+ 加好友">
+                    </div>
+                    <br>
+                    <span>發表於 2021/11/22</span>
                     <span class="info_item"><span class="click_times">1314</span> 次點閱</span>
                     <span class="info_item"><span class="thumbs_up_num">123</span> 人給讚</span>
                 </div>
-                <div class="like_share_btn">
+                <div class="like_share_report_btn">
                     <div class="like_btn">
                         <i class="far fa-thumbs-up"></i>
                         <span>給讚</span>
@@ -71,11 +77,14 @@
                         <i class="fas fa-share-alt"></i>
                         <span>分享</span>
                     </div>
+                    <div class="report">
+                        <input class="report_btn" type="button" name="report" value="檢舉">
+                    </div>
                 </div>
             </div>
 
             <div class="main_article">
-                <p>文章內容/含圖</p>					
+                <p class="main_article_p">文章內容/含圖</p>					
 			</div>
         </div>   
     </main>

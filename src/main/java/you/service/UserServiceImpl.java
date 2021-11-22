@@ -62,6 +62,15 @@ public class UserServiceImpl implements UserService{
 //		
 //		return 0;
 //	}
-	
+	public Integer serviceCommReport(String diaryID,String custID,String reportReason)
+	{
+		Connection conn=Util.getConnection();
+		PreparedStatement ps=null;
+		Integer successRow=0;
+		usbo.userCommReport(conn,ps,diaryID,custID,reportReason);
+		
+		return successRow;
+	}
+
 
 }

@@ -24,12 +24,27 @@ public class FinalStaticFile {
 	public final static String DIARYLIKESG_INSERT="INSERT INTO `DiaryLike`(diaryLikeID,diaryID,idCustomer,createdTime)values(?,?,?,?);";
 
 	public final static String DIARYLIKESG_DELETE="DELETE FROM `DiaryLike` WHERE diarylikeID=?;";
+//	留言檢舉
+	public final static String COMMENTREPORT_ALTER="UPDATE CommentReport SET createdTime=?,reportReason=?,reportResult=? WHERE diaryID = ? and custID = ?;";
+
+	
+	
+	public final static String COMMENTREPORT_INSERT="INSERT INTO CommentReport(commentReportID,diaryID,custID,createdTime,reportReason,reportResult)VALUES(?,?,?,?,?,?);";
+
+//	搜尋留言檢舉表
+	public final static String COMMENTREPORT_SELECT="SELECT * FROM CommentReport WHERE custID = ? and diaryID = ?;";
+
 //	會員登入後，取得所有文章的每個按讚數，前端網頁使用
 	
 //	會員按讚後，資料寫入Jedis
 	
 	public final static String DIARYLIKE="DiaryLikeVO";
 
-	
+	public final static String FRIEND_INSERT="INSERT INTO Friend(friendCharID,custID,myfriendID,friendStatusNum,statusUpdate)VALUES(?,?,?,?,?);";
+
+	public final static String FRIEND_DELETE="DELETE FROM Friend WHERE custID = ?,myfriendID = ?;";
+
+	public final static String FRIEND_ALTER="UPDATE Friend SET friendStatusNum = 1 WHERE custID = ? and myfriendID = ?";
+
 
 }

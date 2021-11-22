@@ -22,4 +22,7 @@ public interface UserDao {
 	public void delDiaryLike(Connection conn,PreparedStatement ps,Integer diaryLikeID,Integer diaryID);
 	
 	public Integer selDiaryLike(Connection conn,PreparedStatement ps,Integer diaryID);
+	
+	public void userAddFriend(Connection conn,PreparedStatement ps,String authorName,Integer custID);
+	
 }
