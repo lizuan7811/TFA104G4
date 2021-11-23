@@ -1,0 +1,9 @@
+/.metadata/
+tbmgf/
+/.settings/
+.settings/
+.classpath
+.project
+*.class
+/.git/
+.git/

@@ -122,7 +122,7 @@ public class UserBOImpl implements UserBO{
 		}
 	}
 	
-	
+//	使用者檢舉
 	@Override
 	public Integer userCommReport(Connection conn, PreparedStatement ps,String diaryID,String custID, String reportReason) {
 //		先查有沒有資料，有舊覆蓋，沒有就增加。
