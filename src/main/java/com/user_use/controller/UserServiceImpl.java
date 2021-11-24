@@ -110,18 +110,20 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public Map<String,JSONArray>  serviceApplyFriend(String metChoice, Integer custID) {
+	public Map<String,String>  serviceAboutFriend(String metChoice, Integer custID) {
 		Connection conn=Util.getConnection();
 		PreparedStatement ps=null;
 		JSONArray jsonArr=new JSONArray();
-		JSONArray jsonArr1=new JSONArray();
-		Map<String,JSONArray> userData=new HashMap<String,JSONArray>();
-//		加好友
+		Map<String,String> userData=new HashMap<String,String>();
+//		取得已經成為好友的列表資料，搜尋狀態為1的好友的列表
+		jsonArr=usd.selectFriend(conn, ps, custID, FinalStaticFile.FRIENDLISTONE_SELECT);
+		userData.put(FinalStaticFile.FRIENDLISTONE_SELECT,jsonArr.toString());
+//		自己在custID被搜尋，狀態為0的結果，0代表已申請代同意
 		jsonArr=usd.selectFriend(conn, ps, custID, FinalStaticFile.FRIENDAPPLI_SELECT);
-		jsonArr1=usd.selectFriend(conn, ps, custID, FinalStaticFile.FRIENDAPPLIED_SELECT);
-
-		userData.put(FinalStaticFile.APPLY, jsonArr);
-		userData.put(FinalStaticFile.APPLIED, jsonArr1);
+		userData.put(FinalStaticFile.APPLY, jsonArr.toString());
+//		自己在myfriendID搜尋，狀態為0的結果，0代表已申請待同意
+		jsonArr=usd.selectFriend(conn, ps, custID, FinalStaticFile.FRIENDAPPLIED_SELECT);
+		userData.put(FinalStaticFile.APPLIED, jsonArr.toString());
 		return userData;
 	}
 	

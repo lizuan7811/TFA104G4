@@ -195,7 +195,7 @@ public class UserDaoImpl implements UserDao{
 		return successNum;
 	}
 //同意申請，改好友狀態
-//	sql="UPDATE Group4_db.Friend SET friendStatusNum = 1 ,statusUpdate = ? where (custID=? and myFriendID=?) or (custID=? and myFriendID=?)"
+//	sql="UPDATE Group4_db.Friend SET friendStatusNum = 1 ,statusUpdate = ? where custID=? and myFriendID=?;"
 	@Override
 	public Integer agreeAddFriend(Connection conn, PreparedStatement ps, Integer custID, Integer myFriendID) {
 		int successNum=0;
@@ -203,14 +203,15 @@ public class UserDaoImpl implements UserDao{
 
 			ps=conn.prepareStatement(FinalStaticFile.FRIEND_AGREE);
 			ps.setTimestamp(1, new Timestamp(Calendar.getInstance().getTimeInMillis()));
-			ps.setInt(2, custID);
-			ps.setInt(3, myFriendID);
-			ps.setInt(4,myFriendID);
-			ps.setInt(5, custID);
+			ps.setInt(2, myFriendID);
+			ps.setInt(3,custID );
 			ps.executeUpdate();
 			if(successNum>0)
 			{
-				System.out.println("確認對方申請好友訊息"+successNum);
+				System.out.println("修改"+successNum+"好友申請成功!");
+			}
+			else {
+				System.out.println("修改不成功");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -218,7 +219,7 @@ public class UserDaoImpl implements UserDao{
 		}
 		return successNum;
 	}
-//	會員登入後執行搜索好友列表並回傳
+//	會員轉址到日誌後執行搜索好友列表並回傳
 //	"SELECT * FROM Group4_db.Friend where custID=? or myFriendID=?;"
 	@Override
 	public JSONArray selectFriend(Connection conn, PreparedStatement ps, Integer custID,String sql) {
@@ -228,9 +229,10 @@ public class UserDaoImpl implements UserDao{
 		try {
 			ps=conn.prepareStatement(sql);
 			if(FinalStaticFile.FRIENDLISTONE_SELECT.equals(sql)) {
-//				public final static String FRIENDLIST_SELECT="SELECT cu.idCustomer,cu.`name`,cu.profic,cu.nickName,cu.`account`,cu.email,cu.phone FROM Friend fr join Customer cu on fr.custID=cu.idCustomer or fr.myFriendID=cu.idCustomer WHERE custID=? or myFriendID=?";
+//FRIENDLISTONE_SELECT="SELECT DISTINCT(cu.idCustomer),cu.`name`,cu.profic,cu.nickName,cu.`account`,cu.email,cu.phone FROM Friend fr join Customer cu on fr.custID=cu.idCustomer or fr.myFriendID=cu.idCustomer WHERE (custID=? or myFriendID=?) and fr.friendStatusNum = 1 and cu.idCustomer != ?;";
 				ps.setInt(1, custID);
 				ps.setInt(2, custID);
+				ps.setInt(3, custID);
 			}else if(FinalStaticFile.FRIENDAPPLI_SELECT.equals(sql)) {
 				ps.setInt(1,custID);
 			}else if(FinalStaticFile.FRIENDAPPLIED_SELECT.equals(sql)) {
@@ -256,6 +258,12 @@ public class UserDaoImpl implements UserDao{
 			e.printStackTrace();
 		}
 		return jsonFriArr;
+	}
+
+	@Override
+	public Integer rejectFriend(Connection conn, PreparedStatement ps, Integer custID, Integer friendID) {
+
+		return null;
 	}
 
 //	@Override
