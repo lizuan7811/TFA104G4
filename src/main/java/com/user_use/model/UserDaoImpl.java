@@ -135,6 +135,29 @@ public class UserDaoImpl implements UserDao{
 		}
 		return 0;
 	}
+	
+//	加好友前送出指令判斷資料庫中有沒有存入一樣的資訊了，若無則增加，有責不執行增加
+	public ResultSet selectFriend(Connection conn,PreparedStatement ps,Integer custID,Integer friendID)
+	{
+		String sql=FinalStaticFile.FRIENDCOMP_SELECT;
+		Boolean flag=false;
+		ResultSet rs=null;
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, custID);
+			ps.setInt(2, friendID);
+			ps.setInt(3, friendID);
+			ps.setInt(4, custID);
+			rs=ps.executeQuery();
+//	為空，就可以增加增加，反之不增加
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
+	
 //加好友功能
 	@Override
 	public Integer userAddFriend(Connection conn, PreparedStatement ps, Integer custID, Integer friendID) {
@@ -142,6 +165,17 @@ public class UserDaoImpl implements UserDao{
 
 		String sql=FinalStaticFile.FRIEND_INSERT;
 		Integer successNum=0;
+		try {
+			if(selectFriend(conn,ps,custID,friendID).next()!=false)
+			{
+				System.out.println("待對方同意申請!");
+				return 0;
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, 0);//存入整個Friend表的PK，但是預設就是0，在資料庫會自動往後新增
@@ -187,16 +221,21 @@ public class UserDaoImpl implements UserDao{
 //	會員登入後執行搜索好友列表並回傳
 //	"SELECT * FROM Group4_db.Friend where custID=? or myFriendID=?;"
 	@Override
-	public JSONArray selectOwnFriend(Connection conn, PreparedStatement ps, Integer custID) {
+	public JSONArray selectFriend(Connection conn, PreparedStatement ps, Integer custID,String sql) {
 		JSONArray jsonFriArr=new JSONArray();
 		ResultSet rs=null;
-		List<CustomerVO> friList=new ArrayList<>();
+		List<CustomerVO> friList=new ArrayList<CustomerVO>();
 		try {
-//			public final static String FRIENDLIST_SELECT="SELECT cu.idCustomer,cu.`name`,cu.profic,cu.nickName,cu.`account`,cu.email,cu.phone FROM Friend fr join Customer cu on fr.custID=cu.idCustomer or fr.myFriendID=cu.idCustomer WHERE custID=? or myFriendID=?";
-			ps=conn.prepareStatement(FinalStaticFile.FRIENDLIST_SELECT);
-			ps.setInt(1, custID);
-			ps.setInt(2, custID);
-
+			ps=conn.prepareStatement(sql);
+			if(FinalStaticFile.FRIENDLISTONE_SELECT.equals(sql)) {
+//				public final static String FRIENDLIST_SELECT="SELECT cu.idCustomer,cu.`name`,cu.profic,cu.nickName,cu.`account`,cu.email,cu.phone FROM Friend fr join Customer cu on fr.custID=cu.idCustomer or fr.myFriendID=cu.idCustomer WHERE custID=? or myFriendID=?";
+				ps.setInt(1, custID);
+				ps.setInt(2, custID);
+			}else if(FinalStaticFile.FRIENDAPPLI_SELECT.equals(sql)) {
+				ps.setInt(1,custID);
+			}else if(FinalStaticFile.FRIENDAPPLIED_SELECT.equals(sql)) {
+				ps.setInt(1,custID);
+			}
 			rs=ps.executeQuery();
 			while(rs.next())
 			{
@@ -208,16 +247,32 @@ public class UserDaoImpl implements UserDao{
 				custVO.setAccount(rs.getString("cu.account"));
 				custVO.setEmail(rs.getString("cu.email"));
 				custVO.setPhone(rs.getString("cu.phone"));
-				friList.add(custVO);
+//				friList.add(custVO);
+				jsonFriArr.put(custVO);
 			}
+			System.out.println(jsonFriArr);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return jsonFriArr;
 	}
 
+//	@Override
+//	public JSONArray selectApplied(Connection conn, PreparedStatement ps, Integer custID) {
+////		申請的 找 被申請的 資料
+////	FRIENDAPPLI_SELECT="SELECT * FROM Friend fr join Customer cu on fr.myFriendID = cu.idCustomer where fr.custID = ? and friendStatusNum = 0;";
+//		
+//		
+////		被申請的 找 申請 的資料
+////	FRIENDAPPLIED_SELECT="SELECT * FROM Friend fr join Customer cu on fr.custID = cu.idCustomer where fr.myFriendID = ? and friendStatusNum = 0;";
+//		
+//		
+//		
+//		return null;
+//	}
 
+	
 
 
 }

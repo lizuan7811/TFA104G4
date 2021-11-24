@@ -1,5 +1,7 @@
 package com.user_use.controller;
 
+import java.util.Map;
+
 import org.json.JSONArray;
 
 public interface UserService {
@@ -18,4 +20,12 @@ public interface UserService {
 //	public int selClickService();
 	public Integer serviceCommReport(String diaryID,String custID,String reportReason);
 
+	
+	public Integer serviceAddFriend(String metChoice,Integer custID,Integer myFriendID);
+
+	public Map<String,JSONArray>  serviceApplyFriend(String metChoice,Integer custID);
+	
+//	public JSONArray serviceAppliedFriend(String metChoice, Integer custID);
+	
+	
 }

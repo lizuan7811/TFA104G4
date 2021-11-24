@@ -29,12 +29,17 @@ public interface UserDao {
 
 	public Integer userAddFriend(Connection conn,PreparedStatement ps, Integer custID, Integer friendID);
 
+//	加好友前需判斷
+	public ResultSet selectFriend(Connection conn,PreparedStatement ps,Integer custID,Integer friendID);	
+	
 	//	sql="UPDATE Group4_db.Friend SET friendStatusNum = ? ,statusUpdate = ? where (custID=? and myFriendID=?) or (custID=? and myFriendID=?)"
 	public Integer agreeAddFriend(Connection conn,PreparedStatement ps,Integer custID,Integer myFriendID);
 
 //	"UPDATE Group4_db.Friend SET friendStatusNum = 1 WHERE custID = ? and myfriendID = ?";
 //	public void updateFriStatus(Connection conn,PreparedStatement ps,Integer custID,Integer friendID);
 	//	sql="SELECT * FROM Group4_db.Friend where (custID=? and myFriendID=?) or (custID=? and myFriendID=?)"
-	public JSONArray selectOwnFriend(Connection conn,PreparedStatement ps,Integer custID);
+	public JSONArray selectFriend(Connection conn,PreparedStatement ps,Integer custID,String sql);
 
+//	public JSONArray selectApplied(Connection conn,PreparedStatement ps,Integer custID);
+	
 }

@@ -44,9 +44,9 @@ $(".add_friend").click(function()
 {
 	$.ajax({
 		url:"usermethod.html",
-		data:{"metChoice":"addFriend","authorName":$(".author_name").text()},
+		data:{"metChoice":"addFriend","custID":13,"myFriendID":1},
 		type:"POST",
-		success:function()
+		success:function(data)
 		{
 			alert("成功加入好友!");
 			this.addClass(".successAddFriend");		

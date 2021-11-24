@@ -1,6 +1,9 @@
 package com.static_file.model;
 
 public class FinalStaticFile {
+	
+	public final static String APPLY="APPLY FRIEND";
+	public final static String APPLIED="BE APPLIED";
 	public final static String ADMIN_UPDATE="UPDATE Admin SET idAdmin=?,account=?,password=?,createdTime=?,authority=? WHERE idAdmin=?;";
 	public final static String ADMIN_DELETE="DELETE FROM Admin";
 	public final static String ADMIN_SELECT="SELECT * FROM Admin";
@@ -28,8 +31,6 @@ public class FinalStaticFile {
 //	留言檢舉
 	public final static String COMMENTREPORT_ALTER="UPDATE CommentReport SET createdTime=?,reportReason=?,reportResult=? WHERE diaryID = ? and custID = ?;";
 
-
-
 	public final static String COMMENTREPORT_INSERT="INSERT INTO CommentReport(commentReportID,diaryID,custID,createdTime,reportReason,reportResult)VALUES(?,?,?,?,?,?);";
 
 //	搜尋留言檢舉表
@@ -41,7 +42,7 @@ public class FinalStaticFile {
 
 	public final static String DIARYLIKE="DiaryLikeVO";
 //	執行新增好友申請指令V
-	public final static String FRIEND_INSERT="INSERT INTO Group4_db.Friend(friendCharID,custID,myfriendID,friendStatusNum,statusUpdate)VALUES(?,?,?,?,?);";
+	public final static String FRIEND_INSERT="INSERT INTO Group4_db.Friend(friendChatID,custID,myfriendID,friendStatusNum,statusUpdate)VALUES(?,?,?,?,?);";
 //	執行刪除好友指令
 	public final static String FRIEND_DELETE="DELETE FROM Group4_db.Friend WHERE custID = ? and myfriendID = ?;";
 //	執行同意後，將狀態修改為成為好友的指令
@@ -55,11 +56,17 @@ public class FinalStaticFile {
 
 //	執行搜尋判斷搜尋好友狀態
 	public final static String FRIENDCOMP_SELECT="SELECT * FROM Group4_db.Friend where (custID=? and myFriendID=?) or (custID=? and myFriendID=?);";
-//	執行搜尋目前使用者登入後所有好友ID的指令，判斷登入的ID在好友表中的custID或myFriendID中存在的，搜尋到就顯示出來。
-/*SELECT cu.idCustomer,cu.`name`,cu.profic,cu.nickName,cu.`account`,cu.email,cu.phone FROM Friend fr
-join Customer cu
-on fr.custID=cu.idCustomer or fr.myFriendID=cu.idCustomer
-WHERE custID=4 or myFriendID=4*/
-	public final static String FRIENDLIST_SELECT="SELECT distinct(cu.idCustomer),cu.`name`,cu.profic,cu.nickName,cu.`account`,cu.email,cu.phone FROM Friend fr join Customer cu on fr.custID=cu.idCustomer or fr.myFriendID=cu.idCustomer WHERE custID=? or myFriendID=?";
+
+//	是查詢所有好友使用
+//	執行搜尋目前使用者登入後所有好友ID的指令，判斷登入的ID在好友表中的custID或myFriendID中存在的，且狀態為1或0的，分別搜尋到就顯示出來。
+	public final static String FRIENDLISTONE_SELECT="SELECT distinct(cu.idCustomer),cu.`name`,cu.profic,cu.nickName,cu.`account`,cu.email,cu.phone FROM Friend fr join Customer cu on fr.custID=cu.idCustomer or fr.myFriendID=cu.idCustomer WHERE (custID=? or myFriendID=?) and friendStatusNum = 1";
+//	搜尋好友狀態是被申請的
+//	public final static String FRIENDLISZERO_SELECT="SELECT distinct(cu.idCustomer),cu.`name`,cu.profic,cu.nickName,cu.`account`,cu.email,cu.phone FROM Friend fr join Customer cu on fr.custID=cu.idCustomer or fr.myFriendID=cu.idCustomer WHERE (custID=? or myFriendID=?) and friendStatusNum = 0";
+//	查詢待申請狀態下，申請及被申請者
+//	申請的 找 被申請的 資料
+	public final static String FRIENDAPPLI_SELECT="SELECT * FROM Friend fr join Customer cu on fr.myFriendID = cu.idCustomer where fr.custID = ? and friendStatusNum = 0;";
+//	被申請的 找 申請 的資料
+	public final static String FRIENDAPPLIED_SELECT="SELECT * FROM Friend fr join Customer cu on fr.custID = cu.idCustomer where fr.myFriendID = ? and friendStatusNum = 0;";
+
 
 }

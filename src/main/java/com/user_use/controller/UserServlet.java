@@ -37,11 +37,13 @@ public class UserServlet extends HttpServlet{
 		String metChoice=request.getParameter("metChoice");
 		if(metChoice!=null && "clickLike".equals(metChoice))
 		{
-			System.out.println("若想執行的方法與clickLike相同，執行clicklike()");
 				doLikeClick(request,response);
 		}else if(metChoice!=null && "commentReport".equals(metChoice))
 		{
 			doCommentReport(request,response);
+		}else if(metChoice!=null && ("addFriend".equals(metChoice) ||"agreeFriend".equals(metChoice)))
+		{
+			doaAddFriend(request,response,metChoice);
 		}
 	}
 
@@ -97,4 +99,12 @@ public class UserServlet extends HttpServlet{
 		return successNum;
 	}
 
+	private Integer doaAddFriend(HttpServletRequest request,HttpServletResponse response,String metChoice) 
+	{
+		String custID=request.getParameter("custID");
+		String myFriendID=request.getParameter("myFriendID");
+		us.serviceAddFriend(metChoice,Integer.parseInt(custID),Integer.parseInt(myFriendID));
+		
+		return 0;
+	}
 }
