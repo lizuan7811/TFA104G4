@@ -1,0 +1,133 @@
+h1::after{
+	content:"會員詳細資料";
+	margin-left:10px;
+	font-size:20px;
+}
+.icon-controller-play{
+	display:inline-block;
+	color:black;
+	margin-left:10px;
+	font-size: 20px;
+}
+body{
+	display:inline-flex;
+	flex-direction:row;
+	justify-content:space-between;
+}
+main{
+	display:inline-flex;
+	flex-direction:row;
+	justify-content:space-between;
+}
+
+main #mainBox_Content_div{
+	overflow:scroll;
+	background-color:white;
+	position:absolute;
+	width:1300px;
+}
+form{
+	margin-top:10px;
+	padding:0px;
+	height:300px;
+}
+
+.autoScrollY{
+	overflow:scroll;
+}
+
+.div_imainBox_Content_div{
+	position:relative;
+	margin-left:40px;
+	border:#F0F3F5; solid 10px;
+	border-left:none;
+	border-top:none;
+	border-right:none;
+}
+form #last_div_imainBox{
+	border:none;
+}
+#lbl1_1{
+	position:absolute;
+	margin-top:120px;
+}
+#lbl1_2,#lbl1_4{
+	margin-left:32%;
+}
+#lbl1_3,#lbl1_5,#lbl2_3{
+	margin-left:13%;
+}
+#lbl3_2{
+	margin-left:9%;
+}
+#lbl3_3{
+	margin-left:10%;
+}
+#lbl2_2{
+	margin-left:9%;
+}
+.div_imainBox_Content_div label,input{
+	display:inline-block;
+	box-sizing:border-box;
+	outline:none;
+}
+.div_imainBox_Content_div input{
+	background-color::#F0F3F5;
+	/* border:rgba(93, 255, 6, 0.8) solid 1px; */
+	font-size:18px;
+}
+.div_imainBox_Content_div input:focus{
+	color:darkgreen;
+
+}
+
+.div_imainBox_Content_div label{
+	background-color:#F0F3F5;
+	border-radius:8%;
+	font-weight:800;
+	color:black;
+	padding:10px;
+	font-size:18px;
+}
+
+.div_imainBox_Content_div label{
+	/* position:absolute; */
+	margin:20px 0px 25px 0px;
+}
+
+label #dv_forBigheadPhoto{
+	position:absolute;
+	width:150px;
+	height:180px;
+	top:-120px;
+	left:100px;
+	background-color:#F0F3F5;;
+	border-radius:20%;
+	box-sizing:border-box;
+}
+/* #lbl3_1 input{
+	background-color:red;
+	width:200px;
+} */
+#lbl3_3 input{
+	width:300px;
+}
+#main_nav_div_li_inbtmdiv{
+	margin-top:10px;
+	margin-left:28px;
+	display:flex;
+}
+
+#main_nav_div_li_inbtmdiv li{
+	font-size:24px;
+	list-style: none;
+	float:left;
+	font-weight:700;
+	/* border:blue solid 1px; */
+	margin-right:8px;
+	width:180px;
+}
+
+nav #upperdv_in_navBox{
+	height:40px;
+}

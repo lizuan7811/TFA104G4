@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="BIG5">
+<title>Insert title here</title>
+</head>
+<script src="jquery/practice/vendors/jquery/jquery-3.6.0.min.js"></script>
+<script>
+function fun()
+{
+	$.ajax({
+		url:"ajaxServlet",
+		data:{"username":"ajax","age":33},
+		type:"post",
+		success:function(data)
+		{
+			console.log(data);
+		}
+	});
+}
+</script>
+
+<body>
+	<input type="button" value="發送同步請求!"onclick="fun();">
+	<input>
+</body>
+</html>
