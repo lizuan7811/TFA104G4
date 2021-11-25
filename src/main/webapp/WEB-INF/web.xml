@@ -23,6 +23,14 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>LoginServlet</servlet-name>
-  	<url-pattern>/adminlogin/LoginServlet</url-pattern>
+  	<url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>UserServlet</servlet-name>
+  	<servlet-class>com.user_use.controller.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UserServlet</servlet-name>
+  	<url-pattern>/usermethod/UserServlet</url-pattern>
   </servlet-mapping>
   </web-app>

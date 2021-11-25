@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.basic_tool.controller.Util;
 import com.static_file.model.FinalStaticFile;
@@ -110,21 +111,30 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public Map<String,String>  serviceAboutFriend(String metChoice, Integer custID) {
+	public JSONArray serviceAboutFriend(String metChoice, Integer custID) {
 		Connection conn=Util.getConnection();
 		PreparedStatement ps=null;
-		JSONArray jsonArr=new JSONArray();
+		JSONObject jsonArr=new JSONObject();
+		JSONArray ansJson=new JSONArray();
 		Map<String,String> userData=new HashMap<String,String>();
-//		取得已經成為好友的列表資料，搜尋狀態為1的好友的列表
-		jsonArr=usd.selectFriend(conn, ps, custID, FinalStaticFile.FRIENDLISTONE_SELECT);
-		userData.put(FinalStaticFile.FRIENDLISTONE_SELECT,jsonArr.toString());
-//		自己在custID被搜尋，狀態為0的結果，0代表已申請代同意
-		jsonArr=usd.selectFriend(conn, ps, custID, FinalStaticFile.FRIENDAPPLI_SELECT);
-		userData.put(FinalStaticFile.APPLY, jsonArr.toString());
-//		自己在myfriendID搜尋，狀態為0的結果，0代表已申請待同意
-		jsonArr=usd.selectFriend(conn, ps, custID, FinalStaticFile.FRIENDAPPLIED_SELECT);
-		userData.put(FinalStaticFile.APPLIED, jsonArr.toString());
-		return userData;
+		if("friendList".equals(metChoice)) {
+//			取得已經成為好友的列表資料，搜尋狀態為1的好友的列表
+			jsonArr.put(FinalStaticFile.FRIENDLIST,usd.selectFriend(conn, ps, custID, FinalStaticFile.FRIENDLISTONE_SELECT));
+		}
+		else if("applyList".equals(metChoice)) {
+//			自己在custID被搜尋，狀態為0的結果，0代表已申請代同意
+			jsonArr.put(FinalStaticFile.APPLY,usd.selectFriend(conn, ps, custID, FinalStaticFile.FRIENDAPPLI_SELECT));
+//			userData.put(FinalStaticFile.APPLY, jsonArr.toString());
+//			自己在myfriendID搜尋，狀態為0的結果，0代表已申請待同意
+			jsonArr.put(FinalStaticFile.APPLIED,usd.selectFriend(conn, ps, custID, FinalStaticFile.FRIENDAPPLIED_SELECT));
+//			userData.put(FinalStaticFile.APPLIED, jsonArr.toString());
+		}
+		ansJson.put(jsonArr);
+		if(ansJson.toString()==null || ansJson.toString().length()==0)
+		{
+			System.out.println("ansJson為空!");
+		}
+		return ansJson;
 	}
 	
 //	public JSONArray serviceAppliedFriend(String metChoice, Integer custID) {

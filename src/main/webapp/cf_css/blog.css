@@ -167,3 +167,21 @@ aside{
 .all_friend:hover , .friend_req:hover, .return_btn:hover {
     background-color: rgb(161, 197, 179);
 }
+
+.friend{
+    background-color:rgb(172, 228, 170,0.3); /* Green */
+    border: none;
+    color:black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 3px;
+}
+
+.friend:hover{
+    background-color:rgb(172, 228, 170,0.7); /* Green */
+    cursor:pointer;
+}

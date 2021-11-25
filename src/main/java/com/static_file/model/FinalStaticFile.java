@@ -4,12 +4,13 @@ public class FinalStaticFile {
 	
 	public final static String APPLY="APPLY FRIEND";
 	public final static String APPLIED="BE APPLIED";
-	public final static String ADMIN_UPDATE="UPDATE Admin SET idAdmin=?,account=?,password=?,createdTime=?,authority=? WHERE idAdmin=?;";
+	public final static String FRIENDLIST="FRIENDLIST";
+	public final static String ADMIN_UPDATE="UPDATE Admin SET adminID=?,account=?,password=?,createdTime=?,authority=? WHERE idAdmin=?;";
 	public final static String ADMIN_DELETE="DELETE FROM Admin";
 	public final static String ADMIN_SELECT="SELECT * FROM Admin";
 	public final static String SGADMIN_SELECT="SELECT * FROM Group4_db.Admin WHERE account=?";
 
-	public final static String ADMIN_INSERT="INSERT INTO Admin(idAdmin,account,password,createdTime,authority)values(?,?,?,?,?);";
+	public final static String ADMIN_INSERT="INSERT INTO Admin(idAdmin,`account`,`password`,createdTime,authority)values(?,?,?,?,?);";
 
 	public final static String USER_UPDATE="UPDATE Customer SET commentReportedNum=?,diaryReportedNum=?,suspended=? WHERE idCustomer=?;";
 

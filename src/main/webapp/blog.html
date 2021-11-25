@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>個人日誌</title>
     <link href="cf_css/blog.css" rel="stylesheet" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="js/blog.js"></script>
+
+
+
 </head>
 <body>
     <div class="bottom_box">
@@ -55,13 +60,14 @@
                 
                 <input class="search_friend" type="text" placeholder="搜尋好友">
                 <button class="search_friend"><i class="fas fa-search"></i></button>
+               
                 
                 <ul class="aside_list">
                     <li>
-                        <input class="all_friend" type="button" value="好友列表" name="好友列表" >
+                        <input class="all_friend" type="button" value="好友列表" name="friendList" >
                     </li>
                     <li>
-                        <input class="friend_req" type="button" value="好友申請" name="好友申請" >
+                        <input class="friend_req" type="button" value="申請好友" name="applyFriend" >
                     </li>
                 </ul>
             </aside>
@@ -113,7 +119,6 @@
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"> //載入font icon </script>
     <!-- 載入jquery -->
-    <script src="cf_vendors/jquery-3.4.1.min.js"></script>
     <!-- 載入js --> 
     <script src="cf_js/blog.js"></script>
 </body>

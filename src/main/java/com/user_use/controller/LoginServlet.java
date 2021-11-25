@@ -48,14 +48,11 @@ public class LoginServlet extends HttpServlet {
 					HttpSession sess=req.getSession();
 					sess.setAttribute(FinalStaticFile.ADMIN_SESSION,admin);
 					System.out.println("ADMIN_SESSION="+req.getAttribute(FinalStaticFile.ADMIN_SESSION));
-					resp.sendRedirect(req.getContextPath()+"/adminCtrlCustPage.html");
-
+//					resp.sendRedirect(req.getContextPath()+"/adminCtrlCustPage.html");
+					req.getRequestDispatcher("adminCtrlCustPage.html").forward(req, resp);
 //					req.getServerName()+":"+req.getLocalPort()+req.getContextPath()+"/adminCtrlCustPage.html"
-
-
-					
 					return ;
-				} catch (IOException e) {
+				} catch (IOException | ServletException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

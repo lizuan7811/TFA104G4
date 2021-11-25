@@ -4,7 +4,7 @@ $(function(){
 	$(".like_btn").click(function()
     {
         $.ajax({
-            url:"usermethod.html",
+            url:"usermethod/UserServlet",
             data:{"curDiaryID":"10","curCustID":"15","metChoice":"clickLike"},
             type:"post",
             success:function(respLikeNum)

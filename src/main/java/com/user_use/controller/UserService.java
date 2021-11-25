@@ -23,7 +23,7 @@ public interface UserService {
 	
 	public Integer serviceAddFriend(String metChoice,Integer custID,Integer myFriendID);
 
-	public Map<String,String>  serviceAboutFriend(String metChoice,Integer custID);
+	public JSONArray serviceAboutFriend(String metChoice,Integer custID);
 	
 //	public JSONArray serviceAppliedFriend(String metChoice, Integer custID);
 	

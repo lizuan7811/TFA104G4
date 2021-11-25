@@ -9,13 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/usermethod.html")
+import org.json.JSONArray;
+
+//@WebServlet("/usermethod.html")
 public class UserServlet extends HttpServlet{
 	/**
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private UserService us;
+	private PrintWriter pw;
 	@Override
 	public void init()
 	{
@@ -35,6 +38,7 @@ public class UserServlet extends HttpServlet{
 			e1.printStackTrace();
 		}
 		String metChoice=request.getParameter("metChoice");
+		System.out.println(metChoice);
 		if(metChoice!=null && "clickLike".equals(metChoice))
 		{
 				doLikeClick(request,response);
@@ -43,7 +47,12 @@ public class UserServlet extends HttpServlet{
 			doCommentReport(request,response);
 		}else if(metChoice!=null && ("addFriend".equals(metChoice) ||"agreeFriend".equals(metChoice)))
 		{
+			System.out.println("UserServlet doFriendList(addFriend)");
 			doaAddFriend(request,response,metChoice);
+		}else if(metChoice!=null && ("friendList").equals(metChoice))
+		{
+			System.out.println("UserServlet doFriendList(friendList)");
+			doFriendList(request,response,metChoice);
 		}
 	}
 
@@ -55,7 +64,6 @@ public class UserServlet extends HttpServlet{
 
 	private void doLikeClick(HttpServletRequest request,HttpServletResponse response)
 	{
-		PrintWriter pw=null;
 		us=new UserServiceImpl();
 //		DiaryLikeVO拿到dlv物件
 //		DiaryLikeVO diaryLikeVO=(DiaryLikeVO)request.getAttribute("diarylikeID");
@@ -107,4 +115,32 @@ public class UserServlet extends HttpServlet{
 		
 		return 0;
 	}
+	
+	private void doFriendList(HttpServletRequest request,HttpServletResponse response,String metChoice) 
+	{
+		try {
+			pw=response.getWriter();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		JSONArray ansJson=new JSONArray();
+		Integer custID=Integer.valueOf(request.getParameter("custID"));
+		if("friendList".equals(metChoice))
+		{
+//			metChoice=friendList
+			ansJson=us.serviceAboutFriend(metChoice, custID);
+		}else if("applyList".equals(metChoice))
+		{
+//			metChoice=applyList
+			ansJson=us.serviceAboutFriend(metChoice, custID);
+		}
+		pw.write(ansJson.toString());
+	}
+
+//	private Integer doApplyFriList(HttpServletRequest request,HttpServletResponse response,String metChoice)
+//	{
+//		
+//	}
+	
 }

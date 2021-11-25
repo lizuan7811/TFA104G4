@@ -1,20 +1,24 @@
 package com.user_use.model;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.basic_tool.controller.BaseDao;
 import com.basic_tool.controller.BaseDaoImpl;
+import com.mysql.cj.util.Base64Decoder;
 import com.pojo.model.AdminVO;
 import com.pojo.model.CustomerVO;
 import com.static_file.model.FinalStaticFile;
@@ -73,7 +77,7 @@ public class UserDaoImpl implements UserDao{
 		try {
 			while(rs.next())
 			{
-				admin.setAdminID(rs.getInt("idAdmin"));
+				admin.setAdminID(rs.getInt("adminID"));
 				admin.setAdminAcco(rs.getString("account"));
 				admin.setAdminPass(rs.getString("password"));
 				admin.setCreatedTime(rs.getTimestamp("createdTime"));
@@ -224,8 +228,8 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public JSONArray selectFriend(Connection conn, PreparedStatement ps, Integer custID,String sql) {
 		JSONArray jsonFriArr=new JSONArray();
+		JSONObject friendList=new JSONObject();
 		ResultSet rs=null;
-		List<CustomerVO> friList=new ArrayList<CustomerVO>();
 		try {
 			ps=conn.prepareStatement(sql);
 			if(FinalStaticFile.FRIENDLISTONE_SELECT.equals(sql)) {
@@ -241,16 +245,19 @@ public class UserDaoImpl implements UserDao{
 			rs=ps.executeQuery();
 			while(rs.next())
 			{
-				custVO=new CustomerVO();
-				custVO.setIdCustomer(rs.getInt("cu.idCustomer"));
-				custVO.setName(rs.getString("cu.name"));
-				custVO.setProfic(rs.getBytes("cu.profic"));
-				custVO.setNickName(rs.getString("nickName"));
-				custVO.setAccount(rs.getString("cu.account"));
-				custVO.setEmail(rs.getString("cu.email"));
-				custVO.setPhone(rs.getString("cu.phone"));
+				StringBuffer strBuf=new StringBuffer();
+				friendList.clear();
+				friendList.put("idCustomer", rs.getInt("cu.idCustomer"));
+				friendList.put("name",rs.getString("cu.name"));
+				friendList.put("profic",rs.getBytes("profic"));
+				
+				strBuf.delete(0, strBuf.length());
+				friendList.put("nickName",rs.getString("nickName"));
+				friendList.put("account",rs.getString("cu.account"));
+				friendList.put("email",rs.getString("cu.email"));
+				friendList.put("phone",rs.getString("cu.phone"));
 //				friList.add(custVO);
-				jsonFriArr.put(custVO);
+				jsonFriArr.put(friendList.toMap());
 			}
 			System.out.println(jsonFriArr);
 		} catch (SQLException e) {
