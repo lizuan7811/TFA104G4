@@ -8,6 +8,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
+import javax.websocket.CloseReason;
+import javax.websocket.OnClose;
+import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
@@ -53,7 +56,50 @@ public class FriendWS {
 			if(userSession!=null && userSession.isOpen())
 			{
 				userSession.getAsyncRemote().sendText(gson.toJson(cmHistory));
+				System.out.println("history="+gson.toJson(cmHistory));
+				return;
 			}
 		}
+		Session receiverSession=sessionsMap.get(receiver);
+		if(receiverSession!=null&& receiverSession.isOpen())
+		{
+			receiverSession.getAsyncRemote().sendText(message);
+			JedisHandleMessage.saveChatMessage(sender, receiver, message);
+		}
+		System.out.println("Message received:"+message);
+	}
+	
+	@OnError
+	public void onError(Session userSession,Throwable e)
+	{
+		System.out.println("Error:"+e.toString());
+	}
+	
+	@OnClose
+	public void onClose(Session userSession,CloseReason reason)
+	{
+		String userNameClose=null;
+		Set<String>userNames=sessionsMap.keySet();
+		for(String userName:userNames)
+		{
+			if(sessionsMap.get(userName).equals(userSession))
+			{
+				userNameClose=userName;
+				sessionsMap.remove(userNameClose);
+				break;
+			}
+		}
+		if(userNameClose!=null)
+		{
+			State stateMessage=new State("close",userNameClose,userNames);
+			String stateMessageJson=gson.toJson(stateMessage);
+			Collection<Session>sessions=sessionsMap.values();
+			for(Session session:sessions)
+			{
+				session.getAsyncRemote().sendText(stateMessageJson);
+			}
+		}
+		String text=String.format("session ID=%s,disconnected; close code = %d%nusers:%s", userSession.getId(),reason.getCloseCode().getCode(),userNames);
+		System.out.println(text);
 	}
 }
