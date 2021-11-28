@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>個人日誌</title>
     <link href="cf_css/blog.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="font/style.css" type="text/css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="js/blog.js"></script>
 
@@ -63,11 +64,15 @@
                
                 
                 <ul class="aside_list">
-                    <li>
-                        <input class="all_friend" type="button" value="好友列表" name="friendList" >
+                    <li class="all_friend" type="button" value="好友列表" name="friendList">
+						<!-- <li> -->
+							好友列表
+						
+                        <!-- <input class="all_friend" type="button" value="好友列表" name="friendList" > -->
                     </li>
-                    <li>
-                        <input class="friend_req" type="button" value="申請好友" name="applyFriend" >
+                    <li class="friend_req" type="button" value="申請好友" name="applyFriend" >好友申請
+					<!-- <li> -->
+                        <!-- <input class="friend_req" type="button" value="申請好友" name="applyFriend" > -->
                     </li>
                 </ul>
             </aside>
@@ -89,7 +94,7 @@
         <div class="all">
             <div class="chat_box">
                 <h4 class="title">聊天列表</h4>
-                <div class="chatlist">
+                <div class="chatlist" tabindex="0">
                     <div class="chat_people">
                         <img class="chat_pic" src="cf_css/cat_toby.jpg" alt="cat"> </div>
                         <div class="chat_content">

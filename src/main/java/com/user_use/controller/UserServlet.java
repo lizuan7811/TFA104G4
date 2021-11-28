@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
 
+import com.pojo.model.UserVO;
+
 //@WebServlet("/usermethod.html")
 public class UserServlet extends HttpServlet{
 	/**
@@ -31,6 +33,7 @@ public class UserServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request,HttpServletResponse response)
 	{
 		try {
+			
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
 		} catch (UnsupportedEncodingException e1) {
@@ -118,18 +121,23 @@ public class UserServlet extends HttpServlet{
 	
 	private void doFriendList(HttpServletRequest request,HttpServletResponse response,String metChoice) 
 	{
+		Integer custID=0;
 		try {
 			pw=response.getWriter();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		UserVO user=(UserVO)request.getAttribute("UserVO");
 		JSONArray ansJson=new JSONArray();
-		Integer custID=Integer.valueOf(request.getParameter("custID"));
+		if(user!=null)
+		{
+			custID=user.getIdCustomer();
+		}
 		if("friendList".equals(metChoice))
 		{
 //			metChoice=friendList
-			ansJson=us.serviceAboutFriend(metChoice, custID);
+			ansJson=us.serviceAboutFriend(metChoice, 1);
 		}else if("applyList".equals(metChoice))
 		{
 //			metChoice=applyList

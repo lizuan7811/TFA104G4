@@ -10,6 +10,8 @@ main {
     width: 100%;
     /* height: 1000px; */
     background-color:rgb(227, 235, 226);
+	list-style: none;
+	
 }
 
 .all{
@@ -166,9 +168,10 @@ aside{
 
 .all_friend:hover , .friend_req:hover, .return_btn:hover {
     background-color: rgb(161, 197, 179);
+	cursor: pointer;
 }
 
-.friend{
+.one_friend{
     background-color:rgb(172, 228, 170,0.3); /* Green */
     border: none;
     color:black;
@@ -176,12 +179,35 @@ aside{
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    width: 100%;
+	font-weight: bold;
+    width: 75%;
     height: 100%;
     margin-bottom: 3px;
+	float:left;
 }
 
-.friend:hover{
+.one_friend:hover{
     background-color:rgb(172, 228, 170,0.7); /* Green */
     cursor:pointer;
+}
+.icon-user,.icon-bubbles3{
+	display: inline-block;
+	position:sticky;
+	color:lightblue;
+	box-sizing: border-box;
+	border:1px solid lightcyan;
+	font-size: 18px;
+	width:22px;
+	height:22px;
+	right:2px;
+	border-radius: 20%;
+	overflow: hidden;
+	z-index: 11;
+}
+li{
+	list-style: none;
+}
+
+.icon-user:hover,.icon-bubbles3:hover{
+	color:orange;
 }
