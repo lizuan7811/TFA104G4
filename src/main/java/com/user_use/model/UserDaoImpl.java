@@ -249,8 +249,9 @@ public class UserDaoImpl implements UserDao{
 				friendList.clear();
 				friendList.put("idCustomer", rs.getInt("cu.idCustomer"));
 				friendList.put("name",rs.getString("cu.name"));
-				friendList.put("profic",rs.getBytes("profic"));
-				
+//				friendList.put("profic",rs.getBytes("profic"));
+				Base64.Encoder base64Encoder=Base64.getEncoder();
+				friendList.put("profic",base64Encoder.encodeToString(rs.getBytes("profic")));
 				friendList.put("nickName",rs.getString("nickName"));
 				friendList.put("account",rs.getString("cu.account"));
 				friendList.put("email",rs.getString("cu.email"));

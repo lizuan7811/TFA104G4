@@ -1,16 +1,14 @@
 $(function()
 {
-    // $(".return_btn").focus(function(){
-    //     alert(11);
-    //   })
+
     $(".chatlist").on("focus",function()
 	{
         $(this).removeClass(".chatlist");  //移除原本聊天列表的css樣式
         $(".title").css("display", "none");  //隱藏抬頭: 聊天列表
         //加入html語法 並設定class等...
-        $(this).html('<div class="chat_online"><div class="chat_name">貪吃的貓<br></div><textarea class="chattxt" type="text" readonly></textarea><input class="input_mesg" type="text"  placeholder="訊息內容..."/><input class="send_btn" type="submit" value="Send"/></div>');                          
+        $(this).html('<div class="chat_online"><div class="chat_name">貪吃的貓<br></div><textarea class="chattxt" type="text" readonly></textarea><input class="input_mesg" type="text"  placeholder="訊息內容..."/><input class="send_btn" type="submit" value="Send"/></div>');
 	});
-	
+
 	// <div class="chat_people">
 	//     <img class="chat_pic" src="cf_css/cat_toby.jpg" alt="cat"> </div>
 	//     <div class="chat_content">
@@ -20,12 +18,12 @@ $(function()
 	//     </div>
 	// </div>
 	// $(".chatlist").on("blur",function(){
-	// 	$(".chat_online").css("display", "none"); 
-	// 	$(".title").css("display", "inline-block"); 
+	// 	$(".chat_online").css("display", "none");
+	// 	$(".title").css("display", "inline-block");
 	// 	$(".chatlist").append(originSource);
 	// });
-	
-	
+
+
     var inputStr=function(user)
 	{
         var str="<li class=\"one_friend\" type=\"button\" name= \"friend\" value=\"\" data-frID=\""+user.idCustomer+"\"/>"+user.nickName+"<li class=\"iconlist\"><span data-frID=\""+user.idCustomer+"\"class=\"icon-user\"></span><span data-frID=\""+user.idCustomer+"\" class=\"icon-bubbles3\"></span></li></li>";
@@ -51,25 +49,23 @@ $(function()
 				},
 				error:function()
 				{
-					
+
 				}
 			});
-			
-			
+
+
 		});
-		
-		
-		
+
 		$(".icon-bubbles3").click(function(){
 			console.log("$(this).text()"+$(this).text());
 			console.log("$(this).attr(\"data-frID\")"+$(this).attr("data-frID"));
 			$(".chatlist").focus();
 		});
-		
-		
+
+
 	};
 
-	 
+
 
     var count=0;
 	var innerCount=0;
@@ -89,14 +85,14 @@ $(function()
             type:"POST",
             dataType:"JSON",
             success:function(friendList)
-            {   
+            {
                 count++;
 				innerCount++;
                 // console.log(friendList);
                 // console.log(JSON.stringify(friendList));
                 var jsObj=JSON.stringify(friendList);
                 var jsObj2=JSON.parse(jsObj);
-               
+
                 if(innerCount<=1)
                 {
                     for(var key in jsObj2)
@@ -119,7 +115,7 @@ $(function()
             }
         },false);
     });
-	
+
 	$(".aside_list").click(function(e)
 	{
 		if (e.stopPropagation)
@@ -129,7 +125,7 @@ $(function()
 		{
 			e.cancelBubble = true;
 		}
-		
+
 		$(document).bind('click',function()
 		{
 			$('.one_friend').css('display','none');
@@ -137,4 +133,46 @@ $(function()
 			$('.icon-bubbles3').css('display','none');
 		});
 	});
+// 聊天室函式
+// 若輸入框被focus，就開啟websocket聊天程式
+	$(".return_btn").on("click",function(){
+		chatroomFunction();
+		alert(1234);
+						});
+	var chatroomFunction=function (){
+		var webSocket;
+		alert(111);
+
+		var host = window.location.host;
+		var path = window.location.pathname;
+		var webContext = path.substring(0, path.indexOf('/', 1));
+		var serverEndPoint = "/chatroom";
+		var endPointURL = "ws://" + window.location.host + webContext + serverEndPoint;
+		     console.log("host\t"+host);
+		     console.log("path\t"+path);
+		     console.log("serverEndPoint\t"+serverEndPoint);
+		     console.log("endPointURL\t"+endPointURL);
+		connect();
+     function connect(){
+       webSocket = new WebSocket(endPointURL);
+  	 	webSocket.onopen=function(event){
+         console.log("WebSocket Connect!")
+    
+  	 	};
+  	 	webSocket.onmessage=function(event){
+         console.log("WebSocket SendMessage!")
+    
+  	 	};
+  	 	webSocket.onclose=function(event){
+         console.log("WebSocket Close!")
+    
+  	 	};
+    
+     };
+
+
+
+    };
+
+
 });
