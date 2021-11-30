@@ -13,7 +13,7 @@ import org.json.JSONArray;
 
 import com.pojo.model.UserVO;
 
-//@WebServlet("/usermethod.html")
+@WebServlet("/usermethod.html")
 public class UserServlet extends HttpServlet{
 	/**
 	 *
