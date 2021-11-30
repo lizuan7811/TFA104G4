@@ -1,31 +1,13 @@
 $(function()
 {
-    // $(".return_btn").focus(function(){
-    //     alert(11);
-    //   })
     $(".chatlist").on("focus",function()
 	{
         $(this).removeClass(".chatlist");  //移除原本聊天列表的css樣式
         $(".title").css("display", "none");  //隱藏抬頭: 聊天列表
         //加入html語法 並設定class等...
-        $(this).html('<div class="chat_online"><div class="chat_name">貪吃的貓<br></div><textarea class="chattxt" type="text" readonly></textarea><input class="input_mesg" type="text"  placeholder="訊息內容..."/><input class="send_btn" type="submit" value="Send"/></div>');                          
+        $(this).html('<div class="chat_online"><div class="chat_name">貪吃的貓<br></div><textarea class="chattxt" type="text" readonly></textarea><input class="input_mesg" type="text"  placeholder="訊息內容..."/><input class="send_btn" type="submit" value="Send"/></div>');
 	});
-	
-	// <div class="chat_people">
-	//     <img class="chat_pic" src="cf_css/cat_toby.jpg" alt="cat"> </div>
-	//     <div class="chat_content">
-	//       <h5>貪吃的貓 <span class="chat_date">16:46 pm</span></h5>
-	//       <br>
-	//       <p>今天沒那麼冷了吧?</p>
-	//     </div>
-	// </div>
-	// $(".chatlist").on("blur",function(){
-	// 	$(".chat_online").css("display", "none"); 
-	// 	$(".title").css("display", "inline-block"); 
-	// 	$(".chatlist").append(originSource);
-	// });
-	
-	
+
     var inputStr=function(user)
 	{
         var str="<li class=\"one_friend\" type=\"button\" name= \"friend\" value=\"\" data-frID=\""+user.idCustomer+"\"/>"+user.nickName+"<li class=\"iconlist\"><span data-frID=\""+user.idCustomer+"\"class=\"icon-user\"></span><span data-frID=\""+user.idCustomer+"\" class=\"icon-bubbles3\"></span></li></li>";
@@ -51,27 +33,19 @@ $(function()
 				},
 				error:function()
 				{
-					
 				}
 			});
-			
-			
 		});
-		
-		
-		
+
+
+
 		$(".icon-bubbles3").click(function(){
 			console.log("$(this).text()"+$(this).text());
 			console.log("$(this).attr(\"data-frID\")"+$(this).attr("data-frID"));
 			$(".chatlist").focus();
 		});
-		
-		
 	};
-
-	 
-
-    var count=0;
+  var count=0;
 	var innerCount=0;
     $(".aside_list .all_friend").click(function()
 	{
@@ -89,14 +63,13 @@ $(function()
             type:"POST",
             dataType:"JSON",
             success:function(friendList)
-            {   
+            {
                 count++;
 				innerCount++;
                 // console.log(friendList);
                 // console.log(JSON.stringify(friendList));
                 var jsObj=JSON.stringify(friendList);
                 var jsObj2=JSON.parse(jsObj);
-               
                 if(innerCount<=1)
                 {
                     for(var key in jsObj2)
@@ -119,7 +92,7 @@ $(function()
             }
         },false);
     });
-	
+
 	$(".aside_list").click(function(e)
 	{
 		if (e.stopPropagation)
@@ -129,7 +102,7 @@ $(function()
 		{
 			e.cancelBubble = true;
 		}
-		
+
 		$(document).bind('click',function()
 		{
 			$('.one_friend').css('display','none');
@@ -138,3 +111,61 @@ $(function()
 		});
 	});
 });
+
+
+var userName;
+var webskchatfunction=function(){
+
+  var ws=new WebSocket("ws://localhost:8081/ChatEndpoint")
+  ws.onopen=function()
+  {
+    $("userName").html("Client:"+userName+"<span style'float:right;color:green'>線上</span>");
+
+  }
+  // 收到後端傳送的資料後呼叫執行
+  ws.onmessage=function(event)
+  {
+    var dataStr=evt.data;
+    var res=JSON.parse(dataStr);
+
+    if(res.isSystem)
+    {
+      var names=res.message;
+      var userlistStr="";
+      var broadcastListStr="";
+      for(var name of names)
+      {
+        if(name!=userName){
+          // userlisStr+="<li class=\"\""><a onclick="showCaht(\""+name+"\"")'"+name+"/></li>";
+          // broadcastListStr+="<li class=\"\" style=\"color:red;font-family:宋體\">你的好友"+name+"上線</li>";
+
+        }
+      }
+
+      $("#userList").html(userLisStr);
+      $("#broadcastList").html(broadcastListStr);
+
+
+    }else
+    {
+
+    }
+
+
+  }
+  ws.onclose=function()
+  {
+
+  }
+
+};
+
+// $.ajax({
+//   url:"",
+//   data:{},
+//   type:"post",
+//   success:function(){
+//     $("#username").html("Client:"+res+"<span style='float:right color=green'>線上</span>")
+//   },
+//   async:false;
+// });
