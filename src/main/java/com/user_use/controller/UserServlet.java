@@ -13,7 +13,7 @@ import org.json.JSONArray;
 
 import com.pojo.model.UserVO;
 
-@WebServlet("/usermethod.html")
+//@WebServlet("/usermethod.html")
 public class UserServlet extends HttpServlet{
 	/**
 	 *
@@ -33,7 +33,6 @@ public class UserServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request,HttpServletResponse response)
 	{
 		try {
-			
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
 		} catch (UnsupportedEncodingException e1) {

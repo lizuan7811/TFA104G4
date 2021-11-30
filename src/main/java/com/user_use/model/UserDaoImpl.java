@@ -242,7 +242,6 @@ public class UserDaoImpl implements UserDao{
 			}else if(FinalStaticFile.FRIENDAPPLIED_SELECT.equals(sql)) {
 				ps.setInt(1,custID);
 			}
-			String encoder=null;
 			rs=ps.executeQuery();
 			while(rs.next())
 			{
@@ -250,9 +249,8 @@ public class UserDaoImpl implements UserDao{
 				friendList.clear();
 				friendList.put("idCustomer", rs.getInt("cu.idCustomer"));
 				friendList.put("name",rs.getString("cu.name"));
-//				friendList.put("profic",rs.getBytes("profic"));
-				encoder =Base64.getEncoder().encodeToString(rs.getBytes("profic"));
-				friendList.put("profic",encoder);
+				friendList.put("profic",rs.getBytes("profic"));
+				
 				friendList.put("nickName",rs.getString("nickName"));
 				friendList.put("account",rs.getString("cu.account"));
 				friendList.put("email",rs.getString("cu.email"));
