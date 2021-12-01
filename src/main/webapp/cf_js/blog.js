@@ -1,6 +1,6 @@
 $(function()
 {
-
+//  var friendMap=new HashMap();
     $(".chatlist").on("focus",function()
 	{
         $(this).removeClass(".chatlist");  //移除原本聊天列表的css樣式
@@ -66,8 +66,7 @@ $(function()
 	};
 
 
-
-    var count=0;
+  var count=0;
 	var innerCount=0;
     $(".aside_list .all_friend").click(function()
 	{
@@ -135,10 +134,10 @@ $(function()
 	});
 // 聊天室函式
 // 若輸入框被focus，就開啟websocket聊天程式
-	$(".return_btn").on("click",function(){
-		chatroomFunction();
-		alert(1234);
-						});
+//	$(".return_btn").on("click",function(){
+//		chatroomFunction();
+//		alert(1234);
+//						});
 	var chatroomFunction=function (){
 		var webSocket;
 		alert(111);
@@ -157,17 +156,16 @@ $(function()
        webSocket = new WebSocket(endPointURL);
   	 	webSocket.onopen=function(event){
          console.log("WebSocket Connect!")
-    
   	 	};
   	 	webSocket.onmessage=function(event){
          console.log("WebSocket SendMessage!")
-    
+
   	 	};
   	 	webSocket.onclose=function(event){
          console.log("WebSocket Close!")
-    
+
   	 	};
-    
+
      };
 
 
