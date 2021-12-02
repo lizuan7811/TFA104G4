@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人日誌</title>
+    <link href="cf_css/blog.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="font/style.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="cf_js/blog.js"></script>
+
+
+
+</head>
+<body>
+    <div class="bottom_box">
+        <div class="email_icon"><i class="fas fa-envelope"></i></div>
+        <br>
+        <div class="phone_icon"><i class="fas fa-phone-square"></i></i></div>
+        <br>
+        <div class="chat_icon"><i class="fab fa-facebook-messenger"></i></div>
+    </div>
+    <header>
+        <div class="logo">
+            <a href="#首頁連結">
+                <img src="cf_css/食健logo.png" alt="logo">
+            </a>
+        </div>
+
+        <ul class="header_li">
+            <li>
+                <a class="menu_title" href="#">關於我們</a>
+            </li>
+            <li>
+                <a class="menu_title" href="#">食健商城</a>
+                <!-- <div class="header_menu">
+                    <a href="#" class="menu_link">商城分類1</a>
+                    <a href="#" class="menu_link">商城分類2</a>
+                </div> -->
+            </li>
+            <li>
+                <a class="menu_title" href="#">食健生活</a>
+            </li>
+            <li>
+                <a class="menu_title" href="#">會員登入</a>
+            </li>
+        </ul>
+
+        <div class="icon">
+            <div class="search_icon"><i class="fas fa-search"></i></div>
+            <div class="QA_icon"><i class="far fa-question-circle"></i></div>
+            <div class="cart_icon"><i class="fas fa-shopping-cart"></i></div>
+        </div>
+    </header>
+
+    <main>
+        <div class="all">
+            <aside>
+                <input class="return_btn" type="button" value="前往我的日誌" name="personal_diary" >
+
+                <input class="search_friend" type="text" placeholder="搜尋好友">
+                <button class="search_friend"><i class="fas fa-search"></i></button>
+
+
+                <ul class="aside_list">
+                    <li class="all_friend" type="button" value="好友列表" name="friendList">
+						<!-- <li> -->
+							好友列表
+
+                        <!-- <input class="all_friend" type="button" value="好友列表" name="friendList" > -->
+                    </li>
+                    <li class="friend_req" type="button" value="申請好友" name="applyFriend" >好友申請
+					<!-- <li> -->
+                        <!-- <input class="friend_req" type="button" value="申請好友" name="applyFriend" > -->
+                    </li>
+                </ul>
+            </aside>
+        </div>
+        <div class="all">
+            <div class="news_list">
+                <div class="author">
+                    <img class="profile_pic" src="cf_css/cat_toby.jpg" alt="cat">
+                    <p class="profile_info">貪吃的貓</p>
+                    <br>
+                    <p class="profile_info">1小時前</p>
+                </div>
+                <div>
+                    <h3>給自己一頓滿分的"食健"海鮮套餐</h3>
+                    <p>喵~大家早安~<br>很開心加入食健這個大家庭，體驗到料理的趣味不僅是一個人的事情....</p>
+                </div>
+            </div>
+        </div>
+        <div class="all">
+            <div class="chat_box">
+                <h4 class="title">聊天列表</h4>
+                <div class="chatlist" tabindex="0">
+                    <div class="chat_people">
+                        <img class="chat_pic" src="cf_css/cat_toby.jpg" alt="cat"> </div>
+                        <div class="chat_content">
+                          <h5>貪吃的貓 <span class="chat_date">16:46 pm</span><span id="account"></span></h5>
+                          <br>
+                          <p>今天沒那麼冷了吧?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <section class="myfooter">
+            <div class="contact_info">
+                <img src="cf_css/食健logo.png" alt="logo">
+                <div class="box_1">連絡電話:0800-000-000</div>
+                <div class="box_1">聯絡地址:台北市南京復興</div>
+                <div class="box_1">E-MAIL:abc@123.com</div>
+            </div>
+            <div id="all_rights_reserve">©2021 食健 All Rights Reserve.</div>
+        </section>
+
+
+    </footer>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"> //載入font icon </script>
+    <!-- 載入jquery -->
+    <!-- 載入js -->
+</body>
+</html>

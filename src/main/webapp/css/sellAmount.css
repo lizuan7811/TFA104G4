@@ -1,0 +1,74 @@
+#datepicker_end{
+	left:250px;
+}
+#date_unit_start,#date_unit_end{
+	display:inline-block;
+	position:absolute;
+	font-size:16px;
+	font-weight:700;
+	color:lightblue;
+	width:80px;
+	top:10px;
+	left:170px;
+}
+#dateToIcon{
+	position:absolute;
+	display:inline-block;
+	font-size:18px;
+	top:15px;
+	right:-55px;
+}
+
+#date_unit_end{
+	left:420px;
+}
+
+#date_unit_start:hover,#date_unit_end:hover{
+	color:darkblue;
+}
+
+#upperDv_in_mainBox{
+	width:96.8%;
+	height:200px;
+	margin-bottom:10px;
+	box-sizing: border-box;
+	/* border:green solid 1px; */
+	background-color:white;
+}
+main .mainBox_table{
+	margin:0px;
+	width:100%;
+	background-color:white;
+}
+
+main #mainBox_Content_div{
+	background-color:#F0F3F5;
+	
+}
+main div #btmDv_in_mainBox{
+	width:97%;
+	height:400px;
+	padding:0px;
+	font-size:0px;
+	box-sizing:border-box;
+	overflow:scroll;
+	border:lightblue solid 1px;
+}
+
+#upperDv_in_mainBox label{
+	font-family:;
+}
+label{
+	line-height:40px;
+	font-size:30px;
+	font-weight:700;
+}
+#sellCount_lbls1{
+	display:inline-block;
+	margin:20px 0px 0px 15px;
+}
+#sellCount_lbls1::after{
+	content:"實現獲利總計:";
+	position:absolute;
+	margin:100px 0px 0px -130px;
+}

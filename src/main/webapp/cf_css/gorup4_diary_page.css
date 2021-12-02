@@ -1,0 +1,91 @@
+@import url("header_footer.css");
+
+
+main {
+    z-index: 1;
+    position:relative;
+    top: 90px;
+    /* border: solid black; */
+    box-sizing: border-box;
+    width: 100%;
+    height: 1000px;
+    background-color:rgb(227, 235, 226);
+}
+.article{
+    box-sizing: border-box;
+    font-weight: bold;
+    width: 70%;
+    margin: 10px auto;
+    /* border: solid black; */
+    /* height: 90%; */
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+}
+.pro_pic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.author_name, .add_friend, .pro_pic{
+    display: inline-block;
+    color: rgb(56, 56, 56);
+    vertical-align : middle;
+    
+}
+.add_friend{
+    background-color: rgb(172, 228, 170);
+    border: none;
+    border-radius: 10px;
+    width: 60px;
+    margin-left: 10px;
+    font-weight: bold;
+    
+}
+.article_title{
+    /* border: solid black; */
+    display: block;
+}
+.article_info{
+    margin: 10px 0;
+    align-items: center;
+    display: inline-block;
+    color: rgb(146, 145, 145);
+    font-size: 14px;
+    
+}
+.info_item{
+    padding-left: 20px;
+}
+.like_share_report_btn{
+    margin: 73.5px 0;
+    display: inline-block;
+    position: absolute;
+    right: 200px;
+    font-size: 14px;
+    
+}
+.like_btn, .share_btn, .report{
+    display: inline-block;
+    padding-right: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #4b4848;
+    /* border: solid blue;             */
+}
+.like_btn:hover, .share_btn:hover, .report_btn:hover, .add_friend:hover{
+    background-color: rgb(220, 226, 220);
+}
+.report_btn{
+    width: 50px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.main_article{
+    border: 1px solid gray;
+    /* height: 90%; */
+    text-align: center;
+    font-size: 24px;
+    margin: 56px;
+}
