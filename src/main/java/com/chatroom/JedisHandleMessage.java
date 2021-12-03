@@ -1,4 +1,5 @@
 package com.chatroom;
+import java.sql.Timestamp;
 import java.util.List;
 
 import redis.clients.jedis.Jedis;
@@ -16,9 +17,10 @@ public class JedisHandleMessage {
 		}
 		Jedis jedis = pool.getResource();
 		
-		System.out.println(jedis);
+//		System.out.println(jedis);
+		
 		List<String> historyData = jedis.lrange(key, 0, -1);
-System.out.println(historyData);
+//System.out.println(historyData);
 for(String liStr:historyData)
 {
 	System.out.println(liStr);

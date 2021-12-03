@@ -132,14 +132,15 @@ public class UserServlet extends HttpServlet{
 		{
 			custID=user.getIdCustomer();
 		}
-		if("friendList".equals(metChoice))
+		else
+		{
+			custID=Integer.valueOf(request.getParameter("custID"));
+		}
+		if("friendList".equals(metChoice) || "applyList".equals(metChoice) )
 		{
 //			metChoice=friendList
-			ansJson=us.serviceAboutFriend(metChoice, 1);
-		}else if("applyList".equals(metChoice))
-		{
-//			metChoice=applyList
 			ansJson=us.serviceAboutFriend(metChoice, custID);
+//			metChoice=applyList
 		}
 		pw.write(ansJson.toString());
 	}

@@ -10,7 +10,7 @@ $(function() {
 		$(".title").css("display", "none"); //隱藏抬頭: 聊天列表
 		//加入html語法 並設定class等...
 		$(this).html(
-			'<div class="chat_online"><div class="chat_name">貪吃的貓<br></div><textarea class="chattxt" type="text" readonly></textarea><input class="input_mesg" type="text"  placeholder="訊息內容..."/><button class="send_btn"/>Send</button></div>'
+			'<div class="chat_online"><div class="chat_name">貪吃的貓<br></div><ul class="chattxt"></ul><input class="input_mesg" type="text"  placeholder="訊息內容..."/><button class="send_btn"/>Send</button></div>'
 		);
 		chatroomFunction();
 	});
@@ -59,7 +59,7 @@ $(function() {
 			url: "usermethod/UserServlet",
 			data: {
 				"metChoice": "friendList",
-				"custID": 1
+				"custID": 5
 			},
 			type: "POST",
 			dataType: "JSON",
@@ -120,6 +120,11 @@ $(function() {
 		var webSocket;
 		connected();
 		$(".send_btn").click(function() {
+			if($(".input_mesg").val().trim()===""){
+				$(".input_mesg").focus()
+				return;
+			}
+			
 			sendMessage($(".input_mesg").val());
 		});
 
@@ -135,14 +140,47 @@ $(function() {
 			}
 
 			webSocket.onopen = function() {
-				var histo = {type: "history",selfAccount:selfAcc,friAccount:friAcc,message:""};
+				var histo = {type: "history",selfAccount:selfAcc,friAccount:friAcc,message:"",createdTime:""};
 				webSocket.send(JSON.stringify(histo));
 				console.log("WebSocket Connect!")
 			};
 
 			webSocket.onmessage = function(event) {
-
-
+				// console.log(event.data);
+				// console.log(typeof event.data);
+				var jSon=JSON.parse(event.data);
+				// console.log(JSON.parse(jSon["message"]));
+				var secJSon=JSON.parse(jSon["message"]);
+				// console.log(secJSon);
+				var strBuf="";
+				
+				for(var secIndex in secJSon)
+				{
+					
+					var realJson=JSON.parse(secJSon[secIndex]);
+					// console.log(realJson);
+					// selAccount代表自己的帳號'位置'，selfAcc代表自己的帳號的本身
+					if(realJson.message==undefined || typeof(realJson.message)=="undefined")
+					{
+						continue;
+					}
+					
+					strBuf=strBuf+"<li ";
+					if(realJson.selfAccount===selfAcc){
+						// 如果目前取出的訊息中，自己帳號位置的值與帳號本身的值相同
+						// 那資料就要顯示在右邊
+						strBuf=strBuf+"class=\"mySend\"";
+					}else if(realJson.selfAccount===friAcc)
+					{
+						strBuf=strBuf+"class=\"friSend\"";
+						// 如果目前取出的訊息中，自己帳號位置的值與朋友的帳號相同，代表訊息是朋友傳過來的
+						// 那這樣資料就要顯示在左邊
+					}
+					strBuf=strBuf+">"+realJson.message+"</li>";
+					strBuf=strBuf+"<p class=\"createdTime\">"+realJson.createdTime+"</p>";
+					console.log(realJson.createdTime);
+				}
+				$(".chattxt").append(strBuf);
 			};
 			webSocket.onclose = function() {
 				console.log("WebSocket Close!");
@@ -155,7 +193,8 @@ $(function() {
 					type: "sendMesg",
 					selfAccount: selfAcc,
 					friAccount: friAcc,
-					message: mess
+					message: mess,
+					createdTime:""
 				};
 				webSocket.send(JSON.stringify(ans));
 				console.log("mess:\t"+mess);
