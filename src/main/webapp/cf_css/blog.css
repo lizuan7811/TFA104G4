@@ -74,7 +74,7 @@ aside{
 }
 
 .chattxt{
-    width: 283px;
+    width: 99%;
     height: 320px;
     max-width: 283ppx;
     max-height: 320px;
@@ -213,3 +213,35 @@ li{
 .icon-user:hover,.icon-bubbles3:hover{
 	color:orange;
 }
+.createdTime{
+	color:lightgray;
+	font-size:12px;
+	/* text-align:right; */
+}
+
+.friSend{
+	width:100%;
+	color:black;
+	font-size:14px;
+}
+
+
+.mySend{
+	width:100%;
+	color:black;
+	font-size:14px;
+	text-align:right;
+}
+.talkBox{
+	width:97%;
+	height:330px;
+	padding-right:3px;
+	overflow-y:scroll;
+}
+
+.talkBox::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #96de6e;
+}
+

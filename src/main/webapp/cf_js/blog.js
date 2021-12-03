@@ -10,7 +10,7 @@ $(function() {
 		$(".title").css("display", "none"); //隱藏抬頭: 聊天列表
 		//加入html語法 並設定class等...
 		$(this).html(
-			'<div class="chat_online"><div class="chat_name">貪吃的貓<br></div><ul class="chattxt"></ul><input class="input_mesg" type="text"  placeholder="訊息內容..."/><button class="send_btn"/>Send</button></div>'
+			'<div class="chat_online"><div class="chat_name">貪吃的貓<br></div><div class=\"talkBox\"><ul class="chattxt"></ul></div><input class="input_mesg" type="text"  placeholder="訊息內容..."/><button class="send_btn"/>Send</button></div>'
 		);
 		chatroomFunction();
 	});
@@ -33,14 +33,8 @@ $(function() {
 			console.log($(this).attr("data-frID"));
 			id = $(this).attr("data-frID");
 		});
-
+// 按聊天泡泡，就會注意到聊天列表
 		$(".icon-bubbles3").click(function() {
-			// console.log("$(this).text()" + $(this).text());
-			// console.log("$(this).attr(\"data-frID\")" + $(this).attr("data-frID"));
-			// friendID = {
-			// 	"friendID": $(this).attr("data-frID")
-			// };
-			// friAccount = $(this).attr("data-frAccount");
 			selfAcc="lizuan";
 			friAcc=$(this).attr("data-frAccount");
 			$(".chatlist").focus();
@@ -76,13 +70,11 @@ $(function() {
 						for (var key1 in jsObj2[key]) {
 							for (var key2 in jsObj2[key][key1]) {
 								var ans = jsObj2[key][key1][key2];
-								$(".aside_list .all_friend").after(inputStr(ans)).fadeIn(
-									20000);
+								$(".aside_list .all_friend").after(inputStr(ans)).fadeIn(20000);
 							}
 						}
 					}
-					$(".all_friend .one_friend").on("click", "li", clickfunc(this))
-						.stopPropagation;
+					$(".all_friend .one_friend").on("click", "li", clickfunc(this)).stopPropagation;
 				}
 			},
 			error: function() {}
@@ -115,19 +107,39 @@ $(function() {
 	var sendMessage;
 	var connect;
 	var disconnect;
-
+	var showMess="";
+	
 	var chatroomFunction = function() {
 		var webSocket;
 		connected();
+		// 按send按鍵送出訊息
+		$(".input_mesg").keydown(function(event){
+			if(event.keyCode==13)
+			{
+				if($(".input_mesg").val().trim()===""){
+					$(".input_mesg").focus()
+					return;
+				}
+				sendMessage($(".input_mesg").val());
+				showMess=$(".input_mesg").val();
+				$("input_mesg").val("");
+				$("input_mesg").focus();
+			}
+			
+		});
+		
 		$(".send_btn").click(function() {
 			if($(".input_mesg").val().trim()===""){
 				$(".input_mesg").focus()
 				return;
 			}
-			
 			sendMessage($(".input_mesg").val());
+			$("input_mesg").val("");
+			$("input_mesg").focus();
 		});
 
+		
+		
 		function connected() {
 			//			webSocket = new WebSocket(endPointURL);
 			if ('WebSocket' in window) {
@@ -176,9 +188,7 @@ $(function() {
 						// 如果目前取出的訊息中，自己帳號位置的值與朋友的帳號相同，代表訊息是朋友傳過來的
 						// 那這樣資料就要顯示在左邊
 					}
-					strBuf=strBuf+">"+realJson.message+"</li>";
-					strBuf=strBuf+"<p class=\"createdTime\">"+realJson.createdTime+"</p>";
-					console.log(realJson.createdTime);
+					strBuf=strBuf+">"+realJson.message+"<p class=\"createdTime\">"+realJson.createdTime+"</p></li>";
 				}
 				$(".chattxt").append(strBuf);
 			};
@@ -201,6 +211,8 @@ $(function() {
 			} else {
 				$(".send_btn").focus();
 			}
+			showMess="<li class=\"mySend\">"+mess+"<p class=\"createdTime\">"+new Date()+"</p></li>";
+			$(".chattxt").append(showMess);
 			$(".input_mesg").val("");
 			$(".input_mesg").focus();
 		}
