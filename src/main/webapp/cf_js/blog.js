@@ -246,7 +246,14 @@ $(".aside_list .friend_req").click(function() {
 				// console.log(typeof event.data);
 				var jSon=JSON.parse(event.data);
 				// console.log(JSON.parse(jSon["message"]));
-				var secJSon=JSON.parse(jSon["message"]);
+				// var secJSon=JSON.parse(jSon["message"]);
+				var secJSon;
+				if(jSon["message"]!=undefined)
+				{
+					secJSon=JSON.parse(jSon["message"]);
+				}
+				
+				
 				// console.log(secJSon);
 				var strBuf="";
 				
