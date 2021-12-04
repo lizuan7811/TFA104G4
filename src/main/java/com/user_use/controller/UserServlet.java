@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
+import com.google.gson.Gson;
 import com.pojo.model.UserVO;
 
 public class UserServlet extends HttpServlet{
@@ -20,6 +22,7 @@ public class UserServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private UserService us;
 	private PrintWriter pw;
+	private UserVO user;
 	@Override
 	public void init()
 	{
@@ -34,13 +37,22 @@ public class UserServlet extends HttpServlet{
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
+			pw=response.getWriter();
 		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		String metChoice=request.getParameter("metChoice");
 		System.out.println(metChoice);
-		if(metChoice!=null && "clickLike".equals(metChoice))
+		if("readyLoad".equals(metChoice)) {
+			user=(UserVO) request.getAttribute("custVO");
+			JSONObject jObj=new JSONObject();
+			jObj.put("UserVO",user);
+			pw.write(jObj.toString());
+		}
+		else if(metChoice!=null && "clickLike".equals(metChoice))
 		{
 				doLikeClick(request,response);
 		}else if(metChoice!=null && "commentReport".equals(metChoice))
@@ -50,7 +62,7 @@ public class UserServlet extends HttpServlet{
 		{
 			System.out.println("UserServlet doFriendList(addFriend)");
 			doaAddFriend(request,response,metChoice);
-		}else if(metChoice!=null && ("friendList").equals(metChoice))
+		}else if(metChoice!=null && "friendList".equals(metChoice)||"applyList".equals(metChoice))
 		{
 			System.out.println("UserServlet doFriendList(friendList)");
 			doFriendList(request,response,metChoice);
@@ -99,6 +111,7 @@ public class UserServlet extends HttpServlet{
 	private Integer doCommentReport(HttpServletRequest request,HttpServletResponse response)
 	{
 //		custID、reportReason reportResult
+	
 		Integer successNum=0;
 		String diaryID=request.getParameter("diaryID");
 		String custID=request.getParameter("custID");
@@ -110,10 +123,15 @@ public class UserServlet extends HttpServlet{
 
 	private Integer doaAddFriend(HttpServletRequest request,HttpServletResponse response,String metChoice) 
 	{
+		user=(UserVO)request.getAttribute("custVO");
+		
 		String custID=request.getParameter("custID");
 		String myFriendID=request.getParameter("myFriendID");
+//		後端判斷傳入同意好友訊息的使用者ID是否與目前登入的使用者ID相同，避免前端安全性不足，再次做判斷，增加安全性。	
+//		if(user.getIdCustomer()==Integer.valueOf(custID)) {
+//			us.serviceAddFriend(metChoice,Integer.parseInt(custID),Integer.parseInt(myFriendID));
+//		}
 		us.serviceAddFriend(metChoice,Integer.parseInt(custID),Integer.parseInt(myFriendID));
-		
 		return 0;
 	}
 	
@@ -138,16 +156,8 @@ public class UserServlet extends HttpServlet{
 		}
 		if("friendList".equals(metChoice) || "applyList".equals(metChoice) )
 		{
-//			metChoice=friendList
 			ansJson=us.serviceAboutFriend(metChoice, custID);
-//			metChoice=applyList
 		}
 		pw.write(ansJson.toString());
 	}
-
-//	private Integer doApplyFriList(HttpServletRequest request,HttpServletResponse response,String metChoice)
-//	{
-//		
-//	}
-	
 }

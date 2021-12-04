@@ -214,9 +214,6 @@ public class UserDaoImpl implements UserDao{
 			{
 				System.out.println("修改"+successNum+"好友申請成功!");
 			}
-			else {
-				System.out.println("修改不成功");
-			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -252,10 +249,17 @@ public class UserDaoImpl implements UserDao{
 //				friendList.put("profic",rs.getBytes("profic"));
 				Base64.Encoder base64Encoder=Base64.getEncoder();
 				friendList.put("profic",base64Encoder.encodeToString(rs.getBytes("profic")));
+//				System.out.println(base64Encoder.encodeToString(rs.getBytes("profic")));
 				friendList.put("nickName",rs.getString("nickName"));
 				friendList.put("account",rs.getString("cu.account"));
 				friendList.put("email",rs.getString("cu.email"));
 				friendList.put("phone",rs.getString("cu.phone"));
+				
+				if(FinalStaticFile.FRIENDAPPLI_SELECT.equals(sql)) {
+					friendList.put("apply","applyFriend");
+				}else if(FinalStaticFile.FRIENDAPPLIED_SELECT.equals(sql)) {
+					friendList.put("apply","appliedFriend");
+				}
 //				friList.add(custVO);
 				jsonFriArr.put(friendList.toMap());
 			}

@@ -4,7 +4,10 @@ $(function() {
 	var message;
 	var count = 0;
 	var innerCount = 0;
-	
+	var countFri=0;
+	var innerCountFri=0;
+	 readyload();
+		
 	$(".chatlist").on("focus", function() {
 		$(this).removeClass(".chatlist"); //移除原本聊天列表的css樣式
 		$(".title").css("display", "none"); //隱藏抬頭: 聊天列表
@@ -14,16 +17,22 @@ $(function() {
 		);
 		chatroomFunction();
 	});
-
+// 好友列表用的字串
 	var inputStr = function(user) {
-		var str = "<li class=\"one_friend\" type=\"button\" name= \"friend\" value=\"\" data-frID=\"" + user
-			.idCustomer + "\"/>" + user.nickName + "<li class=\"iconlist\"><span data-frID=\"" + user
-			.idCustomer + "\"class=\"icon-user\"></span><span id =\"getAccounts\"data-frID=\"" + user
-			.idCustomer + "\" data-frAccount=\"" + user.account +
-			"\" class=\"icon-bubbles3\"></span></li></li>";
-		//        var str="<li><img width=\"900\" height=\"450\" src=\"data:image/png;base64,"+decodeURI(user.profic)+"\"/><input class=\"friend\" type=\"button\" name= \"friend\" value=\""+user.nickName+"\" data-frID=\""+user.idCustomer+" onclick=\"clickfunc()\"\"/></li>";
+		var str="<li class=\"one_friend\" type=\"button\" name= \"friend\" value=\"\" data-frID=\"" + user.idCustomer + "\"/>"+"<img class=\"showPic\" src=\"data:image/png;base64,"+user.profic+"\">"+user.nickName + "<li class=\"iconlist one_friend_List\"><span data-frID=\"" + user.idCustomer + "\"class=\"icon-user one_friend_icon\" ></span><span id =\"getAccounts\"data-frID=\"" + user	.idCustomer + "\" data-frAccount=\"" + user.account +"\" class=\"icon-bubbles3 one_friend_icon\"></span></li></li>";
 		return str;
 	};
+//申請好友用的字串 ，最後需要綁定帳號進去，點按鈕後才會有資料出現
+	var appFri = function(user) {
+		if(user.apply==="applyFriend"){
+			var str="<li class=\"appFri\" type=\"button\" name= \"friend\" value=\"\" data-frID=\"" + user.idCustomer + "\"/>"+"<img class=\"showPic\" src=\"data:image/png;base64,"+user.profic+"\">"+user.nickName + "<li class=\"iconlist appFri_iconList\"><span data-frID=\""+user.idCustomer + "\"class=\"icon-user-minus appFri_icon\"\" data-frAccount=\"" + user.account +"\" ></span></li></li>";
+		}else if(user.apply==="appliedFriend"){
+			var str="<li class=\"appFri\" type=\"button\" name= \"friend\" value=\"\" data-frID=\"" + user.idCustomer + "\"/>"+"<img class=\"showPic\" src=\"data:image/png;base64,"+user.profic+"\">"+user.nickName+"<li class=\"iconlist appFri_iconList\"><span data-frID=\"" + user	.idCustomer + "\"class=\"icon-user-check appFri_icon\"\" data-frAccount=\"" + user.account +"\" ></span></li></li>";
+		}
+		return str;
+	};
+	
+	
 	// 列表中好友的點擊事件
 	// var toFriName;
 	// var toFriID;
@@ -40,12 +49,40 @@ $(function() {
 			$(".chatlist").focus();
 
 		});
+		// 按同意好友按鈕會送出同意好友申請請求
+		$(".icon-user-check").click(function() {
+			selfAcc="lizuan";
+			friAcc=$(this).attr("data-frAccount");
+			friID=$(this).attr("data-frID");
+			alert(friID);
+			// console.log(selfAcc+"\t"+friAcc);
+			$.ajax({
+				url:"usermethod/UserServlet",
+				data:{"metChoice":"agreeFriend","custID":5,"myFriendID":friID},
+				type:"POST",
+				datatype:"JSON",
+				success:function(applyFriendResponse){
+					alert("已同意"+friAcc+"好友申請!");
+				},
+				error:function(applyFriendResponse){
+					alert("已同意"+friAcc+"好友申請失敗!");
+				}
+			});
+		});
 	};
-
+	
+	
+	
+// 當點了好友列表後會顯示好友列表
 	$(".aside_list .all_friend").click(function() {
+		// $('.one_friend').css('display', 'inline-block');
+		// $('.icon-user').css('display', 'inline-block');
+		// $('.icon-bubbles3').css('display', 'inline-block');
+		
 		$('.one_friend').css('display', 'inline-block');
-		$('.icon-user').css('display', 'inline-block');
-		$('.icon-bubbles3').css('display', 'inline-block');
+		$('.one_friend_icon').css('display', 'inline-block');
+		$(".one_friend_List").css("display","inline-block");
+		
 		if (count >= 1) {
 			return;
 		}
@@ -80,6 +117,48 @@ $(function() {
 			error: function() {}
 		}, false);
 	});
+// 點選好友申請列表時會執行的程式
+$(".aside_list .friend_req").click(function() {
+		$('.appFri').css('display', 'inline-block');
+		$('.appFri_icon').css('display', 'inline-block');
+		$(".appFri_iconList ").css("display","inline-block");
+		
+		if (countFri >= 1) {
+			return;
+		}
+		$.ajax({
+			url: "usermethod/UserServlet",
+			data: {
+				"metChoice": "applyList",
+				"custID": 5
+			},
+			type: "POST",
+			dataType: "JSON",
+			success: function(agreeFriend) {
+				countFri++;
+				innerCountFri++;
+				// console.log(friendList);
+				// console.log(JSON.stringify(friendList));
+				var jsObj = JSON.stringify(agreeFriend);
+				var jsObj2 = JSON.parse(jsObj);
+
+				if (innerCountFri <= 1) {
+					for (var key in jsObj2) {
+						for (var key1 in jsObj2[key]) {
+							for (var key2 in jsObj2[key][key1]) {
+								var ans = jsObj2[key][key1][key2];
+								$(".aside_list .friend_req").after(appFri(ans)).fadeIn(20000);
+							}
+						}
+					}
+					$(".friend_req .appFri").on("click", "li", clickfunc(this)).stopPropagation;
+				}
+			},
+			error: function() {}
+		}, false);
+	});
+
+
 
 	$(".aside_list").click(function(e) {
 		if (e.stopPropagation) {
@@ -87,11 +166,16 @@ $(function() {
 		} else {
 			e.cancelBubble = true;
 		}
-
+// 當滑鼠目標不在好友列表後，會隱藏好友列表中的好友及icon
 		$(document).bind('click', function() {
 			$('.one_friend').css('display', 'none');
-			$('.icon-user').css('display', 'none');
-			$('.icon-bubbles3').css('display', 'none');
+			$('.one_friend_icon').css('display', 'none');
+			
+			$('.appFri').css('display', 'none');
+			$('.appFri_icon').css('display', 'none');
+			
+			$(".one_friend_List").css("display","none");
+			$(".appFri_iconList").css("display","none");
 		});
 	});
 
@@ -108,7 +192,7 @@ $(function() {
 	var connect;
 	var disconnect;
 	var showMess="";
-	
+	// websocket聊天室連接的函式
 	var chatroomFunction = function() {
 		var webSocket;
 		connected();
@@ -224,4 +308,25 @@ $(function() {
 			disconnect = true;
 		}
 	};
+	
+	function readyload()
+	{
+		$.ajax({
+			url:"usermethod/UserServlet",
+			data:{"metChoice":"readyLoad"},
+			type:"POST",
+			datatype:"JSON",
+			success:function(data)
+			{
+				console.log(data);
+			}
+		});
+	}
+	
+	
+	
+	
 });
+
+
+// 點好友同意功能
