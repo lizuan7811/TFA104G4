@@ -74,6 +74,9 @@ public class FinalStaticFile {
 //	搜尋歷史定單，包括已生成的
 	public final static String FINALORDERALL_SELECT="SELECT * FROM FINALORDER;";
 //	若選擇食譜，需要搜尋該食譜，對照食材取出食材品名及單價
+//	搜尋所有食譜資料
+	public final static String RECIPEALL_SELECT="SELECT * FROM RECIPE;";
+//	搜尋單個食譜資料
 	public final static String RECIPESG_SELECT="SELECT * FROM RECIPE WHERE idRecipe = ? ;";
 //	搜索食材詳細資料
 	public final static String INGREALL_SELECT="SELECT * FROM INGRE;";

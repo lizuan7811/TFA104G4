@@ -20,6 +20,24 @@ public class FinalOrderVO implements Serializable{
 	private Timestamp arrivalTime;
 	private String footnote;
 	
+	public FinalOrderVO() {
+		
+	}
+	
+	public FinalOrderVO(Integer idFinalOrder, Integer idCustomer, String recipient, String recipientAddress,
+			BigDecimal orderAmount, Timestamp createdTime, Timestamp shipTime, Timestamp arrivalTime, String footnote) {
+		super();
+		this.idFinalOrder = idFinalOrder;
+		this.idCustomer = idCustomer;
+		this.recipient = recipient;
+		this.recipientAddress = recipientAddress;
+		this.orderAmount = orderAmount;
+		this.createdTime = createdTime;
+		this.shipTime = shipTime;
+		this.arrivalTime = arrivalTime;
+		this.footnote = footnote;
+	}
+	
 	public Integer getIdFinalOrder() {
 		return idFinalOrder;
 	}

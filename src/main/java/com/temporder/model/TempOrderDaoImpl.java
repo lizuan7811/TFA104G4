@@ -1,5 +1,5 @@
 package com.temporder.model;
 
-public class TempOrderDaoImpl {
+public class TempOrderDaoImpl implements TempOrderDao{
 
 }
