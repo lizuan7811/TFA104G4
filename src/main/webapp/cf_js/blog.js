@@ -263,10 +263,10 @@ $(".aside_list .friend_req").click(function() {
 					var realJson=JSON.parse(secJSon[secIndex]);
 					// console.log(realJson);
 					// selAccount代表自己的帳號'位置'，selfAcc代表自己的帳號的本身
-					if(realJson.message==undefined || typeof(realJson.message)=="undefined")
-					{
-						continue;
-					}
+			// if(realJson.message==undefined || typeof(realJson.message)=="undefined")
+			// {
+				// // ctinue;
+			// }
 					
 					strBuf=strBuf+"<li ";
 					if(realJson.selfAccount===selfAcc){

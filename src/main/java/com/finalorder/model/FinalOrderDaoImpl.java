@@ -25,7 +25,7 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 	
 //	產生訂單前，就會將這三個HashMap的物件建構出來
 	public FinalOrderDaoImpl(Connection conn,PreparedStatement ps) {
-		this.histoOrderHashMap=finalOrderSelect(conn,ps);
+		this.histoOrderHashMap=getHistoOrderHashMap(conn,ps);
 		this.recipeHashMap=recipeALLSelect(conn,ps);
 		this.ingreHashMap=ingreAllSelect(conn,ps);
 	}
@@ -44,8 +44,8 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 	{
 		return this.ingreHashMap;
 	}
-//	歷史訂單的MAP
-	private HashMap<String, FinalOrderVO> finalOrderSelect(Connection conn, PreparedStatement ps) {
+//	所有歷史訂單的MAP
+	private HashMap<String, FinalOrderVO> getHistoOrderHashMap(Connection conn, PreparedStatement ps) {
 		histoOrderHashMap=new HashMap<String,FinalOrderVO>();
 		try {
 			ps=conn.prepareStatement(FinalStaticFile.FINALORDERALL_SELECT);
@@ -64,7 +64,6 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 		}
 		return histoOrderHashMap;
 	}
-
 //	
 	private HashMap<String, RecipeVO> recipeALLSelect(Connection conn, PreparedStatement ps) {
 		
