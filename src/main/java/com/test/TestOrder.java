@@ -1,14 +1,19 @@
-package com.finalorder.controller;
+package com.test;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.json.JSONObject;
 
+import com.basic_tool.controller.Util;
 import com.finalorder.model.FinalOrderDao;
 import com.finalorder.model.FinalOrderDaoImpl;
 import com.finalorder.model.FinalOrderVO;
@@ -17,29 +22,33 @@ import han.Ingre.IngreVO;
 import han.Recipe.RecipeVO;
 import han.RecipeIngre.RecipeIngreVO;
 
-public class FinalOrderBOImpl implements FinalOrderBO{
+public class TestOrder {
+
 	private FinalOrderDao fodi;
 	private static HashMap<String, FinalOrderVO> histoOrderHashMap;// 歷史訂單含詳細資料
 	private static HashMap<String, RecipeIngreVO> recipeIngreHashMap;// 食譜與食材對照表，其中包含食材數量
 	private static HashMap<String, IngreVO> ingreHashMap;// 食材表，包含食材的詳細資料
 	private static HashMap<String, RecipeVO> recipeHashMap;// 食譜表，包含食譜的詳細資料
 	private static HashMap<Integer, Integer> finalOrderHashMap;
-	
-	public FinalOrderBOImpl(Connection conn,PreparedStatement ps)
-	{
-		fodi=new FinalOrderDaoImpl(conn,ps);
+
+	public static void main(String[] args) {
+		Connection conn = Util.getConnection();
+		PreparedStatement ps = null;
+		
+		FinalOrderDaoImpl fodi = new FinalOrderDaoImpl(conn, ps);
+		
 		histoOrderHashMap=fodi.getHistoOrderHashMap();
 		recipeIngreHashMap = fodi.getRecipeIngreHashMap();
 		ingreHashMap=fodi.getIngreHashMap();
 		recipeHashMap=fodi.getRecipeHashMap();
+		
 		finalOrderHashMap=new HashMap<Integer,Integer>();
-		finalOrderHashMap=new HashMap<Integer,Integer>();
+
+		buildFinalOrderBO(conn, ps, new JSONObject());
+
 	}
-	
-	
-//	計算價錢
-	@Override
-	public BigDecimal buildFinalOrderBO(Connection conn, PreparedStatement ps, JSONObject userBuyObj) {
+
+	public static BigDecimal buildFinalOrderBO(Connection conn, PreparedStatement ps, JSONObject userBuyObj) {
 		
 		BigDecimal tempBD=new BigDecimal(0);
 		BigDecimal totalMoney=new BigDecimal(0);
@@ -56,6 +65,7 @@ public class FinalOrderBOImpl implements FinalOrderBO{
 //				Map<Integer,Integer> tempMp=recipeIngreHashMap.entrySet().stream()
 //						.filter(e->((RecipeIngreVO)e.getValue()).getIdRecipe()==101)
 //						.collect(Collectors.toMap(e->e.getValue().getIdIngre(),e->e.getValue().getIngreQuan()));
+				
 				Map<Integer,Integer> tempMp=recipeIngreHashMap.entrySet().stream()
 				.filter(e->((RecipeIngreVO)e.getValue()).getIdRecipe()==Integer.parseInt(key))
 				.collect(Collectors.toMap(e->e.getValue().getIdIngre(),e->e.getValue().getIngreQuan()));
@@ -92,6 +102,7 @@ public class FinalOrderBOImpl implements FinalOrderBO{
 				}
 			}
 		}
+		
 		for(Integer key:finalOrderHashMap.keySet())
 		{
 			tempBD=ingreHashMap.get(String.valueOf(key)).getPrice();
@@ -100,5 +111,4 @@ public class FinalOrderBOImpl implements FinalOrderBO{
 		System.out.println(totalMoney);
 		return totalMoney;
 	}
-
 }

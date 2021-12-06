@@ -26,7 +26,8 @@ public class Util {
 		try {
 			System.out.println(new File("src/main/webapp/WEB-INF/lib/jdbc.properties").exists());
 //			System.out.println(Util.class.getResource("../../../../")+"lib/jdbc.properties");
-			is=FileInOutDao.getInputStr(new File(Util.class.getResource("../../../../").getPath()+"lib/jdbc.properties"));
+			is=FileInOutDao.getInputStr(new File("src/main/webapp/WEB-INF/lib/jdbc.properties"));
+//			is=FileInOutDao.getInputStr(new File(Util.class.getResource("../../../../").getPath()+"lib/jdbc.properties"));
 //			is=FileInOutDao.getInputStr(new File("src/main/webapp/WEB-INF/lib/jdbc.properties"));
 
 			System.out.println(is==null);

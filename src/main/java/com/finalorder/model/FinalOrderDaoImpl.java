@@ -12,14 +12,17 @@ import com.static_file.model.FinalStaticFile;
 
 import han.Ingre.IngreVO;
 import han.Recipe.RecipeVO;
+import han.RecipeIngre.RecipeIngreVO;
 
 public class FinalOrderDaoImpl implements FinalOrderDao{
 	
-	private HashMap<String,FinalOrderVO>histoOrderHashMap;
-	private HashMap<String, RecipeVO>recipeHashMap;
-	private HashMap<String, IngreVO>ingreHashMap;
+	private static HashMap<String,FinalOrderVO>histoOrderHashMap;
+	private static HashMap<String,RecipeIngreVO>recipeIngreHashMap;
+	private static HashMap<String, RecipeVO>recipeHashMap;
+	private static HashMap<String, IngreVO>ingreHashMap;
 	
 	private FinalOrderVO finalOrderVo;
+	private RecipeIngreVO recipeIngreVo;
 	private RecipeVO recipeVo;
 	private IngreVO ingreVo;
 	
@@ -28,8 +31,9 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 		this.histoOrderHashMap=getHistoOrderHashMap(conn,ps);
 		this.recipeHashMap=recipeALLSelect(conn,ps);
 		this.ingreHashMap=ingreAllSelect(conn,ps);
+		this.recipeIngreHashMap=recipeIngreSelect(conn,ps);
 	}
-
+	
 	public HashMap<String,FinalOrderVO> getHistoOrderHashMap()
 	{
 		return this.histoOrderHashMap;
@@ -40,9 +44,13 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 		return this.recipeHashMap;
 	}
 	
-	public HashMap<String,IngreVO> getIngreOrderHashMap()
+	public HashMap<String,IngreVO> getIngreHashMap()
 	{
 		return this.ingreHashMap;
+	}
+	public HashMap<String,RecipeIngreVO> getRecipeIngreHashMap()
+	{
+		return this.recipeIngreHashMap;
 	}
 //	所有歷史訂單的MAP
 	private HashMap<String, FinalOrderVO> getHistoOrderHashMap(Connection conn, PreparedStatement ps) {
@@ -66,7 +74,7 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 	}
 //	
 	private HashMap<String, RecipeVO> recipeALLSelect(Connection conn, PreparedStatement ps) {
-		
+		recipeHashMap=new HashMap<String,RecipeVO>();
 		try {
 			ps=conn.prepareStatement(FinalStaticFile.RECIPEALL_SELECT);
 			ResultSet rs=ps.executeQuery();
@@ -88,7 +96,7 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 	}
 
 	private HashMap<String, IngreVO> ingreAllSelect(Connection conn, PreparedStatement ps) {
-
+		ingreHashMap=new HashMap<String,IngreVO>();
 		try {
 			ps=conn.prepareStatement(FinalStaticFile.INGREALL_SELECT);
 			ResultSet rs=ps.executeQuery();
@@ -102,7 +110,7 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 				ingreVo.setPurPrice(rs.getBigDecimal("purPrice"));
 				ingreVo.setPrice(rs.getBigDecimal("price"));
 				ingreVo.setUnit(rs.getString("unit"));
-				ingreVo.setGran(rs.getInt("getgran"));
+				ingreVo.setGran(rs.getInt("gran"));
 				ingreVo.setSell(rs.getInt("sell"));
 				ingreVo.setDescrip(rs.getString("descrip"));
 				ingreVo.setLaunch(rs.getBoolean("launch"));
@@ -116,6 +124,35 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 		return ingreHashMap;
 	}
 
+	private HashMap<String,RecipeIngreVO>recipeIngreSelect(Connection conn, PreparedStatement ps)
+	{
+		recipeIngreHashMap=new HashMap<String,RecipeIngreVO>();
+		try {
+			ps=conn.prepareStatement(FinalStaticFile.RECIPEINGRE_SELECT);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				Integer idRI=rs.getInt("idRecipeIngre");
+				recipeIngreVo=new RecipeIngreVO();
+				recipeIngreVo.setIdRecipeIngre(idRI);
+				
+				recipeIngreVo.setIdRecipe(rs.getInt("idRecipe"));
+				
+				recipeIngreVo.setIdIngre(rs.getInt("idIngre"));
+				recipeIngreVo.setIngreQuan(rs.getInt("ingreQuan"));
+				
+				recipeIngreHashMap.put(idRI.toString(),recipeIngreVo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return recipeIngreHashMap;
+	}
+	
+	
+	
 	@Override
 	public Boolean isPay(Connection conn,PreparedStatement ps,Integer idFinalOder,BigDecimal payMouney) {
 		Boolean payCheck=false;
@@ -126,6 +163,9 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 		return payCheck;
 	}
 
+	
+	
+	
 	@Override
 	public Integer finalOrderInsert(Connection conn, PreparedStatement ps,Integer idFinalOrder, HashMap<String, FinalOrderVO> finalOrderMap,Boolean payCheck) {
 //		若傳入的訂單ID與目前紀錄的定單，且確定已經付款完畢，就將建立的訂單寫進資料庫
@@ -176,4 +216,6 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 		}
 		return orderInsertCount;
 	}
+	
+	
 }

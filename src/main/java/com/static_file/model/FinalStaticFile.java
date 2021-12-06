@@ -79,7 +79,7 @@ public class FinalStaticFile {
 //	搜尋單個食譜資料
 	public final static String RECIPESG_SELECT="SELECT * FROM RECIPE WHERE idRecipe = ? ;";
 //	搜索食材詳細資料
-	public final static String INGREALL_SELECT="SELECT * FROM INGRE;";
+	public final static String INGREALL_SELECT="SELECT * FROM Ingre;";
 //	訂單的詳細資料需存在OrderIngreList
 	public final static String ORDERINGRELIST_INSERT="INSERT INTO ORDERINGRELIST(idOrder,idIngre,orderQuan,price)VALUES(?,?,?,?);";
 //	取得各個食材單價後，計算該訂單的總金額，是否與前端傳的金額相符，若相符則寫入資料庫。	
@@ -87,6 +87,8 @@ public class FinalStaticFile {
 	public final static String FINALORDERSG_INSERT="INSERT INTO FINALORDER(idFinalOrder,idCustomer,recipient,recipientAddress,orderAmount,createdTime,shipTime,arrivalTime,footnote)VALUES(?,?,?,?,?,?,?,?,?);";
 //  刪除已生成的訂單或歷史訂單
 	public final static String FINALORDERSG_DELETE="DELETE FROM FINALORDER WHERE idFinalOrder = ?;";
+	
+	public final static String RECIPEINGRE_SELECT="SELECT * FROM RecipeIngre;";
 	
 	
 }
