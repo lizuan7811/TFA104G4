@@ -3,12 +3,14 @@ package com.finalorder.controller;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.json.JSONObject;
 
+import com.basic_tool.controller.Util;
 import com.finalorder.model.FinalOrderDao;
 import com.finalorder.model.FinalOrderDaoImpl;
 import com.finalorder.model.FinalOrderVO;
@@ -38,7 +40,7 @@ public class FinalOrderBOImpl implements FinalOrderBO{
 	
 //	計算價錢
 	@Override
-	public BigDecimal buildFinalOrderBO(Connection conn, PreparedStatement ps, JSONObject userBuyObj) {
+	public Integer buildFinalOrderBO(Connection conn, PreparedStatement ps, JSONObject userBuyObj) {
 		Integer recipeCount=1;
 		BigDecimal tempBD=new BigDecimal(0);
 		BigDecimal totalMoney=new BigDecimal(0);
@@ -50,13 +52,14 @@ public class FinalOrderBOImpl implements FinalOrderBO{
 		//取得記錄在食譜字串的value，這個value是RecipeVO。
 //		if(userMap.containsKey("recipe")) {
 //			recipeMap=(HashMap<String, Object>) userMap.get("recipe");
-//			for(String key:recipeMap.keySet())
+//			for(String key:ingreMap.keySet())
 //			{
-//				recipeMap=(HashMap<String, Object>) userMap.get("recipe");
+//				recipeCount=(Integer)recipeMap.get(key);
 //				從recipeIngreHashMap中取得idRecipe為101的idIngre及數量資料，存成map集合並回傳
 				Map<Integer,Integer> tempMp=recipeIngreHashMap.entrySet().stream()
 						.filter(e->((RecipeIngreVO)e.getValue()).getIdRecipe()==101)
 						.collect(Collectors.toMap(e->e.getValue().getIdIngre(),e->e.getValue().getIngreQuan()));
+				
 //				Map<Integer,Integer> tempMp=recipeIngreHashMap.entrySet().stream()
 //				.filter(e->((RecipeIngreVO)e.getValue()).getIdRecipe()==Integer.parseInt(key))
 //				.collect(Collectors.toMap(e->e.getValue().getIdIngre(),e->e.getValue().getIngreQuan()));
@@ -93,13 +96,40 @@ public class FinalOrderBOImpl implements FinalOrderBO{
 				}
 			}
 		}
+//		將訂單中的品項數量取出並計算價錢
 		for(Integer key:finalOrderHashMap.keySet())
 		{
 			tempBD=ingreHashMap.get(String.valueOf(key)).getPrice();
 			totalMoney=totalMoney.add(tempBD.multiply(BigDecimal.valueOf(Double.parseDouble(String.valueOf(finalOrderHashMap.get(key))))));
 		}
 		System.out.println(totalMoney);
-		return totalMoney;
+//		拿到FinalOrderVO物件，裡面有前端傳至後端的此次消費者的消費訂單紀錄
+		FinalOrderVO fovo=(FinalOrderVO) userBuyObj.get("customer");
+		fovo.setOrderAmount(totalMoney);
+//		判斷付款
+//		Boolean flag=fodi.isPay(conn,ps,fovo);
+//		寫入資料庫
+//		寫入資料庫(交易控制)
+		Integer succNum=0;
+		try {
+			conn.setAutoCommit(false);
+			succNum=fodi.finalOrderInsert(conn,ps,fovo,true);
+//			fodi.finalOrderInsert(conn,ps,fovo,flag);
+			//		取得這筆訂單的ID(FinalOrderid)，然後產生訂單明細
+			Integer idFinalOrder=fodi.getUserLatestOrderID(conn, ps, fovo.getIdCustomer());
+			fodi.orderListInsert(conn, ps, idFinalOrder, finalOrderHashMap);
+			conn.commit();
+		}
+		catch(Exception e)
+		{
+			try {
+				conn.rollback();
+				conn.setAutoCommit(true);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		return succNum;
 	}
-
 }

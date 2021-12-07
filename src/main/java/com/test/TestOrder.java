@@ -69,11 +69,11 @@ public class TestOrder {
 //		傳請求給servlet建立訂單，所以JSONObject物件就會以JSON的格式傳到後端。
 		HashMap<String,Object> userMap=(HashMap<String,Object>)userBuyObj.toMap();
 		//取得記錄在食譜字串的value，這個value是RecipeVO。
-		if(userMap.containsKey("recipe")) {
-			recipeMap=(HashMap<String, Object>) userMap.get("recipe");
-			for(String key:ingreMap.keySet())
-			{
-				recipeCount=(Integer)recipeMap.get(key);
+//		if(userMap.containsKey("recipe")) {
+//			recipeMap=(HashMap<String, Object>) userMap.get("recipe");
+//			for(String key:ingreMap.keySet())
+//			{
+//				recipeCount=(Integer)recipeMap.get(key);
 //				從recipeIngreHashMap中取得idRecipe為101的idIngre及數量資料，存成map集合並回傳
 				Map<Integer,Integer> tempMp=recipeIngreHashMap.entrySet().stream()
 						.filter(e->((RecipeIngreVO)e.getValue()).getIdRecipe()==101)
@@ -96,8 +96,8 @@ public class TestOrder {
 						System.out.println(itg+"\t"+finalOrderHashMap.get(itg)+tempMp.get(itg));
 					}
 				}
-			}
-		}
+//			}
+//		}
 		if(userMap.containsKey("ingre")) {
 //		若key為recipe，就將value中的map取出，再從中間取得key跟value，把取得的數量結果加入到finalorderhashmap中
 //		從使用者傳的資料中拿到key為recipe的value，再從value中(集合中取得的map物件)拿keyset，從每個keyset取得value，value存的是食譜的數量
@@ -126,32 +126,47 @@ public class TestOrder {
 //		fovo.setOrderAmount(totalMoney);
 //		判斷付款
 //		Boolean flag=fodi.isPay(conn,ps,fovo);
-//		寫入資料庫
-		fodi.finalOrderInsert(conn,ps,fovo,true);
-//		fodi.finalOrderInsert(conn,ps,fovo,flag);
-
-//		取得這筆訂單的ID(FinalOrderid)，然後產生訂單明細
-		System.out.println(fovo.getIdCustomer()+"\t"+fovo.getCreatedTime());
-		Integer idFinalOrder=fodi.getUserLatestOrderID(conn, ps, fovo.getIdCustomer(),fovo.getCreatedTime());
+//		寫入資料庫(交易控制)
+		try {
+			conn.setAutoCommit(false);
+			fodi.finalOrderInsert(conn,ps,fovo,true);
+//			fodi.finalOrderInsert(conn,ps,fovo,flag);
+			//		取得這筆訂單的ID(FinalOrderid)，然後產生訂單明細
+			Integer idFinalOrder=fodi.getUserLatestOrderID(conn, ps, fovo.getIdCustomer());
+			fodi.orderListInsert(conn, ps, idFinalOrder, finalOrderHashMap);
+			conn.commit();
+		}
+		catch(Exception e)
+		{
+			try {
+				conn.rollback();
+				conn.setAutoCommit(true);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		finally {
+			Util.closeConnection(conn, ps);
+		}
 		
-		fodi.orderListInsert(conn, ps, idFinalOrder, finalOrderHashMap, ingreHashMap);
 //		return totalMoney;
 	}
 	
 //	價格取得後，可先輸入寫入訂單的資料
 //	產生訂單寫入資料庫，要先在資料庫寫入資料，再搜尋資料庫的資料筆數，可以使用select count(id) from table;會比較高效率
-	private static Integer getUserLatestOrderID(Connection conn,PreparedStatement ps,Integer idCustomer,Timestamp ts)
+	private static Integer getUserLatestOrderID(Connection conn,PreparedStatement ps,Integer idCustomer)
 	{
 		Integer userLatestOrderID=0;
 		try {
 			ps=conn.prepareStatement(FinalStaticFile.USERLATESTORDER_SELECT);
 			ps.setInt(1, idCustomer);
-			ps.setTimestamp(2, ts);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
 			{
-				userLatestOrderID=rs.getInt(1);
+				userLatestOrderID=rs.getInt("idFinalOrder");
 			}
+			System.out.println(userLatestOrderID);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

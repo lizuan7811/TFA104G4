@@ -56,10 +56,9 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 		return this.recipeIngreHashMap;
 	}
 	
-	public int[] orderListInsert(Connection conn, PreparedStatement ps,Integer idFinalOrder,HashMap<Integer,Integer>finalOrderMap,HashMap<String,IngreVO>ingreHashMap) {
+	public int[] orderListInsert(Connection conn, PreparedStatement ps,Integer idFinalOrder,HashMap<Integer,Integer>finalOrderMap) {
 		int[] tempInt=null;
 		try {
-			conn.setAutoCommit(false);
 			ps=conn.prepareStatement(FinalStaticFile.ORDERINGRELIST_INSERT);
 			for(Integer key:finalOrderMap.keySet())
 			{
@@ -71,15 +70,13 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 			}
 			tempInt=ps.executeBatch();
 		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		finally {
 			try {
-				conn.setAutoCommit(true);
-			} catch (SQLException e) {
-				e.printStackTrace();
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			System.out.println(tempInt);
+			e.printStackTrace();
 		}
 		return tempInt;
 	}
@@ -206,7 +203,6 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 		Calendar cl=Calendar.getInstance();
 		Timestamp ts=new Timestamp(cl.getTimeInMillis());
 		try {
-			conn.setAutoCommit(false);
 			if(payCheck) {
 				ps=conn.prepareStatement(FinalStaticFile.FINALORDERSG_INSERT);
 //				ps.setInt(1,(Integer)null);
@@ -226,37 +222,22 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 			}
 			orderInsertCount=ps.executeUpdate();
 		} catch (SQLException e) {
-			try {
-				conn.rollback();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
 			e.printStackTrace();
-		}
-		finally {
-			try {
-				conn.commit();
-				conn.setAutoCommit(true);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 		return orderInsertCount;
 	}
-	public Integer getUserLatestOrderID(Connection conn,PreparedStatement ps,Integer idCustomer,Timestamp ts)
+	public Integer getUserLatestOrderID(Connection conn,PreparedStatement ps,Integer idCustomer)
 	{
 		Integer userLatestOrderID=0;
 		try {
 			ps=conn.prepareStatement(FinalStaticFile.USERLATESTORDER_SELECT);
 			ps.setInt(1, idCustomer);
-			ps.setTimestamp(2, ts);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
 			{
 				userLatestOrderID=rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("userLatestOrderID:"+userLatestOrderID);

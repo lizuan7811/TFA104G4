@@ -73,8 +73,8 @@ public class FinalStaticFile {
 //-----以下為訂單使用指令-----
 //	搜尋歷史定單，包括已生成的
 	public final static String FINALUSERORDER_SELECT="SELECT * FROM FINALORDER WHERE idCustomer = ?;";
-//	搜尋歷史訂單總筆數
-	public final static String USERLATESTORDER_SELECT="SELECT idFinalOrder FROM FINALORDER WHERE idCustomer = ? and createdTime = ?;";
+//	搜尋消費者最新一筆訂單的訂單id
+	public final static String USERLATESTORDER_SELECT="select idFinalOrder from FinalOrder WHERE idCustomer = ? group by idFinalOrder order by createdTime desc limit 1;";
 	
 //	若選擇食譜，需要搜尋該食譜，對照食材取出食材品名及單價
 //	搜尋所有食譜資料

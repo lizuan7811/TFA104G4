@@ -27,8 +27,8 @@ public interface FinalOrderDao {
 //	新增確定要購買的訂單，新增前須確定已付款
 	public Integer finalOrderInsert(Connection conn,PreparedStatement ps,FinalOrderVO fovo,Boolean isPay);
 //	將消費者訂單資料寫入資料庫的該筆訂單的詳細清單中。
-	public int[] orderListInsert(Connection conn, PreparedStatement ps,Integer idFinalOrder,HashMap<Integer,Integer>finalOrderMap,HashMap<String,IngreVO>ingreHashMap);
+	public int[] orderListInsert(Connection conn, PreparedStatement ps,Integer idFinalOrder,HashMap<Integer,Integer>finalOrderMap);
 
-	public Integer getUserLatestOrderID(Connection conn,PreparedStatement ps,Integer idCustomer,Timestamp ts);
+	public Integer getUserLatestOrderID(Connection conn,PreparedStatement ps,Integer idCustomer);
 
 }
