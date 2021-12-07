@@ -375,15 +375,15 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Group4_db`.`TempOrder`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Group4_db`.`Temporder` (
-  `custID` INT AUTO_INCREMENT NOT NULL COMMENT '會員編號 (custID): int, not null',
-  `ingreID` INT NOT NULL COMMENT '食材編號 (ingreID): int, not null',
+CREATE TABLE IF NOT EXISTS `Group4_db`.`TempOrder` (
+  `idTempOrder` INT AUTO_INCREMENT NOT NULL COMMENT '訂單詳細清單編號 (idTempOrder): int, not null',
+  `idFinalOrder` INT NOT NULL COMMENT '最後訂單ID(idFinalOrdre)int,not null',
+  `idIngre` INT NOT NULL COMMENT '食材編號 (idIngre): int, not null',
   `orderQuan` INT NOT NULL COMMENT '購買數量 (orderQuan): int, not null',
   `price` INT NOT NULL COMMENT '單價 (price): int, not null',
-  PRIMARY KEY (`custID`, `ingreID`),
-  constraint FK_Temporder_id FOREIGN KEY(`ingreID`) REFERENCES Ingre(`idIngre`))
+  PRIMARY KEY (`idTempOrder`),
+  constraint FK_Temporder_id FOREIGN KEY(`idFinalOrderTempOrder`) REFERENCES Ingre(`idIngre`))
 ENGINE = InnoDB;
-
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

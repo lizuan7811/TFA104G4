@@ -72,7 +72,10 @@ public class FinalStaticFile {
 
 //-----以下為訂單使用指令-----
 //	搜尋歷史定單，包括已生成的
-	public final static String FINALORDERALL_SELECT="SELECT * FROM FINALORDER;";
+	public final static String FINALUSERORDER_SELECT="SELECT * FROM FINALORDER WHERE idCustomer = ?;";
+//	搜尋歷史訂單總筆數
+	public final static String FINALORDERCOUNT_SELECT="SELECT COUNT(idFinalOrder) FROM FINALORDER;";
+	
 //	若選擇食譜，需要搜尋該食譜，對照食材取出食材品名及單價
 //	搜尋所有食譜資料
 	public final static String RECIPEALL_SELECT="SELECT * FROM RECIPE;";
@@ -84,11 +87,14 @@ public class FinalStaticFile {
 	public final static String ORDERINGRELIST_INSERT="INSERT INTO ORDERINGRELIST(idOrder,idIngre,orderQuan,price)VALUES(?,?,?,?);";
 //	取得各個食材單價後，計算該訂單的總金額，是否與前端傳的金額相符，若相符則寫入資料庫。	
 //	新增訂單，搜尋材料及價錢，生成訂單(這裡存的只有訂單的列表資料，詳細資料會是在對照表中)，新增前須確定已付款
-	public final static String FINALORDERSG_INSERT="INSERT INTO FINALORDER(idFinalOrder,idCustomer,recipient,recipientAddress,orderAmount,createdTime,shipTime,arrivalTime,footnote)VALUES(?,?,?,?,?,?,?,?,?);";
+	public final static String FINALORDERSG_INSERT="INSERT INTO FINALORDER(idCustomer,recipient,recipientAddress,orderAmount,createdTime,shipTime,arrivalTime,footnote)VALUES(?,?,?,?,?,?,?,?);";
 //  刪除已生成的訂單或歷史訂單
 	public final static String FINALORDERSG_DELETE="DELETE FROM FINALORDER WHERE idFinalOrder = ?;";
-	
+//	搜尋所有食譜食材對照表資料
 	public final static String RECIPEINGRE_SELECT="SELECT * FROM RecipeIngre;";
+//	寫入訂單的詳細清單資料庫
+	public final static String TEMPORDER_INSERT="INSERT INTO TempOrder(idFinalOrder,idIngre,orderQuan,price)VALUES(?,?,?,?);";
+	
 	
 	
 }

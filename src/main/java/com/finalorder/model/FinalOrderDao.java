@@ -11,7 +11,7 @@ import han.RecipeIngre.RecipeIngreVO;
 
 public interface FinalOrderDao {
 //	搜尋所有訂單(尚未完成以及已經完成的都算)
-	public HashMap<String,FinalOrderVO> getHistoOrderHashMap();
+	public HashMap<String,FinalOrderVO> getHistoOrderHashMap(Connection conn,PreparedStatement ps,Integer idCustomer);
 //	public HashMap<String,FinalOrderVO> finalOrderSelect(Connection conn,PreparedStatement ps);
 //	搜尋單個"食譜"的詳細資料
 	public HashMap<String,RecipeVO> getRecipeHashMap();
@@ -22,7 +22,7 @@ public interface FinalOrderDao {
 //	搜尋所有食譜跟食材的對照表資料，一次取得存入記憶體中
 	public HashMap<String,RecipeIngreVO> getRecipeIngreHashMap();
 //	確認是否付款
-	public Boolean isPay(Connection conn,PreparedStatement ps,Integer idFinalOder,BigDecimal payMouney);
+	public Boolean isPay(Connection conn,PreparedStatement ps,FinalOrderVO fovo);
 //	新增確定要購買的訂單，新增前須確定已付款
-	public Integer finalOrderInsert(Connection conn,PreparedStatement ps,Integer idFinalOrder,HashMap<String,FinalOrderVO>finalOrderMap,Boolean isPay);
+	public Integer finalOrderInsert(Connection conn,PreparedStatement ps,FinalOrderVO fovo,Boolean isPay);
 }

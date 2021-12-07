@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import com.basic_tool.controller.Util;
@@ -28,14 +30,15 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 	
 //	產生訂單前，就會將這三個HashMap的物件建構出來
 	public FinalOrderDaoImpl(Connection conn,PreparedStatement ps) {
-		this.histoOrderHashMap=getHistoOrderHashMap(conn,ps);
+		
 		this.recipeHashMap=recipeALLSelect(conn,ps);
 		this.ingreHashMap=ingreAllSelect(conn,ps);
 		this.recipeIngreHashMap=recipeIngreSelect(conn,ps);
 	}
 	
-	public HashMap<String,FinalOrderVO> getHistoOrderHashMap()
+	public HashMap<String,FinalOrderVO> getHistoOrderHashMap(Connection conn,PreparedStatement ps,Integer idCustomer)
 	{
+		this.histoOrderHashMap=getPriveHistoOrderHashMap(conn,ps,idCustomer);
 		return this.histoOrderHashMap;
 	}
 	
@@ -53,11 +56,12 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 		return this.recipeIngreHashMap;
 	}
 //	所有歷史訂單的MAP
-	private HashMap<String, FinalOrderVO> getHistoOrderHashMap(Connection conn, PreparedStatement ps) {
+	private HashMap<String, FinalOrderVO> getPriveHistoOrderHashMap(Connection conn, PreparedStatement ps,Integer idCustomer) {
 		histoOrderHashMap=new HashMap<String,FinalOrderVO>();
 		try {
-			ps=conn.prepareStatement(FinalStaticFile.FINALORDERALL_SELECT);
+			ps=conn.prepareStatement(FinalStaticFile.FINALUSERORDER_SELECT);
 			ResultSet rs=ps.executeQuery();
+			ps.setInt(1,idCustomer);
 			while(rs.next())
 			{
 				Integer tempID=rs.getInt("idFinalOrder");
@@ -154,7 +158,7 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 	
 	
 	@Override
-	public Boolean isPay(Connection conn,PreparedStatement ps,Integer idFinalOder,BigDecimal payMouney) {
+	public Boolean isPay(Connection conn,PreparedStatement ps,FinalOrderVO fovo) {
 		Boolean payCheck=false;
 		
 		
@@ -167,33 +171,27 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 	
 	
 	@Override
-	public Integer finalOrderInsert(Connection conn, PreparedStatement ps,Integer idFinalOrder, HashMap<String, FinalOrderVO> finalOrderMap,Boolean payCheck) {
+	public Integer finalOrderInsert(Connection conn, PreparedStatement ps,FinalOrderVO fovo,Boolean payCheck) {
 //		若傳入的訂單ID與目前紀錄的定單，且確定已經付款完畢，就將建立的訂單寫進資料庫
 		Integer orderInsertCount=0;
+		Calendar cl=Calendar.getInstance();
+		Timestamp ts=new Timestamp(cl.getTimeInMillis());
 		try {
 			conn.setAutoCommit(false);
-			if(finalOrderMap.containsKey(String.valueOf(idFinalOrder)) && payCheck==true) {
+			if(payCheck) {
 				ps=conn.prepareStatement(FinalStaticFile.FINALORDERSG_INSERT);
-				FinalOrderVO finalOrderVO=finalOrderMap.get(String.valueOf(idFinalOrder));
-				
-				ps.setInt(1,idFinalOrder);
-				ps.setInt(2,finalOrderVO.getIdCustomer());
-				ps.setString(3,finalOrderVO.getRecipient());
-				ps.setString(4,finalOrderVO.getRecipientAddress());
-				ps.setBigDecimal(5,finalOrderVO.getOrderAmount());
-				ps.setTimestamp(6,finalOrderVO.getCreatedTime());
-				ps.setTimestamp(7,finalOrderVO.getShipTime());
-				ps.setTimestamp(8,finalOrderVO.getArrivalTime());
-				ps.setString(9, finalOrderVO.getFootnote());
+//				ps.setInt(1,(Integer)null);
+				ps.setInt(1,fovo.getIdCustomer());
+				ps.setString(2,fovo.getRecipient());
+				ps.setString(3,fovo.getRecipientAddress());
+				ps.setBigDecimal(4,fovo.getOrderAmount());
+				ps.setTimestamp(5,ts);
+				ps.setTimestamp(6,ts);
+				ps.setTimestamp(7,null);
+				ps.setString(8, fovo.getFootnote());
 			}else
 			{
-				if(payCheck==false)
-				{
-					System.out.println("未完成付款程序!");
-				}
-				else {
-					System.out.println("未選擇正確的訂單!");
-				}
+				System.out.println("未完成付款程序!");
 				System.out.println("訂單未正確產生!");
 				return 0;
 			}
@@ -217,5 +215,5 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 		return orderInsertCount;
 	}
 	
-	
-}
+
+	}

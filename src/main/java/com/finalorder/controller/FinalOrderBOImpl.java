@@ -28,7 +28,7 @@ public class FinalOrderBOImpl implements FinalOrderBO{
 	public FinalOrderBOImpl(Connection conn,PreparedStatement ps)
 	{
 		fodi=new FinalOrderDaoImpl(conn,ps);
-		histoOrderHashMap=fodi.getHistoOrderHashMap();
+//		histoOrderHashMap=fodi.getHistoOrderHashMap(conn,ps,0);
 		recipeIngreHashMap = fodi.getRecipeIngreHashMap();
 		ingreHashMap=fodi.getIngreHashMap();
 		recipeHashMap=fodi.getRecipeHashMap();
@@ -40,55 +40,57 @@ public class FinalOrderBOImpl implements FinalOrderBO{
 //	計算價錢
 	@Override
 	public BigDecimal buildFinalOrderBO(Connection conn, PreparedStatement ps, JSONObject userBuyObj) {
-		
+		Integer recipeCount=1;
 		BigDecimal tempBD=new BigDecimal(0);
 		BigDecimal totalMoney=new BigDecimal(0);
-		HashMap<String,Object>resMap=new HashMap<String,Object>();
+		HashMap<String,Object>recipeMap=new HashMap<String,Object>();
+		HashMap<String,Object>ingreMap=new HashMap<String,Object>();
 //		JSONObject<String,Object>，前端將{"recipe":{{"食譜編號":食譜數量},{"食譜編號":食譜數量}},"ingre":{{"食材編號":食材數量},{"食材編號":食材數量}}}存入JSONObject物件
 //		傳請求給servlet建立訂單，所以JSONObject物件就會以JSON的格式傳到後端。
 		HashMap<String,Object> userMap=(HashMap<String,Object>)userBuyObj.toMap();
 		//取得記錄在食譜字串的value，這個value是RecipeVO。
-		if(userMap.containsKey("recipe")) {
-			resMap=(HashMap<String, Object>) userMap.get("recipe");
-			for(String key:resMap.keySet())
-			{
+//		if(userMap.containsKey("recipe")) {
+//			recipeMap=(HashMap<String, Object>) userMap.get("recipe");
+//			for(String key:recipeMap.keySet())
+//			{
+//				recipeMap=(HashMap<String, Object>) userMap.get("recipe");
 //				從recipeIngreHashMap中取得idRecipe為101的idIngre及數量資料，存成map集合並回傳
-//				Map<Integer,Integer> tempMp=recipeIngreHashMap.entrySet().stream()
-//						.filter(e->((RecipeIngreVO)e.getValue()).getIdRecipe()==101)
-//						.collect(Collectors.toMap(e->e.getValue().getIdIngre(),e->e.getValue().getIngreQuan()));
 				Map<Integer,Integer> tempMp=recipeIngreHashMap.entrySet().stream()
-				.filter(e->((RecipeIngreVO)e.getValue()).getIdRecipe()==Integer.parseInt(key))
-				.collect(Collectors.toMap(e->e.getValue().getIdIngre(),e->e.getValue().getIngreQuan()));
+						.filter(e->((RecipeIngreVO)e.getValue()).getIdRecipe()==101)
+						.collect(Collectors.toMap(e->e.getValue().getIdIngre(),e->e.getValue().getIngreQuan()));
+//				Map<Integer,Integer> tempMp=recipeIngreHashMap.entrySet().stream()
+//				.filter(e->((RecipeIngreVO)e.getValue()).getIdRecipe()==Integer.parseInt(key))
+//				.collect(Collectors.toMap(e->e.getValue().getIdIngre(),e->e.getValue().getIngreQuan()));
 //				將取得的食譜對應的食材ID及數量，存到MAP中
 				for(Integer itg:tempMp.keySet())
 				{
 					if(!finalOrderHashMap.containsKey(itg))
 					{
-						finalOrderHashMap.put(itg,(Integer)tempMp.get(itg));
+						finalOrderHashMap.put(itg,(Integer)tempMp.get(itg)*recipeCount);
 						System.out.println(itg+"\t"+tempMp.get(itg));
 					}
 					else
 					{
-						finalOrderHashMap.put(itg,(finalOrderHashMap.get(itg)+tempMp.get(itg)));
+						finalOrderHashMap.put(itg,(finalOrderHashMap.get(itg)+tempMp.get(itg)*recipeCount));
 						System.out.println(itg+"\t"+finalOrderHashMap.get(itg)+tempMp.get(itg));
 					}
 					
 				}
-			}
-		}
+//			}
+//		}
 		if(userMap.containsKey("ingre")) {
 //		若key為recipe，就將value中的map取出，再從中間取得key跟value，把取得的數量結果加入到finalorderhashmap中
 //		從使用者傳的資料中拿到key為recipe的value，再從value中(集合中取得的map物件)拿keyset，從每個keyset取得value，value存的是食譜的數量
-			resMap=(HashMap<String,Object>)userMap.get("ingre");
+			ingreMap=(HashMap<String,Object>)userMap.get("ingre");
 			for(String key:userMap.keySet())
 			{
 				if(finalOrderHashMap.containsKey(Integer.parseInt(key)))
 				{
-					finalOrderHashMap.put(Integer.parseInt(key), (Integer)resMap.get(key));
+					finalOrderHashMap.put(Integer.parseInt(key), (Integer)ingreMap.get(key));
 				}
 				else
 				{
-					finalOrderHashMap.put(Integer.parseInt(key), (Integer)(finalOrderHashMap.get(key)+(Integer)resMap.get(key)));
+					finalOrderHashMap.put(Integer.parseInt(key), (Integer)(finalOrderHashMap.get(key)+(Integer)ingreMap.get(key)));
 				}
 			}
 		}
