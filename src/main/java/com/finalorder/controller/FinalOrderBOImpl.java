@@ -33,7 +33,6 @@ public class FinalOrderBOImpl implements FinalOrderBO{
 		ingreHashMap=fodi.getIngreHashMap();
 		recipeHashMap=fodi.getRecipeHashMap();
 		finalOrderHashMap=new HashMap<Integer,Integer>();
-		finalOrderHashMap=new HashMap<Integer,Integer>();
 	}
 	
 	

@@ -55,6 +55,35 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 	{
 		return this.recipeIngreHashMap;
 	}
+	
+	public int[] orderListInsert(Connection conn, PreparedStatement ps,Integer idFinalOrder,HashMap<Integer,Integer>finalOrderMap,HashMap<String,IngreVO>ingreHashMap) {
+		int[] tempInt=null;
+		try {
+			conn.setAutoCommit(false);
+			ps=conn.prepareStatement(FinalStaticFile.ORDERINGRELIST_INSERT);
+			for(Integer key:finalOrderMap.keySet())
+			{
+				ps.setInt(1,idFinalOrder);
+				ps.setInt(2, key);
+				ps.setInt(3,(Integer)finalOrderMap.get(key));
+				ps.setBigDecimal(4, ingreHashMap.get(String.valueOf(key)).getPrice());
+				ps.addBatch();
+			}
+			tempInt=ps.executeBatch();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				conn.setAutoCommit(true);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			System.out.println(tempInt);
+		}
+		return tempInt;
+	}
+	
 //	所有歷史訂單的MAP
 	private HashMap<String, FinalOrderVO> getPriveHistoOrderHashMap(Connection conn, PreparedStatement ps,Integer idCustomer) {
 		histoOrderHashMap=new HashMap<String,FinalOrderVO>();
@@ -214,6 +243,24 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 		}
 		return orderInsertCount;
 	}
-	
+	public Integer getUserLatestOrderID(Connection conn,PreparedStatement ps,Integer idCustomer,Timestamp ts)
+	{
+		Integer userLatestOrderID=0;
+		try {
+			ps=conn.prepareStatement(FinalStaticFile.USERLATESTORDER_SELECT);
+			ps.setInt(1, idCustomer);
+			ps.setTimestamp(2, ts);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				userLatestOrderID=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("userLatestOrderID:"+userLatestOrderID);
+		return userLatestOrderID;
+	}
 
 	}

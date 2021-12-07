@@ -53,13 +53,13 @@ public class TestOrder {
 		Timestamp ts=new Timestamp(cl.getTimeInMillis());
 		FinalOrderVO fovo=new FinalOrderVO(null, 1, "lizuan", "HualianCity",new BigDecimal(85),ts, ts, null,"小心一點");
 		
-		fodi.finalOrderInsert(conn,ps,fovo,true);
+//		fodi.finalOrderInsert(conn,ps,fovo,true);
 		
-		//		buildFinalOrderBO(conn, ps, new JSONObject());
-
+				buildFinalOrderBO(conn, ps, new JSONObject(),fovo);
 	}
 
-	public static void buildFinalOrderBO(Connection conn, PreparedStatement ps, JSONObject userBuyObj) {
+	public static void buildFinalOrderBO(Connection conn, PreparedStatement ps, JSONObject userBuyObj,FinalOrderVO fovo) {
+		FinalOrderDao fodi=new  FinalOrderDaoImpl(conn, ps);
 		Integer recipeCount=1;
 		BigDecimal tempBD=new BigDecimal(0);
 		BigDecimal totalMoney=new BigDecimal(0);
@@ -95,7 +95,6 @@ public class TestOrder {
 						finalOrderHashMap.put(itg,(finalOrderHashMap.get(itg)+tempMp.get(itg)*recipeCount));
 						System.out.println(itg+"\t"+finalOrderHashMap.get(itg)+tempMp.get(itg));
 					}
-					
 				}
 			}
 		}
@@ -123,34 +122,41 @@ public class TestOrder {
 		}
 		System.out.println(totalMoney);
 //		拿到FinalOrderVO物件，裡面有前端傳至後端的此次消費者的消費訂單紀錄
-		FinalOrderVO fovo=(FinalOrderVO) userBuyObj.get("customer");
-		fovo.setOrderAmount(totalMoney);
+//		FinalOrderVO fovo=(FinalOrderVO) userBuyObj.get("customer");
+//		fovo.setOrderAmount(totalMoney);
 //		判斷付款
-		Boolean flag=fodi.isPay(conn,ps,fovo);
+//		Boolean flag=fodi.isPay(conn,ps,fovo);
 //		寫入資料庫
-		fodi.finalOrderInsert(conn,ps,fovo,flag);
+		fodi.finalOrderInsert(conn,ps,fovo,true);
+//		fodi.finalOrderInsert(conn,ps,fovo,flag);
+
+//		取得這筆訂單的ID(FinalOrderid)，然後產生訂單明細
+		System.out.println(fovo.getIdCustomer()+"\t"+fovo.getCreatedTime());
+		Integer idFinalOrder=fodi.getUserLatestOrderID(conn, ps, fovo.getIdCustomer(),fovo.getCreatedTime());
 		
-		
+		fodi.orderListInsert(conn, ps, idFinalOrder, finalOrderHashMap, ingreHashMap);
 //		return totalMoney;
 	}
 	
 //	價格取得後，可先輸入寫入訂單的資料
 //	產生訂單寫入資料庫，要先在資料庫寫入資料，再搜尋資料庫的資料筆數，可以使用select count(id) from table;會比較高效率
-	private static Integer getHistoOrderCount(Connection conn,PreparedStatement ps)
+	private static Integer getUserLatestOrderID(Connection conn,PreparedStatement ps,Integer idCustomer,Timestamp ts)
 	{
-		Integer dataCount=0;
+		Integer userLatestOrderID=0;
 		try {
-			ps=conn.prepareStatement(FinalStaticFile.FINALORDERCOUNT_SELECT);
+			ps=conn.prepareStatement(FinalStaticFile.USERLATESTORDER_SELECT);
+			ps.setInt(1, idCustomer);
+			ps.setTimestamp(2, ts);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
 			{
-				dataCount=rs.getInt(1);
+				userLatestOrderID=rs.getInt(1);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return dataCount;
+		return userLatestOrderID;
 	}
 	
 }
