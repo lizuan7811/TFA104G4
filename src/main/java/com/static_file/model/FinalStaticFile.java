@@ -33,10 +33,16 @@ public class FinalStaticFile {
 	public final static String COMMENTREPORT_ALTER="UPDATE CommentReport SET createdTime=?,reportReason=?,reportResult=? WHERE diaryID = ? and custID = ?;";
 
 	public final static String COMMENTREPORT_INSERT="INSERT INTO CommentReport(commentReportID,diaryID,custID,createdTime,reportReason,reportResult)VALUES(?,?,?,?,?,?);";
-
 //	搜尋留言檢舉表
 	public final static String COMMENTREPORT_SELECT="SELECT * FROM CommentReport WHERE custID = ? and diaryID = ?;";
-
+//	日誌檢舉----------------
+	public final static String DIARYREPORT_ALTER="UPDATE DiaryReport SET createdTime=?,reportReason=?,reportResult=? WHERE diaryID = ? and custID = ?;";
+	
+	public final static String DIARYREPORT_INSERT="INSERT INTO DiaryReport(diaryID,custID,createdTime,reportReason,reportResult)VALUES(?,?,?,?,?);";
+	
+	public final static String DIARYREPORTSG_SELECT="SELECT * FROM DiaryReport WHERE custID = ? and diaryID = ?;";
+	
+	
 //	會員登入後，取得所有文章的每個按讚數，前端網頁使用
 
 //	會員按讚後，資料寫入Jedis

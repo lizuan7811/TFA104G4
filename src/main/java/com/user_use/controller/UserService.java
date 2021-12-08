@@ -19,7 +19,8 @@ public interface UserService {
 ////	每次讀取每次更新
 //	public int selClickService();
 	public Integer serviceCommReport(String diaryID,String custID,String reportReason);
-
+	
+	public Integer serviceDiaryReport(String diaryID,String custID,String reportReason);
 	
 	public Integer serviceAddFriend(String metChoice,Integer custID,Integer myFriendID);
 

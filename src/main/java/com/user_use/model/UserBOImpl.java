@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -21,9 +22,13 @@ import com.static_file.model.FinalStaticFile;
 
 public class UserBOImpl implements UserBO{
 	private UserDaoImpl udl;
+	private Calendar cl;
+	private SimpleDateFormat sdf;
 	public UserBOImpl()
 	{
 		udl=new UserDaoImpl();
+		cl=Calendar.getInstance();
+		sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 	}
 
 	@Override
@@ -85,8 +90,9 @@ public class UserBOImpl implements UserBO{
 			ps.setInt(1, 0);
 			ps.setInt(2,diaryId);
 			ps.setInt(3, custId);
-			Calendar cl=Calendar.getInstance();
-			ps.setTimestamp(4,new Timestamp(cl.getTimeInMillis()));
+//			Calendar cl=Calendar.getInstance();
+//			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			ps.setTimestamp(4,Timestamp.valueOf(sdf.format(cl.getTimeInMillis())));
 			doResult=ps.executeUpdate();
 			if(doResult>0)
 			{
@@ -124,7 +130,7 @@ public class UserBOImpl implements UserBO{
 		}
 	}
 
-//	使用者檢舉
+//	使用者留言檢舉
 	@Override
 	public Integer userCommReport(Connection conn, PreparedStatement ps,String diaryID,String custID, String reportReason) {
 //		先查有沒有資料，有舊覆蓋，沒有就增加。
@@ -137,8 +143,6 @@ public class UserBOImpl implements UserBO{
 			ps.setInt(1, Integer.parseInt(custID));
 			ps.setInt(2, Integer.parseInt(diaryID));
 			rs=ps.executeQuery();
- 			Calendar cl=Calendar.getInstance();
-
 			if(rs.next())
 			{
 //				若有，就用Alter修改資料欄位的值
@@ -167,7 +171,7 @@ public class UserBOImpl implements UserBO{
 				ps.setInt(1, 0);
 				ps.setInt(2, Integer.parseInt(diaryID));
 				ps.setInt(3, Integer.parseInt(custID));
-				ps.setTimestamp(4,new Timestamp(cl.getTimeInMillis()));
+				ps.setTimestamp(4,Timestamp.valueOf(sdf.format(cl.getTimeInMillis())));
 				ps.setString(5, reportReason);
 				ps.setBoolean(6,false);
 				System.out.println("檢舉修改的新增資料:"+diaryID+"\t"+custID+"\t"+new Timestamp(cl.getTimeInMillis())+"\t"+reportReason+"\t"+String.valueOf(false));
@@ -179,17 +183,14 @@ public class UserBOImpl implements UserBO{
 //			try {
 //				conn.rollback();
 //			} catch (SQLException e1) {
-//				// TODO Auto-generated catch block
 //				e1.printStackTrace();
 //			}
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 //			try {
 //				conn.setAutoCommit(true);
 //				System.out.println("執行結束，關閉AutoCommit!");
 //			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
 //				e.printStackTrace();
 //			}
 		}
@@ -197,6 +198,55 @@ public class UserBOImpl implements UserBO{
 		return executeNum;
 	}
 
+//	使用者日誌檢舉
+	@Override
+	public Integer userDiaryReport(Connection conn, PreparedStatement ps,String diaryID,String custID, String reportReason) {
+		boolean flag=false;
+		Integer executeNum=0;
+		ResultSet rs=null;
+		try {
+			ps=conn.prepareStatement(FinalStaticFile.DIARYREPORTSG_SELECT);
+			ps.setInt(1, Integer.parseInt(custID));
+			ps.setInt(2, Integer.parseInt(diaryID));
+			rs=ps.executeQuery();
+//			先查有沒有資料，有舊覆蓋，沒有就增加。
+			if(rs.next())
+			{
+//				若有，就用Alter修改資料欄位的值
+				System.out.println("diaryReport找到該文章及檢舉者，執行修改使用者檢舉資料!");
+				ps=conn.prepareStatement(FinalStaticFile.DIARYREPORT_ALTER);
+				ps.setTimestamp(1,Timestamp.valueOf(sdf.format(cl.getTimeInMillis())));
+				ps.setString(2, reportReason);
+				ps.setBoolean(3, false);
+				ps.setInt(4, Integer.parseInt(diaryID));
+				ps.setInt(5, Integer.parseInt(custID));
+				System.out.println("檢舉修改的輸入資料:"+diaryID+"\t"+custID+"\t"+Timestamp.valueOf(sdf.format(cl.getTimeInMillis()))+"\t"+reportReason+"\t"+String.valueOf(false));
+			}
+			else {
+				System.out.println("commentReport沒找到該文章及檢舉者，執行增加使用者資料!");
+				ps.close();
+				ps=conn.prepareStatement(FinalStaticFile.DIARYREPORT_INSERT);
+				ps.setInt(1, Integer.parseInt(diaryID));
+				ps.setInt(2, Integer.parseInt(custID));
+				ps.setTimestamp(3,Timestamp.valueOf(sdf.format(cl.getTimeInMillis())));
+				ps.setString(4, reportReason);
+				ps.setBoolean(5,false);
+				System.out.println("檢舉修改的新增資料:"+diaryID+"\t"+custID+"\t"+Timestamp.valueOf(sdf.format(cl.getTimeInMillis()))+"\t"+reportReason+"\t"+String.valueOf(false));
+			}
+			executeNum=ps.executeUpdate();
+		} catch (SQLException e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}finally {
+			Util.closeConnection(conn, ps);
+		}
+		return executeNum;
+	}
+	
 	@Override
 	public JSONArray translateToJSON(List<Object> objList) {
 

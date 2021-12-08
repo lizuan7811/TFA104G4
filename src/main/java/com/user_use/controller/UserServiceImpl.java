@@ -80,6 +80,16 @@ public class UserServiceImpl implements UserService{
 
 		return successRow;
 	}
+	
+	@Override
+	public Integer serviceDiaryReport(String diaryID,String custID,String reportReason)
+	{
+		Connection conn=Util.getConnection();
+		PreparedStatement ps=null;
+		int successRow=0;
+		usbo.userDiaryReport(conn,ps,diaryID,custID,reportReason);
+		return successRow;
+	}
 
 	@Override
 	public Integer serviceAddFriend(String metChoice,Integer custID, Integer myFriendID) {

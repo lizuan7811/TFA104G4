@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -200,8 +201,10 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 	public Integer finalOrderInsert(Connection conn, PreparedStatement ps,FinalOrderVO fovo,Boolean payCheck) {
 //		若傳入的訂單ID與目前紀錄的定單，且確定已經付款完畢，就將建立的訂單寫進資料庫
 		Integer orderInsertCount=0;
+		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		Calendar cl=Calendar.getInstance();
-		Timestamp ts=new Timestamp(cl.getTimeInMillis());
+		String tmStr=df.format(cl.getTimeInMillis());
+		Timestamp ts=Timestamp.valueOf(tmStr);
 		try {
 			if(payCheck) {
 				ps=conn.prepareStatement(FinalStaticFile.FINALORDERSG_INSERT);

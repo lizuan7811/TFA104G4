@@ -15,7 +15,7 @@
 
 $(document).ready(function(){
 				$.ajax({
-					url:"userlist",
+					url:"userlist/UserListServlet",
 					data:{"metChoice":"getUserList","usPos":"3"},
 					type:"post",
 					success:function(data){
