@@ -1,0 +1,132 @@
+@import url("header_footer.css");
+
+
+
+main {
+    z-index: 1;
+    position:relative;
+    top: 90px;
+    /* border: solid black; */
+    box-sizing: border-box;
+    width: 100%;
+    height: 550px;
+    background-color:rgb(227, 235, 226);
+}
+
+
+.add_content{
+  
+    height: 90px;
+    width: 680px;
+    right:1px;
+    padding: 0px;
+    margin: 0px auto;
+}
+
+.article_title{
+    width: 690px;
+    height: 35px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.text{
+    width: 690px;
+    height: 250px;
+    max-width: 690ppx;
+    max-height: 250px;
+    border-radius: 5px;
+    resize: none;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.select_type{
+    margin-right: 6px;
+}
+
+.add_pic_1, .add_pic_2, .add_pic_3{
+    /* border: solid black; */
+    /* position: absolute; */
+    margin-top: 5px;
+    display: inline-block;
+}
+
+#view_1, #view_2, #view_3{
+    display: inline-block;
+    width: 110px;
+    height: 110px;
+    max-width: 110px; 
+    max-height: 110px;
+    background-color: rgb(231, 245, 236);
+    border: 1px solid black;
+    margin-left: 10px;
+}
+
+.all_btn{
+    font-size: 16px;
+    position: absolute;
+    /* border: solid black; */
+    right: 320px;
+    bottom: 20px;    
+}
+
+.submit_article{
+    display: inline-block;
+    margin: 10px 0px;
+    width: 230px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #b0f1a3;
+    border: 1px solid rgb(124, 201, 124);
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    color: rgb(97, 96, 96);
+    
+}
+.submit_article:hover{
+    background-color: rgb(102, 245, 102);
+}
+
+#radio input[type="radio"] {
+    display: none; 
+}
+
+#radio input:checked + .button {
+    background: #5e7380; 
+    color: #fff; 
+    cursor: default; 
+
+}
+#radio .button {
+    display: inline-block; 
+    margin: 0 5px 10px 0; 
+    padding: 5px 10px; 
+    background: #f7f7f7; 
+    color: #333; 
+    cursor: pointer; 
+}
+
+#radio .button:hover {
+    background: #bbb;
+     color: #fff; 
+}
+
+#radio .round {
+    border-radius: 5px; 
+}
+
+.info{
+    font-weight: bold;
+    color: rgb(87, 85, 85);
+}
+     
+.error_msg_ul{
+    position: absolute;
+    right: 50px;
+    top: 100px;
+    width: 200px;
+    height: 300px;
+    /* border: solid black; */
+}

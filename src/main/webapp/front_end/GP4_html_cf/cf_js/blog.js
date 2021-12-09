@@ -32,7 +32,14 @@ $(function() {
 		return str;
 	};
 	
-	
+	function servletPath(){
+		var host = window.location.host;
+		var path = window.location.pathname;
+		var webContext = path.substring(0, path.indexOf('/', 1));
+		var serverEndPoint = "/usermethod/UserServlet";
+		var endPointURL = "http://" + window.location.host + webContext + serverEndPoint;
+		return endPointURL;
+	}
 	// 列表中好友的點擊事件
 	// var toFriName;
 	// var toFriID;
@@ -57,7 +64,7 @@ $(function() {
 			alert(friID);
 			// console.log(selfAcc+"\t"+friAcc);
 			$.ajax({
-				url:"usermethod/UserServlet",
+				url:servletPath(),
 				data:{"metChoice":"agreeFriend","custID":5,"myFriendID":friID},
 				type:"POST",
 				datatype:"JSON",
@@ -87,7 +94,7 @@ $(function() {
 			return;
 		}
 		$.ajax({
-			url: "usermethod/UserServlet",
+			url:servletPath(),
 			data: {
 				"metChoice": "friendList",
 				"custID": 5
@@ -127,7 +134,7 @@ $(".aside_list .friend_req").click(function() {
 			return;
 		}
 		$.ajax({
-			url: "usermethod/UserServlet",
+			url: servletPath(),
 			data: {
 				"metChoice": "applyList",
 				"custID": 5
@@ -302,7 +309,7 @@ $(".aside_list .friend_req").click(function() {
 			} else {
 				$(".send_btn").focus();
 			}
-			showMess="<li class=\"mySend\">"+mess+"<p class=\"createdTime\">"+new Date()+"</p></li>";
+			showMess="<li class=\"mySend\">"+mess+"<p class=\"createdTime\">"+new Date().toLocaleString()+"</p></li>";
 			$(".chattxt").append(showMess);
 			$(".input_mesg").val("");
 			$(".input_mesg").focus();
@@ -319,7 +326,7 @@ $(".aside_list .friend_req").click(function() {
 	function readyload()
 	{
 		$.ajax({
-			url:"usermethod/UserServlet",
+			url:servletPath(),
 			data:{"metChoice":"readyLoad"},
 			type:"POST",
 			datatype:"JSON",
