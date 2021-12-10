@@ -1,18 +1,3 @@
-// $(function()
-// {
-// 	var startPage=1;
-// 	var endPage;
-// 	var curPage;
-// 	var limitRows;
-// 	var totoalRows;
-// 	var endRows;
-	
-	
-	
-// });
-
-
-
 $(document).ready(function(){
 				$.ajax({
 					url:"userlist/UserListServlet",

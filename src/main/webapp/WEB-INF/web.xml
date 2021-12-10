@@ -33,4 +33,12 @@
   	<servlet-name>UserServlet</servlet-name>
   	<url-pattern>/usermethod/UserServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>OrderServlet</servlet-name>
+  	<servlet-class>com.finalorder.controller.OrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>OrderServlet</servlet-name>
+  	<url-pattern>/finalorder/OrderServlet</url-pattern>
+  </servlet-mapping>
   </web-app>

@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.Timestamp;
 import java.util.HashMap;
 
+import org.json.JSONObject;
+
 import han.Ingre.IngreVO;
 import han.Recipe.RecipeVO;
 import han.RecipeIngre.RecipeIngreVO;
@@ -25,7 +27,7 @@ public interface FinalOrderDao {
 //	確認是否付款
 	public Boolean isPay(Connection conn,PreparedStatement ps,FinalOrderVO fovo);
 //	新增確定要購買的訂單，新增前須確定已付款
-	public Integer finalOrderInsert(Connection conn,PreparedStatement ps,FinalOrderVO fovo,Boolean isPay);
+	public Integer finalOrderInsert(Connection conn,PreparedStatement ps,JSONObject fovo,Boolean isPay);
 //	將消費者訂單資料寫入資料庫的該筆訂單的詳細清單中。
 	public int[] orderListInsert(Connection conn, PreparedStatement ps,Integer idFinalOrder,HashMap<Integer,Integer>finalOrderMap);
 

@@ -129,7 +129,7 @@ public class TestOrder {
 //		寫入資料庫(交易控制)
 		try {
 			conn.setAutoCommit(false);
-			fodi.finalOrderInsert(conn,ps,fovo,true);
+//			fodi.finalOrderInsert(conn,ps,fovo,true);
 //			fodi.finalOrderInsert(conn,ps,fovo,flag);
 			//		取得這筆訂單的ID(FinalOrderid)，然後產生訂單明細
 			Integer idFinalOrder=fodi.getUserLatestOrderID(conn, ps, fovo.getIdCustomer());

@@ -104,8 +104,8 @@ public class FinalOrderBOImpl implements FinalOrderBO{
 		}
 		System.out.println(totalMoney);
 //		拿到FinalOrderVO物件，裡面有前端傳至後端的此次消費者的消費訂單紀錄
-		FinalOrderVO fovo=(FinalOrderVO) userBuyObj.get("customer");
-		fovo.setOrderAmount(totalMoney);
+		JSONObject fovo=(JSONObject) userBuyObj.get("customer");
+		fovo.put("orderAmount",totalMoney);
 //		判斷付款
 //		Boolean flag=fodi.isPay(conn,ps,fovo);
 //		寫入資料庫
@@ -113,23 +113,35 @@ public class FinalOrderBOImpl implements FinalOrderBO{
 		Integer succNum=0;
 		try {
 			conn.setAutoCommit(false);
+			System.out.println("開始交易");
 			succNum=fodi.finalOrderInsert(conn,ps,fovo,true);
 //			fodi.finalOrderInsert(conn,ps,fovo,flag);
 			//		取得這筆訂單的ID(FinalOrderid)，然後產生訂單明細
-			Integer idFinalOrder=fodi.getUserLatestOrderID(conn, ps, fovo.getIdCustomer());
+			System.out.println("(Integer)fovo.get(\"idCustomer\")"+(Integer)fovo.get("idCustomer"));
+			Integer idFinalOrder=fodi.getUserLatestOrderID(conn, ps,(Integer)fovo.get("idCustomer"));
+			System.out.println("idFinalOrder\t"+idFinalOrder);
 			fodi.orderListInsert(conn, ps, idFinalOrder, finalOrderHashMap);
 			conn.commit();
 		}
 		catch(Exception e)
 		{
+			e.printStackTrace();
 			try {
 				conn.rollback();
-				conn.setAutoCommit(true);
+				
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
+		finally {
+			try {
+				conn.setAutoCommit(true);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+		System.out.println("結束交易");
 		return succNum;
 	}
 }

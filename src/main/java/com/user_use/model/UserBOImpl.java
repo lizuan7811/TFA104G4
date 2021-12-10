@@ -36,7 +36,9 @@ public class UserBOImpl implements UserBO{
 	{
 		JSONArray usJsonArr=new JSONArray();
 		System.out.println(usJsonArr);
-
+//		if(userName==null || String.valueOf(Integer.MIN_VALUE).equals(userName)) {
+//			return null;
+//		}
 		ResultSet rs=udl.selectUsers(conn,ps,userName);
 
 			if(rs!=null)

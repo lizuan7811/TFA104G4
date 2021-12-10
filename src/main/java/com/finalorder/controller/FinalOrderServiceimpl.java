@@ -24,6 +24,7 @@ public class FinalOrderServiceimpl implements FinalOrderService {
 //		前端傳來後端的JSON物件，使用的時候可以先轉為Map型別
 		conn=Util.getConnection();
 		ps=null;
+		fobi=new FinalOrderBOImpl(conn,ps);
 		Integer succNum=fobi.buildFinalOrderBO(conn, ps, userBuyObj);
 		Util.closeConnection(conn, ps);
 		return succNum;

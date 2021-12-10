@@ -38,7 +38,11 @@ public class UserListServlet extends HttpServlet{
 	{
 		UserService usv=new UserServiceImpl();
 //		Integer.parseInt(request.getParameter("usPos"))
-		JSONArray jsonArr=usv.selectUser(""+Integer.MIN_VALUE);
+		JSONArray jsonArr=usv.selectUser(String.valueOf(Integer.MIN_VALUE));
+		if(jsonArr==null)
+		{
+			return;
+		}
 		try {
 			response.setContentType("text/html;charset=utf-8");
 			response.getWriter().write(jsonArr.toString());

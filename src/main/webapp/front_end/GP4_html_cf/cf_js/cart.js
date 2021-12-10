@@ -1,6 +1,7 @@
 
 $(function(){
   var check = false;
+ 
 
 function changeVal(el) {
 var qt = parseFloat(el.parent().children(".qt").html());
@@ -154,12 +155,11 @@ if (state < stateMax) {
 }
 });
 
+
 $(".final_btn").click(function () {
 if (state < stateMax) {
     next();
-
     state += 1;
-
     // Enables 'back' button if disabled
     $("#back").removeClass("disabled");
 
@@ -178,6 +178,8 @@ if (state < stateMax) {
     }
 }
 });
+
+
 
 // $("#back").click(function () {
 // 	if (state > 0) {

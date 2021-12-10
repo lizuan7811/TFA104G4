@@ -18,36 +18,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
+
 import com.google.gson.Gson;
-
-
-
 @WebServlet("/CartServlet")
 public class CartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		
 		System.out.println("Start-ShoppingCart");
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html;charset=UTF-8");
-		
+
 		HttpSession session = req.getSession();
 		Vector<Ingre> cart = (Vector<Ingre>) session.getAttribute("cart");
 		String action = req.getParameter("action");
+		JSONObject jjObj=new JSONObject();
 		Gson gson=new Gson();
-		if (!action.equals("CHECKOUT")) {
+		if (!"CHECKOUT".equals(action)) {
 
 			// 新增食材至購物車中
-			if (action.equals("ADD")) {
+			if ("ADD".equals(action)) {
 				boolean match = false;
 
 				// 取得新增的食材 (名稱 食材描述 價格 數量)
 				Ingre theingre = getIngre(req);
 				String theinGre=gson.toJson(theingre);
-				System.out.println(theinGre);
 				// 第一次進入畫面判斷購物車是否為空  
 				if (cart == null) {
 					//還沒有購物車就創建一個新的購物車 並加入食材
@@ -72,15 +69,13 @@ public class CartServlet extends HttpServlet {
 			}				
 			session.setAttribute("cart", cart);
 			
-			System.out.println("cart=" + cart);
+//			System.out.println("cart=" + cart);
 			
 			String url = "/buyproduct.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
 			
 		}
-		
-
 		// 結帳，計算購物車中的食材價錢總數
 		else if (action.equals("CHECKOUT")) {
 			//如果購物車沒有新增任何商品 將導回原本頁面
@@ -90,18 +85,18 @@ public class CartServlet extends HttpServlet {
 				RequestDispatcher rd = req.getRequestDispatcher(url);
 				rd.forward(req, res);			
 			}
-			
 			BigDecimal total = new BigDecimal(0);
 			for (int i = 0; i < cart.size(); i++) {
 				Ingre order = cart.get(i);
 				BigDecimal price = order.getPrice();
 				int quantity = order.getQuantity();
 				total = total.add(price.multiply(new BigDecimal(quantity)));
+				System.out.println(OrderToJSON.getOrderToJson(order));
+				jjObj=OrderToJSON.getOrderToJson(order);
 			}
-			System.out.println(total);
-			
 			String amount = String.valueOf(total);
 			req.setAttribute("amount", amount);
+//			將JSON格式的食材訂單資料存到request.attribute中
 			String url = "/checkout.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
@@ -127,6 +122,12 @@ public class CartServlet extends HttpServlet {
 //			return;
 //			
 		}
+//		if ("orderMsg".equals(action))
+//		{
+//			String orderMsg=req.getParameter(action);
+//			System.out.println(orderMsg);
+//			
+//		}
 	}
 
 		  
@@ -149,8 +150,6 @@ public class CartServlet extends HttpServlet {
 			return ingre;
 		}
 		
-		
-         
     }
 
 
@@ -179,6 +178,6 @@ public class CartServlet extends HttpServlet {
 //			}
 	
 
-		
+
 
 

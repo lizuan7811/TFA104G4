@@ -25,7 +25,8 @@ public class LoginServlet extends HttpServlet {
 			String username=req.getParameter("main_form_userName");
 			String password=req.getParameter("main_form_Password");
 			System.out.println("username+\" \"+password"+username+" "+password);
-			if(username!=null && password!=null && !String.valueOf(Integer.MIN_VALUE).equals(username) && !String.valueOf(Integer.MIN_VALUE).equals(password))
+			System.out.println("username.equals(String.valueOf(Integer.MIN_VALUE))\t"+username.equals(String.valueOf(Integer.MIN_VALUE)));
+			if(username!=null && password!=null && !"".equals(username) && !"".equals(password))
 			{
 				adminLogin(req,resp,username,password);
 			}

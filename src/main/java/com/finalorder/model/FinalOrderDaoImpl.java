@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import org.json.JSONObject;
+
 import com.basic_tool.controller.Util;
 import com.static_file.model.FinalStaticFile;
 
@@ -61,6 +63,7 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 		int[] tempInt=null;
 		try {
 			ps=conn.prepareStatement(FinalStaticFile.ORDERINGRELIST_INSERT);
+			System.out.println("開始建立訂單!");
 			for(Integer key:finalOrderMap.keySet())
 			{
 				ps.setInt(1,idFinalOrder);
@@ -70,6 +73,7 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 				ps.addBatch();
 			}
 			tempInt=ps.executeBatch();
+			System.out.println("完成訂單建立!");
 		} catch (SQLException e) {
 			try {
 				conn.rollback();
@@ -198,7 +202,7 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 	
 	
 	@Override
-	public Integer finalOrderInsert(Connection conn, PreparedStatement ps,FinalOrderVO fovo,Boolean payCheck) {
+	public Integer finalOrderInsert(Connection conn, PreparedStatement ps,JSONObject fovo,Boolean payCheck) {
 //		若傳入的訂單ID與目前紀錄的定單，且確定已經付款完畢，就將建立的訂單寫進資料庫
 		Integer orderInsertCount=0;
 		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -209,14 +213,14 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 			if(payCheck) {
 				ps=conn.prepareStatement(FinalStaticFile.FINALORDERSG_INSERT);
 //				ps.setInt(1,(Integer)null);
-				ps.setInt(1,fovo.getIdCustomer());
-				ps.setString(2,fovo.getRecipient());
-				ps.setString(3,fovo.getRecipientAddress());
-				ps.setBigDecimal(4,fovo.getOrderAmount());
+				ps.setInt(1,(Integer)fovo.get("idCustomer"));
+				ps.setString(2,(String)fovo.get("recipient"));
+				ps.setString(3,(String)fovo.get("recipientAddress"));
+				ps.setBigDecimal(4,(BigDecimal)fovo.get("orderAmount"));
 				ps.setTimestamp(5,ts);
 				ps.setTimestamp(6,ts);
 				ps.setTimestamp(7,null);
-				ps.setString(8, fovo.getFootnote());
+				ps.setString(8,(String)fovo.get("footnote"));
 			}else
 			{
 				System.out.println("未完成付款程序!");
