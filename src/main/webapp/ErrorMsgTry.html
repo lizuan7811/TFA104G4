@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <title>錯誤訊息練習</title>
+    </head>
+    <body>
+        <div class="errorBlock"></div>
+    </body>
+    <script>
+        $.ajax({
+            url:"error/SendError",
+            data:{},
+            type:"POST",
+            success:function(data){
+                var jsonObj=JSON.parse(data);
+                var str="<ul>";
+                for(var key in jsonObj)
+                {
+                    str=str+"<li>"+jsonObj[key]+"</li>";
+                }
+                str=str+"</ul>";
+                $(".errorBlock").append(str)
+            }
+        })
+    </script>
+</html>

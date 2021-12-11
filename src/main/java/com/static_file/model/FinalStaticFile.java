@@ -42,6 +42,8 @@ public class FinalStaticFile {
 	
 	public final static String DIARYREPORTSG_SELECT="SELECT * FROM DiaryReport WHERE custID = ? and diaryID = ?;";
 	
+	public final static String DIARYREPORT_SELECT="SELECT * FROM DiaryReport;";
+	
 	
 //	會員登入後，取得所有文章的每個按讚數，前端網頁使用
 

@@ -382,7 +382,7 @@ CREATE TABLE IF NOT EXISTS `Group4_db`.`TempOrder` (
   `orderQuan` INT NOT NULL COMMENT '購買數量 (orderQuan): int, not null',
   `price` INT NOT NULL COMMENT '單價 (price): int, not null',
   PRIMARY KEY (`idTempOrder`),
-  constraint FK_Temporder_id FOREIGN KEY(`idFinalOrderTempOrder`) REFERENCES Ingre(`idIngre`))
+  constraint FK_Temporder_id FOREIGN KEY(`idFinalOrder`) REFERENCES Ingre(`idIngre`))
 ENGINE = InnoDB;
 
 

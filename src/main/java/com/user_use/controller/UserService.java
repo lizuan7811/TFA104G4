@@ -3,6 +3,7 @@ package com.user_use.controller;
 import java.util.Map;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 public interface UserService {
 //	增
@@ -25,6 +26,8 @@ public interface UserService {
 	public Integer serviceAddFriend(String metChoice,Integer custID,Integer myFriendID);
 
 	public JSONArray serviceAboutFriend(String metChoice,Integer custID);
+	
+	public JSONArray serviceGetDiaryComms();
 	
 //	public JSONArray serviceAppliedFriend(String metChoice, Integer custID);
 	

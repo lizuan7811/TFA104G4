@@ -1,0 +1,108 @@
+.stage1::after{
+	content:"日誌檢舉管理";
+	margin-left:20px;
+	font-size:20px;
+}
+.icon-controller-play{
+	display:inline-block;
+	color:black;
+	margin-left:10px;
+	font-size: 20px;
+}
+
+table {
+	border-spacing: 0;
+	width: 100%;
+	table-layout: fixed;
+	word-break: break-all;
+}
+
+tr {
+	text-align: center;
+	height: 65px;
+}
+
+td {
+	/* color: red; */
+	text-overflow: ellipsis;
+	/* 將顯示不完的以...顯示 */
+	white-space: nowrap;
+	/* 禁止td換行 */
+	overflow: hidden;
+	/* 隱藏X,Y滾動條 */
+	border-bottom: 1px solid black;
+
+}
+
+th {
+	padding: 10px;
+}
+
+table tbody tr:nth-child(odd) {
+	background-color: #eee
+}
+
+table th{
+	background-color: #8CE600;
+	color: white;
+	font-size: 18px;
+	font-weight: bolder;
+}
+
+/* table tbody tr:last-child td:first-child {
+	border-radius: 0 0 0 5px;
+}
+
+table tbody tr:last-child td:last-child {
+	border-radius: 0 0 5px 0;
+} */
+
+nav ul {
+	margin-top: 20px;
+	font-size: 24px;
+	font-weight: bolder;
+	color: white;
+	text-align: center;
+	}
+	
+	nav ul li {
+		margin-bottom: 15px;
+	}
+	
+	nav ul li a {
+		text-decoration: none;
+		color: white;
+	}
+	
+	nav ul ul {
+		display: none;
+		margin: 0px;
+	}
+	
+	nav ul li:hover>ul {
+		display: block;
+	}
+	
+	nav ul ul li {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	
+	nav ul ul li a {
+		position: absolute;
+		float: none;
+		left: 70px;
+		font-size: 16px;
+		color: red;
+		text-decoration: none;
+	}
+	
+table th:first-child {
+	border-radius: 5px 0 0 0;
+	border: 1px solid #8CE600;
+}
+
+table th:last-child {
+	border-radius: 0 5px 0 0;
+	border-right: 1px solid #8CE600;
+}

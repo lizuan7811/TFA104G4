@@ -1,6 +1,8 @@
 package com.user_use.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +19,7 @@ import com.static_file.model.FinalStaticFile;
 public class UserListServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
+	private UserService usv;
 
 	@Override
 	protected void doPost(HttpServletRequest request,HttpServletResponse response)
@@ -26,6 +29,8 @@ public class UserListServlet extends HttpServlet{
 		if("getUserList".equals(request.getParameter("metChoice")))
 		{
 			getUsList(request,response);
+		}else if("getDiaryComms".equals(request.getParameter("metChoice"))){
+			getDiaryComms(request,response);
 		}
 	}
 	@Override
@@ -46,6 +51,24 @@ public class UserListServlet extends HttpServlet{
 		try {
 			response.setContentType("text/html;charset=utf-8");
 			response.getWriter().write(jsonArr.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private void getDiaryComms(HttpServletRequest request,HttpServletResponse response)
+	{
+		try {
+			usv=new UserServiceImpl();
+			usv.serviceGetDiaryComms();
+			request.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter pw=response.getWriter();
+			pw.write(usv.serviceGetDiaryComms().toString());
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

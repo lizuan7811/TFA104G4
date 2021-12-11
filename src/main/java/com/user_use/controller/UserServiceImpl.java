@@ -147,6 +147,14 @@ public class UserServiceImpl implements UserService{
 		return ansJson;
 	}
 	
+	public JSONArray serviceGetDiaryComms()
+	{
+		Connection conn=Util.getConnection();
+		PreparedStatement ps=null;
+		
+		return usd.getDiaryComms(conn, ps);
+	}
+	
 //	public JSONArray serviceAppliedFriend(String metChoice, Integer custID) {
 ////	被加好友
 //		Connection conn=Util.getConnection();

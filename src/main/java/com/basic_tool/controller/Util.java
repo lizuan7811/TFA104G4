@@ -28,7 +28,6 @@ public class Util {
 //			System.out.println(Util.class.getResource("../../../../")+"lib/jdbc.properties");
 //			is=FileInOutDao.getInputStr(new File("src/main/webapp/WEB-INF/lib/jdbc.properties"));
 			is=FileInOutDao.getInputStr(new File(Util.class.getResource("../../../../").getPath()+"lib/jdbc.properties"));
-//			is=FileInOutDao.getInputStr(new File("src/main/webapp/WEB-INF/lib/jdbc.properties"));
 
 			System.out.println(is==null);
 			System.out.println("JDBC註冊檔讀取正確!\t"+is);

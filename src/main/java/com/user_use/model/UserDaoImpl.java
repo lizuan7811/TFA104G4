@@ -276,7 +276,28 @@ public class UserDaoImpl implements UserDao{
 
 		return null;
 	}
-
+	@Override
+	public JSONArray getDiaryComms(Connection conn, PreparedStatement ps) {
+		JSONArray jsonArr= new JSONArray();
+		try {
+			ps=conn.prepareStatement(FinalStaticFile.DIARYREPORT_SELECT);
+			JSONObject jsonObj=new JSONObject();
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				jsonObj.put("diaryReportID",rs.getInt("diaryReportID"));
+				jsonObj.put("diaryID",rs.getInt("diaryID"));
+				jsonObj.put("custID",rs.getInt("custID"));
+				jsonObj.put("createdTime",rs.getTimestamp("createdTime"));
+				jsonObj.put("reportReason",rs.getString("reportReason"));
+				jsonObj.put("reportResult",rs.getBoolean("reportResult"));
+				jsonArr.put(jsonObj.toMap());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return jsonArr;
+	}
 //	@Override
 //	public JSONArray selectApplied(Connection conn, PreparedStatement ps, Integer custID) {
 ////		申請的 找 被申請的 資料

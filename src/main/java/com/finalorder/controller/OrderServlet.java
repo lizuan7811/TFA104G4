@@ -17,6 +17,7 @@ import com.cart.controller.Ingre;
 import com.cart.controller.OrderToJSON;
 import com.finalorder.model.FinalOrderVO;
 import com.google.gson.Gson;
+import com.pojo.model.UserVO;
 
 public class OrderServlet extends HttpServlet {
 	private FinalOrderService foService;
@@ -53,7 +54,8 @@ public class OrderServlet extends HttpServlet {
 //			FinalOrderVO fovo=gson.fromJson(tempStr,FinalOrderVO.class);
 			JSONObject fovo=new JSONObject(tempStr);
 			System.out.println("fovo\t"+fovo);
-
+//			fovo.put("idCustomer",((UserVO)request.getAttribute("user")).getIdCustomer());
+			fovo.put("idCustomer",5);
 			JSONObject orderObj=new JSONObject();
 			orderObj.put("customer",fovo);
 			executeNum=foService.buildOrderService(orderObj);

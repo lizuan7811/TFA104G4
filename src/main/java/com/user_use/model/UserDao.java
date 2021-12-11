@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.pojo.model.AdminVO;
 
@@ -40,5 +41,5 @@ public interface UserDao {
 	public JSONArray selectFriend(Connection conn,PreparedStatement ps,Integer custID,String sql);
 
 //	public JSONArray selectApplied(Connection conn,PreparedStatement ps,Integer custID);
-	
+	public JSONArray getDiaryComms(Connection conn, PreparedStatement ps);
 }
