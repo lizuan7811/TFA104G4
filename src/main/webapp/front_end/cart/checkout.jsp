@@ -26,6 +26,7 @@
 	Vector<Ingre> cart = (Vector<Ingre>) session.getAttribute("cart");
 	String amount =  (String) request.getAttribute("amount");
 %>	
+
 <%if (cart != null && (cart.size() > 0)) {%>
 		<div class="bottom_box">
         <div class="email_icon"><i class="fas fa-envelope"></i></div>
@@ -103,7 +104,11 @@
 					<div class="content" style="border-top: 5px solid rgb(227, 235, 226);">
 						<a class="remove">
 							<img src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/雞胸肉.jpg" alt="">
-							
+<!--           <form name="deleteForm" action="<%=request.getContextPath()%>/CartServlet" method="POST">
+              <input type="hidden" name="action" value="DELETE">
+              <input type="hidden" name="del" value="<%= index %>">
+              <input type="submit" value="刪除"> -->	
+<!--         	  </form>						 -->
 							<h3>移除商品</h3>
 						</a>
 						<h1><%= order.getName() %></h1><br>
@@ -118,7 +123,7 @@
 							<span class="qt"><%= order.getQuantity() %></span>
 							<span class="qt-plus">+</span>								
 							<h2 class="pp1">單價:</h2><h2 class="price"><%= order.getPrice() %></h2>
-							<h2 class="pp2">總價:</h2><h2 class="full-price"><%=amount%></h2>
+							<h2 class="pp2" style="color: white;">總價:</h2><h2 style="color: white;" class="full-price"><%=amount%></h2>
 						</div>							
 					</div>
 				</article>				
@@ -129,7 +134,7 @@
 	</div> 
 	
 		
-  <jsp:include page="/cart_input_info.jsp" flush="true" />
+  <jsp:include page="/front_end/cart/cart_input_info.jsp" flush="true" />
 
 			<div id="site-footer">
 				<div class="container clearfix">
@@ -147,7 +152,6 @@
               			<input type="submit" name="clear" value="返回商城" class="re_btn" id="del_return" style="display: none; color: rgb(241, 238, 238);"></div>
 						</form>
 <%}%>						
-						
 					</div>
 				</div>	
 			</div>			

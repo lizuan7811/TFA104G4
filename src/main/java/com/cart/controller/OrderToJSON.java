@@ -22,6 +22,7 @@ public class OrderToJSON {
 //			Ingre order = cart.get(i);
 			BigDecimal price = ingreVo.getPrice();
 			int quantity = ingreVo.getQuantity();
+			System.out.println(ingreVo.getIdIngre());
 			total = total.add(price.multiply(new BigDecimal(quantity)));
 			orderM=new HashMap<Integer,Integer>();
 			if(orderM.containsKey(ingreVo.getIdIngre()))

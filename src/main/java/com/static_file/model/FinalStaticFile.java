@@ -102,7 +102,8 @@ public class FinalStaticFile {
 	public final static String RECIPEINGRE_SELECT="SELECT * FROM RecipeIngre;";
 //	寫入訂單的詳細清單資料庫
 //	public final static String TEMPORDER_INSERT="INSERT INTO TempOrder(idFinalOrder,idIngre,orderQuan,price)VALUES(?,?,?,?);";
-	
+//	修改使用者日誌的日誌狀態
+	public final static String FOODDIARY_UPDATE="UPDATE FoodDiary SET diarystatus = ? WHERE diaryID = ? and custID = ?;";
 	
 	
 }

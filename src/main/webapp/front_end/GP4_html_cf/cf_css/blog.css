@@ -2,7 +2,7 @@
 
 
 main {
-    z-index: 10;
+/*     z-index: 10; */
     position:relative;
     top: 90px;
     /* border: solid black; */
@@ -10,6 +10,7 @@ main {
     width: 100%;
     /* height: 1000px; */
     background-color:rgb(227, 235, 226);
+    list-style: none;
 }
 
 .all{
@@ -98,6 +99,8 @@ aside{
     height: 30px;
     color: white;
     background-color: rgb(235, 182, 67);
+	cursor:pointer;
+    z-index: 11;
 }
 
 .send_btn:hover{
@@ -166,4 +169,123 @@ aside{
 
 .all_friend:hover , .friend_req:hover, .return_btn:hover {
     background-color: rgb(161, 197, 179);
+}
+
+.iconlist{
+	/* margin-top:5px; */
+	padding-top:3px;
+}
+
+.all_friend:hover , .friend_req:hover, .return_btn:hover {
+    background-color: rgb(161, 197, 179);
+	cursor: pointer;
+}
+
+.one_friend,.appFri{
+	position:sticky;
+    background-color:rgb(172, 228, 170,0.3); /* Green */
+    border: none;
+    color:black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+	font-weight: bold;
+    width: 75%;
+    height: 25%;
+	line-height:25px;
+    margin-bottom: 3px;
+	float:left;
+}
+.appFri{
+	margin-right:8px;
+}
+
+
+.one_friend:hover,.appFri:hover{
+    background-color:rgb(172, 228, 170,0.7); /* Green */
+    cursor:pointer;
+}
+.icon-user,.icon-bubbles3{
+	display: inline-block;
+	position:sticky;
+	color:lightblue;
+	box-sizing: border-box;
+	border:1px solid lightcyan;
+	font-size: 18px;
+	width:22px;
+	height:22px;
+	right:2px;
+	border-radius: 20%;
+	overflow: hidden;
+	z-index: 11;
+}
+.icon-user-minus,.icon-user-check{
+	display: inline-block;
+	position:sticky;
+	color:lightgray;
+	box-sizing: border-box;
+	border:1px solid lightcyan;
+	font-size: 18px;
+	width:22px;
+	height:22px;
+	right:2px;
+	border-radius: 20%;
+	overflow: hidden;
+	z-index: 11;
+	margin-top: 2px;
+}
+
+.icon-user-minus:hover,.icon-user-check:hover{
+	color:gray;
+}
+
+li{
+	list-style: none;
+}
+
+.icon-user:hover,.icon-bubbles3:hover{
+	color:orange;
+}
+.createdTime{
+	color:lightgray;
+	font-size:12px;
+	/* text-align:right; */
+}
+
+.friSend{
+	width:100%;
+	color:black;
+	font-size:14px;
+}
+
+
+.mySend{
+	width:100%;
+	color:black;
+	font-size:14px;
+	text-align:right;
+}
+.talkBox{
+	width:97%;
+	height:330px;
+	padding-right:3px;
+	overflow-y:scroll;
+}
+
+.talkBox::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #96de6e;
+	z-index:3;
+}
+
+
+.showPic{
+	position:absolute;
+	left:10px;
+	width:25px;
+	height:25px;
+	border-radius: 15px;
+	background-color: #094AB2;
 }

@@ -106,3 +106,10 @@ table th:last-child {
 	border-radius: 0 5px 0 0;
 	border-right: 1px solid #8CE600;
 }
+
+.btnClaz{
+
+	width:80px;
+	height:35px;
+	
+}

@@ -73,7 +73,7 @@
                     <br>
                     <span>發表於  <%= diaryVO.getCreatedTime() %></span>
                     <span class="info_item"><span class="click_times">1314</span> 次點閱</span>
-                    <span class="info_item"><span class="thumbs_up_num">123</span> 人給讚</span>
+                    <span class="info_item"><span class="thumbs_up_num">0</span> 人給讚</span>
                 </div>
                 <div class="like_share_report_btn">
                     <div class="like_btn">

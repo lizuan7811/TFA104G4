@@ -79,8 +79,8 @@ header .search_icon, .QA_icon, .cart_icon{
     color:#474b22; 
 }
 header .search_icon:hover, .QA_icon:hover, .cart_icon:hover{
-    /* background-color: #DAECDC; */
-    color:rgb(135, 199, 129);
+    background-color: white;
+    color:rgb(88, 167, 88);
 }
 
 footer{
@@ -121,4 +121,9 @@ footer #all_rights_reserve{
     color:#474b22;
     font-weight: bold;
     bottom: 5px;
+}
+#submitButton {
+    font-family: FontAwesome;
+    border: 0;
+    background-color: white;   
 }

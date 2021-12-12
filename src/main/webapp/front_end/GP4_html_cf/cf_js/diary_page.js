@@ -14,7 +14,9 @@ $(function(){
 				var commReport=$(".swal2-content input").val();
 				$.ajax({
 					url:"usermethod/UserServlet",
-					data:{"metChoice":"diaryReport","custID":$(".author_name").attr("data-custId"),"diaryID":$(".author_name").attr("data-diaryId"),"reportReason":$(".swal2-content input").val()},
+					data:{"metChoice":"diaryReport","custID":6,"diaryID":2,"reportReason":$(".swal2-content input").val()},
+//					data:{"metChoice":"diaryReport","custID":$(".author_name").attr("data-custId"),"diaryID":$(".author_name").attr("data-diaryId"),"reportReason":$(".swal2-content input").val()},
+
 					type:"POST",
 					success:function(data){
 							console.log("完成送出檢舉!");

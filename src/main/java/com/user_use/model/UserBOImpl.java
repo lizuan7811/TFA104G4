@@ -199,7 +199,32 @@ public class UserBOImpl implements UserBO{
 		Util.closeConnection(conn, ps);
 		return executeNum;
 	}
-
+//	日誌被檢舉需先修改使用者日誌中該日誌的狀態
+	public Integer foodDiaryStatus(Connection conn,PreparedStatement ps,String diaryID,String custID,Boolean diaryStatus)
+	{
+		Integer executeNum=0;
+		try {
+			ps=conn.prepareStatement(FinalStaticFile.FOODDIARY_UPDATE);
+			ps.setBoolean(1, diaryStatus);
+			ps.setInt(2, Integer.parseInt(diaryID));
+			ps.setInt(3, Integer.parseInt(custID));
+			
+			executeNum=ps.executeUpdate();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		return executeNum;
+	}
+	
+	
 //	使用者日誌檢舉
 	@Override
 	public Integer userDiaryReport(Connection conn, PreparedStatement ps,String diaryID,String custID, String reportReason) {
@@ -214,12 +239,12 @@ public class UserBOImpl implements UserBO{
 //			先查有沒有資料，有舊覆蓋，沒有就增加。
 			if(rs.next())
 			{
-//				若有，就用Alter修改資料欄位的值
+//				若有，就用update修改資料欄位的值
 				System.out.println("diaryReport找到該文章及檢舉者，執行修改使用者檢舉資料!");
 				ps=conn.prepareStatement(FinalStaticFile.DIARYREPORT_ALTER);
 				ps.setTimestamp(1,Timestamp.valueOf(sdf.format(cl.getTimeInMillis())));
 				ps.setString(2, reportReason);
-				ps.setBoolean(3, false);
+				ps.setBoolean(3, true);
 				ps.setInt(4, Integer.parseInt(diaryID));
 				ps.setInt(5, Integer.parseInt(custID));
 				System.out.println("檢舉修改的輸入資料:"+diaryID+"\t"+custID+"\t"+Timestamp.valueOf(sdf.format(cl.getTimeInMillis()))+"\t"+reportReason+"\t"+String.valueOf(false));
@@ -232,7 +257,7 @@ public class UserBOImpl implements UserBO{
 				ps.setInt(2, Integer.parseInt(custID));
 				ps.setTimestamp(3,Timestamp.valueOf(sdf.format(cl.getTimeInMillis())));
 				ps.setString(4, reportReason);
-				ps.setBoolean(5,false);
+				ps.setBoolean(5,true);
 				System.out.println("檢舉修改的新增資料:"+diaryID+"\t"+custID+"\t"+Timestamp.valueOf(sdf.format(cl.getTimeInMillis()))+"\t"+reportReason+"\t"+String.valueOf(false));
 			}
 			executeNum=ps.executeUpdate();
@@ -243,8 +268,6 @@ public class UserBOImpl implements UserBO{
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
-		}finally {
-			Util.closeConnection(conn, ps);
 		}
 		return executeNum;
 	}

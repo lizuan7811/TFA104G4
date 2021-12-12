@@ -19,14 +19,38 @@ public class ClearCart extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
     	
-		Enumeration em = req.getSession().getAttributeNames();
-		while(em.hasMoreElements()){
-		req.getSession().removeAttribute(em.nextElement().toString());
-		}
-       
-        //重定向
-        res.sendRedirect(req.getContextPath()+"/buyproduct.jsp");
-        return;
+    	String action = req.getParameter("action");
+    	
+    	if(action.equals("CLEAR")){
+    		Enumeration em = req.getSession().getAttributeNames();
+    		while(em.hasMoreElements()){
+    		req.getSession().removeAttribute(em.nextElement().toString());
+    		}
+
+            //重定向
+            res.sendRedirect(req.getContextPath()+"/front_end/cart/shop.jsp");
+            return;   		
+    	}
+		
+        
+        if (action.equals("SENDORDER")){
+        	try {
+	            Thread thread = Thread.currentThread();
+	            thread.sleep(1500);//在頁面停止1.5秒後 跳轉回商城
+	            
+	            Enumeration em = req.getSession().getAttributeNames();
+	    		while(em.hasMoreElements()){
+	    		req.getSession().removeAttribute(em.nextElement().toString());
+	    		}
+	            //重定向
+	            res.sendRedirect(req.getContextPath()+"/front_end/cart/shop.jsp");
+	            return; 
+  
+	        }catch (InterruptedException e) {
+	            e.printStackTrace();
+	        }
+
+        }
    
          
     }

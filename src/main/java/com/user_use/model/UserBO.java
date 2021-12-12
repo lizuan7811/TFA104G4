@@ -24,6 +24,8 @@ public interface UserBO {
 
 	public JSONArray translateToJSON(List<Object> objList);
 
+	public Integer foodDiaryStatus(Connection conn,PreparedStatement ps,String diaryID,String custID,Boolean diaryStatus);
+	
 	public Integer userDiaryReport(Connection conn, PreparedStatement ps,String diaryID,String custID, String reportReason);
 
 }

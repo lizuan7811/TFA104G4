@@ -26,7 +26,7 @@ public class UserListServlet extends HttpServlet{
 	{
 		Session sess=(Session) request.getAttribute(FinalStaticFile.ADMIN_SESSION);
 		System.out.println("session:"+sess);
-		if("getUserList".equals(request.getParameter("metChoice")))
+		if("getUserList".equals(request.getParameter("metChoice"))&& sess!=null)
 		{
 			getUsList(request,response);
 		}else if("getDiaryComms".equals(request.getParameter("metChoice"))){
