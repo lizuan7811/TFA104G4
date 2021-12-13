@@ -12,7 +12,9 @@
 
 <link rel="stylesheet" type="text/css"	href="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/product.css" />
 <link rel="stylesheet" type="text/css"	href="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/header_footer.css" />
+
 <script src="https://kit.fontawesome.com/a3a545912b.js" crossorigin="anonymous"></script>
+
 <!-- jquery link -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <!-- js link -->
@@ -44,7 +46,7 @@
 			<div class="QA_icon"><i class="far fa-question-circle"></i></div>
 			<!-- 加入購物車 icon -->
 			<form name="checkoutForm"action="<%=request.getContextPath()%>/CartServlet" method="POST">
-            <input class="cart_icon"type="submit" name="Submit" value="&#xf07a" id="submitButton">
+            <input class="cart_icon" type="submit" name="Submit" value="&#xf07a" id="submitButton">
 			<input type="hidden" name="action"value="CHECKOUT">
 			</form>
 			<span class="cart-counter">0</span>

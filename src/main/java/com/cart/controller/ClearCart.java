@@ -30,11 +30,10 @@ public class ClearCart extends HttpServlet {
             //重定向
             res.sendRedirect(req.getContextPath()+"/front_end/cart/shop.jsp");
             return;   		
-    	}
-		
-        
-        if (action.equals("SENDORDER")){
+    	}else if ("SENDORDER".equals(action)){
         	try {
+        		
+        		System.out.println("SENDORDER");
 	            Thread thread = Thread.currentThread();
 	            thread.sleep(1500);//在頁面停止1.5秒後 跳轉回商城
 	            

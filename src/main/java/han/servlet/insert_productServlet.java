@@ -18,7 +18,6 @@ import javax.servlet.http.Part;
 
 import org.json.JSONObject;
 
-import com.basic_tool.controller.*;
 import han.Ingre.IngreDAO;
 import han.Ingre.IngreDAOImpl;
 import han.Ingre.IngreVO;
@@ -45,8 +44,8 @@ public class insert_productServlet extends HttpServlet {
 		Integer idIngreType = Integer.valueOf(req.getParameter("idIngreType"));
 		String name = req.getParameter("name");
 		String descrip = req.getParameter("descrip");
-		BigDecimal purPrice = BigDecimal.valueOf(Double.valueOf(req.getParameter("purPrice")));
-		BigDecimal price =BigDecimal.valueOf(Double.valueOf(req.getParameter("price")));
+		BigDecimal purPrice = new BigDecimal(Integer.valueOf(req.getParameter("purPrice")));
+		BigDecimal price =  new BigDecimal(Integer.valueOf(req.getParameter("price")));
 		String unit = req.getParameter("unit");
 		Integer gran = Integer.valueOf(req.getParameter("gran"));
 		Integer sell = Integer.valueOf(req.getParameter("sell"));

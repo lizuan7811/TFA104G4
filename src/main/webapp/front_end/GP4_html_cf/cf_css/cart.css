@@ -76,7 +76,6 @@ main {
 	position: relative;
     background-color: white;
 	float: right;
-
 	-webkit-transition: margin .2s linear, opacity .2s linear;
 	-moz-transition: margin .2s linear, opacity .2s linear;
 	-ms-transition: margin .2s linear, opacity .2s linear;
@@ -134,7 +133,7 @@ main {
 .qt_all{
 	position: relative;
 	left: 65px;
-	top: 30px;
+	top: 10px;
 }
 
 .pp1, .pp2, .price, .full-price{
@@ -142,7 +141,9 @@ main {
     line-height: 50px;
     
 }
-
+.pp2,.full-price{
+    color:white;
+}
 .price{
     margin-right: 10px;
 }

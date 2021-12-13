@@ -10,13 +10,12 @@
     <link href="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/shop_cf.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/header&footer.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a3a545912b.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="slick-1.8.1\slick\slick.css" />
-    <link rel="stylesheet" href="slick-1.8.1\slick\slick-theme.css" />
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/slick-1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/slick-1.8.1/slick/slick-theme.css" />
    	<title>食健商城</title>
 
 </head>
@@ -64,6 +63,7 @@
         </div>
 
         <div class="top">
+        <form name="shoppingForm" action="<%=request.getContextPath()%>/CartServlet" method="POST">
             <div class="top_item" id="top1">
                 <div id="product_img1" class="top_box1">
                    
@@ -74,18 +74,15 @@
 			
 
                 </div>
-<form name="shoppingForm" action="<%=request.getContextPath()%>/CartServlet" method="POST">
+
                 <div class="top_box3" id="top1_box3">
                 	<input class="top_cart_icon pointer" type="submit" name="Submit" value="&#xf07a" id="submitButton">
                 </div>
                 <div class="top_box4"><a href="<%=request.getContextPath()%>/front_end/cart/buyproduct.jsp">TOP.1</a></div>
-            <input type="hidden" name="name" value="舒肥雞胸肉">
-      		<input type="hidden" name="descrip" value="低溫舒肥，鮮嫩多汁不乾柴。">
-      		<input type="hidden" name="price" value="79"> 
-      		<input type="hidden" name="quantity" size="1" value=1>            
-            <input type="hidden" name="action" value="ADD">	
             </div>
-</form>
+            </form>
+            
+ <form name="shoppingForm" action="<%=request.getContextPath()%>/CartServlet" method="POST">
             <div class="top_item" id="top2">
                 <div class="top_item" id="top1">
                     <div id="product_img2" class="top_box1">
@@ -97,19 +94,14 @@
 						
 
                     </div>
- <form name="shoppingForm" action="<%=request.getContextPath()%>/CartServlet" method="POST">
                     <div class="top_box3" id="top2_box3">
                         <input class="top_cart_icon pointer" type="submit" name="Submit" value="&#xf07a" id="submitButton">
                     </div>
                     <div class="top_box4">TOP.2</div>
                 </div>
-            <input type="hidden" name="name" value="鮭魚切片">
-      		<input type="hidden" name="descrip" value="鮭魚含有豐富的Omega-3脂肪酸，能降低三酸甘油酯，DHA則對大腦與眼睛有益處。">
-      		<input type="hidden" name="price" value="179">  
-      		<input type="hidden" name="quantity" size="1" value=1>          
-            <input type="hidden" name="action" value="ADD">	
             </div>
 </form>
+ <form name="shoppingForm" action="<%=request.getContextPath()%>/CartServlet" method="POST">
             <div class="top_item" id="top3">
                 <div class="top_item" id="top1">
                     <div id="product_img3" class="top_box1">
@@ -118,32 +110,24 @@
                     <div class="top_box2" id="top3_box2">
                         <div id="product_name3" class="top_product"></div>
                         <div id="product_price3" class="top_price"><span id="product_unit3" class="product_unit"></span></div>
-                        
-
- <form name="shoppingForm" action="<%=request.getContextPath()%>/CartServlet" method="POST">
                     </div>
                     <div class="top_box3" id="top3_box3">
                         <input class="top_cart_icon pointer" type="submit" name="Submit" value="&#xf07a" id="submitButton">
                     </div>
                     <div class="top_box4">TOP.3</div>
                 </div>
-            <input type="hidden" name="name" value="高麗菜">
-      		<input type="hidden" name="descrip" value="高麗菜含有維生素B群、維生素C、維生素K、維生素U、鈣、磷、鉀、有機酸、膳食纖維等營養素，其中鈣、鐵、磷的含量在各類蔬菜中名列前五名。">
-      		<input type="hidden" name="price" value="60">  
-      		<input type="hidden" name="quantity" size="1" value=1>          
-            <input type="hidden" name="action" value="ADD">
             </div>
         </div>
 </form>
         <div class="resipe">
             <div class="hotResipe pointer" onclick="location.href='hotRecipe.html'">
                 <div class="hotResipe_box1">熱門食譜</div>
-                <div class="hotResipe_box2"><img id="hotResipe_img" src="img/木板.jpg"></div>
+                <div class="hotResipe_box2"><img id="hotResipe_img" src="<%=request.getContextPath()%>/img/木板.jpg"></div>
             </div>
 
             <div class="resipe_item" id="resipe1">
                 <div class="resipe_box1 pointer">
-                    <img class="resipe_img" src="img/香草烤雞胸.jpg">
+                    <img class="resipe_img" src="<%=request.getContextPath()%>/img/香草烤雞胸.jpg">
                 </div>
                 <div class="resipe_box2" id="resipe1_box2">
                     <div class="resipe_name">香草烤雞胸</div>
@@ -161,7 +145,7 @@
 
             <div class="resipe_item" id="resipe2">
                 <div class="resipe_box1">
-                    <img class="resipe_img" src="img/番茄烘蛋.jpg">
+                    <img class="resipe_img" src="<%=request.getContextPath()%>/img/番茄烘蛋.jpg">
                 </div>
                 <div class="resipe_box2" id="resipe1_box2">
                     <div class="resipe_name">>番茄烘蛋</div>
@@ -178,7 +162,7 @@
 
             <div class="resipe_item" id="resipe3">
                 <div class="resipe_box1">
-                    <img class="resipe_img" src="img/紙包鮭魚.jpg">
+                    <img class="resipe_img" src="<%=request.getContextPath()%>/img/紙包鮭魚.jpg">
                 </div>
                 <div class="resipe_box2" id="resipe1_box2">
                     <div class="resipe_name">紙包鮭魚</div>
@@ -205,22 +189,22 @@
                 </div>
                 <div class="sort_imgs" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
                     <div class="your-class">
-                        <div><img src="product/肉類/台灣安心草蝦/台灣安心草蝦.jpg">
+                        <div><img src="<%=request.getContextPath()%>/product/肉類/台灣安心草蝦/台灣安心草蝦.jpg">
                             <h3>台灣安心草蝦</h3>
                         </div>
-                        <div><img src="product/肉類/挪威薄鹽鯖魚片/挪威薄鹽鯖魚片.jpg">
+                        <div><img src="<%=request.getContextPath()%>/product/肉類/挪威薄鹽鯖魚片/挪威薄鹽鯖魚片.jpg">
                             <h3>挪威薄鹽鯖魚片</h3>
                         </div>
-                        <div><img src="product/肉類/挪威鮭魚切片/挪威鮭魚切片.jpeg">
+                        <div><img src="<%=request.getContextPath()%>/product/肉類/挪威鮭魚切片/挪威鮭魚切片.jpeg">
                             <h3>挪威鮭魚切片</h3>
                         </div>
-                        <div><img src="product/肉類/美國嚴選牛腩切塊/美國嚴選牛腩切塊.jpg">
+                        <div><img src="<%=request.getContextPath()%>/product/肉類/美國嚴選牛腩切塊/美國嚴選牛腩切塊.jpg">
                             <h3>美國嚴選牛腩切塊</h3>
                         </div>
-                        <div><img src="product/肉類/高級去骨雞腿排/高級去骨雞腿排.jpg">
+                        <div><img src="<%=request.getContextPath()%>/product/肉類/高級去骨雞腿排/高級去骨雞腿排.jpg">
                             <h3>高級去骨雞腿排</h3>
                         </div>
-                        <div><img src="product/肉類/高級豬里肌肉/高級豬里肌肉.jpg">
+                        <div><img src="<%=request.getContextPath()%>/product/肉類/高級豬里肌肉/高級豬里肌肉.jpg">
                             <h3>高級豬里肌肉</h3>
                         </div>
                     </div>
@@ -235,22 +219,22 @@
                 </div>
                 <div class="sort_imgs">
                     <div class="your-class">
-                        <div><img src="product/菜類/大坑鮮香菇/大坑鮮香菇.jpg">
+                        <div><img src="<%=request.getContextPath()%>/product/菜類/大坑鮮香菇/大坑鮮香菇.jpg">
                             <h3>大坑鮮香菇</h3>
                         </div>
-                        <div><img src="product/菜類/恆春有機洋蔥/恆春有機洋蔥.jpg">
+                        <div><img src="<%=request.getContextPath()%>/product/菜類/恆春有機洋蔥/恆春有機洋蔥.jpg">
                             <h3>恆春有機洋蔥</h3>
                         </div>
-                        <div><img src="product/菜類/斗南馬鈴薯/斗南馬鈴薯.jpg">
+                        <div><img src="<%=request.getContextPath()%>/product/菜類/斗南馬鈴薯/斗南馬鈴薯.jpg">
                             <h3>斗南馬鈴薯</h3>
                         </div>
-                        <div><img src="product/菜類/機金時栗子地瓜/有機金時栗子地瓜.jpg">
+                        <div><img src="<%=request.getContextPath()%>/product/菜類/機金時栗子地瓜/有機金時栗子地瓜.jpg">
                             <h3>有機金時栗子地瓜</h3>
                         </div>
-                        <div><img src="product/菜類/韓國櫛瓜/韓國櫛瓜.jpg">
+                        <div><img src="<%=request.getContextPath()%>/product/菜類/韓國櫛瓜/韓國櫛瓜.jpg">
                             <h3>韓國櫛瓜</h3>
                         </div>
-                        <div><img src="product/菜類/有機高山高麗菜/有機高山高麗菜.jpg">
+                        <div><img src="<%=request.getContextPath()%>/product/菜類/有機高山高麗菜/有機高山高麗菜.jpg">
                             <h3>有機高山高麗菜</h3>
                         </div>
                     </div>
@@ -265,22 +249,22 @@
                 </div>
                 <div class="sort_imgs">
                     <div class="your-class">
-                        <div><img src="product/水果/台灣在地酪梨/台灣在地酪梨.jpg">
+                        <div><img src="<%=request.getContextPath()%>/product/水果/台灣在地酪梨/台灣在地酪梨.jpg">
                             <h3>台灣在地酪梨</h3>
                         </div>
-                        <div><img src="product/水果/大湖草莓/大湖草莓.jpg">
+                        <div><img src="<%=request.getContextPath()%>/product/水果/大湖草莓/大湖草莓.jpg">
                             <h3>大湖草莓</h3>
                         </div>
-                        <div><img src="product/水果/旗山黃檸檬/旗山黃檸檬.JPG">
+                        <div><img src="<%=request.getContextPath()%>/product/水果/旗山黃檸檬/旗山黃檸檬.JPG">
                             <h3>旗山黃檸檬</h3>
                         </div>
-                        <div><img src="product/水果/有機牛蕃茄/有機牛蕃茄.jpg">
+                        <div><img src="<%=request.getContextPath()%>/product/水果/有機牛蕃茄/有機牛蕃茄.jpg">
                             <h3>有機牛蕃茄</h3>
                         </div>
-                        <div><img src="product/水果/東勢橘子/東勢橘子.jpg">
+                        <div><img src="<%=request.getContextPath()%>/product/水果/東勢橘子/東勢橘子.jpg">
                             <h3>東勢橘子</h3>
                         </div>
-                        <div><img src="product/水果/紐西蘭奇異果/紐西蘭奇異果.jpg">
+                        <div><img src="<%=request.getContextPath()%>/product/水果/紐西蘭奇異果/紐西蘭奇異果.jpg">
                             <h3>紐西蘭奇異果</h3>
                         </div>
 
@@ -306,8 +290,8 @@
         </section>
     </footer>
 
-    <script type="text/javascript" src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_vendors/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="slick-1.8.1\slick\slick.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/slick-1.8.1/slick/slick.js"></script>
     <script src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_js/shop.js"></script>
 
 </body>

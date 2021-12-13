@@ -36,6 +36,7 @@ public class CartServlet extends HttpServlet {
 		String action = req.getParameter("action");
 		JSONObject jjObj=(JSONObject)req.getAttribute("JSONObj")==null?new JSONObject():(JSONObject)req.getAttribute("JSONObj");
 		Gson gson=new Gson();
+		System.out.println(req.getContextPath());
 		if (!"CHECKOUT".equals(action)) {
 
 			// 新增食材至購物車中
@@ -70,8 +71,7 @@ public class CartServlet extends HttpServlet {
 			session.setAttribute("cart", cart);
 			
 //			System.out.println("cart=" + cart);
-			
-			String url = "/buyproduct.jsp";
+			String url ="/front_end/cart/shop.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
 			return;
@@ -82,7 +82,7 @@ public class CartServlet extends HttpServlet {
 			//如果購物車沒有新增任何商品 將導回原本頁面
 			if (cart==null) {
 				req.setAttribute("cart", cart);
-				String url = "/buyproduct.jsp";
+				String url ="/front_end/cart/shop.jsp";
 				RequestDispatcher rd = req.getRequestDispatcher(url);
 				rd.forward(req, res);
 				return;
@@ -101,10 +101,29 @@ public class CartServlet extends HttpServlet {
 			String amount = String.valueOf(total);
 			req.setAttribute("amount", amount);
 //			將JSON格式的食材訂單資料存到request.attribute中
-			String url = "/checkout.jsp";
+			String url ="/front_end/cart/checkout.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
-		}
+		}else if(action.equals("SENDORDER")){
+        	try {
+        		
+        		System.out.println("SENDORDER");
+	            Thread thread = Thread.currentThread();
+	            thread.sleep(1500);//在頁面停止1.5秒後 跳轉回商城
+	            
+	            Enumeration em = req.getSession().getAttributeNames();
+	    		while(em.hasMoreElements()){
+	    		req.getSession().removeAttribute(em.nextElement().toString());
+	    		}
+	            //重定向
+	            res.sendRedirect(req.getContextPath()+"/front_end/cart/shop.jsp");
+	            return; 
+  
+	        }catch (InterruptedException e) {
+	            e.printStackTrace();
+	        }
+
+        }
 		
 //		else if (action.equals("CLEAR")) {
 //			String clear = req.getParameter("clear");
@@ -139,7 +158,7 @@ public class CartServlet extends HttpServlet {
 			String idIngre=req.getParameter("idIngre");
 			String name = req.getParameter("name");
 			String descrip = req.getParameter("descrip");
-//			String photo = req.getParameter("photo");
+			String photo = req.getParameter("photo");
 			String price = req.getParameter("price");
 			String quantity = req.getParameter("quantity");
 
@@ -148,7 +167,7 @@ public class CartServlet extends HttpServlet {
 			ingre.setIdIngre(Integer.valueOf(idIngre));
 			ingre.setName(name);
 			ingre.setDescrip(descrip);
-//			ingre.setPhoto(photo);
+			ingre.setPhoto(photo);
 			ingre.setPrice((BigDecimal.valueOf(Long.valueOf(price))));	
 			ingre.setQuantity((Integer.valueOf(quantity)));
 			return ingre;

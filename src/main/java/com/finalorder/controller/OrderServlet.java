@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.cart.controller.Ingre;
@@ -36,6 +37,15 @@ public class OrderServlet extends HttpServlet {
 		if ("buildOrder".equals(metChoice)) {
 			System.out.println("buildOrders");
 			String tempStr=request.getParameter("orderObj");
+			JSONObject tempStrJson=new JSONObject(tempStr);
+			if("".equals(tempStrJson.get("recipient"))||"".equals(tempStrJson.get("recipientAddress"))||"".equals(tempStrJson.get("footnote"))){
+				try {
+					response.getWriter().write((new JSONObject().put("error", "資料輸入不完全，無法產生訂單!")).toString());
+				} catch (JSONException | IOException e) {
+					e.printStackTrace();
+				}
+				return;
+			}
 			HttpSession session = request.getSession();
 			Vector<Ingre> cart = (Vector<Ingre>) session.getAttribute("cart");
 			String action = request.getParameter("action");

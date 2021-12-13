@@ -19,7 +19,8 @@ import org.json.JSONObject;
 
 import com.mysql.cj.protocol.Resultset;
 
-import com.basic_tool.controller.*;
+import han.Recipe.RecipeDAO;
+import han.Recipe.RecipeDAOImpl;
 import han.Recipe.RecipeVO;
 
 @WebServlet("/Recipeservlet.html")
@@ -29,39 +30,43 @@ public class RecipeServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
 
+		Integer idRecipe = Integer.valueOf(req.getParameter("idRecipe"));
+		System.out.println("接收到前端傳來的資料：" + "idRecipe=" + idRecipe);
+
 		try {
 			req.setCharacterEncoding("utf-8");
 			resp.setContentType("text/html;charset=utf-8");
-
-			Connection conn = Util.getConnection(); // 取得連線
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM RECIPE WHERE IDRECIPE = ?");// 欲執行指令
-			ps.setInt(1, 103);
-			ResultSet rs = ps.executeQuery();
-			RecipeVO recipe = new RecipeVO();
-			while (rs.next()) {
-				recipe.setIdRecipe(rs.getInt("idRecipe"));
-				recipe.setRecipeName(rs.getString("recipeName"));
-				recipe.setDescrip(rs.getString("descrip"));
-				recipe.setText(rs.getString("text"));
-
-			}
-
+			
+			RecipeDAO dao = new RecipeDAOImpl();
+			RecipeVO recipe = dao.findByPK(idRecipe);
+			System.out.println("查詢到資料庫資料:" + recipe.getIdRecipe() + " " + recipe.getRecipeName());
 			req.setAttribute("recipe", recipe);
 
 			JSONObject obj = new JSONObject();
 			obj.put("idRecipe", recipe.getIdRecipe());
-			obj.put("recipeName", recipe.getRecipeName());
+			obj.put("name", recipe.getRecipeName());
 			obj.put("descrip", recipe.getDescrip());
 			obj.put("text", recipe.getText());
-			resp.getWriter().write(obj.toString());
+			obj.put("msg", "success");
+			
+			
+			resp.getWriter().println(obj.toString());
 
-
-
-		} catch (SQLException | IOException e) {
+			
+//			 RequestDispatcher rd = req.getRequestDispatcher("/tbmgf_v1/resipe.html"); 
+//			 rd.forward(req, resp);
+			
+//			resp.sendRedirect("http://localhost:8081/tbmgf_v1/resipe.html");
+			
+			 
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
+
+
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		this.doPost(req, resp);

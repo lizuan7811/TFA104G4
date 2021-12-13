@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.basic_tool.controller.*;
+import com.basic_tool.controller.Util;
+
 
 @WebServlet("/Recipe_BlobServlet")
 public class Recipe_BlobServlet extends HttpServlet {

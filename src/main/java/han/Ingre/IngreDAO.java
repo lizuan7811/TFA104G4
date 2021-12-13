@@ -12,4 +12,8 @@ public interface IngreDAO {
 	public IngreVO findByPK(Integer idIngre);
 	
 	public List<IngreVO> getAll();
+	
+	public List<IngreVO> TOP3();
+	
+	public List<IngreVO> TYPE(Integer idIngreType);
 }

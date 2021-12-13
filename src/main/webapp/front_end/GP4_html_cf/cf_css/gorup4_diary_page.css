@@ -86,7 +86,7 @@ main {
 }
 
 .main_article{
-    border: 1px solid gray;
+    /*border: 1px solid gray;*/
     /* height: 90%; */
     font-size: 16px;
     /* margin: 2px; */
@@ -212,10 +212,5 @@ label span{
 }
 @media screen  and(min-width: 970px){
 	.me{ display: none;}
-}
-
-.swal_input{
-	width: 400px;
-	font-size: 20px;	
 }
 

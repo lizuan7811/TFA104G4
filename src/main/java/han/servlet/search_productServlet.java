@@ -1,7 +1,13 @@
 package han.servlet;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,6 +48,7 @@ public class search_productServlet extends HttpServlet {
 			obj.put("sell", ingre.getSell());
 			obj.put("descrip", ingre.getDescrip());
 			obj.put("launch", ingre.getLaunch());
+			obj.put("msg", "success");
 
 			resp.getWriter().write(obj.toString());
 

@@ -3,6 +3,7 @@ package han.servlet;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,7 +15,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.basic_tool.controller.*;
+
+import com.basic_tool.controller.Util;
 
 
 @WebServlet("/Ingre_BlobServlet")

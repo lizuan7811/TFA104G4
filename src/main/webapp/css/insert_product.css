@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainbox {
+    position: absolute;
+    top: 130px;
+    left: 250px;
+    /* border: solid green; */
+    width: 1000px;
+    /* height: 100%; */
+}
+
+.box1 {
+    /* border: blue 1px solid; */
+    width: 200px;
+    margin-bottom: 15px;
+    /* display: inline; */
+}
+
+.main_left {
+    position: absolute;
+    /* border: 1px solid red; */
+    width: 420px;
+}
+
+#view {
+    width: 400px;
+    height: 225px;
+    border: black 1px solid;
+}
+
+.item_name {
+    font-size: 16px;
+    font-weight: bolder;
+    margin-bottom: 3px;
+    letter-spacing: 5px;
+    display: inline;
+}
+
+.main_right {
+    position: relative;
+    /* border: 1px solid blue; */
+    margin-left: 420px;
+    /* top: 20px; */
+    width: 550px;
+    height: 400px;
+    /* display: inline; */
+}
+
+.main_right_l {
+    position: absolute;
+    /* border: 1px solid black;s */
+    left: 10px;
+    width: 250px;
+    /* display: inline; */
+}
+
+.mian_right_r {
+    position: absolute;
+    /* border: 1px solid red; */
+    left: 300px;
+    width: 200px;
+    /* display: inline; */
+}
+
+.descrip {
+    resize: none;
+    height: 130px;
+    width: 250px;
+}
+
+.insert {
+    position: absolute;
+    right: 100px;
+    width: 100px;
+    height: 30px;
+    font-weight: bolder;
+    /* display: inline; */
+}
+
+.upload_photo {
+    position: absolute;
+    width: 200px;
+    height: 30px;
+    font-weight: bolder;
+}

@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.basic_tool.controller.Util;
 import com.mysql.cj.protocol.Resultset;
 
-import com.basic_tool.controller.*;
 import han.RecipeIngre.RecipeIngreVO;
 
 @WebServlet("/RecipeIngreServlet.html")

@@ -2,6 +2,7 @@ package han.servlet;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -16,6 +17,9 @@ import org.json.JSONObject;
 import han.Recipe.RecipeDAO;
 import han.Recipe.RecipeDAOImpl;
 import han.Recipe.RecipeVO;
+import han.RecipeIngre.RecipeIngreDAO;
+import han.RecipeIngre.RecipeIngreDAOImpl;
+import han.RecipeIngre.RecipeIngreVO;
 
 
 
@@ -40,10 +44,12 @@ public class Insert_RecipeServlet extends HttpServlet {
 		String name = req.getParameter("name");
 		String text = req.getParameter("text");
 		
+		Integer btId = Integer.valueOf(req.getParameter("btId"));
+	
 		Part img = req.getPart("file");
         byte[] photo = getPhoto(img);
         
-        System.out.println("收到前端傳來的資料:" + "idRecipe" + idRecipe);
+        System.out.println("收到前端傳來的資料:" + "idRecipe:" + idRecipe + btId);
         
         RecipeDAO dao = new RecipeDAOImpl();
 		RecipeVO recipe = new RecipeVO();
@@ -57,7 +63,27 @@ public class Insert_RecipeServlet extends HttpServlet {
 		
 		JSONObject obj = new JSONObject();
         resp.getWriter().write(obj.toString());
+        
+        for(int i =1; i<btId;i++) {
+			String idIngreStr = req.getParameter("idIngre"+i);
+			if (idIngreStr == null || Objects.equals(idIngreStr, "")) {
+				continue;
+			}
+			Integer idIngre = Integer.valueOf(idIngreStr);
+			Integer ingreQuan = Integer.valueOf(req.getParameter("number"+i));
+//			System.out.println(idIngre + " " +ingreQuan);
+			RecipeIngreDAO dao1 = new RecipeIngreDAOImpl();
+			RecipeIngreVO RI = new RecipeIngreVO();
+			RI.setIdRecipe(idRecipe);
+			RI.setIdIngre(idIngre);
+			RI.setIngreQuan(ingreQuan);
+			
+			dao1.insert(RI);
+		}
+	
 	}
+	
+	
 	
 	public static byte[] getPhoto(Part part) throws IOException {
         byte[] buffer = new byte[1024];

@@ -7,7 +7,7 @@ public class Ingre implements Serializable {
 	private Integer idIngre;
 	private String name;
 	private String descrip;
-//	private byte[] photo;
+	private String photo;
 	private BigDecimal price;
 	private int quantity;
 	
@@ -15,7 +15,7 @@ public class Ingre implements Serializable {
 		idIngre=null;
 		name = "";
 		descrip = "";
-//		photo = null;
+		photo = null;
 		price = new BigDecimal(0);
 		quantity = 0;		
 	}
@@ -51,13 +51,13 @@ public class Ingre implements Serializable {
 		this.descrip = descrip;
 	}
 
-//	public byte[] getPhoto() {
-//		return photo;
-//	}
-//
-//	public void setPhoto(byte[] photo) {
-//		this.photo = photo;
-//	}
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 
 	public BigDecimal getPrice() {
 		return price;

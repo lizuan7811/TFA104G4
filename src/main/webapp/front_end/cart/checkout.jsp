@@ -28,6 +28,7 @@
 %>	
 
 <%if (cart != null && (cart.size() > 0)) {%>
+
 		<div class="bottom_box">
         <div class="email_icon"><i class="fas fa-envelope"></i></div>
         <br>
@@ -102,13 +103,9 @@
 				<article class="product">
 						
 					<div class="content" style="border-top: 5px solid rgb(227, 235, 226);">
-						<a class="remove">
-							<img src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/雞胸肉.jpg" alt="">
-<!--           <form name="deleteForm" action="<%=request.getContextPath()%>/CartServlet" method="POST">
-              <input type="hidden" name="action" value="DELETE">
-              <input type="hidden" name="del" value="<%= index %>">
-              <input type="submit" value="刪除"> -->	
-<!--         	  </form>						 -->
+						<a class="remove" href="#">
+							<img src="data:image/jpg;base64,<%=order.getPhoto()%>">
+        	  </form>						
 							<h3>移除商品</h3>
 						</a>
 						<h1><%= order.getName() %></h1><br>
@@ -147,10 +144,9 @@
 						<h1 class="total">總金額: <span><%=amount%></span>元</h1>
 						
 						<a class="btn" id="next" style="color: rgb(241, 238, 238);" >下一步</a>
-						<form name="clearForm" action="<%=request.getContextPath()%>/ClearCart" method="GET">
 						<input type="hidden" name="action" value="CLEAR">
               			<input type="submit" name="clear" value="返回商城" class="re_btn" id="del_return" style="display: none; color: rgb(241, 238, 238);"></div>
-						</form>
+
 <%}%>						
 					</div>
 				</div>	

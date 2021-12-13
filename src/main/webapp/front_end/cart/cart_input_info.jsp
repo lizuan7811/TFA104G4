@@ -7,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_js/cartPay.js"></script>
+<%-- <script src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_js/cartPay.js"></script> --%>
+<script src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_js/cart.js"></script>
 <title>Insert title here</title>
 </head>
 <body onload="shownum()">
@@ -24,13 +25,7 @@
 			<ul class="pay_radio">
 				<li><input type="radio" class="rto" name="pay" id="card_info" value="1">信用卡付款</li>
 				<li><input type="radio" class="rto" name="pay" value="宅配貨到付款">宅配貨到付款</li>
-				<!-- <li class="pay_btn"> <button class="paybtn" style="width:150px;height:30px;">確認</button></li> -->
 			</ul>
-<!-- 			<ul class="pay_radio"> -->
-<!-- 				<li><input type="checkbox" name="pay" id="card_info" value="1" onclick="return chk(this);">信用卡付款</li> -->
-<!-- 				<li><input type="checkbox" name="pay" value="宅配貨到付款">宅配貨到付款</li> -->
-<!-- 				<li class="pay_btn"> <button class="paybtn" style="width:150px;height:30px;">確認</button></li> -->
-<!-- 			</ul> -->
 			<ul  class="pay_method">
 				<li> <span style="color: red;">*</span> 收件人資訊</li>
 			</ul>
@@ -41,11 +36,9 @@
 				<li>備註: <input class="paytxt payComm" type="text"> </li>
 			</ul>
 			<form name="clearForm" action="<%=request.getContextPath()%>/ClearCart" method="GET">
-						<input type="hidden" name="action" value="SENDORDER">
-              			<input type="submit" name="clear" value="送出訂單" class="final_btn" style="color: rgb(241, 238, 238);" id="del_return" ></div>
+				<input type="hidden" name="action" value="SENDORDER">
+              	<input type="submit" name="clear" value="送出訂單" class="final_btn" style="color: rgb(241, 238, 238)" id="del_return" >
 			</form>
-			<button class="final_btn" style="color: rgb(241, 238, 238);">送出訂單</button>				
-			
 
 		</div> 
 
