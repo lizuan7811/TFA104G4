@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 
 import org.json.JSONArray;
@@ -151,5 +152,10 @@ public class FileWorkDaoImpl {
 			e2.printStackTrace();
 		}
 		return jsonArr;
+	}
+	public static String photoToBase64Str(byte[] photo) {
+		Base64.Encoder bsEncode=Base64.getEncoder();
+		String photoStr=bsEncode.encodeToString(photo);
+		return photoStr;
 	}
 }

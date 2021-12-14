@@ -44,6 +44,9 @@ public class FinalStaticFile {
 	
 	public final static String DIARYREPORT_SELECT="SELECT * FROM DiaryReport;";
 	
+//	搜尋日誌
+	public final static String FOODDIARY_SELECT="select fd.*,ct.* from FoodDiary fd join Customer ct on fd.custID=ct.idCustomer where diaryStatus=1;";
+	
 	
 //	會員登入後，取得所有文章的每個按讚數，前端網頁使用
 

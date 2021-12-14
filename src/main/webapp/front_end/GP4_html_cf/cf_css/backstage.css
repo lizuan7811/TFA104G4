@@ -77,8 +77,12 @@ main {
 .mainbox {
     position: absolute;
     top: 110px;
-    left: 250px;
+    left: 210px;
     /* border: solid green; */
-    width: 1000px;
+    width: 900px;
     /* height: 100%; */
+}
+.picSize{
+    width:200px;
+    height:200px;
 }

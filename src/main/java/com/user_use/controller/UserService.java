@@ -29,6 +29,8 @@ public interface UserService {
 	
 	public JSONArray serviceGetDiaryComms();
 	
+	public JSONObject serviceGetDiaryReported();
+
 //	public JSONArray serviceAppliedFriend(String metChoice, Integer custID);
 	
 	

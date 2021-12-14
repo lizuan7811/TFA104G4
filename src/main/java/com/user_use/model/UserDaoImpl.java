@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import com.basic_tool.controller.BaseDao;
 import com.basic_tool.controller.BaseDaoImpl;
+import com.basic_tool.controller.FileWorkDaoImpl;
 import com.mysql.cj.util.Base64Decoder;
 import com.pojo.model.AdminVO;
 import com.pojo.model.CustomerVO;
@@ -298,6 +299,45 @@ public class UserDaoImpl implements UserDao{
 		}
 		return jsonArr;
 	}
+	
+	public JSONObject getDiaryReported(Connection conn,PreparedStatement ps)
+	{
+		JSONObject jsonOutObj=new JSONObject();
+		try {
+			ps=conn.prepareStatement(FinalStaticFile.FOODDIARY_SELECT);
+			ResultSet rs=ps.executeQuery();
+			JSONObject jsonObj=new JSONObject();
+			
+			while(rs.next())
+			{
+				jsonObj.clear();
+
+				jsonObj.put("diaryID",rs.getInt("diaryID"));
+				jsonObj.put("custID",rs.getInt("custID"));
+				jsonObj.put("subject",rs.getString("subject"));
+				jsonObj.put("text",rs.getString("text"));
+				jsonObj.put("fd_createdTime",rs.getTimestamp("fd.createdTime"));
+				jsonObj.put("ct_createdTime",rs.getTimestamp("ct.createdTime"));
+				String photoStr=FileWorkDaoImpl.photoToBase64Str(rs.getBytes("photo_video_1"));
+				jsonObj.put("photo",photoStr);
+				jsonObj.put("diaryStatus",rs.getBoolean("diaryStatus"));
+				jsonObj.put("nickName",rs.getString("nickName"));
+				jsonObj.put("email",rs.getString("email"));
+				jsonObj.put("diaryReportedNum",rs.getString("diaryReportedNum"));
+				jsonOutObj.put(String.valueOf(rs.getInt("diaryID")),jsonObj.toMap());
+//				jsonObj.put("diaryType",rs.getInt("diaryType"));
+
+//				jsonObj.put("account",rs.getString("account"));
+//				jsonObj.put("phone",rs.getString("phone"));
+			}
+			System.out.println(jsonOutObj);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return jsonOutObj;
+	}
+	
 //	@Override
 //	public JSONArray selectApplied(Connection conn, PreparedStatement ps, Integer custID) {
 ////		申請的 找 被申請的 資料

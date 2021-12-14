@@ -42,4 +42,6 @@ public interface UserDao {
 
 //	public JSONArray selectApplied(Connection conn,PreparedStatement ps,Integer custID);
 	public JSONArray getDiaryComms(Connection conn, PreparedStatement ps);
+	
+	public JSONObject getDiaryReported(Connection conn,PreparedStatement ps);
 }

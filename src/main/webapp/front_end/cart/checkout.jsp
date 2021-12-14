@@ -123,6 +123,8 @@
 							<h2 class="pp2" style="color: white;">總價:</h2><h2 style="color: white;" class="full-price"><%=amount %></h2>
 						</div>							
 					</div>
+					<script type="text/javascript">
+					</script>
 				</article>				
 			</div>	
 				

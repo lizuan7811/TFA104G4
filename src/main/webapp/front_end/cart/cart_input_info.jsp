@@ -15,11 +15,11 @@
 		Vector<Ingre> cart = (Vector<Ingre>) session.getAttribute("cart");
 		String amount =  (String) request.getAttribute("amount");
 	%>
-		<div id="pay_info">
+				<div id="pay_info">
 			<ul class="pay_method">
 				<li> <span style="color: red;">*</span> 付款方式</li>
 			</ul>
-	<form name="clearForm" action="<%=request.getContextPath()%>/ClearCart" method="GET">
+	
 			<ul class="pay_radio">
 				<li><input type="radio" class="rto" name="pay" id="card_info" value="1">信用卡付款</li>
 				<li><input type="radio" class="rto" name="pay" value="宅配貨到付款">宅配貨到付款</li>
@@ -33,10 +33,10 @@
 				<li>備註: <input name="payComm" class="paytxt payComm" type="text"> </li>
 				
 			</ul>
+			<form name="clearForm" action="<%=request.getContextPath()%>/ClearCart" method="GET">
 				<input type="hidden" name="action" value="SENDORDER">
               	<input type="submit" name="clear" value="送出訂單" class="final_btn" style="color: rgb(241, 238, 238)" id="del_return" >
 			</form>
-
 		</div> 
 
 </body>

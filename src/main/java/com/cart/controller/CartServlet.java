@@ -30,7 +30,6 @@ public class CartServlet extends HttpServlet {
 		System.out.println("Start-ShoppingCart");
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html;charset=UTF-8");
-
 		HttpSession session = req.getSession();
 		Vector<Ingre> cart = (Vector<Ingre>) session.getAttribute("cart");
 		String action = req.getParameter("action");

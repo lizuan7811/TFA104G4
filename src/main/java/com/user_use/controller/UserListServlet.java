@@ -31,6 +31,9 @@ public class UserListServlet extends HttpServlet{
 			getUsList(request,response);
 		}else if("getDiaryComms".equals(request.getParameter("metChoice"))){
 			getDiaryComms(request,response);
+		}else if("DiaryReported".equals(request.getParameter("metChoice")))
+		{
+			getDiaryReported(request,response);
 		}
 	}
 	@Override
@@ -67,13 +70,26 @@ public class UserListServlet extends HttpServlet{
 			PrintWriter pw=response.getWriter();
 			pw.write(usv.serviceGetDiaryComms().toString());
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	private void getDiaryReported(HttpServletRequest request,HttpServletResponse response)
+	{
 
+		try {
+			usv=new UserServiceImpl();
+			request.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter pw=response.getWriter();
+			pw.write(usv.serviceGetDiaryReported().toString());
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 }
