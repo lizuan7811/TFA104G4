@@ -16,7 +16,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 	<!-- 載入js -->
-	<script src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_js/cart.js"></script>
+	<script src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_js/cars.js"></script>
 
 
 </head>
@@ -116,11 +116,11 @@
 		
 					<div class="content">
 						<div class="qt_all">
-							<span class="qt-minus">-</span>
-							<span class="qt"><%= order.getQuantity() %></span>
+							<span class="qt-minus">-</span><input type="hidden" name="idIngre" class="idIngre" value="<%=order.getIdIngre()%>">
+							<span class="qt" quan="<%= order.getQuantity() %>"><%= order.getQuantity() %></span>
 							<span class="qt-plus">+</span>								
 							<h2 class="pp1">單價:</h2><h2 class="price"><%= order.getPrice() %></h2>
-							<h2 class="pp2" style="color: white;">總價:</h2><h2 style="color: white;" class="full-price"><%=amount%></h2>
+							<h2 class="pp2" style="color: white;">總價:</h2><h2 style="color: white;" class="full-price"><%=amount %></h2>
 						</div>							
 					</div>
 				</article>				
@@ -141,11 +141,12 @@
 					</div> -->
 	
 					<div class="right">
-						<h1 class="total">總金額: <span><%=amount%></span>元</h1>
+						<h1 class="total">總金額: <span><%=amount %></span>元</h1>
 						
 						<a class="btn" id="next" style="color: rgb(241, 238, 238);" >下一步</a>
 						<input type="hidden" name="action" value="CLEAR">
-              			<input type="submit" name="clear" value="返回商城" class="re_btn" id="del_return" style="display: none; color: rgb(241, 238, 238);"></div>
+						<input type="hidden" name="amount" value=amount>
+			 			<input type="submit" name="clear" value="返回商城" class="re_btn" id="del_return" style="display: none; color: rgb(241, 238, 238);"></div>
 
 <%}%>						
 					</div>

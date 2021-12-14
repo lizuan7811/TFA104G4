@@ -1,5 +1,5 @@
-
 $(function(){
+		
   var check = false;
 
 function changeVal(el) {
@@ -8,7 +8,6 @@ var price = parseFloat(el.parent().children(".price").html());
 var eq = Math.round(price * qt * 100) / 100;
 
 el.parent().children(".full-price").html( eq + "元" );
-
 changeTotal();			
 }
 
@@ -50,7 +49,6 @@ window.setTimeout(
           $("#del_return").css("display", "block");  
         }
       }
-      
     });
   }, 200);
 });
@@ -62,10 +60,7 @@ $(".btn").on("click", function(){
 })
 
 $(".final_btn").on("click", function(){
-    if(getPayDetail()==null)
-    {
-      return;
-    }
+	getPayDetail();
     Swal.fire({ position: 'center',
               icon: 'success',
               title: '訂單已確認送出!',
@@ -93,6 +88,7 @@ $(this).parent().children(".qt").html(parseInt($(this).parent().children(".qt").
 $(this).parent().children(".full-price").addClass("added");
 
 var el = $(this);
+$(".qt").attr("quan",parseInt($(this).parent().children(".qt").html()));
 window.setTimeout(function(){el.parent().children(".full-price").removeClass("added"); changeVal(el);}, 150);
 });
 
@@ -102,6 +98,7 @@ child = $(this).parent().children(".qt");
 
 if(parseInt(child.html()) > 1) {
   child.html(parseInt(child.html()) - 1);
+	$(".qt").attr("quan",parseInt($(this).parent().children(".qt").html()));
 }
 
 $(this).parent().children(".full-price").addClass("minused");
@@ -157,11 +154,12 @@ if (state < stateMax) {
 }
 });
 
-
 $(".final_btn").click(function () {
 if (state < stateMax) {
     next();
+
     state += 1;
+
     // Enables 'back' button if disabled
     $("#back").removeClass("disabled");
 
@@ -180,8 +178,6 @@ if (state < stateMax) {
     }
 }
 });
-
-
 
 // $("#back").click(function () {
 // 	if (state > 0) {
@@ -220,12 +216,13 @@ var path = window.location.pathname;
 var webContext = path.substring(0, path.indexOf('/', 1));
 
 var getPayDetail = function() {
-	$(".final_btn").click(function() {
 		payName = $(".payName").val();
 		payAddr = $(".payAddr").val();
 		payComm = $(".payComm").val();
-		if(chk()!="" && payName != "" && payAddr!= "" && payComm!= "")
+		if(chk()=="" || payName.trim() == "" || payAddr.trim()== "" || payComm.trim()== "")
 		{
+			return null;
+		}
 		mp.set("recipient", payName);
 		mp.set("recipientAddress", payAddr);
 		mp.set("footnote", payComm);
@@ -239,13 +236,12 @@ var getPayDetail = function() {
 			data:{"action":"SENDORDER"},
 			type:"GET",
 			success:function(){
-			window.location.href ="http://"+ window.location.host+webContext+"/front_end/cart/shop.jsp";
+//			window.location.href ="http://"+ window.location.host+webContext+"/front_end/cart/shop.jsp";
 			}
 		})
-	}else{
-		return null;
-	};		
-	})
+//	}else{
+//		return null;
+//	};		
 };
 // 監視ratio的input動作
 var chk = function() {
@@ -276,7 +272,7 @@ var sendOrderMsg = function(orderMp) {
 // 從map轉物件函式
 var mapToJson = function(mapObject) {
 	let obj = Object.create(null);
-	for (let [k, v] of mp) {
+	for (let [k, v] of mapObject) {
 		obj[k] = v;
 	}
 	return obj;
@@ -287,3 +283,10 @@ function servletPath() {
 	let endPointURL = "http://" + window.location.host + webContext + serverEndPoint;
 	return endPointURL;
 } 
+//var mapP=new Map();
+//function getIN(){
+//	var idIng=$(".idIngre").attr("value");
+//	var quan=$(".qt_all .qt").attr("quan");
+//	mapP.set(idIng,quan);
+// 	console.log(JSON.stringify(mapToJson(mapP)));
+//}

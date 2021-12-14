@@ -20,8 +20,13 @@ public class ClearCart extends HttpServlet {
             throws ServletException, IOException {
     	
     	String action = req.getParameter("action");
-    	
+    
+    	if("".equals(req.getParameter("pay"))||"".equals(req.getParameter("payName"))||"".equals(req.getParameter("payAddr"))||"".equals(req.getParameter("payComm"))){
+			req.getRequestDispatcher("/CartServlet").forward(req, res);
+			return ;
+		}
     	if(action.equals("CLEAR")){
+    		
     		Enumeration em = req.getSession().getAttributeNames();
     		while(em.hasMoreElements()){
     		req.getSession().removeAttribute(em.nextElement().toString());
@@ -32,7 +37,6 @@ public class ClearCart extends HttpServlet {
             return;   		
     	}else if ("SENDORDER".equals(action)){
         	try {
-        		
         		System.out.println("SENDORDER");
 	            Thread thread = Thread.currentThread();
 	            thread.sleep(1500);//在頁面停止1.5秒後 跳轉回商城

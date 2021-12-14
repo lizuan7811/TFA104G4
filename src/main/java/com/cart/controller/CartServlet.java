@@ -36,7 +36,6 @@ public class CartServlet extends HttpServlet {
 		String action = req.getParameter("action");
 		JSONObject jjObj=(JSONObject)req.getAttribute("JSONObj")==null?new JSONObject():(JSONObject)req.getAttribute("JSONObj");
 		Gson gson=new Gson();
-		System.out.println(req.getContextPath());
 		if (!"CHECKOUT".equals(action)) {
 
 			// 新增食材至購物車中
@@ -104,26 +103,7 @@ public class CartServlet extends HttpServlet {
 			String url ="/front_end/cart/checkout.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
-		}else if(action.equals("SENDORDER")){
-        	try {
-        		
-        		System.out.println("SENDORDER");
-	            Thread thread = Thread.currentThread();
-	            thread.sleep(1500);//在頁面停止1.5秒後 跳轉回商城
-	            
-	            Enumeration em = req.getSession().getAttributeNames();
-	    		while(em.hasMoreElements()){
-	    		req.getSession().removeAttribute(em.nextElement().toString());
-	    		}
-	            //重定向
-	            res.sendRedirect(req.getContextPath()+"/front_end/cart/shop.jsp");
-	            return; 
-  
-	        }catch (InterruptedException e) {
-	            e.printStackTrace();
-	        }
-
-        }
+		}
 		
 //		else if (action.equals("CLEAR")) {
 //			String clear = req.getParameter("clear");
@@ -152,8 +132,6 @@ public class CartServlet extends HttpServlet {
 //			
 //		}
 	}
-
-		  
 		private Ingre getIngre(HttpServletRequest req) {
 			String idIngre=req.getParameter("idIngre");
 			String name = req.getParameter("name");
@@ -172,6 +150,18 @@ public class CartServlet extends HttpServlet {
 			ingre.setQuantity((Integer.valueOf(quantity)));
 			return ingre;
 		}
+		
+		protected void doGet(HttpServletRequest request , HttpServletResponse response)
+		{
+			try {
+				this.doPost(request, response);
+			} catch (ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
 		
     }
 
@@ -200,7 +190,7 @@ public class CartServlet extends HttpServlet {
 //				}
 //			}
 	
-
+	
 
 
 

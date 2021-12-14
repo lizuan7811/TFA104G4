@@ -87,11 +87,11 @@
 					<span class="plus"><i class="fas fa-plus-square"></i></span>
 					<input class="buy_icon" type="submit" value="放入購物車">
 				</div>
-				<input type="hidden" name="idIngre" value="107">
-				<input type="hidden" name="name" value="舒肥雞胸肉">
-				<input type="hidden" name="descrip" value="低溫舒肥，鮮嫩多汁不乾柴。">
-				<input type="hidden" name="price" value="79">
-				<input type="hidden" name="action" value="ADD_ONE">
+<!-- 				<input type="hidden" name="idIngre" value="107"> -->
+<!-- 				<input type="hidden" name="name" value="舒肥雞胸肉"> -->
+<!-- 				<input type="hidden" name="descrip" value="低溫舒肥，鮮嫩多汁不乾柴。"> -->
+<!-- 				<input type="hidden" name="price" value="79"> -->
+<!-- 				<input type="hidden" name="action" value="ADD_ONE"> -->
 		</form>
 
 

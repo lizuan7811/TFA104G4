@@ -12,12 +12,13 @@ var path = window.location.pathname;
 var webContext = path.substring(0, path.indexOf('/', 1));
 
 var getPayDetail = function() {
-	$(".final_btn").click(function() {
 		payName = $(".payName").val();
 		payAddr = $(".payAddr").val();
 		payComm = $(".payComm").val();
-		if(chk()!="" && payName != "" && payAddr!= "" && payComm!= "")
+		if(chk()=="" || payName.trim() == "" || payAddr.trim()== "" || payComm.trim()== "")
 		{
+			return null;
+		}
 		mp.set("recipient", payName);
 		mp.set("recipientAddress", payAddr);
 		mp.set("footnote", payComm);
@@ -31,13 +32,12 @@ var getPayDetail = function() {
 			data:{"action":"SENDORDER"},
 			type:"GET",
 			success:function(){
-			window.location.href ="http://"+ window.location.host+webContext+"/front_end/cart/shop.jsp";
+//			window.location.href ="http://"+ window.location.host+webContext+"/front_end/cart/shop.jsp";
 			}
 		})
-	}else{
-		return;
-	};		
-	})
+//	}else{
+//		return null;
+//	};		
 };
 // 監視ratio的input動作
 var chk = function() {

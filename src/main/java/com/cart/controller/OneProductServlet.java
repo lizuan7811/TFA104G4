@@ -123,7 +123,7 @@ public class OneProductServlet extends HttpServlet {
 			String idIngre=req.getParameter("idIngre");
 			String name = req.getParameter("name");
 			String descrip = req.getParameter("descrip");
-//			String photo = req.getParameter("photo");
+			String photo = req.getParameter("photo");
 			String price = req.getParameter("price");
 			String quantity = req.getParameter("quantity");
 
@@ -132,7 +132,7 @@ public class OneProductServlet extends HttpServlet {
 			ingre.setIdIngre(Integer.valueOf(idIngre));
 			ingre.setName(name);
 			ingre.setDescrip(descrip);
-//			ingre.setPhoto(photo);
+			ingre.setPhoto(photo);
 			ingre.setPrice(BigDecimal.valueOf(Long.valueOf(price)));	
 			ingre.setQuantity(Integer.valueOf(quantity));
 			return ingre;
