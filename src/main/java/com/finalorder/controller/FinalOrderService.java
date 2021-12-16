@@ -7,4 +7,6 @@ public interface FinalOrderService {
 	public Integer buildOrderService(JSONObject orderObj);
 //	刪除訂單
 	public Integer deleteOrderService(Integer idfnaleOrder);
+	
+	public JSONObject getInitDetail();
 }

@@ -134,8 +134,7 @@
 	
 		
   <jsp:include page="/front_end/cart/cart_input_info.jsp" flush="true" />
-
-			<div id="site-footer">
+		<div id="site-footer">
 				<div class="container clearfix">
 	
 					<!-- <div class="left">

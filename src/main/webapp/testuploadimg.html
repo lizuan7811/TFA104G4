@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8" />
+<title>登入頁</title>
+</head>
+<body>
+	<input type="text" name="phone" id="phone" value="0987654321">
+	<input type="file" name="newFile" id="input_file" />
+	<button type="button" id="btn_upload">上傳</button>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
+	<script>
+		$("#btn_upload").on("click", function() {
+			let phone = document.getElementById("phone").value;
+			let input_file = document.getElementById("input_file").files[0];
+
+			let formData = new FormData();
+			formData.append('phone', phone);
+			formData.append('newFile', input_file);
+			sendFile(formData, console.log);
+		});
+
+		function sendFile(data, callback) {
+			$.ajax({
+				method : "POST",
+				url : "uploadServlet",
+				data : data,
+				dataType : "json",
+				processData : false,
+				contentType : false,
+				// enctype: 'multipart/form-data',
+				success : function(res) {
+					callback(res);
+				},
+				error : function(res) {
+
+				}
+			});
+		}
+	</script>
+</body>
+</html>

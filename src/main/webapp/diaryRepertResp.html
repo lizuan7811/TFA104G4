@@ -1,6 +1,5 @@
 <!DOCTYPE >
 <html>
-
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -12,7 +11,7 @@
 
 <body>
 	<header>
-		<img src="cf_css/食健logo.png" alt="logo">
+		<img src="front_end/GP4_html_cf/cf_css/食健logo.png" alt="logo">
 		<div class="top_box">
 			<apean class="stage1">檢舉管理</apean>
 		</div>
@@ -41,10 +40,14 @@
 			</tr>
 		</table>
 	</main>
+
 	<div class="showDiary sdType">
-		<!-- "<ul><li>'+jsonOjj.subject+'</li><li>'+jsonOjj.fd_createdTime+'</li><img src=\"'data:image/jpb;base64,'+jsonOjj.photo+'\"><li>'+jsonOjj.text+'</li><li>'+jsonOjj.nickName+'</li><li>'+jsonOjj.ct_createdTime+'</li><li>'+jsonOjj.reportReason+'</li><li>'+jsonOjj.reportResult+'</li></ul>"; -->
-
-
+		<div class="repBox"></div>
 	</div>
+	<div class="commBox dpNone">
+		<button id='pass' class='pass chkBtn' data-value='pass' name='pass'value='審核通過'>審核通過</button><button id='noPass' class='noPass chkBtn' name='noPass' value='審核不通過'>審核不通過</button>
+	</div>
+	
+
 </body>
 </html>

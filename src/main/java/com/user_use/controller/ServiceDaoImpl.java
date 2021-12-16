@@ -8,29 +8,23 @@ import com.pojo.model.AdminVO;
 import com.user_use.model.UserDao;
 import com.user_use.model.UserDaoImpl;
 
-
-public class ServiceDaoImpl implements ServiceDao{
+public class ServiceDaoImpl implements ServiceDao {
 	private UserDao userDao;
-	public ServiceDaoImpl()
-	{
-		userDao=new UserDaoImpl();
+
+	public ServiceDaoImpl() {
+		userDao = new UserDaoImpl();
 	}
 
 	@Override
-	public AdminVO login(String username,String password)
-	{
-		Connection conn=Util.getConnection();
-		PreparedStatement ps=null;
-		AdminVO admin=userDao.adminLogin(conn, ps,username, password);
-		if(admin!=null)
-		{
+	public AdminVO login(String username, String password) {
+		Connection conn = Util.getConnection();
+		PreparedStatement ps = null;
+		AdminVO admin = userDao.adminLogin(conn, ps, username, password);
+		if (admin != null) {
 			return admin;
-		}
-		else
-		{
+		} else {
 			return null;
 		}
 	}
-
 
 }

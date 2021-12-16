@@ -4,7 +4,53 @@ $(function() {
 		var webContext = path.substring(0, path.indexOf('/', 1));
 		var serverEndPoint = "/ShopServlet";
 		var endPointURL = "http://" + window.location.host + webContext + serverEndPoint;
+	
+	
 	readyf();
+
+
+    $.ajax({
+        type:'post',
+        url:"http://" + window.location.host + webContext +'/Shop_RandomRecipeServlet',
+        data: {},
+        success: function(data) {
+            var array = JSON.parse(data);
+            console.log(array);
+			var temU="http://" + window.location.host + webContext;
+            var x = 1;
+            for (var i of array) {
+                $("#rcpName" + x).append(i.name);
+                $("#rcpImg" + x).attr('data-idRecipe', i.idRecipe);
+                $("#rcpImg" + x).attr("src", temU+'/Recipe_BlobServlet?id=' + i.idRecipe);
+                x++;
+            }
+            $(".resipe_img").on("click", function(e) {
+                let id = this.getAttribute("data-idRecipe");
+                location.href = 'resipe.html?idRecipe=' + id;
+            });
+        }
+    });
+
+$.ajax({
+        type: 'post',
+        url:"http://" + window.location.host + webContext +'/SearchAll_RecipeListServlet',
+        data: {},
+        success: function(data) {
+            var array = JSON.parse(data);
+            //console.log(array);
+            //console.log(z);
+
+            for (var x = 1; x < 4; x++) {
+                for (var i of array) {
+                    if ($("#rcpImg" + x).data("idrecipe") == i.idRecipe) {
+                        //console.log(i.idRecipe)
+                        $("#list" + x).append("<li data-idIngre='" + i.idIngre + "' data-ingreQuan='" + i.ingreQuan + "'>" + i.Name + i.ingreQuan + i.Unit + "</li>");
+                        console.log(x);
+                    }
+                }
+            }
+        }
+    });
 
 	$('.your-class').slick({
 		slidesToShow: 3,
@@ -14,7 +60,7 @@ $(function() {
 		dots: true
 
 	});
-	function readyf(){
+	function readyf(){		
 		$.ajax({
 		url: endPointURL,
 		type: 'post',
@@ -67,7 +113,27 @@ function appInps(){
 //			});
 //		}
 //	});
-
+//$.ajax({
+//        type: 'post',
+//        url: 'ShopServlet',
+//        data: {},
+//        success: function(data) {
+//            var x = 1;
+//            var array = JSON.parse(data);
+//            for (var i of array) {
+//                //console.log(i.name);
+//                $("#product_name" + x).append(i.name);
+//                $("#product_unit" + x).before("$ " + i.price);
+//                $("#product_unit" + x).prepend(' / ' + i.unit);
+//                $("#product_img" + x).append('<img data-idIngre="' + i.idIngre + '" class="top_img" src="Ingre_BlobServlet?id=' + i.idIngre + '">');
+//                x++;
+//            }
+//            $(".top_img").on("click", function(e) {
+//                let id = this.getAttribute("data-idIngre");
+//                location.href = 'product.html?idIngre=' + id;
+//            });
+//        }
+//    });
     
     var counts = 0;
     $(".top_cart_icon pointer").click(function () {
@@ -83,5 +149,11 @@ function appInps(){
          }); 
 
 
+
+
+ $(".type_img").on("click", function(e) {
+        let id = this.getAttribute("data-idIngre");
+        location.href = 'product.html?idIngre=' + id;
+    });
 
 });

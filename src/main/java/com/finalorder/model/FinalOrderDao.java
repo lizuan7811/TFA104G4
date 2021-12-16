@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.Timestamp;
 import java.util.HashMap;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import han.Ingre.IngreVO;
@@ -33,4 +34,10 @@ public interface FinalOrderDao {
 
 	public Integer getUserLatestOrderID(Connection conn,PreparedStatement ps,Integer idCustomer);
 
+	public JSONArray getIngreJsonArr();
+
+	public JSONArray getFinalOrderAll();
+	
+	public JSONArray getOrderIngreList();
+	
 }

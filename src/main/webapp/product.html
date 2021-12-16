@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/header&footer.css" rel="stylesheet">
+    <link href="css/product.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/product.js"></script>
+    <script src="https://kit.fontawesome.com/a3a545912b.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="#首頁連結">
+                <img src="img\食健logo.png" alt="logo">
+            </a>
+        </div>
+
+        <ul class="header_li">
+            <li>
+                <a class="menu_title" href="#">關於我們</a>
+            </li>
+            <li>
+                <a class="menu_title" href="#">食健商城</a>
+                <!-- <div class="header_menu">
+                    <a href="#" class="menu_link">商城分類1</a>
+                    <a href="#" class="menu_link">商城分類2</a>                
+                </div> -->
+            </li>
+            <li>
+                <a class="menu_title" href="#">食健生活</a>
+            </li>
+            <li>
+                <a class="menu_title" href="#">會員登入</a>
+            </li>
+        </ul>
+
+        <div class="icon">
+            <div class="search_icon"><i class="fas fa-search"></i></div>
+            <div class="QA_icon"><i class="far fa-question-circle"></i></div>
+            <div class="cart_icon"><i class="fas fa-shopping-cart"></i></div>
+        </div>
+    </header>
+
+    <main>
+
+        <div class="inner">
+            <div class="product_img">
+            
+               
+            </div>
+            <div class="box1">
+                <div class="product_name"></div>
+                <div class="product_list">
+                    <ul>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="box2">
+                <div class="product_price_text">售價</div>
+                <div class="product_price_box">
+                    <span class="fas fa-dollar-sign product_price "></span>
+                    <span class="product_unit"></span>
+                    <span class="product_gran"></span>
+                </div>
+            </div>
+            <div class="box3">
+                <div class="shopBar"></div>
+                    <span class="minus_icon"><i class="fas fa-minus-square"></i></span>
+                    <input style="margin: 10px 10px;" class="product_input" type="text" value="1" >
+                    <span class="plus_icon"><i class="fas fa-plus-square"></i></span>
+                    <span class="buy_icon"><i class="fas fa-shopping-cart"></i> 加入購物車</span>
+
+        </div>
+        
+          <div class="backShop_icon" onclick="location.href='shop.html'">
+                <span><i class="fas fa-store"></i></span>
+                <span>返回商城</span> 
+            </div>
+
+    </main>
+
+    <footer>
+        <section class="myfooter">
+            <div class="contact_info">
+                <img src="img\食健logo.png" alt="logo">
+                <div class="box_1">連絡電話:0800-000-000</div>
+                <div class="box_1">聯絡地址:台北市南京復興</div>
+                <div class="box_1">E-MAIL:abc@123.com</div>
+            </div>
+            <div id="all_rights_reserve">©2021 食健 All Rights Reserve.</div>
+        </section>
+    </footer>
+
+
+    <!-- <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"> //載入font icon </script> -->
+    
+
+</body>
+
+</html>

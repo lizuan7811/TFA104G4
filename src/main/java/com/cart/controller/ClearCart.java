@@ -37,15 +37,16 @@ public class ClearCart extends HttpServlet {
             return;   		
     	}else if ("SENDORDER".equals(action)){
         	try {
-        		System.out.println("SENDORDER");
 	            Thread thread = Thread.currentThread();
-	            thread.sleep(1500);//在頁面停止1.5秒後 跳轉回商城
-	            
+
+        		thread.sleep(500);//在頁面停止1.5秒後 跳轉回商城
+        		System.out.println("SENDORDER");
 	            Enumeration em = req.getSession().getAttributeNames();
 	    		while(em.hasMoreElements()){
 	    		req.getSession().removeAttribute(em.nextElement().toString());
 	    		}
 	            //重定向
+	    		thread.sleep(1200);
 	            res.sendRedirect(req.getContextPath()+"/front_end/cart/shop.jsp");
 	            return; 
   

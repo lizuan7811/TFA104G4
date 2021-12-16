@@ -6,7 +6,7 @@
 
 header {
     border: solid black;
-    z-index: 2;
+    z-index: 18;
     /* align-items: center ; */
     position: fixed;
     width: 100%;
@@ -41,7 +41,7 @@ header img {
 }
 
 main {
-    z-index: 1;
+    z-index: 10;
     /* border: solid red; */
     position: relative;
     width: 100%;
@@ -51,7 +51,7 @@ main {
 
 .aside {
     position: fixed;
-    z-index: 7;
+    z-index: 2;
     border: solid black;
     left: 0;
     top: 100px;
@@ -79,10 +79,6 @@ main {
     top: 110px;
     left: 210px;
     /* border: solid green; */
-    width: 900px;
+    width: 56%;
     /* height: 100%; */
-}
-.picSize{
-    width:200px;
-    height:200px;
 }

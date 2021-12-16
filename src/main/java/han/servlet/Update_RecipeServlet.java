@@ -2,6 +2,7 @@ package han.servlet;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -16,6 +17,9 @@ import org.json.JSONObject;
 import han.Recipe.RecipeDAO;
 import han.Recipe.RecipeDAOImpl;
 import han.Recipe.RecipeVO;
+import han.RecipeIngre.RecipeIngreDAO;
+import han.RecipeIngre.RecipeIngreDAOImpl;
+import han.RecipeIngre.RecipeIngreVO;
 
 @WebServlet("/Update_RecipeServlet")
 @MultipartConfig
@@ -32,11 +36,14 @@ public class Update_RecipeServlet extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		resp.setContentType("text/html;charset=utf-8");
 
+		
 		Integer idRecipe = Integer.valueOf(req.getParameter("idRecipe"));
 		String descrip = req.getParameter("descrip");
 		String name = req.getParameter("name");
 		String text = req.getParameter("text");
 
+		Integer btId = Integer.valueOf(req.getParameter("btId"));
+		
 		Part img = req.getPart("file");
 		byte[] photo = getPhoto(img);
 
@@ -52,7 +59,33 @@ public class Update_RecipeServlet extends HttpServlet {
 
 		JSONObject obj = new JSONObject();
 		resp.getWriter().write(obj.toString());
+//		============== 新增食譜↑ ==============
 
+		RecipeIngreDAO dao1 = new RecipeIngreDAOImpl();
+		dao1.deleteList(idRecipe);
+
+//		==============刪除食譜食材↑==============
+
+		for (int i = 1; i < btId; i++) {
+			String idIngreStr = req.getParameter("idIngre" + i);
+			if (idIngreStr == null || Objects.equals(idIngreStr, "")) {
+				continue;
+			}
+			Integer idIngre = Integer.valueOf(idIngreStr);
+			Integer ingreQuan = Integer.valueOf(req.getParameter("number" + i));
+//				System.out.println(idIngre + " " +ingreQuan);
+
+			RecipeIngreVO RI = new RecipeIngreVO();
+			RI.setIdRecipe(idRecipe);
+			RI.setIdIngre(idIngre);
+			RI.setIngreQuan(ingreQuan);
+
+			dao1.insert(RI);
+
+//			============== 更新食譜食材 ↑===============
+
+			
+		}
 	}
 
 	public static byte[] getPhoto(Part part) throws IOException {

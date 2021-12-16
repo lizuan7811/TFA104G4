@@ -1,6 +1,8 @@
 package com.finalorder.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +26,7 @@ import com.pojo.model.UserVO;
 
 public class OrderServlet extends HttpServlet {
 	private FinalOrderService foService;
+	private PrintWriter pw;
 	/**
 	 * 
 	 */
@@ -33,16 +36,21 @@ public class OrderServlet extends HttpServlet {
 		System.out.println("執行OrderSevlet");
 		foService = new FinalOrderServiceimpl();
 		String metChoice = request.getParameter("metChoice");
-		Map <Integer,Integer> tmpIngreMap=new HashMap<Integer,Integer>();
-		Gson gson=new Gson();
+		Map<Integer, Integer> tmpIngreMap = new HashMap<Integer, Integer>();
+		HttpSession session = request.getSession();
+		Vector<Ingre> cart = (Vector<Ingre>) session.getAttribute("cart");
+		String action = request.getParameter("action");
+
+		Gson gson = new Gson();
 //		Integer idFinalOrder=Integer.valueOf(request.getParameter("idFinalOrder"));
 		Integer executeNum = 0;
-		
+
 		if ("buildOrder".equals(metChoice)) {
 			System.out.println("buildOrders");
-			String tempStr=request.getParameter("orderObj");
-			JSONObject tempStrJson=new JSONObject(tempStr);
-			if("".equals(tempStrJson.get("recipient"))||"".equals(tempStrJson.get("recipientAddress"))||"".equals(tempStrJson.get("footnote"))){
+			String tempStr = request.getParameter("orderObj");
+			JSONObject tempStrJson = new JSONObject(tempStr);
+			if ("".equals(tempStrJson.get("recipient")) || "".equals(tempStrJson.get("recipientAddress"))
+					|| "".equals(tempStrJson.get("footnote"))) {
 				try {
 					response.getWriter().write((new JSONObject().put("error", "資料輸入不完全，無法產生訂單!")).toString());
 				} catch (JSONException | IOException e) {
@@ -50,41 +58,57 @@ public class OrderServlet extends HttpServlet {
 				}
 				return;
 			}
-			HttpSession session = request.getSession();
-			Vector<Ingre> cart = (Vector<Ingre>) session.getAttribute("cart");
-			String action = request.getParameter("action");
-			
+
 			BigDecimal total = new BigDecimal(0);
 			for (int i = 0; i < cart.size(); i++) {
 				Ingre order = cart.get(i);
-				Integer idIngre=order.getIdIngre();
+				Integer idIngre = order.getIdIngre();
 				BigDecimal price = order.getPrice();
 				int quantity = order.getQuantity();
 				total = total.add(price.multiply(new BigDecimal(quantity)));
 				tmpIngreMap.put(idIngre, quantity);
-				
+
 			}
 			String amount = String.valueOf(total);
-		
+
 			request.setAttribute("amount", amount);
 //			取出最後訂單
 //			將訂單做設定
 //			FinalOrderVO fovo=gson.fromJson(tempStr,FinalOrderVO.class);
-			JSONObject fovo=new JSONObject(tempStr);
+			JSONObject fovo = new JSONObject(tempStr);
 //			fovo.put("idCustomer",((UserVO)request.getAttribute("user")).getIdCustomer());
-			fovo.put("idCustomer",5);
-			JSONObject orderObj=new JSONObject();
-			orderObj.put("customer",fovo);
+			fovo.put("idCustomer", 5);
+			JSONObject orderObj = new JSONObject();
+			orderObj.put("customer", fovo);
 			orderObj.put("ingre", tmpIngreMap);
 			System.out.println(orderObj);
-			executeNum=foService.buildOrderService(orderObj);
+			executeNum = foService.buildOrderService(orderObj);
 		} else if ("deleteOrder".equals(metChoice)) {
 //			foService.deleteOrderService(idFinalOrder);
-		} 
+		}else if ("initOrderDetail".equals(metChoice)) {
+			getInitFinalDetail(request,response);
+		}
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		this.doPost(request, response);
 	}
+	
+	private void getInitFinalDetail(HttpServletRequest request,HttpServletResponse response) {
+		try {
+			foService= new FinalOrderServiceimpl();
+			request.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;charset=utf-8");
+			pw=response.getWriter();
+			pw.write(foService.getInitDetail().toString());
+			
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 
 }

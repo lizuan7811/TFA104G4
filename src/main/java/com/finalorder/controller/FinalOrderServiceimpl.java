@@ -8,11 +8,14 @@ import org.json.JSONObject;
 
 import com.basic_tool.controller.Util;
 import com.finalorder.model.FinalOrderDao;
+import com.finalorder.model.FinalOrderDaoImpl;
 import com.finalorder.model.FinalOrderVO;
 public class FinalOrderServiceimpl implements FinalOrderService {
 	private Connection conn;
 	private PreparedStatement ps;
 	private FinalOrderBO fobi;
+	private FinalOrderDao fodo;
+
 	@Override
 	public Integer buildOrderService(JSONObject userBuyObj) {
 //		JSONObject<String,Object>，前端將{"食譜":食譜編號}，{"食材":食材編號}存入JSONObject物件
@@ -31,5 +34,18 @@ public class FinalOrderServiceimpl implements FinalOrderService {
 	@Override
 	public Integer deleteOrderService(Integer idfnaleOrder) {
 		return null;
+	}
+	@Override
+	public JSONObject getInitDetail() {
+		conn=Util.getConnection();
+		ps=null;
+		JSONObject jObj=new JSONObject();
+		fodo=new FinalOrderDaoImpl(conn,ps);
+		
+		fobi=new FinalOrderBOImpl(conn,ps);
+		jObj.put("finalOrderAll",fodo.getFinalOrderAll());
+		jObj.put("ingreAll",fodo.getIngreJsonArr());
+		jObj.put("orderIngreList",fodo.getOrderIngreList());
+		return jObj;
 	}
 }

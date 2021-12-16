@@ -44,6 +44,7 @@ public class FinalStaticFile {
 	
 	public final static String DIARYREPORT_SELECT="SELECT * FROM DiaryReport;";
 	
+	public final static String DIARYREPORTCHECK_UPDATE="UPDATE DiaryReport SET reportResult = ? WHERE diaryReportID = ? ;";
 //	搜尋日誌
 	public final static String FOODDIARY_SELECT="select fd.*,ct.* from FoodDiary fd join Customer ct on fd.custID=ct.idCustomer where diaryStatus=1;";
 	
@@ -86,7 +87,8 @@ public class FinalStaticFile {
 	public final static String FINALUSERORDER_SELECT="SELECT * FROM FINALORDER WHERE idCustomer = ?;";
 //	搜尋消費者最新一筆訂單的訂單id
 	public final static String USERLATESTORDER_SELECT="select idFinalOrder from FinalOrder WHERE idCustomer = ? group by idFinalOrder order by createdTime desc limit 1;";
-	
+//	搜尋所有消費者歷史訂單
+	public final static String FINALORDERALL_SELECT="SELECT * FROM Group4_db.FinalOrder;";
 //	若選擇食譜，需要搜尋該食譜，對照食材取出食材品名及單價
 //	搜尋所有食譜資料
 	public final static String RECIPEALL_SELECT="SELECT * FROM RECIPE;";
@@ -108,5 +110,5 @@ public class FinalStaticFile {
 //	修改使用者日誌的日誌狀態
 	public final static String FOODDIARY_UPDATE="UPDATE FoodDiary SET diarystatus = ? WHERE diaryID = ? and custID = ?;";
 	
-	
+	public final static String ORDERINGRELIST_SELECT="SELECT * FROM Group4_db.TempOrder order by idFinalOrder asc;";
 }

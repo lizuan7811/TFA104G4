@@ -10,8 +10,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.basic_tool.controller.FileWorkDaoImpl;
 import com.basic_tool.controller.Util;
 import com.static_file.model.FinalStaticFile;
 
@@ -30,6 +32,9 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 	private RecipeIngreVO recipeIngreVo;
 	private RecipeVO recipeVo;
 	private IngreVO ingreVo;
+	private JSONArray ingreJsonArr;
+	private JSONArray finalOrderArr;
+	private JSONArray orderIngreList;
 	
 //	產生訂單前，就會將這三個HashMap的物件建構出來
 	public FinalOrderDaoImpl(Connection conn,PreparedStatement ps) {
@@ -37,27 +42,71 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 		this.recipeHashMap=recipeALLSelect(conn,ps);
 		this.ingreHashMap=ingreAllSelect(conn,ps);
 		this.recipeIngreHashMap=recipeIngreSelect(conn,ps);
+		this.finalOrderArr=selFinalOrderAll(conn,ps);
+		this.orderIngreList=selOrderIgList(conn,ps);
 	}
-	
+	@Override
+	public JSONArray getFinalOrderAll() {
+		
+		return this.finalOrderArr;
+	}
+	@Override
+	public JSONArray getIngreJsonArr() {
+		return this.ingreJsonArr;
+	}
+	@Override
 	public HashMap<String,FinalOrderVO> getHistoOrderHashMap(Connection conn,PreparedStatement ps,Integer idCustomer)
 	{
 		this.histoOrderHashMap=getPriveHistoOrderHashMap(conn,ps,idCustomer);
 		return this.histoOrderHashMap;
 	}
-	
+	@Override
 	public HashMap<String,RecipeVO> getRecipeHashMap()
 	{
 		return this.recipeHashMap;
 	}
-	
+	@Override
 	public HashMap<String,IngreVO> getIngreHashMap()
 	{
 		return this.ingreHashMap;
 	}
+	@Override
 	public HashMap<String,RecipeIngreVO> getRecipeIngreHashMap()
 	{
 		return this.recipeIngreHashMap;
 	}
+	
+	@Override
+	public JSONArray getOrderIngreList() {
+		return this.orderIngreList;
+	}
+	
+	private JSONArray selFinalOrderAll(Connection conn, PreparedStatement ps) {
+		JSONArray jArr=null;
+		try {
+			ps=conn.prepareStatement(FinalStaticFile.FINALORDERALL_SELECT);
+			ResultSet rs=ps.executeQuery();
+			JSONObject jObj=new JSONObject();
+			jArr=new JSONArray();
+			while(rs.next()){
+				jObj.clear();
+				jObj.put("idFinalOrder",rs.getInt("idFinalOrder"));
+				jObj.put("idCustomer",rs.getInt("idCustomer"));
+				jObj.put("recipient",rs.getString("recipient"));
+				jObj.put("recipientAddress",rs.getString("recipientAddress"));
+				jObj.put("orderAmount",rs.getBigDecimal("orderAmount"));
+				jObj.put("createdTime",rs.getTimestamp("createdTime"));
+				jObj.put("arrivalTime",rs.getTimestamp("arrivalTime"));
+				jObj.put("footnote",rs.getString("footnote"));
+				jArr.put(jObj.toMap());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return jArr;
+	}
+	
+	
 	
 	public int[] orderListInsert(Connection conn, PreparedStatement ps,Integer idFinalOrder,HashMap<Integer,Integer>finalOrderMap) {
 		int[] tempInt=null;
@@ -132,12 +181,16 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 
 	private HashMap<String, IngreVO> ingreAllSelect(Connection conn, PreparedStatement ps) {
 		ingreHashMap=new HashMap<String,IngreVO>();
+		JSONArray jsonArr=new JSONArray();
+		JSONObject jsonObj=new JSONObject();
 		try {
+			
 			ps=conn.prepareStatement(FinalStaticFile.INGREALL_SELECT);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
 			{
 				ingreVo=new IngreVO();
+				
 				Integer tempID=rs.getInt("idIngre");
 				ingreVo.setIdIngre(tempID);
 				ingreVo.setIdIngreType(rs.getInt("idIngreType"));
@@ -150,12 +203,24 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 				ingreVo.setDescrip(rs.getString("descrip"));
 				ingreVo.setLaunch(rs.getBoolean("launch"));
 				ingreVo.setPhoto(rs.getBytes("photo"));
-
-				ingreHashMap.put(String.valueOf(tempID), ingreVo);			
+				ingreHashMap.put(String.valueOf(tempID), ingreVo);
+				
+				jsonObj.clear();
+				jsonObj.put(String.valueOf(tempID), rs.getInt("idIngre"));
+				jsonObj.put("idIngreType",rs.getInt("idIngreType"));
+				jsonObj.put("name",rs.getString("name"));
+				jsonObj.put("purPrice",rs.getBigDecimal("purPrice"));
+				jsonObj.put("unit",rs.getString("unit"));
+				jsonObj.put("gran",rs.getInt("gran"));
+				jsonObj.put("sell",rs.getInt("sell"));
+				jsonObj.put("descrip",rs.getString("descrip"));
+				jsonObj.put("photo",FileWorkDaoImpl.photoToBase64Str(rs.getBytes("photo")));
+				jsonArr.put(jsonObj.toMap());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		this.ingreJsonArr=jsonArr;
 		return ingreHashMap;
 	}
 
@@ -249,6 +314,31 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 		}
 		System.out.println("userLatestOrderID:"+userLatestOrderID);
 		return userLatestOrderID;
+	}
+	
+	private JSONArray selOrderIgList(Connection conn,PreparedStatement ps) {
+		
+		JSONArray jsonArr=new JSONArray();
+		JSONObject jsonObj=new JSONObject();
+		try {
+			ps=conn.prepareStatement(FinalStaticFile.ORDERINGRELIST_SELECT);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				jsonObj.clear();
+				jsonObj.put("idTempOrder",rs.getInt("idTempOrder"));
+				jsonObj.put("idFinalOrder",rs.getInt("idFinalOrder"));
+				jsonObj.put("idIngre",rs.getInt("idIngre"));
+				jsonObj.put("orderQuan",rs.getInt("orderQuan"));
+				jsonObj.put("price",rs.getBigDecimal("price"));
+				jsonArr.put(jsonObj.toMap());
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return jsonArr;
 	}
 
 	}

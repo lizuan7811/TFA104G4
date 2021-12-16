@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -62,6 +63,11 @@ public class UserServlet extends HttpServlet {
 		} else if (metChoice != null && "friendList".equals(metChoice) || "applyList".equals(metChoice)) {
 			System.out.println("UserServlet doFriendList(friendList)");
 			doFriendList(request, response, metChoice);
+		}else if (metChoice != null && "respResult".equals(metChoice)){
+			String respValue=request.getParameter("respValue");
+			System.out.println(respValue);
+			doDiaryRpChkSend(request,response);
+//			serviceDiaryRpCheck(Integer diaryRpID, Boolean drCheck);
 		}
 	}
 
@@ -150,5 +156,12 @@ public class UserServlet extends HttpServlet {
 			ansJson = us.serviceAboutFriend(metChoice, custID);
 		}
 		pw.write(ansJson.toString());
+	}
+	
+	private void doDiaryRpChkSend(HttpServletRequest request, HttpServletResponse response)
+	{
+		Integer diaryRpID=Integer.valueOf(request.getParameter("diaryReportID"));
+		Boolean drCheck=Boolean.valueOf(request.getParameter("respValue"));
+		us.serviceDiaryRpCheck(diaryRpID,drCheck);
 	}
 }

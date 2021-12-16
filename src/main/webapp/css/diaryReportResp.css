@@ -41,7 +41,7 @@ td {
 }
 
 th {
-	padding: 10px;
+	padding: 10px auto;
 }
 
 table tbody tr:nth-child(odd) {
@@ -117,7 +117,14 @@ table th:last-child {
 
 	width:80px;
 	height:35px;
+	color:darkgray;
+	box-shadow:1px 1px 5px 1px rgba(34, 139, 34, 0.411);
+	border-radius:20px;
 	
+}
+.btnClaz:hover{
+	color:#ff8040;
+	box-shadow:1px 1px 5px 1px forestgreen;
 }
 
 .showDiary{
@@ -128,25 +135,36 @@ table th:last-child {
 	width:0px;
 	height:0px;
 	box-sizing: border-box;
-	z-index:20;
+	z-index:2;
 	-webkit-transition: background .5s linear;
 	transition: background .5s linear, width 0.5s ease-in,height 0.5s ease-in;
 	
 }
 .sdType{
-	color:whitesmoke;
+	color:black;
 	padding:10px;
+	padding-bottom:30px;
 	font-weight: 700;
+	float:left;
+	overflow-y:scroll;
+}
+
+.sdType::-webkit-scrollbar{
+	display: none;
+	width: 10px;
+	color:rgb(255, 154, 71);
+	z-index:3;
 }
 
 .tranToBigdv {
 	display: block;
 	width:27%;
 	height:88%;
-	background-color:#b97104;
-	opacity: 90%;
-	border:3px solid #96ad10b4;
-	box-shadow: 18px 18px 18px 18px #315018b0;
+	background-image: #e6e9e3cc;
+	/* border:5px solid #0a9634e5; */
+	border-radius: 3%;
+	box-shadow: 25px 25px 25px 25px #a2db747c;
+	opacity: 70%;
 
 	}
 .tranTosmdv {
@@ -154,8 +172,75 @@ table th:last-child {
 	height:0px;
 	}
 
-	.picSize{
-		margin:0px auto;
-		width:280px;
-		height:240px;
-	}
+.picSize {
+	border-radius: 10px;
+	margin: 0px 10%;
+	width: 80%;
+	height: 30%;
+}
+
+.commBox{
+	position:fixed;
+	/* margin:0 15%; */
+	right:13px;
+	bottom:15px;
+	background-color: rgba(232, 233, 231, 0.89);
+	border:3px solid rgba(141, 132, 132, 0.521);
+	box-shadow: 2px 2px 18px 1px rgb(0, 0, 0);
+	border-radius: 20px;
+	opacity:80%;
+	width:120px;
+	height:80px;
+	box-sizing: border-box;
+	z-index:3;
+	-webkit-transition: background .5s linear;
+	transition: background .5s linear, width 0.5s ease-in,height 0.5s ease-in;
+}
+
+.chkBtn{
+	right:15px;
+	width:90px;
+	height:30px;
+	font-size:14px;
+	margin:5px 12px 2px 12px ;
+	background-color: rgb(214, 214, 214);
+	border-radius:5px;
+	z-index:4;
+}
+.pass{
+	position:fixed;
+	bottom:55px;
+	color:rgb(94, 129, 40);
+	font-weight: 700;
+	z-index: 22;
+}
+.noPass{
+	position:fixed;
+	bottom:20px;
+	color:red;
+	font-weight: 700;
+	z-index: 22;
+}
+
+.pass:hover{
+	background-color:lemonchiffon;
+	z-index: 22;
+}
+.noPass:hover{
+	background-color:lemonchiffon;
+	z-index:22;
+}
+
+.dpNone{
+	display:none;
+}
+
+.passVal{
+	color:rgb(94, 129, 40);
+	font-weight: 700;
+}
+
+.noPassVal{
+	color:red;
+	font-weight: 700;
+}

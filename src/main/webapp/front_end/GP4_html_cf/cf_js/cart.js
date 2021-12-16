@@ -238,6 +238,7 @@ var getPayDetail = function() {
 				showConfirmButton: false,
 				timer: 2000
 			})
+			
 			//			window.location.href ="http://"+ window.location.host+webContext+"/front_end/cart/shop.jsp";
 		}
 	})

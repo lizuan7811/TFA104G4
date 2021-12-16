@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService {
 			conn.setAutoCommit(false);
 			successRow = usbo.foodDiaryStatus(conn, ps, diaryID, custID, true);
 			successRow += usbo.userDiaryReport(conn, ps, diaryID, custID, reportReason);
-			System.out.println(successRow>0?"送出檢舉成功!":"檢舉送出失敗!");
+			System.out.println(successRow > 0 ? "送出檢舉成功!" : "檢舉送出失敗!");
 			conn.commit();
 		} catch (SQLException e) {
 			try {
@@ -163,7 +163,7 @@ public class UserServiceImpl implements UserService {
 
 		return usd.getDiaryComms(conn, ps);
 	}
-	
+
 	public JSONObject serviceGetDiaryReported() {
 		Connection conn = Util.getConnection();
 		PreparedStatement ps = null;
@@ -171,6 +171,11 @@ public class UserServiceImpl implements UserService {
 		return usd.getDiaryReported(conn, ps);
 	}
 
+	public Integer serviceDiaryRpCheck(Integer diaryRpID, Boolean drCheck) {
+		Connection conn = Util.getConnection();
+		PreparedStatement ps = null;
+		return usd.updateDiaryResponse(conn, ps, diaryRpID, drCheck);
+	}
 
 //	public JSONArray serviceAppliedFriend(String metChoice, Integer custID) {
 ////	被加好友

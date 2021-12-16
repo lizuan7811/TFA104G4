@@ -8,4 +8,6 @@ public interface RecipeIngreDAO {
 	public void delete(Integer idRecipeIngre);
 	public RecipeIngreVO findByPK(Integer idRecipeIngre);
 	public List<RecipeIngreVO> getAll();
+	public List<RecipeIngreVO> findList(Integer idRecipe);
+	public void deleteList(Integer idRecipe);
 }
