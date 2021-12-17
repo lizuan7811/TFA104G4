@@ -245,3 +245,12 @@ table th:last-child {
 	color:red;
 	font-weight: 700;
 }
+
+.upLine{
+	border-top: 3px solid burlywood;
+
+}
+.downLine{
+	border-bottom: 3px solid burlywood;
+
+}

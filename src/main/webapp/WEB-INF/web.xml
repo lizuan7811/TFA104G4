@@ -41,4 +41,80 @@
   	<servlet-name>OrderServlet</servlet-name>
   	<url-pattern>/finalorder/OrderServlet</url-pattern>
   </servlet-mapping>
+  
+  <session-config>
+  	<session-timeout>180</session-timeout>
+  </session-config>
+  
+  <servlet>
+    <servlet-name>CustomerServlet</servlet-name>
+    <servlet-class>com.customer.controller.CustomerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CustomerServlet</servlet-name>
+    <url-pattern>/customer/CustomerServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>ActivateAccountServlet</servlet-name>
+    <servlet-class>com.customer.controller.ActivateAccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ActivateAccountServlet</servlet-name>
+    <url-pattern>/customer/ActivateAccountServlet</url-pattern>
+  </servlet-mapping>
+    
+   <servlet>
+    <servlet-name>ResetPasswordServlet</servlet-name>
+    <servlet-class>com.customer.controller.ResetPasswordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ResetPasswordServlet</servlet-name>
+    <url-pattern>/customer/ResetPasswordServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>ReadProfic</servlet-name>
+    <servlet-class>com.customer.controller.ReadProfic</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReadProfic</servlet-name>
+    <url-pattern>/customer/ReadProfic</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>CardServlet</servlet-name>
+    <servlet-class>com.card.controller.CardServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CardServlet</servlet-name>
+    <url-pattern>/card/CardServlet</url-pattern>
+  </servlet-mapping>
+  
+  <filter>
+  	<filter-name>customerLoginFilter1</filter-name>
+  	<filter-class>com.filters.CustomerLoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>customerLoginFilter1</filter-name>
+  	<url-pattern>/customerBasic.jsp</url-pattern>
+  	<dispatcher>REQUEST</dispatcher>
+  	<dispatcher>FORWARD</dispatcher>
+  	<dispatcher>INCLUDE</dispatcher>
+  	<dispatcher>ERROR</dispatcher>
+  	<dispatcher>ASYNC</dispatcher>
+  </filter-mapping>
+  <filter>
+  	<filter-name>customerLoginFilter2</filter-name>
+  	<filter-class>com.filters.CustomerLoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>customerLoginFilter2</filter-name>
+  	<url-pattern>/customerUpdate.jsp</url-pattern>
+  	<dispatcher>REQUEST</dispatcher>
+  	<dispatcher>FORWARD</dispatcher>
+  	<dispatcher>INCLUDE</dispatcher>
+  	<dispatcher>ERROR</dispatcher>
+  	<dispatcher>ASYNC</dispatcher>
+  </filter-mapping>
   </web-app>

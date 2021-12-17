@@ -17,9 +17,9 @@ $(function(){
             type:"POST",
             success:function(data){
                 var jData=JSON.parse(data);
-                console.log(jData["finalOrderAll"]);
-                console.log(jData["ingreAll"]);
-                console.log(jData["orderIngreList"]);
+                // console.log(jData["finalOrderAll"]);
+                // console.log(jData["ingreAll"]);
+                // console.log(jData["orderIngreList"]);
 
                 finalOrderObj=jData["finalOrderAll"];
                 ingreObj=jData["ingreAll"];
@@ -45,10 +45,9 @@ $(function(){
     {
         for(var key in jsonObj)
         {
-            // console.log(jsonObj[key]);
             var inp_btnSel="<td><input class='inp_btnSel btnClaz' data-idFinalOrder='"+jsonObj[key]["idFinalOrder"]+"'data-idCustomer='"+jsonObj[key]["idCustomer"]+"' type=\"button\" value=\"訂單明細\"></td>";
             var inp_btnCheck="<td><input class='inp_btnCheck btnClaz' data-idFinalOrder='"+jsonObj[key]["idFinalOrder"]+"'data-idCustomer='"+jsonObj[key]["idCustomer"]+"' type=\"button\" value=\"同意取消\" disabled></td>";
-            fOderStr=fOderStr+"<tr><td>"+jsonObj[key]["idFinalOrder"]+"</td><td>"+jsonObj[key]["idCustomer"]+"</td><td>"+jsonObj[key]["recipient"]+"</td><td>"+jsonObj[key]["recipientAddress"]+"</td><td>"+jsonObj[key]["orderAmount"]+"</td><td>"+jsonObj[key]["createdTime"]+"</td><td>"+jsonObj[key]["arrivalTime"]+"</td><td>"+jsonObj[key]["footnote"]+"</td>"+inp_btnSel+inp_btnCheck+"</tr>";
+            fOderStr=fOderStr+"<tr><td>"+jsonObj[key]["idFinalOrder"]+"</td><td>"+jsonObj[key]["idCustomer"]+"</td><td>"+jsonObj[key]["recipient"]+"</td><td>"+jsonObj[key]["recipientAddress"]+"</td><td>"+jsonObj[key]["orderAmount"]+"</td><td>"+jsonObj[key]["createdTime"]+"</td><td>"+(jsonObj[key]["arrivalTime"]==undefined?"":jsonObj[key]["arrivalTime"])+"</td><td>"+jsonObj[key]["footnote"]+"</td>"+inp_btnSel+inp_btnCheck+"</tr>";
         }
         return fOderStr;
     }
@@ -61,8 +60,6 @@ $(function(){
             {
                 return;
             }
-            console.log("this.diaryID"+$(this).attr("data-diaryReportID"));
-            console.log("showFinalOrder"+$(".showFinalOrder  ul .liID").attr("data-idFinalOrder"));
             if($(this).attr("data-idFinalOrder")==$(".showFinalOrder ul .liID").attr("data-idFinalOrder"))
             {
                 respRsID=$(this).attr("data-idFinalOrder");
@@ -72,15 +69,13 @@ $(function(){
                     $(".commBox").removeClass("dpNone");
                 },200);
                 }
-
             }
-            
         });
     }
 
-var count=0;
+var ingreNum=0;
 var timeoutID;
-var reportReason;
+var tmpRespStr;
     function selFunc(){
         
         $(".inp_btnSel").click(function(){
@@ -121,23 +116,46 @@ var reportReason;
         })}
 
         
-
+// 拼系統回覆的字串
     function repStr(jsonOjj,idFinalOrder){
-        var tempIngre;
-        var tempOIList;
+        var ingreNum;
         var tmpArr=new Array();
-        var newEleStr="<ul><li class='liID' data-idFinalOrder="+idFinalOrder+">訂單編號:\t"+idFinalOrder+"</li><li>收貨人:\t"+jsonOjj.recipient+"</li><li>收貨地址:\t"+jsonOjj.recipientAddress+"</li><li>消費金額:"+jsonOjj.orderAmount+"</li><li>訂單成立時間:\t"+jsonOjj.createdTime+"</li><li>貨物送達時間:\t"+(jsonOjj.arrivalTime==undefined?"":jsonOjj.arrivalTime)+"</li><li>備註:\t"+jsonOjj.footnote+"</li>";
+        var tpTime=jsonOjj.arrivalTime==undefined?"":jsonOjj.arrivalTime;
+        var newEleStr="<ul><li class='liID' data-idFinalOrder="+idFinalOrder+">訂單編號:\t"+idFinalOrder+"</li><li>收貨人:\t"+jsonOjj.recipient+"</li><li>收貨地址:\t"+jsonOjj.recipientAddress+"</li><li>消費金額:"+jsonOjj.orderAmount+"</li><li>訂單成立時間:\t"+jsonOjj.createdTime+"</li><li class='arrivalTime'>貨物送達時間:\t"+tpTime+"</li><li>備註:\t"+jsonOjj.footnote+"</li>";
         for(var key in orderIngreObj)
         {
+            
             if(idFinalOrder==orderIngreObj[key].idFinalOrder)
             {
                 tmpArr.push(orderIngreObj[key].idIngre);
             }
         }
-        console.log(tmpArr);
+       var flag=false;
         for(var index in tmpArr)
         {
-            tempOIList="<li>"+tmpArr[index].name+"</li>";
+            flag=false;
+            tmpRespStr="";
+            // tempOIList="<li>"+tmpArr[index].name+"</li>";
+            console.log(tmpArr[index]);
+            // var tmpIngreObj=ingreObj[tmpArr[index]];
+            // console.log(ingreObj);
+            for(var idx in ingreObj){
+                if(tmpArr[index]==ingreObj[idx][tmpArr[index]])
+                {
+                    console.log(ingreObj[idx]);
+                    var tpIngreObj=ingreObj[idx];
+                    tmpRespStr+="<li class='upLine'>食材名稱:"+tpIngreObj["name"]+"</li><li>食材圖片:<img class='picSize' src='data:image/jpg;base64,"+tpIngreObj["photo"]+"'></li><li>單價:"+tpIngreObj["purPrice"]+"<li class='downLine'>重量:"+tpIngreObj["gran"]+"g/"+tpIngreObj["unit"]+"\t數量:\t"+tpIngreObj["sell"]+"</li>";
+                    // console.log(tmpRespStr);
+                    flag=true;
+                }
+                if(flag==true)
+                {
+                    break;
+                }
+            }
+            // console.log("tmpIngreObj\t"+tmpIngreObj[tmpArr[index]]);
+            // tmpRespStr+=tmpIngreObj.index
+            newEleStr+=tmpRespStr+"</ul>";
             
         }
         return newEleStr;
