@@ -8,8 +8,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import org.json.JSONArray;
@@ -21,8 +24,19 @@ import com.pojo.model.UserVO;
 
 
 public class FileWorkDaoImpl {
+	private static Timestamp ts;
+	private static Calendar cl;
 	
+	public static Timestamp getTimeStamp() {
+		cl=Calendar.getInstance();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
+		System.out.println(sdf.format(cl.getTimeInMillis()));
+		
+		ts=Timestamp.valueOf(sdf.format(cl.getTimeInMillis()));
+		return ts;
+		
+	}
 //	利用反射取出單個USER
 	public static void getSGUser()
 	{

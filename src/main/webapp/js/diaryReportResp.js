@@ -13,7 +13,7 @@ $(function(){
     $(document).ready(function(){
         
         $.ajax({
-            url:"userlist/UserListServlet",
+            url:"http://" + window.location.host + webContext +"/userlist/UserListServlet",
             data:{"metChoice":"getDiaryComms"},
             type:"POST",
             success:function(data){
@@ -55,7 +55,7 @@ $(function(){
 var diaryContant;
 function getDiary(){
     $.ajax({
-        url:"userlist/UserListServlet",
+        url:"http://" + window.location.host + webContext +"/userlist/UserListServlet",
         data:{"metChoice":"DiaryReported"},
         type:"POST",
         success:function(data){

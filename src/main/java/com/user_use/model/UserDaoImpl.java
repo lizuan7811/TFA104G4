@@ -340,6 +340,9 @@ public class UserDaoImpl implements UserDao {
 		}
 		return executeNum;
 	}
+	
+	
+	
 //	@Override
 //	public JSONArray selectApplied(Connection conn, PreparedStatement ps, Integer custID) {
 ////		申請的 找 被申請的 資料

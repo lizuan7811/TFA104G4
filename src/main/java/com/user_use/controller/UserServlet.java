@@ -68,6 +68,8 @@ public class UserServlet extends HttpServlet {
 			System.out.println(respValue);
 			doDiaryRpChkSend(request,response);
 //			serviceDiaryRpCheck(Integer diaryRpID, Boolean drCheck);
+		}else if(metChoice!=null && "comment".equals(metChoice)) {
+			sendComment(request,response);
 		}
 	}
 
@@ -107,12 +109,17 @@ public class UserServlet extends HttpServlet {
 	}
 
 	private Integer doCommentReport(HttpServletRequest request, HttpServletResponse response) {
-		Integer successNum = 0;
+		
+		return 0;
+	}
+	private void sendComment(HttpServletRequest request, HttpServletResponse response) {
+		Integer commentID = 0;
 		String diaryID = request.getParameter("diaryID");
-		String custID = request.getParameter("custID");
+		String custNickName = request.getParameter("custNickName");
 		String reportReason = request.getParameter("reportReason");
-		successNum = us.serviceCommReport(diaryID, custID, reportReason);
-		return successNum;
+		commentID = us.serviceComment(diaryID, custNickName, reportReason);
+		pw.write(new JSONObject().put("commentID",commentID).toString());
+		return;
 	}
 
 	private Integer doDiaryReport(HttpServletRequest request, HttpServletResponse response) {

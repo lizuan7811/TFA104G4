@@ -18,6 +18,7 @@ public interface UserBO {
 //	public Integer delClickBO(Integer diaryLike,Integer diaryID);
 
 	public void insertLike(Connection conn,PreparedStatement ps,Integer diaryId,Integer custId);
+	
 	public void updateDeleteLike(Connection conn,PreparedStatement ps,Integer diarylikeID);
 
 	public Integer userCommReport(Connection conn,PreparedStatement ps,String diaryID,String custID,String reportReason);
@@ -27,5 +28,7 @@ public interface UserBO {
 	public Integer foodDiaryStatus(Connection conn,PreparedStatement ps,String diaryID,String custID,Boolean diaryStatus);
 	
 	public Integer userDiaryReport(Connection conn, PreparedStatement ps,String diaryID,String custID, String reportReason);
+
+	public Integer insertComments(Connection conn, PreparedStatement ps,String diaryID,String custNickName,String comment);
 
 }

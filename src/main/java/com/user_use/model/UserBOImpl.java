@@ -132,9 +132,36 @@ public class UserBOImpl implements UserBO{
 		}
 	}
 
+	public Integer insertComments(Connection conn, PreparedStatement ps,String diaryID,String custNickName,String comment)
+	{
+		Integer commentID=0;
+		try {
+			ps=conn.prepareStatement(FinalStaticFile.COMMENT_INSERT);
+			ps.setInt(1, Integer.valueOf(diaryID));
+			ps.setString(2,custNickName);
+			ps.setTimestamp(3,FileWorkDaoImpl.getTimeStamp());
+			ps.setString(4, comment);
+			ps.setBoolean(5, false);
+			ps.executeUpdate();
+			
+			ps=conn.prepareStatement(FinalStaticFile.COMMENTSG_SELECT);
+			ps.setInt(1, Integer.valueOf(diaryID));
+			ps.setString(2,custNickName);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				commentID=rs.getInt("commentID");
+				System.out.println(commentID);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return commentID;
+	}
+	
 //	使用者留言檢舉
 	@Override
-	public Integer userCommReport(Connection conn, PreparedStatement ps,String diaryID,String custID, String reportReason) {
+	public Integer userCommReport(Connection conn, PreparedStatement ps,String diaryID,String custNickName, String reportReason) {
 //		先查有沒有資料，有舊覆蓋，沒有就增加。
 		boolean flag=false;
 		Integer executeNum=0;
@@ -142,7 +169,7 @@ public class UserBOImpl implements UserBO{
 		try {
 //	public final static String COMMENTREPORT_SELECT="SELECT * FROM CommentReport WHERE custID = ? and diaryID = ?;";
 			ps=conn.prepareStatement(FinalStaticFile.COMMENTREPORT_SELECT);
-			ps.setInt(1, Integer.parseInt(custID));
+			ps.setString(1,custNickName);
 			ps.setInt(2, Integer.parseInt(diaryID));
 			rs=ps.executeQuery();
 			if(rs.next())
@@ -160,8 +187,8 @@ public class UserBOImpl implements UserBO{
 
 				ps.setInt(4, Integer.parseInt(diaryID));
 
-				ps.setInt(5, Integer.parseInt(custID));
-				System.out.println("檢舉修改的輸入資料:"+diaryID+"\t"+custID+"\t"+new Timestamp(cl.getTimeInMillis())+"\t"+reportReason+"\t"+String.valueOf(false));
+				ps.setString(5,custNickName);
+				System.out.println("檢舉修改的輸入資料:"+diaryID+"\t"+custNickName+"\t"+new Timestamp(cl.getTimeInMillis())+"\t"+reportReason+"\t"+String.valueOf(false));
 
 			}
 			else {
@@ -172,11 +199,11 @@ public class UserBOImpl implements UserBO{
 				ps=conn.prepareStatement(FinalStaticFile.COMMENTREPORT_INSERT);
 				ps.setInt(1, 0);
 				ps.setInt(2, Integer.parseInt(diaryID));
-				ps.setInt(3, Integer.parseInt(custID));
+				ps.setString(3, custNickName);
 				ps.setTimestamp(4,Timestamp.valueOf(sdf.format(cl.getTimeInMillis())));
 				ps.setString(5, reportReason);
 				ps.setBoolean(6,false);
-				System.out.println("檢舉修改的新增資料:"+diaryID+"\t"+custID+"\t"+new Timestamp(cl.getTimeInMillis())+"\t"+reportReason+"\t"+String.valueOf(false));
+				System.out.println("檢舉修改的新增資料:"+diaryID+"\t"+custNickName+"\t"+new Timestamp(cl.getTimeInMillis())+"\t"+reportReason+"\t"+String.valueOf(false));
 
 			}
 			executeNum=ps.executeUpdate();

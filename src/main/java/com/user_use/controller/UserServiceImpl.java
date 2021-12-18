@@ -56,27 +56,12 @@ public class UserServiceImpl implements UserService {
 		likeNum = usbo.addOrDelClickBO(idCustomer, diaryID);
 		return likeNum;
 	}
-
-//	@Override
-//	public Integer delClickService(Integer diaryLikeID,Integer diaryID) {
-//		// TODO Auto-generated method stub
-//		Connection conn=BaseConn.getConnection();
-//		PreparedStatement ps=null;
-//		Integer likeNum=0;
-//		likeNum=usbo.delClickBO(conn,ps,diaryLikeID,diaryID);
-//		return likeNum;
-//	}
-//	public int selClickService()
-//	{
-//
-//		return 0;
-//	}
 	@Override
-	public Integer serviceCommReport(String diaryID, String custID, String reportReason) {
+	public Integer serviceCommReport(String diaryID, String custNickName, String reportReason) {
 		Connection conn = Util.getConnection();
 		PreparedStatement ps = null;
 		int successRow = 0;
-		usbo.userCommReport(conn, ps, diaryID, custID, reportReason);
+		usbo.userCommReport(conn, ps, diaryID, custNickName, reportReason);
 		return successRow;
 	}
 
@@ -177,6 +162,15 @@ public class UserServiceImpl implements UserService {
 		return usd.updateDiaryResponse(conn, ps, diaryRpID, drCheck);
 	}
 
+	public Integer serviceComment(String diaryID,String custNickName,String comments) {
+		Integer commentID=0;
+		Connection conn = Util.getConnection();
+		PreparedStatement ps = null;
+		commentID=usbo.insertComments(conn, ps, diaryID, custNickName, comments);
+		Util.closeConnection(conn, ps);
+		return commentID;
+	}
+	
 //	public JSONArray serviceAppliedFriend(String metChoice, Integer custID) {
 ////	被加好友
 //		Connection conn=Util.getConnection();

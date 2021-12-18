@@ -23,7 +23,7 @@ main {
     background-color: white;
     border-radius: 10px;
     padding: 40px;
-    bottom: 20px;
+    bottom: 10px;
 }
 .pro_pic{
     width: 50px;
@@ -86,7 +86,7 @@ main {
 }
 
 .main_article{
-    /*border: 1px solid gray;*/
+    /* border: 1px solid gray; */
     /* height: 90%; */
     font-size: 16px;
     /* margin: 2px; */
@@ -214,3 +214,69 @@ label span{
 	.me{ display: none;}
 }
 
+.swal_input{
+	width: 400px;
+	font-size: 20px;	
+}
+
+#parent { 
+	position: relative;
+	width: 70%;
+	margin: 0 auto; 
+	background-color: white;
+	border-radius: 10px;
+	bottom: 10px;
+}
+h3 { 
+	line-height: 40px;
+	margin-bottom: 10px; 
+	color:#FF3300;
+	text-align: center;	
+}
+
+#box { 
+	width: 863px;
+	padding: 25px 10px 0;
+	/* border: 1px solid #ddd; */
+	margin-bottom: 10px; 
+	font-weight: bold;
+	list-style-type: none;
+}
+/* span { 
+	position: absolute;
+	top: -20px;
+	right: 0px; 
+} */
+em { 
+	position: relative;
+	top: -13px; 
+}
+#text{
+	position: relative;
+	width: 95%;
+	height: 60px;
+	overflow: auto; 
+	background: rgba(245, 244, 244, 0.61);
+	border: 1px solid gray;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+#nametxt{
+	border: 1px solid gray;
+	background: rgba(245, 244, 244, 0.61);
+	margin-left: 20px;
+	height: 20px;
+}
+#btn {
+	position: relative;
+	left: 774px;
+	width: 10%;
+	height: 30px; 
+	background-color: #f75229;
+	color: white;
+	font-weight: bold;
+}
+
+#btn:hover{
+	background-color: #cc5538;
+}
