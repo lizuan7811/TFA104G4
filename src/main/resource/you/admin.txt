@@ -1,6 +1,0 @@
-1	admin	admin		2021-11-10 18:28:06.949	true
-2	lizuan	lizuan		2021-11-10 18:28:06.969	false
-3	chenhan	chenhan	2021-11-10 18:28:06.969	false
-4	liumadi	liumadi		2021-11-10 18:28:06.97	false
-5	chiafanho	chiafanho	2021-11-10 18:28:06.97	false
-6	poyu	poyu	2021-11-10 18:28:06.97	false
