@@ -11,6 +11,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>會員中心 | 基本資料</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="<%=request.getContextPath()%>/js/transToSite.js" type="text/javascript"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/customer/css/customerStyle.css">
 </head>
 
@@ -22,10 +24,10 @@
 		</div>
 
 		<ul class="header_li">
-			<li><a class="menu_title" href="#">關於我們</a></li>
-			<li><a class="menu_title" href="#">食健商城</a></li>
-			<li><a class="menu_title" href="#">食健生活</a></li>
-			<li><a class="menu_title" href="#">會員登入</a></li>
+			<li class="menu_title aboutUs"><a>關於我們</a></li>
+			<li class="menu_title shopCity"><a>食健商城</a></li>
+			<li class="menu_title eatLife"><a>食健生活</a></li>
+			<li class="menu_title custLogin"><a>會員登入</a></li>
 		</ul>
 
 		<div class="icon">
@@ -49,7 +51,7 @@
 						<li><a href="#">基本資料</a></li>
 						<li><a href="#">送達地址</a></li>
 						<li><a href="#">信用卡設定</a></li>
-						<li><a href="#">歷史訂單</a></li>
+						<li class="historyOrder"><a href="#">歷史訂單</a></li>
 					</div>
 				</ul>
 			</nav>

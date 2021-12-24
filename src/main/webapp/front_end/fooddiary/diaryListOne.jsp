@@ -22,6 +22,7 @@
 <meta charset="UTF-8">
 <title>我的食健生活</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="<%=request.getContextPath()%>/js/transToSite.js" type="text/javascript"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/font/style.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/diary_listONE.css" />
 <script src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_js/blog.js"></script>

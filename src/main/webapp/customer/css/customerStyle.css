@@ -24,10 +24,11 @@ header a{
     color:#474b22; 
     text-decoration: none;
 }
-header a.menu_title:hover{
+.menu_title:hover{
     background-color: #DAECDC;
     color:rgb(20, 19, 19);
     border-bottom: none;
+    cursor:pointer;
 }
 header.logo{
     /* border: solid blue; */

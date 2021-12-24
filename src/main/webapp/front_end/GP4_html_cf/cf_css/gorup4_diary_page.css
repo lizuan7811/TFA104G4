@@ -69,8 +69,9 @@ main {
     
 }
 .like_btn, .share_btn, .report{
+	/* position: relative; */
     display: inline-block;
-    padding-right: 20px;
+    padding: 0px 30px;
     border-radius: 5px;
     cursor: pointer;
     color: #4b4848;
@@ -90,7 +91,10 @@ main {
     /* height: 90%; */
     font-size: 16px;
     /* margin: 2px; */
-    white-space: pre-line;
+	padding-left: 40px;
+	width: 90%;
+	margin: 0 auto;
+	white-space: pre-line;
 }
 
 #i1, #i2, #i3, #i4, #i5{ display: none;}
@@ -280,3 +284,72 @@ em {
 #btn:hover{
 	background-color: #cc5538;
 }
+
+.commClass{
+	position: relative;
+	background: #faeae3;
+	margin-bottom: 10px;
+	bottom: 10px;
+	line-height: 50px;
+	opacity: 0.5;
+	width: 97.7%;
+	margin-left: 10px;
+}
+
+.commbtn{
+	position: relative;
+	width: 30px;
+	height: 50px;
+	float: right;
+	vertical-align: middle;
+}
+
+.em{
+	border: none;
+	font-size: 24px;
+}
+#o_span{
+	position: absolute;
+	top: -20px;
+	right: 20px;
+	background: #faeae3;
+}
+
+#fb-share-button {
+    background: #3b5998;
+    border-radius: 3px;
+    font-weight: 600;
+    padding: 3px 4px;
+    display: inline-block;
+    position: static;
+}
+
+#fb-share-button:hover {
+    cursor: pointer;
+    background: #213A6F
+}
+
+#fb-share-button svg {
+    width: 18px;
+    fill: white;
+    vertical-align: middle;
+    border-radius: 2px
+}
+
+#fb-share-button span {
+    vertical-align: middle;
+    color: white;
+    font-size: 14px;
+    padding: 0 3px
+}
+/* .like_btn, .share_btn, .report{
+    display: inline-block;
+    padding-right: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #4b4848;
+    /* border: solid blue;            
+}
+.like_btn:hover, .share_btn:hover, .report_btn:hover, .add_friend:hover{
+    background-color: rgb(220, 226, 220);
+} */

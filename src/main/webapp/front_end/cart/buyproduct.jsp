@@ -17,6 +17,7 @@
 
 <!-- jquery link -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="<%=request.getContextPath()%>/js/transToSite.js" type="text/javascript"></script>
 <!-- js link -->
 <script	src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_js/product.js"></script>
 

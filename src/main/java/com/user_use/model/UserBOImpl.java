@@ -161,7 +161,7 @@ public class UserBOImpl implements UserBO{
 	
 //	使用者留言檢舉
 	@Override
-	public Integer userCommReport(Connection conn, PreparedStatement ps,String diaryID,String custNickName, String reportReason) {
+	public Integer userCommReport(Connection conn, PreparedStatement ps,Integer commentID,Integer diaryID,String custNickName, String reportReason) {
 //		先查有沒有資料，有舊覆蓋，沒有就增加。
 		boolean flag=false;
 		Integer executeNum=0;
@@ -170,7 +170,7 @@ public class UserBOImpl implements UserBO{
 //	public final static String COMMENTREPORT_SELECT="SELECT * FROM CommentReport WHERE custID = ? and diaryID = ?;";
 			ps=conn.prepareStatement(FinalStaticFile.COMMENTREPORT_SELECT);
 			ps.setString(1,custNickName);
-			ps.setInt(2, Integer.parseInt(diaryID));
+			ps.setInt(2,commentID);
 			rs=ps.executeQuery();
 			if(rs.next())
 			{
@@ -185,7 +185,7 @@ public class UserBOImpl implements UserBO{
 
 				ps.setBoolean(3, false);
 
-				ps.setInt(4, Integer.parseInt(diaryID));
+				ps.setInt(4,commentID);
 
 				ps.setString(5,custNickName);
 				System.out.println("檢舉修改的輸入資料:"+diaryID+"\t"+custNickName+"\t"+new Timestamp(cl.getTimeInMillis())+"\t"+reportReason+"\t"+String.valueOf(false));
@@ -198,32 +198,20 @@ public class UserBOImpl implements UserBO{
 //				INSERT INTO CommentReport(commentReportID,diaryID,custID,createdTime,reportReason,reportResult)VALUES(?,?,?,?,?,?);";
 				ps=conn.prepareStatement(FinalStaticFile.COMMENTREPORT_INSERT);
 				ps.setInt(1, 0);
-				ps.setInt(2, Integer.parseInt(diaryID));
+				ps.setInt(2,commentID);
 				ps.setString(3, custNickName);
 				ps.setTimestamp(4,Timestamp.valueOf(sdf.format(cl.getTimeInMillis())));
 				ps.setString(5, reportReason);
 				ps.setBoolean(6,false);
 				System.out.println("檢舉修改的新增資料:"+diaryID+"\t"+custNickName+"\t"+new Timestamp(cl.getTimeInMillis())+"\t"+reportReason+"\t"+String.valueOf(false));
-
 			}
 			executeNum=ps.executeUpdate();
 //			conn.commit();
 		} catch (SQLException e) {
-//			try {
-//				conn.rollback();
-//			} catch (SQLException e1) {
-//				e1.printStackTrace();
-//			}
 			e.printStackTrace();
 		}finally {
-//			try {
-//				conn.setAutoCommit(true);
-//				System.out.println("執行結束，關閉AutoCommit!");
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
+			Util.closeConnection(conn, ps);
 		}
-		Util.closeConnection(conn, ps);
 		return executeNum;
 	}
 //	日誌被檢舉需先修改使用者日誌中該日誌的狀態

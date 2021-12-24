@@ -91,10 +91,11 @@ public class UserListServlet extends HttpServlet {
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
+			Integer diaryID = Integer.valueOf(request.getParameter("diaryID"));
 			Integer diaryRpID = Integer.valueOf(request.getParameter("diaryReportID"));
 			Boolean drCheck = Boolean.valueOf(request.getParameter("reportResult"));
 			PrintWriter pw = response.getWriter();
-			pw.write(usv.serviceDiaryRpCheck(diaryRpID, drCheck));
+			pw.write(usv.serviceDiaryRpCheck(diaryID,diaryRpID, drCheck));
 			
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();

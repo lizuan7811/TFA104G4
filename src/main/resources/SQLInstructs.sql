@@ -19,19 +19,21 @@ USE `Group4_db` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Group4_db`.`Customer` (
   `idCustomer` INT NOT NULL AUTO_INCREMENT COMMENT '會員ID',
-  `name` VARCHAR(50) NOT NULL COMMENT '姓名',
-  `profic` longblob NULL COMMENT '大頭貼',
-  `nickName` VARCHAR(50) NULL COMMENT '暱稱',
-  `account` VARCHAR(50) NOT NULL COMMENT '帳號',
-  `password` VARCHAR(50) NOT NULL COMMENT '密碼',
-  `email` VARCHAR(50) NOT NULL COMMENT 'Email',
-  `phone` VARCHAR(50) NOT NULL COMMENT '行動電話',
-  `createdTime` TIMESTAMP(6) NOT NULL COMMENT '創建時間',
-  `suspended` TINYINT(1) NOT NULL COMMENT '停權與否(0 : 未被停權; 1 : 被停權)',
+  `name` VARCHAR(25) NOT NULL COMMENT '姓名',
+  `nickName` VARCHAR(25) NULL COMMENT '暱稱',
+  `account` VARCHAR(25) NOT NULL COMMENT '帳號',
+  `password` VARCHAR(25) NOT NULL COMMENT '密碼',
+  `email` VARCHAR(25) NOT NULL COMMENT 'Email',
+  `phone` VARCHAR(25) NOT NULL COMMENT '行動電話',
+  `notification` BOOLEAN NOT NULL COMMENT '通知信件',
+  `profic` BLOB NULL COMMENT '大頭貼',
+  `createdTime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '創建時間',
+  `activated` BOOLEAN NOT NULL COMMENT '啟動帳戶',
   `externalAcc` INT NOT NULL COMMENT '連接第三方帳號(0 : 無; 1 : Google; 2 : Facebook; 3：Apple)',
   `externalIdToken` VARCHAR(45) NULL COMMENT '第三方帳號idToken',
   `commentReportedNum` INT NULL COMMENT '留言被檢舉成功次數',
   `diaryReportedNum` INT NULL COMMENT '日誌被檢舉成功次數',
+  `suspended` BOOLEAN NOT NULL COMMENT '停權與否(0 : 未被停權; 1 : 被停權)',
   PRIMARY KEY (`idCustomer`))
 ENGINE = InnoDB;
 
@@ -182,12 +184,11 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Group4_db`.`Comment` (
   `commentID` INT AUTO_INCREMENT NOT NULL COMMENT '留言ID',
   `diaryID` INT NOT NULL COMMENT '日誌ID',
-  `custID` INT NOT NULL COMMENT '會員ID',
+  `custNickName` VARCHAR(20) COMMENT '會員NickName',
   `createdTime` TIMESTAMP NOT NULL COMMENT '創建時間',
   `commentText` VARCHAR(200) NOT NULL COMMENT '留言內容',
   `commentStatus` TINYINT(1) NOT NULL COMMENT '留言檢舉狀態(0: 未被檢舉, 1: 被檢舉)',
   PRIMARY KEY (`commentID`),
-  constraint FK_comment_cust_id FOREIGN KEY(`custId`) REFERENCES Customer(`idCustomer`),
   constraint FK_comment_diary_id FOREIGN KEY(`diaryID`) REFERENCES foodDiary(`diaryID`))
 ENGINE = InnoDB;
 
@@ -334,14 +335,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Group4_db`.`CommentReport` (
   `commentReportID` INT AUTO_INCREMENT NOT NULL AUTO_INCREMENT COMMENT '留言檢舉\n0:檢舉失敗、1:檢舉成功',
-  `diaryID` INT NOT NULL COMMENT '日誌ID',
-  `custID` INT NOT NULL COMMENT '會員ID',
+  `commentID` INT NOT NULL COMMENT '日誌ID',
+  `custNickName` VARCHAR(20) NULL COMMENT '會員Nickname',
   `createdTime` TIMESTAMP NOT NULL COMMENT '創建時間',
   `reportReason` VARCHAR(200) NOT NULL COMMENT '檢舉理由',
   `reportResult` TINYINT NOT NULL COMMENT '檢舉結果',
   PRIMARY KEY (`commentReportID`),
-  constraint FK_CommentReport_cust_id FOREIGN KEY(`custID`) REFERENCES Customer(`idCustomer`),
-  constraint FK_CommentReport_comment_id FOREIGN KEY(`commentReportID`) REFERENCES comment(`commentID`))
+  constraint FK_CommentReport_comment_id FOREIGN KEY(`commentID`) REFERENCES comment(`commentID`))
 ENGINE = InnoDB;
 
 ------------------------------------------------
@@ -382,7 +382,7 @@ CREATE TABLE IF NOT EXISTS `Group4_db`.`TempOrder` (
   `orderQuan` INT NOT NULL COMMENT '購買數量 (orderQuan): int, not null',
   `price` INT NOT NULL COMMENT '單價 (price): int, not null',
   PRIMARY KEY (`idTempOrder`),
-  constraint FK_Temporder_id FOREIGN KEY(`idFinalOrder`) REFERENCES Ingre(`idIngre`))
+  constraint FK_Temporder_id FOREIGN KEY(`idFinalOrder`) REFERENCES FinalOrder(`idFinalOrder`))
 ENGINE = InnoDB;
 
 

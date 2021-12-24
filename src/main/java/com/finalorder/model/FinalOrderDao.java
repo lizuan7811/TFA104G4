@@ -40,4 +40,5 @@ public interface FinalOrderDao {
 	
 	public JSONArray getOrderIngreList();
 	
+	public JSONArray getInitOwnOrder(Connection conn,PreparedStatement ps,Integer custID);
 }

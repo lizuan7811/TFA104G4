@@ -324,12 +324,15 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public Integer updateDiaryResponse(Connection conn, PreparedStatement ps, Integer diaryReportID,
+	public Integer updateDiaryResponse(Connection conn, PreparedStatement ps,Integer diaryID, Integer diaryReportID,
 			Boolean checkResult) {
 		Integer executeNum = 0;
 		try {
+			ps=conn.prepareStatement(FinalStaticFile.FOODDIARY_UPDATE);
+			ps.setBoolean(1,checkResult);
+			ps.setInt(2,diaryID);
+			ps.executeUpdate();
 			ps = conn.prepareStatement(FinalStaticFile.DIARYREPORTCHECK_UPDATE);
-			
 			ps.setBoolean(1, checkResult);
 			ps.setInt(2, diaryReportID);
 			

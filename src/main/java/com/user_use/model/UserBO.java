@@ -21,8 +21,7 @@ public interface UserBO {
 	
 	public void updateDeleteLike(Connection conn,PreparedStatement ps,Integer diarylikeID);
 
-	public Integer userCommReport(Connection conn,PreparedStatement ps,String diaryID,String custID,String reportReason);
-
+	public Integer userCommReport(Connection conn, PreparedStatement ps,Integer commentID,Integer diaryID,String custNickName, String reportReason);
 	public JSONArray translateToJSON(List<Object> objList);
 
 	public Integer foodDiaryStatus(Connection conn,PreparedStatement ps,String diaryID,String custID,Boolean diaryStatus);

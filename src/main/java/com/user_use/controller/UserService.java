@@ -23,7 +23,7 @@ public interface UserService {
 //	public Integer delClickService(Integer diaryLikeID,Integer diaryID);
 ////	每次讀取每次更新
 //	public int selClickService();
-	public Integer serviceCommReport(String diaryID, String custID, String reportReason);
+	public Integer serviceCommReport(Integer commentID,Integer diaryID, String custNickName, String reportReason);
 	
 	public Integer serviceComment(String diaryID,String custNickName,String comments);
 
@@ -37,7 +37,7 @@ public interface UserService {
 
 	public JSONObject serviceGetDiaryReported();
 
-	public Integer serviceDiaryRpCheck(Integer diaryRpID, Boolean drCheck);
+	public Integer serviceDiaryRpCheck(Integer diaryID,Integer diaryRpID, Boolean drCheck);
 	
 	
 //	public JSONArray serviceAppliedFriend(String metChoice, Integer custID);

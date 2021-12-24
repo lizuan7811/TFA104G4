@@ -87,6 +87,9 @@ public class OrderServlet extends HttpServlet {
 //			foService.deleteOrderService(idFinalOrder);
 		}else if ("initOrderDetail".equals(metChoice)) {
 			getInitFinalDetail(request,response);
+		}else if("initUserOwnOrder".equals(metChoice))
+		{
+			getInitUserOwnOrder(request,response);
 		}
 	}
 
@@ -108,6 +111,20 @@ public class OrderServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	private void getInitUserOwnOrder(HttpServletRequest request,HttpServletResponse response)
+	{
+		foService=new FinalOrderServiceimpl();
+		try {
+			request.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;charset=utf-8");
+			Integer custID=Integer.valueOf(request.getParameter("custID"));
+			pw=response.getWriter();
+			pw.write(foService.serviceInitOwnOrder(custID).toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 

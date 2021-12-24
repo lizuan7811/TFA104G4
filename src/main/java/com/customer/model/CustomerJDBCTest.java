@@ -46,8 +46,8 @@ public class CustomerJDBCTest {
 		cust.setSuspended(suspended);
 		cust.setExternalAcc(externalAcc);
 		cust.setExternalIdToken(externalIdToken);
-		cust.setCommentReportedNum(commentReportedNum);
-		cust.setDiaryReportedNum(diaryReportedNum);
+//		cust.setCommentReportedNum(commentReportedNum);
+//		cust.setDiaryReportedNum(diaryReportedNum);
 		new CustomerDAOImpl().insertCustByAdmin(cust);
 		System.out.println("cust" + idCustomer + "新增成功");
 	}	

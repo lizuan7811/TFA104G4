@@ -109,6 +109,14 @@ public class UserServlet extends HttpServlet {
 	}
 
 	private Integer doCommentReport(HttpServletRequest request, HttpServletResponse response) {
+		Integer commentID=Integer.valueOf(request.getParameter("commentID"));
+		String custNickName=request.getParameter("custNickName");
+		Integer repDiaryID=Integer.valueOf(request.getParameter("repDiaryID"));
+		String reportReason=request .getParameter("reportReason");
+		
+		System.out.println(reportReason);
+		us.serviceCommReport(commentID,repDiaryID, custNickName, reportReason);
+		
 		
 		return 0;
 	}
@@ -168,7 +176,8 @@ public class UserServlet extends HttpServlet {
 	private void doDiaryRpChkSend(HttpServletRequest request, HttpServletResponse response)
 	{
 		Integer diaryRpID=Integer.valueOf(request.getParameter("diaryReportID"));
+		Integer diaryID=Integer.valueOf(request.getParameter("diaryID"));
 		Boolean drCheck=Boolean.valueOf(request.getParameter("respValue"));
-		us.serviceDiaryRpCheck(diaryRpID,drCheck);
+		us.serviceDiaryRpCheck(diaryID,diaryRpID,drCheck);
 	}
 }

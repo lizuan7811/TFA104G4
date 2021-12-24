@@ -53,7 +53,7 @@ public interface UserDao {
 
 	public JSONObject getDiaryReported(Connection conn, PreparedStatement ps);
 
-	public Integer updateDiaryResponse(Connection conn, PreparedStatement ps, Integer diaryReportID,Boolean checkResult);
+	public Integer updateDiaryResponse(Connection conn, PreparedStatement ps,Integer diaryID, Integer diaryReportID,Boolean checkResult);
 	
 //	public JSONArray selFinalOrderAll(Connection conn,PreparedStatement ps);
 

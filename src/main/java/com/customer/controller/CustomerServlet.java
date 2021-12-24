@@ -136,8 +136,8 @@ public class CustomerServlet extends HttpServlet {
 				custVO.setSuspended(suspended);
 				custVO.setExternalAcc(externalAcc);
 				custVO.setExternalIdToken(externalIdToken);
-				custVO.setCommentReportedNum(commentReportedNum);
-				custVO.setDiaryReportedNum(diaryReportedNum);
+//				custVO.setCommentReportedNum(commentReportedNum);
+//				custVO.setDiaryReportedNum(diaryReportedNum);
 
 				if (!errorMsgs.isEmpty() || !passwordErrorMsgs.isEmpty()) {
 					session.setAttribute("custVO", custVO); // 含有輸入格式錯誤的empVO物件,也存入session
@@ -158,8 +158,7 @@ public class CustomerServlet extends HttpServlet {
 
 				} else {
 					custVO = custSvc.insertCustByCust(name, nickname, account, password, email, phone, notification,
-							profic, createdTime, activated, suspended, externalAcc, externalIdToken, commentReportedNum,
-							diaryReportedNum);
+							profic, createdTime, activated, suspended, externalAcc, externalIdToken);
 				}
 				
 				if (!errorMsgs.isEmpty()) {
