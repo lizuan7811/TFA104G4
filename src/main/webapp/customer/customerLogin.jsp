@@ -18,11 +18,26 @@
 			</a>
 		</div>
 		<ul class="header_li">
-			<li class="menu_title aboutUs"><a>關於我們</a></li>
-			<li class="menu_title shopCity"><a>食健商城</a></li>
-			<li class="menu_title eatLife"><a>食健生活</a></li>
-			<li class="menu_title custLogin"><a>會員登入</a></li>
-		</ul>
+            <li class="menu_title aboutUs">
+                <a>關於我們</a>
+            </li>
+            <li class="menu_title shopCity">
+                <a>食健商城</a>
+            </li>
+            <li class="menu_title">
+                <div class="menu_title" id="menu_life">
+                    <a class="menu_title eatLife">食健生活</a>
+                    <div class='hidden'>
+                        <a class="menu_link eatDiary">食健日誌</a><br>
+                        <a class="menu_link myLife" >我的生活</a> 
+                    </div>
+                  </div>               
+                </div> 
+            </li>
+            <li class="menu_title custLogin">
+                <a>會員登入</a>
+            </li>
+        </ul>
 		<div class="icon">
 			<div class="search_icon">
 				<i class="fas fa-search"></i>

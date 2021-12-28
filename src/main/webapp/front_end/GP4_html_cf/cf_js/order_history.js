@@ -47,7 +47,7 @@ $(function(){
         {
             var inp_btnSel="<td><input class='inp_btnSel btnClaz' data-idFinalOrder='"+jsonObj[key]["idFinalOrder"]+"'data-idCustomer='"+jsonObj[key]["idCustomer"]+"' type=\"button\" value=\"訂單明細\"></td>";
             var inp_btnCheck="<td><input class='inp_btnCheck btnClaz' data-idFinalOrder='"+jsonObj[key]["idFinalOrder"]+"'data-idCustomer='"+jsonObj[key]["idCustomer"]+"' type=\"button\" value=\"取消訂單\"></td>";
-            fOderStr=fOderStr+"<tr><td>"+jsonObj[key]["createdTime"]+"</td><td>"+jsonObj[key]["idFinalOrder"]+"</td><td>信用卡</td><td>"+(jsonObj[key]["shipTime"]==undefined?"尚未出貨":jsonObj[key]["shipTime"])+"</td><td>"+(jsonObj[key]["arrivalTime"]==undefined?"":jsonObj[key]["arrivalTime"])+"</td><td>"+jsonObj[key]["orderAmount"]+"</td><td>"+jsonObj[key]["recipient"]+"</td><td>"+jsonObj[key]["recipientAddress"]+"</td><td>"+jsonObj[key]["footnote"]+"</td>"+inp_btnSel+inp_btnCheck+"</tr>";
+            fOderStr=fOderStr+"<tr><td>"+jsonObj[key]["createdTime"].substring(0,10)+"</td><td>"+jsonObj[key]["idFinalOrder"]+"</td><td>信用卡</td><td>"+(jsonObj[key]["shipTime"]==undefined?"尚未出貨":jsonObj[key]["shipTime"].substring(0,10))+"</td><td>"+(jsonObj[key]["arrivalTime"]==undefined?"":jsonObj[key]["arrivalTime"].substring(0,10))+"</td><td>"+jsonObj[key]["orderAmount"]+"</td><td>"+jsonObj[key]["recipient"]+"</td><td>"+jsonObj[key]["recipientAddress"]+"</td><td>"+jsonObj[key]["footnote"]+"</td>"+inp_btnSel+inp_btnCheck+"</tr>";
         }
         return fOderStr;
     }
@@ -139,6 +139,7 @@ var tmpRespStr;
     function repStr(jsonOjj,idFinalOrder){
         var ingreNum;
         var tmpArr=new Array();
+console.log(jsonOjj.arrivalTime);
         var tpTime=jsonOjj.arrivalTime==undefined?"":jsonOjj.arrivalTime;
         var newEleStr="<ul><li class='liID' data-idFinalOrder="+idFinalOrder+">訂單編號:\t"+idFinalOrder+"</li><li>收貨人:\t"+jsonOjj.recipient+"</li><li>收貨地址:\t"+jsonOjj.recipientAddress+"</li><li>消費金額:"+jsonOjj.orderAmount+"</li><li>訂單成立時間:\t"+jsonOjj.createdTime+"</li><li class='arrivalTime'>貨物送達時間:\t"+tpTime+"</li><li>備註:\t"+jsonOjj.footnote+"</li>";
         for(var key in orderIngreObj)

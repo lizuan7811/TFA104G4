@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/header&footer.css" rel="stylesheet">
+<link href="css/shop_Search.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+	integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+	crossorigin="anonymous">
+<title>商品搜尋</title>
+</head>
+
+<body>
+	<header>
+		<div class="logo">
+			<a href="#首頁連結"> <img src="img\食健logo.png" alt="logo">
+			</a>
+		</div>
+
+		<ul class="header_li">
+			<li><a class="menu_title" href="#">關於我們</a></li>
+			<li><a class="menu_title" href="#">食健商城</a> <!-- <div class="header_menu">
+                    <a href="#" class="menu_link">商城分類1</a>
+                    <a href="#" class="menu_link">商城分類2</a>                
+                </div> --></li>
+			<li><a class="menu_title" href="#">食健生活</a></li>
+			<li><a class="menu_title" href="#">會員登入</a></li>
+		</ul>
+
+		<div class="icon">
+			<div class="search_icon">
+				<i class="fas fa-search"></i>
+			</div>
+			<div class="QA_icon">
+				<i class="far fa-question-circle"></i>
+			</div>
+			<div class="cart_icon">
+				<i class="fas fa-shopping-cart"></i>
+			</div>
+		</div>
+	</header>
+
+	<main>
+		<div class="mainbox">
+			<img src="img/食健.png">
+			<div class="search">
+				<input id="search" placeholder="請輸入想要尋找的食材">
+				<div class="search_icon">
+					<i class="fas fa-search"></i>
+				</div>
+			</div>
+			<div class="items">
+
+				<!-- 
+            <div class="item">
+                <div class="item_img"></div>
+                <div class="item_name">雞胸肉</div>
+                <div class="item_price">$99/片 250G</div>
+                <div class="item_sell">已銷售:18</div>
+            </div> -->
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<section class="myfooter ">
+			<div class="contact_info ">
+				<img src="img\食健logo.png " alt="logo ">
+				<div class="box_1 ">連絡電話:0800-000-000</div>
+				<div class="box_1 ">聯絡地址:台北市南京復興</div>
+				<div class="box_1 ">E-MAIL:abc@123.com</div>
+			</div>
+			<div id="all_rights_reserve ">©2021 食健 All Rights Reserve.</div>
+		</section>
+	</footer>
+
+	<script type="text/javascript">
+        $(".search_icon").on("click", function() {
+            $.ajax({
+                type: 'post',
+                url: 'Shop_SearchServlet',
+                data: {
+                    'name': "%" + $("#search").val() + "%"
+                },
+                success: function(data) {
+                	$(".items").empty();
+                    let array = JSON.parse(data);
+                    console.log(array);
+                    if (array.length == 0){
+                    	alert("查無相關商品, 請再重新輸入");
+                    }else{
+                    
+                    for (var i of array) {
+                        $(".items").append(
+                            "<div class='item' id='" + i.idIngre + "'>" +
+                            "<div class='item_img'><img src='Ingre_BlobServlet?id=" + i.idIngre + "'></div>" +
+                            "<div class='item_name'>" + i.name + "</div>" +
+                            "<div class='item_price'>$ " + i.price + "/" + i.unit + " ±" + i.gran + "g" + "</div>" +
+                            "<div class='item_sell'>已銷售:" + i.sell + "</div>" +
+                            "</div>"
+                        );
+                        $(".item").on('click',function(){
+                        	var id = this.getAttribute("id");
+                        	location.href = 'product.html?idIngre='+id;
+                        });
+                    }
+                	
+                    }
+                },
+                error: function(data) {
+                    alert("查無相關商品, 請再重新輸入");
+                }
+
+            });
+        });
+    </script>
+
+</body>
+
+</html>

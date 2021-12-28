@@ -10,6 +10,160 @@ main {
     height: 1000px;
     background-color:rgb(227, 235, 226);
 }
+* {
+    box-sizing: border-box;
+  }
+  /* 整個頁籤及內容最外層區塊 */
+  div.tab_container{
+    width: 80%;
+    padding: 30px;
+    margin: 0 auto;
+  }
+  
+  /* 頁籤區塊 */
+  div.tab_container div.tab_list_block{
+    padding-left: 20px;
+  }
+  
+  /* 頁籤列表 */
+  div.tab_container div.tab_list_block ul.tab_list{
+    list-style: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    
+  }
+  div.tab_container div.tab_list_block ul.tab_list > li{
+    display: inline-block;
+    
+  }
+  div.tab_container div.tab_list_block ul.tab_list > li > a{
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid #ccc;
+    /* border-bottom: 1px solid black; */
+    padding: 2px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: gray;
+    background-color: white;
+  
+    position: relative;
+    top: 1px;
+  }
+  
+  /* 畫出底部黑線 */
+  div.tab_container div.tab_list_block ul.tab_list > li > a::after{
+    content: "";
+    position: absolute;
+    width: calc(100% + 2px);
+    height: 1px;
+    /* background-color: black; */
+    bottom:-1px;
+    left: -1px;
+    z-index: 1;
+  }
+  div.tab_container div.tab_list_block ul.tab_list > li > a.-on{
+    /* border: 1px solid black; */
+    border-bottom: 1px solid white;
+    color: black;
+    font-weight: bold;
+  }
+  /* 將底部黑線改成白色 */
+  div.tab_container div.tab_list_block ul.tab_list > li > a.-on::after{
+    background-color: white;
+    width: 100%;
+    left: 0;
+  }
+  
+  
+  /* 頁籤內容區塊 */
+ 
+  div.tab_container div.tab_contents div.tab{
+    padding: 10px;
+    display: none;
+  }
+  div.tab_container div.tab_contents div.tab.-on{
+    display: block;
+  }
+
+  .my_diary_btn{
+      position: relative;
+      left: 85%;
+      top: 10px;
+      width: 100px;
+      height: 30px;
+      color: green;
+      border: green 1px solid;
+      background-color: white;
+      border-radius: 20px;
+      /* padding-right: 20px; */
+  }
+
+  .my_diary_btn:hover{
+    background-color: green;
+    color: white;
+  }
+
+  
+div.pic_item{
+    /* border: 1px solid blue; */
+    width: 80%;
+    overflow: hidden;
+    font-size: 0;
+  }
+  
+  .pic_link{
+    /* border: 1px solid red; */
+    display: inline-block;
+    width: 400px;
+    margin-right: 60px;
+    margin-bottom: 30px;
+  }
+  
+  .pic_link img{
+    width: 400px;
+    height: 200px;
+    display: inline-block;
+    border-radius: 10px;
+  }
+  
+  
+  .item_desc{
+    font-size: 18px;
+    background-color: hsla(0, 0%, 0%, .4);
+    width: 400px;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-weight: bold;
+    
+    position: relative;
+    bottom: 0;
+    left: 0;
+    
+    z-index: 1;
+    
+  }
+  
+  
+  /* span.-hot{
+    font-size: 12px;
+    display: inline-block;
+    background-color: red;
+    color: white;
+    border-radius: 3px;
+    padding: 1px 8px;
+    
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    
+    z-index: 2;
+  } */
+
+
+
 .nav_list{
     height: 50px;
     box-sizing: border-box;

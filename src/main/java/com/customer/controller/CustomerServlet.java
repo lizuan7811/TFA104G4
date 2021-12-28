@@ -120,7 +120,6 @@ public class CustomerServlet extends HttpServlet {
 				String externalIdToken = "dwdwd";
 				Integer commentReportedNum = 0;
 				Integer diaryReportedNum = 0;
-
 				CustomerVO custVO = new CustomerVO();
 				custVO.setName(name);
 				custVO.setNickname(nickname);
@@ -138,6 +137,7 @@ public class CustomerServlet extends HttpServlet {
 				custVO.setExternalIdToken(externalIdToken);
 //				custVO.setCommentReportedNum(commentReportedNum);
 //				custVO.setDiaryReportedNum(diaryReportedNum);
+				System.out.println(custVO);				
 
 				if (!errorMsgs.isEmpty() || !passwordErrorMsgs.isEmpty()) {
 					session.setAttribute("custVO", custVO); // 含有輸入格式錯誤的empVO物件,也存入session
@@ -160,10 +160,11 @@ public class CustomerServlet extends HttpServlet {
 					custVO = custSvc.insertCustByCust(name, nickname, account, password, email, phone, notification,
 							profic, createdTime, activated, suspended, externalAcc, externalIdToken);
 				}
-				
+
 				if (!errorMsgs.isEmpty()) {
 					session.setAttribute("custVO", custVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req.getRequestDispatcher("/"+REGISTER_PAGE);
+
 					failureView.forward(req, res);
 					return;
 				}
@@ -193,6 +194,7 @@ public class CustomerServlet extends HttpServlet {
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
+			System.out.println("get_cust_for_update   custVO\t"+req.getSession().getAttribute("custVO"));				
 
 			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
@@ -219,10 +221,13 @@ public class CustomerServlet extends HttpServlet {
 		
 		/* 更新基本資料：來自customerUpdate.jsp的請求 */
 		if ("update".equals(action)) {
-
+			CustomerVO custVO=(CustomerVO)req.getSession().getAttribute("custVO");
+			System.out.println("custVO\t"+custVO);
+			System.out.println("custVO\t"+custVO.getAccount());
+			System.out.println("custVO getIdCustomer\t"+custVO.getIdCustomer());
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-
+			
 			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 				// 姓名
@@ -282,7 +287,7 @@ public class CustomerServlet extends HttpServlet {
 				// 修改時間
 				Timestamp createdTime = new Timestamp(new java.util.Date().getTime());
 
-				CustomerVO custVO = new CustomerVO();
+//				CustomerVO custVO = new CustomerVO();
 				custVO.setName(name);
 				custVO.setNickname(nickname);
 				custVO.setAccount(account);
@@ -302,8 +307,10 @@ public class CustomerServlet extends HttpServlet {
 
 				/*************************** 2.開始修改資料 ***************************************/
 				CustomerService custSvc = new CustomerService();
+				Integer cId=custVO.getIdCustomer();
 				custVO = custSvc.updateCustByCust(name, nickname, account, password, email, phone, 
 						notification, profic, createdTime);
+				custVO.setIdCustomer(cId);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				session.setAttribute("custVO", custVO);
@@ -353,6 +360,10 @@ public class CustomerServlet extends HttpServlet {
 				// 查詢帳號
 				CustomerService custSvc = new CustomerService();
 				CustomerVO custVO = custSvc.getCustByAccount(account);
+System.out.println("login custVO\t"+custVO);
+System.out.println("login custVO\t"+custVO.getAccount());
+System.out.println("login custVO\t"+custVO.getIdCustomer());
+
 				if (custVO == null || custVO.getActivated() == false) {
 					errorMsgs.add("帳號尚未註冊成功，請先行註冊");
 				}

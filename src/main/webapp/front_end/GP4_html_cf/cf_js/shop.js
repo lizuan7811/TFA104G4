@@ -11,7 +11,7 @@ $(function() {
 
     $.ajax({
         type:'post',
-        url:"http://" + window.location.host + webContext +'/Shop_RandomRecipeServlet',
+        url:'/TFA104G4/Shop_RandomRecipeServlet',
         data: {},
         success: function(data) {
             var array = JSON.parse(data);
@@ -33,7 +33,7 @@ $(function() {
 
 $.ajax({
         type: 'post',
-        url:"http://" + window.location.host + webContext +'/SearchAll_RecipeListServlet',
+        url:'/TFA104G4/SearchAll_RecipeListServlet',
         data: {},
         success: function(data) {
             var array = JSON.parse(data);

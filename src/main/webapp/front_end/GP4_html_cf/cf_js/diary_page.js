@@ -1,4 +1,6 @@
 $(function(){
+	console.log($(".author_name").attr("data-custid"));
+	console.log($(".author_name").attr("data-id"));
 
 	//-----------------臉書分享按鈕-----------------
 	var fbButton = document.getElementById('fb-share-button');
@@ -23,6 +25,7 @@ $(function(){
         var path = window.location.pathname;
         var webCtx = path.substring(0, path.indexOf('/', 1));
         var endPointURL = "http://" + window.location.host + webCtx + "/MainDiaryServlet";
+		console.log(endPointURL);
         return endPointURL;
     }
 
@@ -54,12 +57,13 @@ var rowCount=0; //留言樓層計數
 		//--------------查詢 單篇日誌的所有留言--------------
 		$.ajax({
 			url:servletPath(),
-			data:{"metChoice":"ALL_COMMENT","diaryid": diaryid},
+			data:{"metChoice":"ALL_COMMENT","diaryid": $(".author_name").attr("data-diaryid")},
 			type:"POST",
 			// dataType:"JSON",
 			success:function(data){
+				console.log(data);
 				var array = JSON.parse(data);
-				// console.log(data==undefined?"YES":"NO");
+				 console.log(data==undefined?"YES":"NO");
 				if(data=="" || data==undefined)
 				{
 					return;
@@ -133,7 +137,7 @@ var rowCount=0; //留言樓層計數
     {
         $.ajax({
             url:servletPath(),
-            data:{"curDiaryID":"10","curCustID":"15","metChoice":"clickLike"},
+            data:{"curDiaryID":$(".author_name").attr("data-diaryid"),"curCustID":$(".author_name").attr("data-custid"),"metChoice":"clickLike"},
             type:"post",
             success:function(respLikeNum)
             {
@@ -157,7 +161,7 @@ $(".add_friend").click(function()
 {
 	$.ajax({
 		url:servletPath(),
-		data:{"metChoice":"addFriend","custID":13,"myFriendID":1},
+		data:{"metChoice":"addFriend","custID":$(".author_name").attr("data-custid"),"myFriendID":$(".author_name").attr("data-id")},
 		type:"POST",
 		success:function(data)
 		{

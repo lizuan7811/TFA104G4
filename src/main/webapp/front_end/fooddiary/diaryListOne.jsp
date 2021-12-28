@@ -23,9 +23,13 @@
 <title>我的食健生活</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="<%=request.getContextPath()%>/js/transToSite.js" type="text/javascript"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/customer/css/customerStyle.css">
+
 <link rel="stylesheet" href="<%=request.getContextPath()%>/font/style.css" type="text/css">
+
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/diary_listONE.css" />
 <script src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_js/blog.js"></script>
+
 
 </head>
 <body>
@@ -51,13 +55,10 @@
 		</div>
 
 		<ul class="header_li">
-			<li><a class="menu_title" href="#">關於我們</a></li>
-			<li><a class="menu_title" href="#">食健商城</a> <!-- <div class="header_menu">
-                    <a href="#" class="menu_link">商城分類1</a>
-                    <a href="#" class="menu_link">商城分類2</a>                
-                </div> --></li>
-			<li><a class="menu_title" href="#">食健生活</a></li>
-			<li><a class="menu_title" href="#">會員登入</a></li>
+			<li class="menu_title aboutUs"><a>關於我們</a></li>
+			<li class="menu_title shopCity"><a>食健商城</a></li>
+			<li class="menu_title eatLife"><a>食健生活</a></li>
+			<li class="menu_title custLogin"><a>會員登入</a></li>
 		</ul>
 
 		<div class="icon">
@@ -105,7 +106,6 @@
 				<th>日誌標題</th>
 				<th>編輯時間</th>
 				<th>日誌分類</th>
-				<th>發布狀態</th>
 				<th>查詢</th>
 				<th>修改</th>
 				<th>刪除</th>
@@ -126,7 +126,6 @@
 	                  ${typeSvc.getOneType(diaryVO.diaryType).diaryTypeName} 
                     </c:if></c:forEach></td>
                     <!-- <td>${diaryVO.diaryType}</td> --> 		
-					<td class="status" >${diaryVO.status}</td>
 					<td>
 						<form action="<%=request.getContextPath()%>/FoodDiaryServlet" name="form1" enctype="multipart/form-data"  method="post" style="margin-bottom: 0px;">
 							<input type="submit" value="查詢"> 

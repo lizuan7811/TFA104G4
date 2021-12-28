@@ -9,52 +9,93 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class TransToOtherSiteServlet extends HttpServlet{
-	protected void doPost(HttpServletRequest request,HttpServletResponse response)
-	{
-		String transToSite=request.getParameter("transToSite");
-		System.out.println(request.getScheme());
-		System.out.println(request.getServerName());
-		System.out.println(request.getServerPort());
-		System.out.println(request.getServletPath());
-		System.out.println(transToSite);
-		String realPath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/"+request.getContextPath();
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.customer.model.CustomerVO;
+
+public class TransToOtherSiteServlet extends HttpServlet {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+		String realPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+				+ request.getContextPath();
 		try {
+			String transToSite = request.getParameter("transToSite");
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
-			PrintWriter pw=response.getWriter();
-			if("aboutUs".equals(transToSite)) {
-				System.out.println(transToSite);
+			PrintWriter pw = response.getWriter();
+			CustomerVO custVO = (CustomerVO) request.getSession().getAttribute("custVO");
+		
+			if (custVO == null) {
+				System.out.println(realPath + "/customer/customerLogin.jsp");
+				pw.write(realPath + "/customer/customerLogin.jsp");
 				return;
-			}else if("shopCity".equals(transToSite)) {
-				System.out.println(transToSite);
-//				request.getRequestDispatcher(request.getContextPath()+"/front_end/cart/shop.jsp").forward(request, response);
-//				response.sendRedirect(request.getContextPath()+"/front_end/cart/shop.jsp");
-				pw.write(realPath+"/front_end/cart/shop.jsp");
+			}
+			JSONObject jObj = new JSONObject();
+			JSONArray jArr=new JSONArray();
+			jObj.put("custID", custVO.getIdCustomer());
+			jObj.put("account", custVO.getAccount());
+			jArr.put(jObj.toString());
+			System.out.println("aboutUs".equals(transToSite));
+			if ("aboutUs".equals(transToSite)) {
+//				pw.write(realPath + "/front_end/GP4_html_cf/group4_home.html");
+//				System.out.println(realPath + "/front_end/GP4_html_cf/group4_home.html");
+				jArr.put(realPath + "/front_end/GP4_html_cf/group4_home.html");
+				pw.write(jArr.toString());
+//				pw.write(jObj.toString());
+				// System.out.println(realPath+"/front_end/GP4_html_cf/group4_home.html");
 				return;
-			}else if("eatLife".equals(transToSite)) {
-				System.out.println(transToSite);
-				pw.write(realPath+"/front_end/fooddiary/diaryListOne.jsp");
+			} else if ("shopCity".equals(transToSite)) {
+//				System.out.println(realPath + "/front_end/cart/shop.jsp");
+//				pw.write(realPath + "/front_end/cart/shop.jsp");
+				jArr.put(realPath +  "/front_end/cart/shop.jsp");
+				pw.write(jArr.toString());
 				return;
-			}else if("custLogin".equals(transToSite)) {
-				System.out.println(transToSite);
-				pw.write(realPath+"/customer/customerLogin.jsp");
+			} else if ("eatLife".equals(transToSite)) {
+//				System.out.println(realPath + "/front_end/GP4_html_cf/group4_diary.html");
+//				pw.write(realPath + "/front_end/GP4_html_cf/group4_diary.html");
+				jArr.put(realPath + "/front_end/GP4_html_cf/group4_diary.html");
+				pw.write(jArr.toString());
 				return;
-			}else if("historyOrder".equals(transToSite)) {
-				System.out.println(transToSite);
-				pw.write(realPath+"/order_history.html");
+			} else if ("custLogin".equals(transToSite)) {
+//				System.out.println(realPath + "/customer/customerLogin.jsp");
+//				pw.write(realPath + "/customer/customerLogin.jsp");
+				jArr.put(realPath +"/customer/customerLogin.jsp");
+				pw.write(jArr.toString());
 				return;
+			} else if ("historyOrder".equals(transToSite)) {
+//				System.out.println(realPath + "/order_history.html");
+//				pw.write(realPath + "/order_history.html");
+				jArr.put(realPath + "/order_history.html");
+				pw.write(jArr.toString());
+				return;
+			}else if("eatDiary".equals(transToSite)){
+				System.out.println(transToSite);
+				jArr.put(realPath + "/front_end/GP4_html_cf/group4_diary.html");
+				System.out.println(jArr.toString());
+				pw.write(jArr.toString());
+				
+			}else if("myLife".equals(transToSite)){
+				jArr.put(realPath + "/front_end/fooddiary/diaryListOne.jsp");
+				System.out.println(jArr.toString());
+				pw.write(jArr.toString());
+				
+			}else if("lookOrder".equals(transToSite)){
+				jArr.put(realPath + "/order_history.html");
+				System.out.println(jArr.toString());
+				pw.write(jArr.toString());
+			}else if("toShop".equals(transToSite)){
+				jArr.put(realPath +"/front_end/cart/shop.jsp");
+				System.out.println(jArr.toString());
+				pw.write(jArr.toString());
 			}
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
-	protected void doGet(HttpServletRequest request,HttpServletResponse response)
-	{
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		this.doPost(request, response);
 	}
 }

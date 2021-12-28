@@ -24,12 +24,7 @@ header a{
     color:#474b22; 
     text-decoration: none;
 }
-.menu_title:hover{
-    background-color: #DAECDC;
-    color:rgb(20, 19, 19);
-    border-bottom: none;
-    cursor:pointer;
-}
+
 header.logo{
     /* border: solid blue; */
     width: 180px;
@@ -501,4 +496,11 @@ ul.list > li > div.inner_block{
 }
 .re-register_a {
     font-size: 20px;
+}
+
+.header_li .menu_title:hover{
+    background-color: #DAECDC;
+    color:rgb(20, 19, 19);
+    border-bottom: none;
+    cursor:pointer;
 }
