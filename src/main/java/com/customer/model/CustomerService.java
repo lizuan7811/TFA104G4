@@ -14,7 +14,7 @@ public class CustomerService {
 	// 後端管理員
 	public CustomerVO insertCustByAdmin(Integer idCustomer, String name, String nickname, String account, String password, String email, 
 			String phone, Boolean notification, byte[] profic, Timestamp createdTime, Boolean activated, Boolean suspended, 
-			Integer externalAcc, String externalIdToken, Integer commentReportedNum, Integer diaryReportedNum) {
+			Integer externalAcc, String externalIdToken) {
 		
 		CustomerVO custVO = new CustomerVO();
 		
@@ -32,8 +32,8 @@ public class CustomerService {
 		custVO.setSuspended(suspended);
 		custVO.setExternalAcc(externalAcc);
 		custVO.setExternalIdToken(externalIdToken);
-		custVO.setCommentReportedNum(commentReportedNum);
-		custVO.setDiaryReportedNum(diaryReportedNum);
+//		custVO.setCommentReportedNum(commentReportedNum);
+//		custVO.setDiaryReportedNum(diaryReportedNum);
 		dao.insertCustByAdmin(custVO);
 		
 		return custVO;
@@ -47,7 +47,7 @@ public class CustomerService {
 	// customerPreRegister.jsp & customerRegister.jsp
 	public CustomerVO insertCustByCust(String name, String nickname, String account, String password, String email, 
 			String phone, Boolean notification, byte[] profic, Timestamp createdTime, Boolean activated, Boolean suspended, 
-			Integer externalAcc, String externalIdToken, Integer commentReportedNum, Integer diaryReportedNum) {
+			Integer externalAcc, String externalIdToken) {
 		
 		CustomerVO custVO = new CustomerVO();
 		
@@ -64,8 +64,8 @@ public class CustomerService {
 		custVO.setSuspended(suspended);
 		custVO.setExternalAcc(externalAcc);
 		custVO.setExternalIdToken(externalIdToken);
-		custVO.setCommentReportedNum(commentReportedNum);
-		custVO.setDiaryReportedNum(diaryReportedNum);
+//		custVO.setCommentReportedNum(commentReportedNum);
+//		custVO.setDiaryReportedNum(diaryReportedNum);
 		Integer idCustomer = dao.insertCustByCust(custVO);
 		custVO.setIdCustomer(idCustomer);
 		return custVO;
@@ -79,7 +79,7 @@ public class CustomerService {
 	// 後端管理員
 	public CustomerVO updateCustByAdmin(Integer idCustomer, String name, String nickname, String account, String password, 
 			String email, String phone, Boolean notification, byte[] profic, Timestamp createdTime, Boolean activated, Boolean suspended, 
-			Integer externalAcc, String externalIdToken, Integer commentReportedNum, Integer diaryReportedNum) {
+			Integer externalAcc, String externalIdToken) {
 		
 		CustomerVO custVO = new CustomerVO();
 		
@@ -97,8 +97,8 @@ public class CustomerService {
 		custVO.setSuspended(suspended);
 		custVO.setExternalAcc(externalAcc);
 		custVO.setExternalIdToken(externalIdToken);
-		custVO.setCommentReportedNum(commentReportedNum);
-		custVO.setDiaryReportedNum(diaryReportedNum);
+//		custVO.setCommentReportedNum(commentReportedNum);
+//		custVO.setDiaryReportedNum(diaryReportedNum);
 		dao.updateCustByAdmin(custVO);
 		
 		return custVO;

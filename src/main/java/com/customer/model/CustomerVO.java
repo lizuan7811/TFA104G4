@@ -20,8 +20,8 @@ public class CustomerVO implements Serializable {
 	private Boolean suspended; // 0為沒有被suspend, 1為被suspend
 	private Integer externalAcc; // 1用自己email, 2是google, 3是facebook, 4是apple
 	private String externalIdToken;
-	private Integer commentReportedNum;
-	private Integer diaryReportedNum;
+//	private Integer commentReportedNum;
+//	private Integer diaryReportedNum;
 	
 	public CustomerVO() {
 		
@@ -29,7 +29,7 @@ public class CustomerVO implements Serializable {
 
 	public CustomerVO(Integer idCustomer, String name, String nickname, String account, String password, String email, 
 			String phone, Boolean notification, byte[] profic, Timestamp createdTime, Boolean acvtivated, Boolean suspended, 
-			Integer externalAcc, String externalIdToken, Integer commentReportedNum, Integer diaryReportedNum, Boolean activated) {
+			Integer externalAcc, String externalIdToken, Boolean activated) {
 		this.idCustomer = idCustomer;
 		this.name = name;
 		this.nickname = nickname;
@@ -44,8 +44,8 @@ public class CustomerVO implements Serializable {
 		this.suspended = suspended;
 		this.externalAcc = externalAcc;
 		this.externalIdToken = externalIdToken;
-		this.commentReportedNum = commentReportedNum;
-		this.diaryReportedNum = diaryReportedNum;
+//		this.commentReportedNum = commentReportedNum;
+//		this.diaryReportedNum = diaryReportedNum;
 	}
 	
 	public Integer getIdCustomer() {
@@ -160,20 +160,20 @@ public class CustomerVO implements Serializable {
 		this.externalIdToken = externalIdToken;
 	}
 	
-	public Integer getCommentReportedNum() {
-		return commentReportedNum;
-	}
-
-	public void setCommentReportedNum(Integer commentReportedNum) {
-		this.commentReportedNum = commentReportedNum;
-	}
-
-	public Integer getDiaryReportedNum() {
-		return diaryReportedNum;
-	}
-
-	public void setDiaryReportedNum(Integer diaryReportedNum) {
-		this.diaryReportedNum = diaryReportedNum;
-	}
-	
+//	public Integer getCommentReportedNum() {
+//		return commentReportedNum;
+//	}
+//
+//	public void setCommentReportedNum(Integer commentReportedNum) {
+//		this.commentReportedNum = commentReportedNum;
+//	}
+//
+//	public Integer getDiaryReportedNum() {
+//		return diaryReportedNum;
+//	}
+//
+//	public void setDiaryReportedNum(Integer diaryReportedNum) {
+//		this.diaryReportedNum = diaryReportedNum;
+//	}
+//	
 }

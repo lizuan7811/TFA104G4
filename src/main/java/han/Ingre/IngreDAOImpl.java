@@ -16,7 +16,7 @@ public class IngreDAOImpl implements IngreDAO {
 	private static final String GET_ALL = "SELECT * FROM INGRE";
 	private static final String TOP3 = "SELECT * FROM INGRE ORDER BY SELL DESC LIMIT 3";
 	private static final String TYPE ="SELECT * FROM Ingre where idIngreType = ?;";
-
+	private static final String FINDNAME = "SELECT * FROM INGRE WHERE NAME LIKE ? ";
 
 	
 	@Override
@@ -342,6 +342,65 @@ public class IngreDAOImpl implements IngreDAO {
 			con = Util.getConnection();
 			pstmt = con.prepareStatement(TYPE);
 			pstmt.setInt (1, idIngreType);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ingre = new IngreVO();
+				ingre.setIdIngre(rs.getInt("IDINGRE"));
+				ingre.setIdIngreType(rs.getInt("IDINGRETYPE"));
+				ingre.setName(rs.getString("NAME"));
+				ingre.setPurPrice(rs.getBigDecimal("PURPRICE"));
+				ingre.setPrice(rs.getBigDecimal("PRICE"));
+				ingre.setUnit(rs.getString("UNIT"));
+				ingre.setGran(rs.getInt("GRAN"));
+				ingre.setSell(rs.getInt("SELL"));
+				ingre.setDescrip(rs.getString("DESCRIP"));
+				ingre.setPhoto(rs.getBytes("PHOTO"));
+				ingre.setLaunch(rs.getBoolean("LAUNCH"));
+				ingreList.add(ingre);
+			}
+
+		} catch (SQLException se) {
+			se.printStackTrace();
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return ingreList;
+	}
+	@Override
+	public List<IngreVO> findName(String name) {
+		List<IngreVO> ingreList = new ArrayList<>();
+		IngreVO ingre = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = Util.getConnection();
+			pstmt = con.prepareStatement(FINDNAME);
+			pstmt.setString (1, name);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.customer.model.CustomerVO;
+
 
 @WebServlet("/ClearCart")
 public class ClearCart extends HttpServlet {
@@ -42,12 +44,18 @@ public class ClearCart extends HttpServlet {
         		thread.sleep(500);//在頁面停止1.5秒後 跳轉回商城
         		System.out.println("SENDORDER");
 	            Enumeration em = req.getSession().getAttributeNames();
-	    		while(em.hasMoreElements()){
-	    		req.getSession().removeAttribute(em.nextElement().toString());
+	            
+	            CustomerVO custVO=(CustomerVO)req.getSession().getAttribute("custVO");
+	    		
+	            while(em.hasMoreElements()){
+	    			
+	            	req.getSession().removeAttribute(em.nextElement().toString());
 	    		}
 	            //重定向
 	    		thread.sleep(1200);
-	            res.sendRedirect(req.getContextPath()+"/front_end/cart/shop.jsp");
+	    		req.getSession().setAttribute("custVO",custVO);
+	    		
+	            res.sendRedirect(req.getContextPath()+"/front_end/GP4_html_cf/sent_order.html");
 	            return; 
   
 	        }catch (InterruptedException e) {

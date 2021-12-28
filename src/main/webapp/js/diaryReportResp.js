@@ -1,19 +1,19 @@
 $(function(){
     var commStr="";
     var respRsID="";
+    var diaryID;
     getDiary();
     sdResult();
-    // $(".pass").click(function(){
-    //     alert("Pass");
-    // });
-
-    // $(".noPass").on("click",function(){
-    //     alert("noPass");
-    // });
+    var host;
+    var path;
+    var webContext;
+    servletPath();
+   
+    // 取得被檢舉的評論
     $(document).ready(function(){
         
         $.ajax({
-            url:"http://" + window.location.host + webContext +"/userlist/UserListServlet",
+            url:"userlist/UserListServlet",
             data:{"metChoice":"getDiaryComms"},
             type:"POST",
             success:function(data){
@@ -40,6 +40,9 @@ $(function(){
             if($(this).attr("data-diaryReportID")==$(".showDiary ul .liID").attr("data-diaryReportID"))
             {
                 respRsID=$(this).attr("data-diaryReportID");
+                diaryID=$(this).attr("data-diaryID");
+                console.log("respRsID"+respRsID);
+                console.log("diaryID"+diaryID);
                 inp_btnCheckCnt+=1;
                 if(inp_btnCheckCnt<=1){
                 window.setTimeout(function(){
@@ -55,7 +58,7 @@ $(function(){
 var diaryContant;
 function getDiary(){
     $.ajax({
-        url:"http://" + window.location.host + webContext +"/userlist/UserListServlet",
+        url:"userlist/UserListServlet",
         data:{"metChoice":"DiaryReported"},
         type:"POST",
         success:function(data){
@@ -128,27 +131,33 @@ var reportReason;
         {
             var inp_btnSel="<td><input class='inp_btnSel btnClaz' data-diaryReportID='"+jsonObj[key]["diaryReportID"]+"'data-diaryID='"+jsonObj[key]["diaryID"]+"' data-custID='"+jsonObj[key]["custID"]+"' data-repReason='"+jsonObj[key]["reportReason"]+"' type=\"button\" value=\"查看日誌\"></td>";
             var inp_btnCheck="<td><input class='inp_btnCheck btnClaz' data-diaryReportID='"+jsonObj[key]["diaryReportID"]+"'data-diaryID='"+jsonObj[key]["diaryID"]+"' data-custID='"+jsonObj[key]["custID"]+"' type=\"button\" value=\"審核\"></td>";
-            commStr=commStr+"<tr><td>"+jsonObj[key]["diaryReportID"]+"</td><td>"+jsonObj[key]["diaryID"]+"</td><td>"+jsonObj[key]["custID"]+"</td><td>"+jsonObj[key]["createdTime"]+"</td><td>"+jsonObj[key]["reportReason"]+"</td><td class='respValue"+jsonObj[key]["diaryReportID"]+"'></td>"+inp_btnSel+inp_btnCheck+"</tr>";
+            fontStyleFac(jsonObj[key]["diaryReportID"]);
+            commStr=commStr+"<tr><td>"+jsonObj[key]["diaryReportID"]+"</td><td>"+jsonObj[key]["diaryID"]+"</td><td>"+jsonObj[key]["custID"]+"</td><td>"+jsonObj[key]["createdTime"]+"</td><td>"+jsonObj[key]["reportReason"]+"</td>"+fontStyleFac(jsonObj[key]["diaryReportID"],jsonObj[key]["reportResult"])+"</td>"+inp_btnSel+inp_btnCheck+"</tr>";
         }
         return commStr;
+    }
+
+    function fontStyleFac(tmpO,data){
+        var tmpStr=(data==true?"<td class='respValue"+tmpO+" passVal'>審核通過</td>":"<td class='respValue"+tmpO+" noPassVal'>審核不通過</td>");
+        return tmpStr;
     }
 
     function sdResult(){
         $(".pass").on("click",function(){
             $.ajax({
               url:servletPath(),
-              data:{"metChoice":"respResult","respValue":"true","diaryReportID":respRsID},
+              data:{"metChoice":"respResult","diaryID":diaryID,"respValue":"true","diaryReportID":respRsID},
               type:"POST",
               success:function(data){
                 console.log("respRsID"+respRsID);
-                $(".respValue"+respRsID).html("審查通過");
+                $(".respValue"+respRsID).html("審核通過");
                 $(".respValue"+respRsID).removeClass("noPassVal");
                 $(".respValue"+respRsID).addClass("passVal");
 
-                // alert("審查結果送出成功!")
+                // alert("審核結果送出成功!")
               },
               error:function(){
-                alert("審查結果送出不成功!")
+                alert("審核結果送出不成功!")
               }
             })
         });
@@ -156,17 +165,17 @@ var reportReason;
         $(".noPass").on("click",function(data){
             $.ajax({
                 url:servletPath(),
-                data:{"metChoice":"respResult","respValue":"false","diaryReportID":respRsID},
+                data:{"metChoice":"respResult","diaryID":diaryID,"respValue":"false","diaryReportID":respRsID},
                 type:"POST",
                 success:function(){
                     console.log("respRsID"+respRsID);
-                    $(".respValue"+respRsID).html("審查不通過");
+                    $(".respValue"+respRsID).html("審核不通過");
                     $(".respValue"+respRsID).removeClass("passVal");
                     $(".respValue"+respRsID).addClass("noPassVal");
-                    // alert("審查結果送出成功!")
+                    // alert("審核結果送出成功!")
                 },
                 error:function(){
-                    alert("審查結果送出不成功!")
+                    alert("審核結果送出不成功!")
                 }
               })
         });

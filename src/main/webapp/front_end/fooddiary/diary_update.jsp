@@ -13,13 +13,14 @@
 <head>
 <meta charset="UTF-8">
 <title>修改我的文章</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="<%=request.getContextPath()%>/js/transToSite.js" type="text/javascript"></script>
 <link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/edit_diary.css" />
 
 <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"> //載入font icon </script>
 
 <script src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_js/edit_blog.js"></script>
 
-<script src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_vendors/jquery-3.4.1.min.js"></script>
 </head>
 <body>
     <div class="bottom_box">

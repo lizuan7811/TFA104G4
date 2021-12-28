@@ -10,28 +10,21 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/a3a545912b.js"
 	crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="<%=request.getContextPath()%>/js/transToSite.js" type="text/javascript"></script>
 
-<script
-	src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_js/shop.js"></script>
-<link
-	href="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/shop_cf.css"
-	rel="stylesheet">
-<link
-	href="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/header&footer.css"
-	rel="stylesheet">
+<script	src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_js/shop.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/customer/css/customerStyle.css">
 
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/slick-1.8.1/slick/slick.js"></script>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/slick-1.8.1/slick/slick.css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/slick-1.8.1/slick/slick-theme.css" />
+<link href="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/shop_cf.css"rel="stylesheet">
+<link href="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/header&footer.css"rel="stylesheet">
+
+<script type="text/javascript" src="<%=request.getContextPath()%>/slick-1.8.1/slick/slick.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/slick-1.8.1/slick/slick.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/slick-1.8.1/slick/slick-theme.css" />
 <title>食健商城</title>
 
 </head>
@@ -46,10 +39,10 @@
 		</div>
 
 		<ul class="header_li">
-			<li><a class="menu_title" href="#">關於我們</a></li>
-			<li><a class="menu_title" href="">食健商城</a></li>
-			<li><a class="menu_title" href="#">食健生活</a></li>
-			<li><a class="menu_title" href="#">會員登入</a></li>
+			<li class="menu_title aboutUs"><a>關於我們</a></li>
+			<li class="menu_title shopCity"><a>食健商城</a></li>
+			<li class="menu_title eatLife"><a>食健生活</a></li>
+			<li class="menu_title custLogin"><a>會員登入</a></li>
 		</ul>
 
 		<div class="icon">
@@ -64,7 +57,7 @@
 				action="<%=request.getContextPath()%>/CartServlet" method="POST">
 				<input class="cart_icon" type="submit" name="Submit" value="&#xf07a"
 					id="submitButton"> <input type="hidden" name="action"
-					value="CHECKOUT"> <span class="cart-counter">0</span>
+					value="CHECKOUT">
 			</form>
 		</div>
 	</header>
@@ -94,7 +87,7 @@
 							value="&#xf07a" id="submitButton">
 					</div>
 					<div class="top_box4">
-						<a href="<%=request.getContextPath()%>/front_end/cart/buyproduct.jsp">TOP.1</a>
+						TOP.1
 					</div>
 				</div>
 			</form>

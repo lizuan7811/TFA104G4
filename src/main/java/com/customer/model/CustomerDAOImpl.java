@@ -8,11 +8,11 @@ import com.basic_tool.controller.Util;
 public class CustomerDAOImpl implements CustomerDAO {
 	
 	private static final String INSERT_CUST_BY_ADMIN = "INSERT INTO Customer (idCustomer, name, nickname, account, password, email, phone, "
-			+ "notification, profic, createdTime, activated, suspended, externalAcc, externalIdToken, commentReportedNum, diaryReportedNum) "
-			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			+ "notification, profic, createdTime, activated, suspended, externalAcc, externalIdToken) "
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String INSERT_CUST_BY_CUST = "INSERT INTO Customer (name, nickname, account, password, email, phone, "
-			+ "notification, profic, createdTime, activated, suspended, externalAcc, externalIdToken, commentReportedNum, diaryReportedNum) "
-			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // customerPreRegsiter.jsp & customerRegister.jsp
+			+ "notification, profic, createdTime, activated, suspended, externalAcc, externalIdToken) "
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // customerPreRegsiter.jsp & customerRegister.jsp
 	private static final String UPDATE_CUST_BY_ADMIN = "UPDATE Customer SET name = ?, nickname = ?, account = ?, password = ?, "
 			+ "email = ?, phone = ?, notification = ?, profic = ?, createdTime = ?, activated = ? suspended = ?, externalAcc = ?, externalIdToken = ?, "
 			+ "commentReportedNum = ?, diaryReportedNum = ? WHERE idCustomer = ?";
@@ -52,8 +52,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 			pstmt.setBoolean(12, customerVO.getSuspended());
 			pstmt.setInt(13, customerVO.getExternalAcc());
 			pstmt.setString(14, customerVO.getExternalIdToken());
-			pstmt.setInt(15, customerVO.getCommentReportedNum());
-			pstmt.setInt(16, customerVO.getDiaryReportedNum());
+//			pstmt.setInt(15, customerVO.getCommentReportedNum());
+//			pstmt.setInt(16, customerVO.getDiaryReportedNum());
 			
 			pstmt.executeUpdate();
 			
@@ -102,8 +102,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 			pstmt.setBoolean(11, customerVO.getSuspended());
 			pstmt.setInt(12, customerVO.getExternalAcc());
 			pstmt.setString(13, customerVO.getExternalIdToken());
-			pstmt.setInt(14, customerVO.getCommentReportedNum());
-			pstmt.setInt(15, customerVO.getDiaryReportedNum());
+//			pstmt.setInt(14, customerVO.getCommentReportedNum());
+//			pstmt.setInt(15, customerVO.getDiaryReportedNum());
 			
 			pstmt.executeUpdate();
 			
@@ -160,8 +160,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 			pstmt.setBoolean(11, customerVO.getSuspended());
 			pstmt.setInt(12, customerVO.getExternalAcc());
 			pstmt.setString(13, customerVO.getExternalIdToken());
-			pstmt.setInt(14, customerVO.getCommentReportedNum());
-			pstmt.setInt(15, customerVO.getDiaryReportedNum());
+//			pstmt.setInt(14, customerVO.getCommentReportedNum());
+//			pstmt.setInt(15, customerVO.getDiaryReportedNum());
 			pstmt.setInt(16, customerVO.getIdCustomer());
 			
 			pstmt.executeUpdate();
@@ -374,8 +374,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 				customerVO.setSuspended(rs.getBoolean("suspended"));
 				customerVO.setExternalAcc(rs.getInt("externalAcc"));
 				customerVO.setExternalIdToken(rs.getString("externalIdToken"));
-				customerVO.setCommentReportedNum(rs.getInt("commentReportedNum"));
-				customerVO.setDiaryReportedNum(rs.getInt("diaryReportedNum"));
+//				customerVO.setCommentReportedNum(rs.getInt("commentReportedNum"));
+//				customerVO.setDiaryReportedNum(rs.getInt("diaryReportedNum"));
 				
 			}
 			
@@ -440,8 +440,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 				customerVO.setSuspended(rs.getBoolean("suspended"));
 				customerVO.setExternalAcc(rs.getInt("externalAcc"));
 				customerVO.setExternalIdToken(rs.getString("externalIdToken"));
-				customerVO.setCommentReportedNum(rs.getInt("commentReportedNum"));
-				customerVO.setDiaryReportedNum(rs.getInt("diaryReportedNum"));
+//				customerVO.setCommentReportedNum(rs.getInt("commentReportedNum"));
+//				customerVO.setDiaryReportedNum(rs.getInt("diaryReportedNum"));
 				
 			}
 			
@@ -506,8 +506,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 				customerVO.setSuspended(rs.getBoolean("suspended"));
 				customerVO.setExternalAcc(rs.getInt("externalAcc"));
 				customerVO.setExternalIdToken(rs.getString("externalIdToken"));
-				customerVO.setCommentReportedNum(rs.getInt("commentReportedNum"));
-				customerVO.setDiaryReportedNum(rs.getInt("diaryReportedNum"));
+//				customerVO.setCommentReportedNum(rs.getInt("commentReportedNum"));
+//				customerVO.setDiaryReportedNum(rs.getInt("diaryReportedNum"));
 				
 			}
 			
@@ -572,8 +572,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 				customerVO.setSuspended(rs.getBoolean("suspended"));
 				customerVO.setExternalAcc(rs.getInt("externalAcc"));
 				customerVO.setExternalIdToken(rs.getString("externalIdToken"));
-				customerVO.setCommentReportedNum(rs.getInt("commentReportedNum"));
-				customerVO.setDiaryReportedNum(rs.getInt("diaryReportedNum"));
+//				customerVO.setCommentReportedNum(rs.getInt("commentReportedNum"));
+//				customerVO.setDiaryReportedNum(rs.getInt("diaryReportedNum"));
 				customerList.add(customerVO);
 			}
 			

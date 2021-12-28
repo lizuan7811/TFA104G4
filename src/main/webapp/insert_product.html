@@ -53,7 +53,7 @@
 
                     <div class="box1">
                         <div class="item_name">商品圖片</div>
-                        <img id="view" src=""> <input type="file" id="file" name="file" onchange="readURL(this)" targetID="view" accept="image/gif, image/jpeg, image/png" />
+                        <img id="view" src="img\上傳圖片.png"> <input type="file" id="file" name="file" onchange="readURL(this)" targetID="view" accept="image/gif, image/jpeg, image/png" />
                     </div>
 
                 </div>
@@ -183,7 +183,37 @@
                 contentType: false,
 
                 success: function(data) {
-                    alert("新增成功");
+                	console.log(data);
+                	
+    				if (data.msg === "yes") {
+    					$(".errorMsg").empty();
+    					if(data.nameLength != null){
+    						$("#name").after("<div class='errorMsg'>" + data.nameLength + "</div>");
+    					}
+    					if(data.nameNull){
+    							$("#name").after("<div class='errorMsg'>" + data.nameNull + "</div>");
+    					}
+    					if(data.descripNull){
+    							$("#descrip").after("<div class='errorMsg'>" + data.descripNull + "</div>");
+    					}
+    					if(data.purPriceNull != null){
+    							$("#purPrice").after("<div class='errorMsg'>" + data.purPriceNull + "</div>");
+    					}
+    					if(data.priceNull != null){
+    							$("#price").after("<div class='errorMsg'>" + data.priceNull + "</div>");
+    					}
+    					if(data.unitNull != null){
+    							$("#unit").after("<div class='errorMsg'>" + data.unitNull + "</div>");
+    					}
+    					if(data.granNull != null){
+    							$("#gran").after("<div class='errorMsg'>" + data.granNull + "</div>");
+    					}
+    				
+    				} else {
+    					$(".errorMsg").empty();
+    					alert("更新成功");
+    				}
+
                 },
                 error: function(data) {
                     alert("新增失敗");

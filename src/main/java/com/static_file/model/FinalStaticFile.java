@@ -34,7 +34,7 @@ public class FinalStaticFile {
 
 	public static final String COMMENTREPORT_INSERT="INSERT INTO CommentReport(commentReportID,commentID,custNickName,createdTime,reportReason,reportResult)VALUES(?,?,?,?,?,?);";
 //	搜尋留言檢舉表
-	public static final String COMMENTREPORT_SELECT="SELECT * FROM CommentReport WHERE custNickName = ? and commentID = ?;";
+	public static final String COMMENTREPORT_SELECT="SELECT * FROM CommentReport WHERE custNickName = ? and commentReportID = ?;";
 //	日誌檢舉----------------
 	public static final String DIARYREPORT_ALTER="UPDATE DiaryReport SET createdTime=?,reportReason=?,reportResult=? WHERE diaryID = ? and custID = ?;";
 	
@@ -89,6 +89,8 @@ public class FinalStaticFile {
 	public static final String USERLATESTORDER_SELECT="select idFinalOrder from FinalOrder WHERE idCustomer = ? group by idFinalOrder order by createdTime desc limit 1;";
 //	搜尋所有消費者歷史訂單
 	public static final String FINALORDERALL_SELECT="SELECT * FROM Group4_db.FinalOrder;";
+//	搜尋所有消費者自己的歷史訂單
+	public static final String FINALORDERSG_SELECT="SELECT * FROM Group4_db.FinalOrder WHERE idCustomer = ?;";
 //	若選擇食譜，需要搜尋該食譜，對照食材取出食材品名及單價
 //	搜尋所有食譜資料
 	public static final String RECIPEALL_SELECT="SELECT * FROM RECIPE;";
@@ -108,7 +110,7 @@ public class FinalStaticFile {
 //	寫入訂單的詳細清單資料庫
 //	public static final String TEMPORDER_INSERT="INSERT INTO TempOrder(idFinalOrder,idIngre,orderQuan,price)VALUES(?,?,?,?);";
 //	修改使用者日誌的日誌狀態
-	public static final String FOODDIARY_UPDATE="UPDATE FoodDiary SET diarystatus = ? WHERE diaryID = ? and custID = ?;";
+	public static final String FOODDIARY_UPDATE="UPDATE FoodDiary SET diarystatus = ? WHERE diaryID = ?;";
 	
 	public static final String ORDERINGRELIST_SELECT="SELECT * FROM Group4_db.TempOrder order by idFinalOrder asc;";
 

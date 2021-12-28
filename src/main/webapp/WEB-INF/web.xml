@@ -90,31 +90,13 @@
     <servlet-name>CardServlet</servlet-name>
     <url-pattern>/card/CardServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>TransToOtherSiteServlet</servlet-name>
+  	<servlet-class>com.user_use.controller.TransToOtherSiteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>TransToOtherSiteServlet</servlet-name>
+  	<url-pattern>/otherWeb/TransToOther.html</url-pattern>
   
-  <filter>
-  	<filter-name>customerLoginFilter1</filter-name>
-  	<filter-class>com.filters.CustomerLoginFilter</filter-class>
-  </filter>
-  <filter-mapping>
-  	<filter-name>customerLoginFilter1</filter-name>
-  	<url-pattern>/customerBasic.jsp</url-pattern>
-  	<dispatcher>REQUEST</dispatcher>
-  	<dispatcher>FORWARD</dispatcher>
-  	<dispatcher>INCLUDE</dispatcher>
-  	<dispatcher>ERROR</dispatcher>
-  	<dispatcher>ASYNC</dispatcher>
-  </filter-mapping>
-  <filter>
-  	<filter-name>customerLoginFilter2</filter-name>
-  	<filter-class>com.filters.CustomerLoginFilter</filter-class>
-  </filter>
-  <filter-mapping>
-  	<filter-name>customerLoginFilter2</filter-name>
-  	<url-pattern>/customerUpdate.jsp</url-pattern>
-  	<dispatcher>REQUEST</dispatcher>
-  	<dispatcher>FORWARD</dispatcher>
-  	<dispatcher>INCLUDE</dispatcher>
-  	<dispatcher>ERROR</dispatcher>
-  	<dispatcher>ASYNC</dispatcher>
-  </filter-mapping>
+  </servlet-mapping>
   </web-app>

@@ -7,6 +7,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>會員登入</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="<%=request.getContextPath()%>/js/transToSite.js" type="text/javascript"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/customer/css/customerStyle.css">
 </head>
 <body>
@@ -15,14 +17,27 @@
 			<a href="#首頁連結"> <img src="images/食健logo.png" alt="logo">
 			</a>
 		</div>
-
 		<ul class="header_li">
-			<li><a class="menu_title" href="#">關於我們</a></li>
-			<li><a class="menu_title" href="#">食健商城</a></li>
-			<li><a class="menu_title" href="#">食健生活</a></li>
-			<li><a class="menu_title" href="#">會員登入</a></li>
-		</ul>
-
+            <li class="menu_title aboutUs">
+                <a>關於我們</a>
+            </li>
+            <li class="menu_title shopCity">
+                <a>食健商城</a>
+            </li>
+            <li class="menu_title">
+                <div class="menu_title" id="menu_life">
+                    <a class="menu_title eatLife">食健生活</a>
+                    <div class='hidden'>
+                        <a class="menu_link eatDiary">食健日誌</a><br>
+                        <a class="menu_link myLife" >我的生活</a> 
+                    </div>
+                  </div>               
+                </div> 
+            </li>
+            <li class="menu_title custLogin">
+                <a>會員登入</a>
+            </li>
+        </ul>
 		<div class="icon">
 			<div class="search_icon">
 				<i class="fas fa-search"></i>

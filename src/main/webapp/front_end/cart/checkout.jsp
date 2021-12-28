@@ -10,13 +10,13 @@
 	<link href="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/cart.css" rel="stylesheet" type="text/css"/>
     <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"> </script>
     <!-- 載入jquery -->
-    <script src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_vendors/jquery-3.4.1.min.js"></script>
-
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="<%=request.getContextPath()%>/js/transToSite.js" type="text/javascript"></script>
 	<!-- 載入sweet alert -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 	<!-- 載入js -->
-	<script src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_js/cars.js"></script>
+	<script src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_js/cart.js"></script>
 
 
 </head>
@@ -42,23 +42,18 @@
                 <img src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/食健logo.png" alt="logo">
             </a>
         </div>
-        
         <ul class="header_li">
-            <li>
-                <a class="menu_title" href="#">關於我們</a>
+            <li class="menu_title aboutUs">
+                <a>關於我們</a>
             </li>
-            <li>
-                <a class="menu_title" href="#">食健商城</a>
-                <!-- <div class="header_menu">
-                    <a href="#" class="menu_link">商城分類1</a>
-                    <a href="#" class="menu_link">商城分類2</a>                
-                </div> -->
+            <li class="menu_title shopCity">
+                <a>食健商城</a>
             </li>
-            <li>
-                <a class="menu_title" href="#">食健生活</a>
+            <li class="menu_title eatLife">
+                <a>食健生活</a>
             </li>
-            <li>
-                <a class="menu_title" href="#">會員登入</a>
+            <li class="menu_title custLogin">
+                <a>會員登入</a>
             </li>
         </ul>
 

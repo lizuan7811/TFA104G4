@@ -48,4 +48,17 @@ public class FinalOrderServiceimpl implements FinalOrderService {
 		jObj.put("orderIngreList",fodo.getOrderIngreList());
 		return jObj;
 	}
+	
+	@Override
+	public JSONObject serviceInitOwnOrder(Integer custID) {
+		conn=Util.getConnection();
+		ps=null;
+		JSONObject jObj=new JSONObject();
+		fodo=new FinalOrderDaoImpl(conn,ps);
+		jObj.put("UserOwnfinalOrdre",fodo.getInitOwnOrder(conn,ps,custID));
+		jObj.put("ingreAll",fodo.getIngreJsonArr());
+		jObj.put("orderIngreList",fodo.getOrderIngreList());
+		
+		return jObj;
+	}
 }

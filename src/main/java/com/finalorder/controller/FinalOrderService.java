@@ -9,4 +9,7 @@ public interface FinalOrderService {
 	public Integer deleteOrderService(Integer idfnaleOrder);
 	
 	public JSONObject getInitDetail();
+	
+	public JSONObject serviceInitOwnOrder(Integer custID) ;
+
 }

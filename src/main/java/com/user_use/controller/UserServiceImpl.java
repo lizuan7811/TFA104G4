@@ -57,11 +57,11 @@ public class UserServiceImpl implements UserService {
 		return likeNum;
 	}
 	@Override
-	public Integer serviceCommReport(String diaryID, String custNickName, String reportReason) {
+	public Integer serviceCommReport(Integer commentID,Integer diaryID, String custNickName, String reportReason) {
 		Connection conn = Util.getConnection();
 		PreparedStatement ps = null;
 		int successRow = 0;
-		usbo.userCommReport(conn, ps, diaryID, custNickName, reportReason);
+		usbo.userCommReport(conn, ps, commentID,diaryID, custNickName, reportReason);
 		return successRow;
 	}
 
@@ -156,10 +156,10 @@ public class UserServiceImpl implements UserService {
 		return usd.getDiaryReported(conn, ps);
 	}
 
-	public Integer serviceDiaryRpCheck(Integer diaryRpID, Boolean drCheck) {
+	public Integer serviceDiaryRpCheck(Integer diaryID,Integer diaryRpID, Boolean drCheck) {
 		Connection conn = Util.getConnection();
 		PreparedStatement ps = null;
-		return usd.updateDiaryResponse(conn, ps, diaryRpID, drCheck);
+		return usd.updateDiaryResponse(conn, ps,diaryID, diaryRpID, drCheck);
 	}
 
 	public Integer serviceComment(String diaryID,String custNickName,String comments) {

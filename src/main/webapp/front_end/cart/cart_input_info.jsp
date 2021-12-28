@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="<%=request.getContextPath()%>/js/transToSite.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_js/cart.js"></script>
 <title>Insert title here</title>
 </head>
@@ -17,7 +18,7 @@
 	%>
 				<div id="pay_info">
 			<ul class="pay_method">
-				<li> <span style="color: red;">*</span> 付款方式</li>
+				<li> <span style="color: red;">*</span> 付款方式(使用會員<span style="color: red;">預設</span>資訊，如欲更改請前往<a href="">會員中心</a>設定)</li>
 			</ul>
 	
 			<ul class="pay_radio">

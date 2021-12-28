@@ -46,6 +46,11 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 		this.orderIngreList=selOrderIgList(conn,ps);
 	}
 	@Override
+	public JSONArray getInitOwnOrder(Connection conn,PreparedStatement ps,Integer custID) {
+	
+		return selOwnOrder(conn,ps,custID);
+	}
+	@Override
 	public JSONArray getFinalOrderAll() {
 		
 		return this.finalOrderArr;
@@ -106,7 +111,32 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 		return jArr;
 	}
 	
-	
+	public JSONArray selOwnOrder(Connection conn,PreparedStatement ps,Integer custID) {
+	JSONArray jArr=null;
+	try {	
+		ps=conn.prepareStatement(FinalStaticFile.FINALORDERSG_SELECT);
+		ps.setInt(1, custID);
+		ResultSet rs=ps.executeQuery();
+		JSONObject jObj=new JSONObject();
+		jArr=new JSONArray();
+		while(rs.next()){
+			jObj.clear();
+			jObj.put("idFinalOrder",rs.getInt("idFinalOrder"));
+			jObj.put("idCustomer",rs.getInt("idCustomer"));
+			jObj.put("recipient",rs.getString("recipient"));
+			jObj.put("recipientAddress",rs.getString("recipientAddress"));
+			jObj.put("orderAmount",rs.getBigDecimal("orderAmount"));
+			jObj.put("createdTime",rs.getTimestamp("createdTime"));
+			jObj.put("shipTime",rs.getTimestamp("shipTime"));
+			jObj.put("arrivalTime",rs.getTimestamp("arrivalTime"));
+			jObj.put("footnote",rs.getString("footnote"));
+			jArr.put(jObj.toMap());
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return jArr;
+}
 	
 	public int[] orderListInsert(Connection conn, PreparedStatement ps,Integer idFinalOrder,HashMap<Integer,Integer>finalOrderMap) {
 		int[] tempInt=null;

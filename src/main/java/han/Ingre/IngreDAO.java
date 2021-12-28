@@ -16,4 +16,7 @@ public interface IngreDAO {
 	public List<IngreVO> TOP3();
 	
 	public List<IngreVO> TYPE(Integer idIngreType);
+	
+	public List<IngreVO> findName(String name);
+
 }
