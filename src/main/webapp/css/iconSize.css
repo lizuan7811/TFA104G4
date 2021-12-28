@@ -1,0 +1,41 @@
+.icon-controller-play{
+	display:inline-block;
+	color:black;
+	margin-left:10px;
+	font-size: 22px;
+}
+.icon-plus,.icon-folder-upload,.icon-folder-download{
+	position:absolute;
+	display:inline-block;
+	color:lightblue;
+	font-size: 36px;
+	font-weight: bold;
+	bottom:10px;
+	right:40px;
+}
+.icon-plus::after{
+	content:"增加";
+}
+
+.icon-plus:hover,.icon-folder-upload:hover,.icon-folder-download:hover{
+	color:darkorange;
+}
+.icon-folder-upload{
+	right:100px;
+	margin:0px 50px 0px 10px;
+	
+}
+.icon-folder-upload::after{
+	content:"匯出";
+}
+.icon-folder-download{
+	font-size:32px;
+	margin:0px 10px;
+}
+.icon-folder-download::after{
+	content:"匯入";
+}
+.icon-plus::after,.icon-folder-upload::after,.icon-folder-download::after{
+	margin-left:10px;
+	font-size:14px;
+}

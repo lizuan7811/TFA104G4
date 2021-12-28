@@ -1,0 +1,64 @@
+.main_left {
+    position: absolute;
+    /* border: 1px solid red; */
+    width: 420px;
+    height: 300px;
+}
+
+#view {
+    width: 400px;
+    height: 225px;
+    border: black 1px solid;
+}
+
+.item_name {
+    font-size: 16px;
+    font-weight: bolder;
+    margin-bottom: 3px;
+    letter-spacing: 5px;
+}
+
+.main_right {
+    position: relative;
+    /* border: 1px solid blue; */
+    left: 430px;
+    width: 560px;
+    height: 300px;
+}
+
+#descrip {
+    resize: none;
+    height: 130px;
+    width: 250px;
+}
+
+#text {
+    resize: none;
+    height: 130px;
+    width: 250px;
+}
+
+.main_right_l {
+    position: absolute;
+}
+
+.main_right_r {
+    position: absolute;
+    left: 280px;
+}
+
+#search {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    font-weight: bolder;
+    letter-spacing: 3px;
+}
+
+#update {
+    position: absolute;
+    right: 100px;
+    bottom: 0px;
+    font-weight: bolder;
+    letter-spacing: 3px;
+}

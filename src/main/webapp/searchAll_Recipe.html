@@ -1,0 +1,207 @@
+<!DOCTYPE >
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!--         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link href="css/backstage.css" rel="stylesheet">
+
+    <title>全部食譜</title>
+</head>
+<style>
+    table {
+        border-spacing: 0;
+        width: 100%;
+        table-layout: fixed;
+        word-break: break-all;
+    }
+    
+    tr {
+        text-align: center;
+        height: 80px;
+    }
+    
+    table .td-descrip {
+        display: block;
+        max-height: 150px;
+        overflow: auto;
+        text-align: left;
+        padding-left: 20px;
+        text-indent: -15px;
+    }
+    
+    table .td-text {
+        text-align: left;
+        padding-left: 20px;
+    }
+    
+    table .td-img {
+        border-radius: 5px;
+        margin: auto;
+        border: 1px solid #adaaa6;
+    }
+    
+    th {
+        padding: 10px;
+    }
+    
+    table tbody tr:nth-child(odd) {
+        background-color: #eee
+    }
+    
+    table thead {
+        background-color: #8CE600;
+        color: white;
+        font-size: 16px;
+        font-weight: bolder;
+    }
+    
+    table thead th:first-child {
+        border-radius: 5px 0 0 0;
+        border: 1px solid #8CE600;
+    }
+    
+    table thead th:last-child {
+        border-radius: 0 5px 0 0;
+        border-right: 1px solid #8CE600;
+    }
+    
+    table tbody tr:last-child td:first-child {
+        border-radius: 0 0 0 5px;
+    }
+    
+    table tbody tr:last-child td:last-child {
+        border-radius: 0 0 5px 0;
+    }
+</style>
+
+<body>
+    <header>
+        <img src="img\食健logo.png" alt="logo">
+        <div class="top_box">
+            <apean class="stage1">食譜管理</apean>
+            <apean class="stage2">●全部食譜</apean>
+        </div>
+    </header>
+    <main>
+
+        <div class="aside">
+            <nav>
+                <ul class="nav_list">
+                    <li>會員管理</li>
+
+                    <li>
+                        <a href="#">產品管理</a>
+                        <ul>
+                            <li><a href="insert_product.html">新增商品</a></li>
+                            <li><a href="search_product.html">搜尋、修改商品</a></li>
+                            <li><a href="searchAll_product.html">全部商品</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="#">食譜管理</a>
+                        <ul>
+                            <li><a href="Insert_Recipe.html">新增食譜</a></li>
+                            <li><a href="Search_Recipe.html">搜尋、修改食譜</a></li>
+                            <li><a href="searchAll_Recipe.html">全部食譜</a></li>
+                        </ul>
+                    </li>
+
+                    <li>訂單管理</li>
+                    <li><a href="#">日誌管理</a>
+                        <ul>
+                            <li><a href="">全部日誌</a></li>
+                            <li><a href="">檢舉管理</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+
+        <div class="mainbox">
+
+            <table class="list">
+                <thead>
+                    <th width="7%">編號</th>
+                    <th width="14%">食譜名稱</th>
+                    <th width="29%">食譜步驟</th>
+                    <th width="17%">食材清單(非上架)</th>
+                    <th width="15%">食材清單(已上架)</th>
+                    <th width="18%">照片</th>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </main>
+
+    <script type='text/javascript'>
+        var z = 1;
+
+        $.ajax({
+            type: 'post',
+            url: 'SearchAll_RecipeServlet',
+            data: {},
+            success: function(data) {
+
+                var array1 = JSON.parse(data);
+                console.log(array1);
+                for (var i of array1) {
+
+                    $(".list tbody").append("<tr><td id='id" + z + "' data-idRecipe='" + i.idRecipe + "'>" + i.idRecipe + "</td><td>" +
+                        i.name + "</td><td id='descrip" + z + "' class='td-descrip'>" +
+                        "</td><td id='text" + z + "' class='td-text'>" +
+                        "</td><td id='list" + z + "' class='td-text'>" +
+                        "</td><td>" +
+                        '<img class="td-img" src="Recipe_BlobServlet?id=' + i.idRecipe + ' "width="160px" height="120"></td>'
+                    );
+
+                    var descripArray = new Array();
+                    var descripArray = i.descrip.split("。");
+                    for (x = 0; x < descripArray.length; x++) {
+                        $("#descrip" + z).append('<div>' + descripArray[x] + '</div>');
+                    }
+
+                    var textArray = new Array();
+                    var textArray = i.text.split("、");
+                    for (i = 0; i < textArray.length; i++) {
+                        $("#text" + z).append('<div>◆ ' + textArray[i] + '</div>');
+                    }
+                    z++;
+                }
+
+
+
+            }
+        });
+
+        $.ajax({
+            type: 'post',
+            url: 'SearchAll_RecipeListServlet',
+            data: {},
+            success: function(data) {
+                var array = JSON.parse(data);
+                console.log(array);
+                console.log(z);
+
+                for (var x = 1; x < z; x++) {
+                    for (var i of array) {
+                        if ($("#id" + x).data("idrecipe") == i.idRecipe) {
+                            //console.log(i.idRecipe)
+                            $("#list" + x).append("<div>◆ " + i.Name + i.ingreQuan + i.Unit + "</div>");
+                            console.log(x);
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

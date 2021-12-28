@@ -1,0 +1,506 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    @import url(https://fonts.googleapis.com/earlyaccess/cwtexfangsong.css);
+    font-family: ‘cwTeXFangSong’, serif;
+}   
+header{
+    /* border: solid black; */
+    z-index: 2;
+    display: flex; 
+    align-items: center ;
+    position: fixed; 
+    width: 100% ; 
+    background-color: white;
+    box-sizing: border-box;
+    min-width: 1280px
+    /* border: 1px solid green; */
+}
+header a{
+    font-size: 20px;  
+    letter-spacing: 10px; 
+    font-weight: 800;
+    color:#474b22; 
+    text-decoration: none;
+}
+
+header.logo{
+    /* border: solid blue; */
+    width: 180px;
+    position: relative;
+    display: block;
+    font-size: 0;
+}
+header .logo a img{
+    height: 80px;
+    font-size: 0;          
+}
+header .header_li{
+    list-style: none; 
+    display: flex; 
+    margin-left: 28px; 
+}
+header .header_li li {
+    padding: 0 35px;
+    margin: 10px; 
+    position: relative; 
+}
+header .icon{
+    display: flex;
+    position: absolute;
+    top: 5px;
+    left: auto; 
+    right: 20px;          
+}
+header .search_icon, .QA_icon, .cart_icon{
+    padding: 0 20px;
+    font-size: 30px;
+    color:#474b22; 
+}
+header .search_icon:hover, .QA_icon:hover, .cart_icon:hover{
+    background-color: #DAECDC;
+    color:rgb(20, 19, 19);
+}
+main{
+    z-index: 1;
+    position:relative;
+    top: 90px;
+    border: 1px solid white;
+    background-color: white;
+    box-sizing: border-box;
+    width: 100%;
+}
+.main_register {
+    height: 800px;
+}
+.main_height {
+    min-height: calc(100vh - 190px);
+}
+footer {
+    width: 100%;
+    height: 100px;
+    padding-top: 10px;
+    margin-top: 88px;
+    box-sizing: border-box;
+    background-color: white;
+    min-width: 1280px;
+    z-index: 5;
+    /* border: 1px solid red; */
+    /* position: relative;
+    bottom: 0px; */
+}
+footer section .myfooter{
+    display: inline-block;
+}
+footer img{
+    height: 60px;
+    position: absolute;
+    left: 0;
+}
+footer .contact_info{
+    /* border: violet solid; */
+    position: relative;
+    text-align: center;
+}
+footer .box_1{
+    display: inline-block;
+    top: 3px;
+    padding: 20px;
+    color:#474b22;
+    font-weight: bold;
+    font-size: 14px;
+}
+footer #all_rights_reserve {
+    position: relative;
+    text-align: center;
+    font-size: 12px;
+    color:#474b22;
+    font-weight: bold;
+    bottom: 5px;
+}
+h2 {
+    font-size: 32px;
+}
+.a {
+    color:#466422;
+    font-size: 16px;
+    /* margin: 0px auto;  */
+}
+.page_container_login {
+    box-shadow: 0 2px 8px 0 rgb(0 0 0 / 8%);
+    /* border: 1px solid red; */
+    padding: 0 24px;
+    max-width: 400px;
+    height: 100%;
+    margin: 15px auto;
+    text-align: center;
+    min-height: 520px;
+}
+.page_container_register {
+    box-shadow: 0 2px 8px 0 rgb(0 0 0 / 8%);
+    /* border: 1px solid red; */
+    padding: 0 24px;
+    max-width: 400px;
+    margin: 15px auto;
+    text-align: center;
+    min-height: 700px;
+}
+.page_container_short {
+    box-shadow: 0 2px 8px 0 rgb(0 0 0 / 8%);
+    padding: 0 24px;
+    max-width: 400px;
+    min-height: 275px;
+    margin: 50px auto;
+    text-align: center;
+}
+.page_container_pre_register {
+    box-shadow: 0 2px 8px 0 rgb(0 0 0 / 8%);
+    padding: 0 24px;
+    max-width: 400px;
+    min-height: 330px;
+    margin: 50px auto;
+    text-align: center;
+}
+.page_container_basic_info, .page_container_address, .page_container_card {
+    box-shadow: 0 2px 8px 0 rgb(0 0 0 / 8%);
+    padding: 0 24px;
+    max-width: 600px;
+    height: 100%;
+    text-align: center;
+}
+.page_container_basic_info{
+    min-height: 720px;
+}
+.page_container_address {
+    min-height: 1000px;
+}
+.page_container_card {
+    min-height: 525px;
+}
+.title {
+    padding-top: 20px;
+    padding-bottom: 5px;
+    margin: 5px;
+}
+.subtitle {
+    font-size: 18px;
+    left: 0px;
+}
+.form_content {
+    margin: 8px auto;
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.input_text {
+    width: 300px;
+    height: 40px;
+    border: 1px solid gray;
+    margin: 5px auto;
+    display: inline-block;
+    text-align: left;
+    font-size: 16px;
+    padding: 8px;
+}
+.input_text:hover, .input_text:focus {
+    border: 2px solid #466422;
+}
+.submit_btn, .save_btn {
+    width: 120px;
+    height: 40px;
+    background: #9FA879;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    margin: 15px auto;  
+    border: none;
+    font-size: 16px;
+}
+.basic_info_submit_btn {
+    width: 120px;
+    height: 40px;
+    background: #9FA879;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    /* margin: 3px auto;   */
+    margin-bottom: 30px;
+    border: none;
+    font-size: 16px;
+}
+.register_btn {
+    margin: 0px auto;
+    margin-bottom: 20px;
+}
+.submit_btn:hover, .basic_info_submit_btn:hover {
+    background: #466422;
+    border: none;
+}
+.third_party_login_btn {
+    border: 1px solid gray;
+    width: 300px;
+    height: 40px;
+    background-color: white;
+    margin: 5px;
+    font-size: 16px;
+}
+.third_party_login_btn:hover {
+    cursor: pointer;
+    background-color: #DAECDC;
+}
+.third_party_login_span {
+    color: gray;
+}
+#self_register_btn {
+    width: 500px;
+    height: 40px;
+    background: #9FA879;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    margin: 15px auto;  
+    border: none;
+    font-size: 16px;
+    padding: 10px 45px;
+    /* border: 1px solid red; */
+    position: relative;
+    top: 15px;
+}
+#self_register_btn:hover {
+    background: #466422;
+    border: none;
+    text-decoration: none;
+}
+#register_policy {
+    position: relative;
+    top: 20px;
+}
+#register_account{
+    margin: 12px auto;
+}
+a {
+    color: #474b22;
+    text-decoration: none;
+}
+a:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.main_content {
+    /* width: calc(100% - 180px); */
+    margin-bottom: 100px;
+    text-align: center;
+    position: sticky;
+    top: 0px;
+    left: 35%;
+    line-height: 2;
+}
+.text_center {
+    text-align: center;
+}
+.ul_past_order {
+    text-decoration: none;
+}
+.sidebar {
+    width: 180px;
+    height: 100%;
+    line-height: 2;
+    font-size: 20px;
+    position: fixed;
+    top: 90px;
+    text-align: center;
+    border-radius: 2px;
+    background-color: #DAECDC;
+    z-index: 1;
+}
+#member_center_title {
+    font-size: 24px;
+    width: 120px;
+    padding: 8px;
+    border: 2px solid #9FA879;
+    position: relative;
+    top: 8px;
+    margin-top: 20px;
+}
+#member_center_li {
+    padding-top: 20px;
+}
+.ul_div_li {
+    margin-top: 16px;
+}
+.table_order {
+    border: 1px solid purple;
+    text-align: left;
+    margin:0px auto;
+    line-height: 2;
+    padding: 10px;
+}
+label.label_item {
+    display: inline-block;
+    margin-right: 8px;
+    /* border: 1px solid red; */
+    width: 70px;
+    /* padding-right: 0px; */
+}
+.notification_radio {
+    margin-right: 3px;
+    position: relative;
+    top: 1px;
+}
+.notification_label {
+    margin-right: 5px;
+}
+.card_class {
+    /* width: 500px; */
+    position: relative;
+    left: 90px;
+}
+.card_btn {
+    position: relative;
+    right: 8px;
+}
+.card_type, .card_num {
+    text-align: left;
+    padding-right: 10px;
+    font-size: 18px;
+}
+.card_type {
+    width: 40px;
+}
+.save_btn, .delete_btn {
+    width: 80px;
+    height: 30px;
+    background: #9FA879;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    margin: 15px auto;  
+    border: none;
+    font-size: 16px;
+    margin-right: 8px;
+}
+ul.list{
+    margin: 12px 0 24px 0;
+    padding: 0;
+    list-style: none;
+}
+ul.list > li:last-child{
+  margin-bottom: 0;
+}
+ul.list > li > a.link_title::after{
+  content: "";
+  display: block;
+  clear: both;
+}            
+ul.list > li > a.link_title button.switch_btn{
+  display: inline-block;
+  background: none;
+  border: 0;
+  outline: none;
+  color: white;
+}         
+ul.list > li > div.inner_block{
+  padding: 0 40px;
+  line-height: 1.6;
+  display: none;
+}
+.avatar-upload {
+    position: relative;
+    max-width: 205px;
+    margin: 18px auto;
+    /* border: 1px solid red; */
+}
+.avatar-edit {
+    position: absolute;
+    right: 12px;
+    z-index: 1;
+    top: 10px;
+}
+.avatar_input {
+    display: none;
+}
+.avatar_label {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 0;
+    border-radius: 100%;
+    background: #FFFFFF;
+    border: 1px solid transparent;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    font-weight: normal;
+    transition: all .2s ease-in-out;
+}
+.avatar_label:hover {
+    background: #f1f1f1;
+    border-color: #d6d6d6;
+}
+.avatar_label:after {
+    content: '';
+    font-family: 'FontAwesome';
+    background-image: url("../images/pencil_icon.png");
+    background-size: contain;
+    color: #757575;
+    position: absolute;
+    top: 7px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
+    /* border: 1px solid red; */
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+.avatar-preview{
+    width: 192px;
+    height: 192px;
+    position: relative;
+    border-radius: 100%;
+    border: 6px solid #F8F8F8;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+.avatar-preview > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.avatar-preview > img > #profic {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.register_notification {
+    /* border: 1px solid red; */
+    font-size: 18px;
+    position: relative;
+    top: 110px;
+}
+.re-register_span {
+    font-size: 18px;
+    position: relative;
+    top: 105px;
+}
+.re-register_a {
+    font-size: 20px;
+}
+
+.header_li .menu_title:hover{
+    background-color: #DAECDC;
+    color:rgb(20, 19, 19);
+    border-bottom: none;
+    cursor:pointer;
+}

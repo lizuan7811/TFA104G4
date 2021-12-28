@@ -1,0 +1,259 @@
+<!DOCTYPE >
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<link href="css/backstage.css" rel="stylesheet">
+<link href="css/Insert_Recipe.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+	integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+	crossorigin="anonymous">
+<title>新增食譜</title>
+</head>
+
+<body>
+	<header>
+		<img src="img\食健logo.png" alt="logo">
+		<div class="top_box">
+			<apean class="stage1">食譜管理</apean>
+			<apean class="stage2">●新增食譜</apean>
+		</div>
+	</header>
+	<main>
+		<form method="post" action="" enctype="multipart/form-data">
+
+			<div class="aside">
+				<nav>
+					<ul class="nav_list">
+						<li>會員管理</li>
+
+						<li><a href="#">產品管理</a>
+							<ul>
+								<li><a href="insert_product.html">新增商品</a></li>
+								<li><a href="search_product.html">搜尋、修改商品</a></li>
+								<li><a href="searchAll_product.html">全部商品</a></li>
+							</ul></li>
+
+						<li><a href="#">食譜管理</a>
+							<ul>
+								<li><a href="Insert_Recipe.html">新增食譜</a></li>
+								<li><a href="Search_Recipe.html">搜尋、修改食譜</a></li>
+								<li><a href="searchAll_Recipe.html">全部食譜</a></li>
+							</ul></li>
+
+						<li>訂單管理</li>
+						<li>檢舉管理</li>
+					</ul>
+				</nav>
+			</div>
+
+
+			<div class="mainbox">
+
+				<div class="main_left">
+					<div class="item_name">食譜圖片</div>
+					<div>
+						<img id="view" src="img\上傳圖片.png"> <input type="file"
+							id="file" name="file" onchange="readURL(this)" targetID="view"
+							accept="image/gif, image/jpeg, image/png" />
+					</div>
+				</div>
+
+				<div class="main_right">
+
+					<div class="main_right_l">
+						<div class="item_name">食譜編號</div>
+						<input id="idRecipe">
+						<div class="item_name">食譜步驟</div>
+						<textarea id="descrip"></textarea>
+						<div class="item_name">商品列表</div>
+						<select class="allProduct">
+						</select>
+						<div class="item_name">商品數量</div>
+						<select class="number">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</div>
+					<div class="main_right_r">
+						<div class="item_name">食譜名稱</div>
+						<input id="name">
+						<div class="item_name">食材清單(非架上)</div>
+						<textarea id="text"></textarea>
+						<div class="item_name">食材清單(架上商品)</div>
+						<div id="itemList" class="item"></div>
+					</div>
+
+					<button type="button" id="insert" onclick="insert_recipe()">新增食譜</button>
+
+					<button type="button" class="add" onclick="add()">添加商品</button>
+
+				</div>
+			</div>
+		</form>
+	</main>
+
+	<script type="text/javascript">
+        $.ajax({
+            type: 'post',
+            url: 'SearchAll_productServlet',
+            data: {},
+            success: function(data) {
+
+                var array = JSON.parse(data);
+                for (var i of array) {
+
+                    $(".allProduct").append(
+                        '<option value="' + i.idIngre + '">' + i.name + '</option>'
+                    );
+                }
+            }
+        });
+
+        let btId = 1;
+
+        function insert_recipe() {
+
+            let idIngre = 0;
+            let number = 0;
+
+
+            let input_file = document.getElementById("file").files[0];
+            var idRecipe = $("#idRecipe").val();
+            var descrip = $("#descrip").val();
+            var name = $("#name").val();
+            var text = $("#text").val();
+
+            var formData = new FormData();
+
+            for (var i = 1; i < btId; i++) {
+                //console.log($("#div" + i).data("idingre"));
+                //console.log($("#div" + i).data("number"));
+
+                let idIngre = $("#div" + i).data("idingre");
+                if (!idIngre) {
+                    continue;
+                }
+                let number = $("#div" + i).data("number");
+
+                //console.log(idIngre);
+                //console.log(number);
+
+                formData.append('idIngre' + i, idIngre);
+                formData.append('number' + i, number);
+
+                console.log(formData.get('idIngre' + i));
+                console.log(formData.get('number' + i));
+
+            }
+
+            formData.append('file', input_file);
+            formData.append('idRecipe', idRecipe);
+            formData.append('descrip', descrip);
+            formData.append('name', name);
+            formData.append('text', text);
+            formData.append('btId', btId);
+
+            $.ajax({
+                type: 'post',
+                url: 'Insert_RecipeServlet',
+                data: formData,
+                dataType: "json",
+                processData: false,
+                contentType: false,
+
+                success: function(data) {
+                	
+                	if (data.msg === "yes"){
+                		$(".errorMsg").empty();
+                		if(data.nameLength != null){
+    						$("#name").after("<span class='errorMsg'>" + data.nameLength + "</span>");
+    					}
+                		if(data.nameNull){
+							$("#name").after("<span class='errorMsg'>" + data.nameNull + "</span>");
+						}
+                		if(data.descripNull){
+							$("#descrip").after("<div class='errorMsg'>" + data.descripNull + "</div>");
+						}
+                		if(data.textNull){
+							$("#text").after("<div class='errorMsg'>" + data.textNull + "</div>");
+						}
+                		if(data.listNull){
+							$("#itemList").after("<span class='errorMsg'>" + data.listNull + "</span>");
+						}
+                	} else {
+                		$(".errorMsg").empty();
+                		alert("新增成功");
+                        location.reload([true]);
+                	}
+                },
+                error: function(data) {
+                    alert("新增失敗");
+                }
+
+            });
+
+        }
+
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+
+                var imageTagID = input.getAttribute("targetID");
+
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+
+                    var img = document.getElementById(imageTagID);
+
+                    img.setAttribute("src", e.target.result)
+
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+
+        }
+
+
+        function add() {
+            let idIngre = $(".allProduct").val();
+            let number = $(".number").val();
+
+
+            $(".item").append(
+                '<div id="div' + btId + '" data-idIngre="' + idIngre + '" data-number="' + number + '">' +
+                '<button  type="button" class="xicon" onclick="remove(' + btId + ')"><i class="fas fa-times"></i></button>' + " " + getSelectedText(idIngre) + ' 數量:' + number +
+                '</div>'
+
+            );
+            //console.log($("#div" + btId).data("idingre"));
+            //console.log($("#div" + btId).data("number"));
+            btId++;
+        }
+
+        function remove(id) {
+            $("#div" + id).remove();
+            btId -= 1;
+        }
+
+        function getSelectedText(value) {
+
+            var options = [];
+            $.each($(".allProduct").find('option'), function(index, option) {
+                options.push(option);
+            });
+
+            //         	const options = [...$(".allProduct").find('option')];
+            const option = options.find((option) => option.value === value);
+            return option.innerText;
+        }
+    </script>
+</body>
+
+</html>

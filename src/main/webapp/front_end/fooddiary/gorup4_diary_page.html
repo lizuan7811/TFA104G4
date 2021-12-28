@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>食健文章</title>
+    <link href="cf_css/gorup4_diary_page.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="/customer/css/customerStyle.css">
+	<script src="/js/transToSite.js" type="text/javascript"></script>
+	
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"> //載入font icon </script> 
+    <script src="cf_vendors/jquery-3.4.1.min.js"></script>
+    <script src="cf_js/diary_page.js"></script>
+
+    	<!-- 載入sweet alert -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</head>
+<body>
+    <div class="bottom_box">
+        <div class="email_icon"><i class="fas fa-envelope"></i></div>
+        <br>
+        <div class="phone_icon"><i class="fas fa-phone-square"></i></i></div>
+        <br>
+        <div class="chat_icon"><i class="fab fa-facebook-messenger"></i></div>
+    </div>
+    <header>
+        <div class="logo">
+            <a href="#首頁連結">
+                <img src="cf_css/食健logo.png" alt="logo">
+            </a>
+        </div>
+        <ul class="header_li">
+			<li class="menu_title aboutUs"><a>關於我們</a></li>
+			<li class="menu_title shopCity"><a>食健商城</a></li>
+			<li class="menu_title eatLife"><a>食健生活</a></li>
+			<li class="menu_title custLogin"><a>會員登入</a></li>
+		</ul>
+
+        <div class="icon">
+            <div class="search_icon"><i class="fas fa-search"></i></div>
+            <div class="QA_icon"><i class="far fa-question-circle"></i></div>
+            <div class="cart_icon"><i class="fas fa-shopping-cart"></i></div>       
+        </div>
+    </header>
+
+    <main>
+        <p class="breadcrumb">食健生活 > 文章分類類別 > 文章主題</p>
+       <br>
+        <div class="article">
+            <div class="article_header">
+                <h1 class="article_title">文章主題</h1>
+                <div class="article_info">
+                    <div class="author">    
+                        <img class="pro_pic" src="cf_css/cat_toby.jpg">    
+                        <input type="submit" id="diaryid" value="1" readonly>
+                        <span class="author_name" data-custId="custIDisHere" data-id="dynamicID" >作者 貪吃的貓</span>
+                        <input class="add_friend" type="button" name="加好友" value="+ 加好友">
+                    </div>
+                    <br>
+                    <span>發表於 2021/11/22</span>
+                    <span class="info_item"><span class="click_times">1314</span> 次點閱</span>
+                    <span class="info_item"><span class="thumbs_up_num">123</span> 人給讚</span>
+                </div>
+                <div class="like_share_report_btn">
+                    <div class="like_btn">
+                        <i class="far fa-thumbs-up"></i>
+                        <span>給讚</span>
+                    </div>
+                    <div class="share_btn">
+                        <i class="fas fa-share-alt"></i>
+                        <span>分享</span>
+                    </div>
+                    <div class="report">
+                        <input class="report_btn" type="button" name="report" value="檢舉">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+	
+                <input type="radio" id="i1" name="images" checked />
+                <input type="radio" id="i2" name="images" />
+                <input type="radio" id="i3" name="images" />
+                
+                <div class="slide_img" id="one">			
+                        
+                        <img src="cf_css/do1.jpg">
+                        
+                            <label class="prev" for="i3"><span>&#x2039;</span></label>
+                            <label class="next" for="i2"><span>&#x203a;</span></label>	    
+                </div>
+                <div class="slide_img" id="two">
+                    
+                        <img src="cf_css/do2.jpg" >
+                        
+                            <label class="prev" for="i1"><span>&#x2039;</span></label>
+                            <label class="next" for="i3"><span>&#x203a;</span></label>                   
+                </div>                       
+                <div class="slide_img" id="three">
+                        <img src="cf_css/do3.jpg">	
+                        
+                            <label class="prev" for="i2"><span>&#x2039;</span></label>
+                            <label class="next" for="i1"><span>&#x203a;</span></label>
+                </div>                  
+            </div>
+
+            <div class="main_article">
+                <p style="white-space: pre-line;">臺灣美景就隱藏在各個鄉間內，走訪雲林口湖一帶，體驗農村娛樂，帶你去體驗摸蜆兼洗褲，非常適合親子旅遊！青年回鄉創業，使用生態養殖養出一隻隻活蝦，飽餐一頓 成龍濕地和椬梧滯洪池景色，真的令人驚艷 讚嘆原來媲美國際的美景就在你我身邊 有機會可以來雲林口湖走走，會有讓你意想不到的收穫 『雲林口湖一日遊』。 我只能說這個行程很適合親子旅遊，小朋友一定可以玩的很開心 大人也可以拍出很多適合打卡的照片 同時也能深入雲林口湖鄉間體驗，我也是趁這次機會才知道原來口湖盛產鰻魚和烏魚子 所以可以吃到很好吃的蒲燒鰻，這個行程真的很推薦大家 雲林口湖一日遊行程： 馬蹄蛤主題館→口湖遊客中心(用餐)→椬梧滯洪池→憨吉秘塘→好蝦冏男社→成龍濕地</p>					
+			</div>
+        </div>
+      
+        <div id="parent">
+            <h3>訪客留言版</h3>       
+            <input type="text" id="nametxt" placeholder="暱稱..."><br/><br/>
+            <input type="text" id="text" placeholder="留言..."><br />
+            <input id="btn" type="submit" onclick="sendMSG()" value="留言" />
+            <div id="box"><em>目前尚無留言內容，請留言</em></div>
+            <br/>
+        </div>    
+               
+    </main>
+
+    <footer>
+        <section class="myfooter">
+            <div class="contact_info">
+                <img src="cf_css/食健logo.png" alt="logo">
+                <div class="box_1">連絡電話:0800-000-000</div>      
+                <div class="box_1">聯絡地址:台北市南京復興</div>      
+                <div class="box_1">E-MAIL:abc@123.com</div>
+            </div>
+            <div id="all_rights_reserve">©2021 食健 All Rights Reserve.</div>
+        </section>
+         
+    </footer>
+<!-- <script> -->
+
+//     function sendMSG(){
+//     //假設 diaryid=?
+//     var id_diary = $("#iddiary").val();
+//     var nickname = $("#nametxt").val();
+//     var comment_text = $("#text").val();
+//     var status 
+    
+//     var formData = new FormData();
+
+
+//     }
+
+<!-- </script> -->
+  
+</body>
+</html>

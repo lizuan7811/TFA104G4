@@ -1,0 +1,178 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body div.bottom_box{
+    box-sizing: border-box;
+    display: block;
+    position: fixed !important;
+    z-index: 3;
+    right: 0;
+    top: 40%;
+    padding: 0px 2px;
+    font-size: 30px;
+    color: #F16736;
+}
+body div .email_icon:hover, .phone_icon:hover, .chat_icon:hover{
+    color:#f79673;
+}
+
+header{
+    /* border: solid black; */
+    z-index: 2;
+    display: flex; 
+    align-items: center ;
+    position: fixed; 
+    min-width: 1280px ; 
+    background-color: white;
+    box-sizing: border-box;
+}
+header a{
+    font-size: 20px;  
+    letter-spacing: 10px; 
+    font-weight: 800;
+    color:#474b22; 
+    text-decoration: none;
+}
+header a.menu_title:hover{
+    background-color: #DAECDC;
+    color:rgb(20, 19, 19);
+    border-bottom: none;
+}
+header.logo{
+    /* border: solid blue; */
+    width: 180px;
+    position: relative;
+    display: block;
+    font-size: 0;
+    box-sizing: border-box;
+}
+header .logo a img{
+    padding-left: 20px;
+    height: 80px;
+    font-size: 0;         
+    box-sizing: border-box; 
+}
+header .header_li{
+    list-style: none; 
+    display: flex; 
+    margin-left: 28px; 
+    box-sizing: border-box;
+}
+header .header_li li {
+    padding: 0 35px;
+    margin: 10px; 
+    position: relative; 
+    box-sizing: border-box;
+}
+header .icon{
+    display: flex;
+    position: absolute;
+    top: 5px;
+    left: auto; 
+    right: 20px; 
+    box-sizing: border-box;         
+}
+header .search_icon, .QA_icon, .cart_icon{
+    padding: 0 20px;
+    font-size: 30px;
+    color:#474b22; 
+}
+header .search_icon:hover, .QA_icon:hover, .cart_icon:hover{
+    background-color: white;
+    color:rgb(88, 167, 88);
+}
+
+footer{
+    z-index: 1;
+    /* border: solid red; */
+    min-width: 1280px;
+    height: 80px;
+    position: relative;
+    padding-top: 10px;
+    margin-top: 88px;
+    box-sizing: border-box;
+}
+footer section .myfooter{
+    display: inline-block;
+}
+footer img{
+    height: 60px;
+    position: absolute;
+    left: 0;
+}
+footer .contact_info{
+    /* border: violet solid; */
+    position: relative;
+    text-align: center;
+}
+footer .box_1{
+    display: inline-block;
+    top: 3px;
+    padding: 20px;
+    color:#474b22;
+    font-weight: bold;
+    font-size: 14px;
+}
+footer #all_rights_reserve{
+    position: relative;
+    text-align: center;
+    font-size: 12px;
+    color:#474b22;
+    font-weight: bold;
+    bottom: 5px;
+}
+#submitButton {
+    font-family: FontAwesome;
+    border: 0;
+    background-color: white;   
+}
+
+
+#submitButton {
+    font-family: FontAwesome;
+    border: 0;
+    background-color: white;   
+}
+
+/* 食健生活_導覽列下拉選單 */
+#menu_life:after {
+    content: "▼";
+      position: absolute;
+      right: 6px;
+      top: 8px;
+      font-size: 9px;
+}
+
+.hidden {
+	position: absolute;
+	visibility: hidden;
+	opacity: 0;
+	transition: .1s;
+	background: white;
+	/* border: 1px solid #999; */
+	z-index: 10;
+	width: 100%;
+}
+#menu_life:hover .hidden {
+	visibility: visible;
+	opacity: 1;
+}
+#menu_life :hover {
+  background: #DAECDC;
+}
+
+#menu_life .hidden {
+	position: absolute;
+	visibility: hidden;
+	opacity: 0;
+	transition: .1s;
+	background: white;
+	/* border: 1px solid #999; */
+	z-index: 10;
+	width: 100%;
+}
+#menu_life:hover .hidden {
+	visibility: visible;
+	opacity: 1;
+}

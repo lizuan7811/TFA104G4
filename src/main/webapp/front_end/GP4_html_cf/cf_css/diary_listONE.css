@@ -1,0 +1,353 @@
+@import url("header_footer.css");
+
+
+main {
+    z-index: 5;
+    position:relative;
+    top: 90px;
+    /* border: solid black; */
+    box-sizing: border-box;
+    width: 100%;
+    /* height: 1000px; */
+    background-color:rgb(227, 235, 226);
+    list-style: none;
+}
+
+.all{
+    display: inline-block;
+}
+
+.profile_pic, .chat_pic{
+    width:60px;
+    height:60px; 
+    border-radius:100%;
+}
+
+aside, .news_list{
+    /* border: black 1px solid; */
+    height: 400px;
+    margin: 8px;
+}
+
+aside{
+    float: left;
+    text-align: center;
+    width: 200px;
+    /* border: rgb(116, 114, 114) 1px solid; */
+    background-color: white;
+    border-radius: 10px;
+}
+
+.chat_box{
+    /* position: absolute; */
+    float: right;
+    margin-left: 10px;
+    width: 300px;    
+    /* border: rgb(116, 114, 114) 1px solid; */
+    background-color: white;
+    border-radius: 10px;
+    height: 400px;
+    margin: 8px;
+}
+
+.chatlist{
+    border: rgb(184, 182, 182) 1px solid;
+}
+
+.chat_online{
+    position: absolute;
+    float: right;
+    width: 290px;    
+    background-color: white;
+    height: 300px;
+    margin: 8px;
+}
+
+.chat_name{
+    font-weight: bold;
+    /* border: solid; */
+    background-color: rgb(172, 228, 170);
+    width: 285px;
+    border-radius: 10px 10px 0px 0px;
+    text-align: center;
+}
+
+.chattxt{
+    width: 99%;
+    height: 320px;
+    max-width: 283ppx;
+    max-height: 320px;
+    resize: none;
+}
+
+.input_mesg{
+    margin-top: 3px;
+    display: inline-block;
+    width: 230px;
+    height: 30px;
+    border-radius: 10px;
+    padding-left: 5px;
+    border: 1px solid gray;
+}
+
+.send_btn{
+    display: inline-block;
+    margin-left: 4px;
+    border-radius: 5px;
+    border: rgb(235, 182, 67);
+    width: 40px;
+    height: 30px;
+    color: white;
+    background-color: rgb(235, 182, 67);
+    cursor:pointer;
+    z-index: 11;
+}
+
+.send_btn:hover{
+    background-color: rgb(243, 147, 3);
+}
+
+.news_list{
+    position:relative;
+    width: 700px;
+    float:right;
+    right:1px;
+    padding: 0px;  
+
+    /* border: solid black; */
+}
+
+.chat_people{
+    /* border: black 1px solid; */
+    display: inline-block;
+}
+
+.chat_content{
+    position: absolute;
+    margin: 2px;
+    /* border: black 1px solid; */
+    display: inline-block;
+    width: 230px;
+    height: 60px;
+}
+.chat_date{
+    font-size:13px; 
+    float:right;
+}
+
+.title{
+    text-align: center;
+    background-color: rgb(172, 228, 170);
+    border-radius: 10px 10px 0px 0px;
+}
+
+.return_btn{
+    width:200px;
+    height:30px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 10px 10px 0px 0px;
+    background-color: rgb(172, 228, 170);
+
+	}
+
+.add_diary{
+    position: absolute;
+    margin-top: 3px;
+    margin-left: 69px;
+    font-weight: bold;
+    background: linear-gradient(90deg, rgb(58, 180, 99) 0%, rgba(253,29,29,1) 33.3%, rgba(252,176,69,1) 66.6%, rgb(103, 124, 218) 100%);
+	-webkit-background-clip: text; /*截取背景区域为文字*/
+	color: transparent;
+	background-size: 300% 100%; /*扩大背景区域*/	
+	animation: text 4s infinite linear;
+	}
+	@keyframes text{
+	0%  { background-position: 0 0;}
+    100% { background-position: -150% 0;}
+}
+
+.search_friend{
+    /* width:200px; */
+    height: 25px;
+    border: none;
+    background-color: rgb(241, 236, 236);
+    border-radius: 10px;
+    padding: 2px 5px;
+}
+
+.all_friend, .friend_req{
+    width:200px;
+    height:30px;
+    margin: 10px 0px;
+    border: none;
+    background-color: rgb(172, 228, 170);
+    text-align: center;
+}
+
+.iconlist{
+	/* margin-top:5px; */
+	padding-top:3px;
+}
+
+.all_friend:hover , .friend_req:hover, .return_btn:hover {
+    background-color: rgb(161, 197, 179);
+    cursor: pointer;
+
+}
+
+table {
+    margin: 0px auto;
+    /* table-layout: fixed; */
+    width: 98%;
+    /* border:  solid black; */
+    /* border: 10px solid #696969; */
+    
+}
+
+.table_title{
+    background-color: rgb(175, 233, 204);
+    color: rgb(48, 48, 99);
+}
+th, td {
+    padding: 5px;
+    text-align: center;
+    font-size: 16px;
+    border-bottom: #e7b27f 2px solid;
+    /* border-style:none; */
+}
+
+h3{
+    text-align: center;
+    color: rgb(16, 90, 78);
+}
+
+.page{
+    text-align: right;
+    margin-right: 10px;
+    color: rgb(73, 160, 163);
+    font-size: 14px;
+} 
+
+.which_page{
+    margin-top: 5px;
+    text-align: right;
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.page_select{
+    position: absolute;
+   right: 50px;
+
+}
+
+.one_friend,.appFri{
+	position:sticky;
+    background-color:rgb(172, 228, 170,0.3); /* Green */
+    border: none;
+    color:black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+	font-weight: bold;
+    width: 75%;
+    height: 25%;
+	line-height:25px;
+    margin-bottom: 3px;
+	float:left;
+}
+.appFri{
+	margin-right:8px;
+}
+
+
+.one_friend:hover,.appFri:hover{
+    background-color:rgb(172, 228, 170,0.7); /* Green */
+    cursor:pointer;
+}
+.icon-user,.icon-bubbles3{
+	display: inline-block;
+	position:sticky;
+	color:lightblue;
+	box-sizing: border-box;
+	border:1px solid lightcyan;
+	font-size: 18px;
+	width:22px;
+	height:22px;
+	right:2px;
+	border-radius: 20%;
+	overflow: hidden;
+	z-index: 11;
+}
+.icon-user-minus,.icon-user-check{
+	display: inline-block;
+	position:sticky;
+	color:lightgray;
+	box-sizing: border-box;
+	border:1px solid lightcyan;
+	font-size: 18px;
+	width:22px;
+	height:22px;
+	right:2px;
+	border-radius: 20%;
+	overflow: hidden;
+	z-index: 11;
+	margin-top: 2px;
+}
+
+.icon-user-minus:hover,.icon-user-check:hover{
+	color:gray;
+}
+
+li{
+	list-style: none;
+}
+
+.icon-user:hover,.icon-bubbles3:hover{
+	color:orange;
+}
+.createdTime{
+	color:lightgray;
+	font-size:8px;
+	/* text-align:right; */
+}
+
+.friSend{
+	width:100%;
+	color:black;
+	font-size:14px;
+}
+
+
+.mySend{
+	width:100%;
+	color:black;
+	font-size:14px;
+	text-align:right;
+}
+.talkBox{
+	width:97%;
+	height:330px;
+	padding-right:3px;
+	overflow-y:scroll;
+}
+
+.talkBox::-webkit-scrollbar
+{
+    
+	width: 10px;
+	background-color: #96de6e;
+	z-index:3;
+}
+
+
+.showPic{
+	position:absolute;
+	left:10px;
+	width:25px;
+	height:25px;
+	border-radius: 15px;
+	background-color: #094AB2;
+}

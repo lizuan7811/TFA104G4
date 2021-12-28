@@ -1,0 +1,155 @@
+@import url("header_footer.css");
+
+main {
+    z-index: 1;
+    position:relative;
+    top: 90px;
+    /* border: solid black; */
+    box-sizing: border-box;
+    width: 100%;
+    height: 1480px;
+    background-color:white;
+}
+main .main_pic{
+    position: absolute;
+    width: 100%;
+    /* border: blue solid; */
+    font-size: 0;
+}
+main .main_pic img{
+    min-width: 1280px;
+    
+}
+main .content_box{
+    border: rgb(122, 155, 125) solid;
+    position: absolute;
+    top: 25.5%;
+    right: 32%;
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    min-width: 400px;
+}
+main .content_box_1{
+    display: block;
+    /* border: teal solid; */
+    margin: 10px;
+    text-align: center;
+    font-size: 36px;
+    color: white;
+    background-color: black;
+    opacity: 0.3;
+    text-decoration: none;
+    
+}
+main .content_box_2{
+    display: inline-block;
+    /* border: teal solid; */
+    margin: 10px 45px;
+    font-size: 36px;
+    color: white;
+    background-color: black;
+    opacity: 0.3;
+    text-decoration: none;
+    vertical-align: top;
+}
+main .content_box_3{
+    display: inline-block;
+    /* border: teal solid; */
+    margin: 10px 45px;
+    font-size: 36px;
+    color: white;
+    background-color: black;
+    opacity: 0.3;
+    text-decoration: none;
+    vertical-align: top; 
+}
+main .content_box_4{
+    display: inline-block;
+    /* border: teal solid; */
+    margin: 10px 45px;
+    font-size: 36px;
+    color: white;
+    background-color: black;
+    opacity: 0.3;
+    text-decoration: none;
+    vertical-align: middle; 
+}
+main .content_box_1:hover, .content_box_2:hover, .content_box_3:hover, .content_box_4:hover{
+    background-color: yellow;
+    color: black;
+}
+main .our_info{
+    position: absolute;
+    /* border: black solid; */
+    width: 100%;
+    top: 57%;
+    height: 18%;
+    box-sizing: border-box;
+    background-color: rgb(250, 199, 181);
+}
+main .info{
+    display: inline-block;
+    /* border: teal solid; */
+    margin: 5px;
+    font-size: 16px;
+    color:black;
+    width: 60%;
+    padding: 5px;
+    font-weight: bold;
+}
+main .info_pic{
+    display: inline-block;
+    /* border: teal solid; */
+    height: 50%;
+    vertical-align: top;
+}
+.us_pic{
+    position: relative;
+    margin-left: 20px;
+    width: 400px;
+    height: 190px;
+}
+main .featured_diary_photo{
+    box-sizing: border-box;
+    position: absolute;
+    background-color: rgb(233, 245, 215);
+    width: 100%;
+    top: 75%;
+    height: calc(100% - 75.2%);
+}
+main .featured_pic_box{
+    font-size: 16px;
+    display: inline-block;
+    position: relative;
+    width: 25%;
+    height: 50%;
+    /* border: cornflowerblue solid; */
+    margin: 5px 30px;
+    left: 4.5%;
+}
+main .featured_content{
+    box-sizing: border-box;
+    position: absolute;
+    /* border: solid pink; */
+    width: 100%;
+    top: 95.2%;
+    height: calc(100% - 96.2%);
+}
+main .featured_content_box{
+    font-size: 16px;
+    display: inline-block;
+    position: relative;
+    width: 25%;
+    height: 98%;
+    /* border: cornflowerblue solid; */
+    margin: 0px 28px;
+    left: 4.5%;
+}
+
+.d_pic{
+    width: 319px;
+    height: 250px;
+    object-fit: cover;
+}

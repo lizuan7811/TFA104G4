@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>SellAmountPage</title>
+		<link rel="stylesheet" href="css/adminCtrlCustPage.css" type="text/css">
+		<link rel="stylesheet" href="css/sellAmount.css" type="text/css">
+		<link rel="stylesheet" href="font/style.css" type="text/css">
+	</head>
+	<body>
+		<div id="div_inBody" class="clearfix">
+			<div id="fixed_div">
+			<aside id="sideBox">
+				<div id="sideBox_div">
+					<div id="sideBox_div_logo"></div>
+					<p class="icon-cog1"></p>
+				</div>				
+				<ul class="sideBox_ul">
+					<li class="sideBox_ul_li">會員管理</li>
+					<li class="sideBox_ul_li">產品管理</li>
+					<!-- <li class="sideBox_ul_li">銷售統計</li> -->
+					<li class="sideBox_ul_li">訂單管理</li>
+					<li class="sideBox_ul_li">檢舉管理</li>
+					<ul class ="sdBox_ul_ul">
+					<li class="sideBox_ul_li_Rep">檢舉文章管理</li>
+					<li class="sideBox_ul_li_Rep">檢舉評論管理</li></ul>
+					<li class="sideBox_ul_li">訂單管理</li></ul></aside></div>
+					
+			<main id="mainBox">
+				<nav id="navBox" class="mainBox_nav">
+					<div id="upperdv_in_navBox"><ul><li class="icon-edit"></li></ul></div>
+					<div id="btmdiv_in_navBox">
+						<h1 class="icon_in_btmdiv">銷售統計</h1>
+						<div id="icon_in_btmdiv" class="icon-note-add1"></div>	
+						<form id="firForm_in_mainBox"action="" method="POST">
+							<div id="secdv_inMainBox">
+								<input type="text" id="datepicker_start"name="searchID" value="" placeholder="請選擇查詢開始啟日期"/><div id="date_unit_start" class="icon-calendar1"></div><span id="dateToIcon" class="icon-arrow-thick-right"></span>
+								<input type="text" id="datepicker_end"name="searchID" value="" placeholder="請選擇查詢結束日期"/><div id="date_unit_end" class="icon-calendar1"></div>
+								
+							</div>
+						</form>
+					</div>
+					</nav>
+				<div id="mainBox_Content_div" class="mainBox_Content_div">
+					<div id="upperDv_in_mainBox">
+						<label id="sellCount_lbls1" class="sellCount_lbls">總銷售額:</label>
+					</div>
+					<div id="btmDv_in_mainBox">
+					<form action="" method="">
+						<table class="mainBox_table">
+						<tr>
+							<!-- <th id="top_tbox"></th> -->
+							<th id="sec_tbox">時間區分</th>
+							<th>食材名</th>
+							<th>銷售金額</th>
+							<th>成本</th>
+							<th id="neerend_tbox">實現獲利</th>
+							<!-- <th id="end_tbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>					 -->
+						</tr>
+						<tr>
+<!-- 							<td id="top_tbox"><input type="checkbox"/></td>
+ -->							<td id="sec_tbox">1</td>
+							<td>2</td>
+							<td>3</td>
+							<td>4</td>
+							<td id="neerend_tbox">5</td>
+							<!-- <td id="end_tbox">
+								<a href="javascript:void(0)"class="icon-address-book">詳細資料</a><span></span>
+								<input type="button" value="權限禁止" class="icon-blocked"/></td>	
+						</tr> -->
+						<tr>
+							<!-- <td id="top_tbox"><input type="checkbox"/></td> -->
+							<td id="sec_tbox">1</td>
+							<td>2</td>
+							<td>3</td>
+							<td>4</td>
+							<td id="neerend_tbox">5</td>
+							<!-- <td id="end_tbox">
+								<a href="javascript:void(0)"class="icon-address-book">詳細資料</a><span></span>
+								<input type="button" value="權限禁止" class="icon-blocked"/></td> -->	
+						</tr></table></form></div>
+				</div>
+			</main>
+		</div>
+	</body>
+	
+</html>

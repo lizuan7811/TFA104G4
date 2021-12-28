@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>TFA104G4</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+   <servlet>
+  	<servlet-name>UserListServlet</servlet-name>
+  	<servlet-class>com.user_use.controller.UserListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UserListServlet</servlet-name>
+  	<url-pattern>/userlist/UserListServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<servlet-class>com.user_use.controller.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>UserServlet</servlet-name>
+  	<servlet-class>com.user_use.controller.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UserServlet</servlet-name>
+  	<url-pattern>/usermethod/UserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>OrderServlet</servlet-name>
+  	<servlet-class>com.finalorder.controller.OrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>OrderServlet</servlet-name>
+  	<url-pattern>/finalorder/OrderServlet</url-pattern>
+  </servlet-mapping>
+  
+  <session-config>
+  	<session-timeout>180</session-timeout>
+  </session-config>
+  
+  <servlet>
+    <servlet-name>CustomerServlet</servlet-name>
+    <servlet-class>com.customer.controller.CustomerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CustomerServlet</servlet-name>
+    <url-pattern>/customer/CustomerServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>ActivateAccountServlet</servlet-name>
+    <servlet-class>com.customer.controller.ActivateAccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ActivateAccountServlet</servlet-name>
+    <url-pattern>/customer/ActivateAccountServlet</url-pattern>
+  </servlet-mapping>
+    
+   <servlet>
+    <servlet-name>ResetPasswordServlet</servlet-name>
+    <servlet-class>com.customer.controller.ResetPasswordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ResetPasswordServlet</servlet-name>
+    <url-pattern>/customer/ResetPasswordServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>ReadProfic</servlet-name>
+    <servlet-class>com.customer.controller.ReadProfic</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReadProfic</servlet-name>
+    <url-pattern>/customer/ReadProfic</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>CardServlet</servlet-name>
+    <servlet-class>com.card.controller.CardServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CardServlet</servlet-name>
+    <url-pattern>/card/CardServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>TransToOtherSiteServlet</servlet-name>
+  	<servlet-class>com.user_use.controller.TransToOtherSiteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>TransToOtherSiteServlet</servlet-name>
+  	<url-pattern>/otherWeb/TransToOther.html</url-pattern>
+  
+  </servlet-mapping>
+  </web-app>

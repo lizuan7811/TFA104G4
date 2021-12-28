@@ -1,0 +1,162 @@
+<!DOCTYPE >
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!--         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link href="css/backstage.css" rel="stylesheet">
+
+    <title>全部商品</title>
+</head>
+<style>
+    table {
+        border-spacing: 0;
+        width: 100%;
+        table-layout: fixed;
+        word-break: break-all;
+    }
+    
+    tr {
+        text-align: center;
+        height: 80px;
+    }
+    
+    td {
+        /* color: red; */
+        text-overflow: ellipsis;
+        /* 將顯示不完的以...顯示 */
+        white-space: nowrap;
+        /* 禁止td換行 */
+        overflow: hidden;
+        /* 隱藏X,Y滾動條 */
+    }
+    
+    th {
+        padding: 10px;
+    }
+    
+    table tbody tr:nth-child(odd) {
+        background-color: #eee
+    }
+    
+    table thead {
+        background-color: #8CE600;
+        color: white;
+        font-size: 16px;
+        font-weight: bolder;
+    }
+    
+    table thead th:first-child {
+        border-radius: 5px 0 0 0;
+        border: 1px solid #8CE600;
+    }
+    
+    table thead th:last-child {
+        border-radius: 0 5px 0 0;
+        border-right: 1px solid #8CE600;
+    }
+    
+    table tbody tr:last-child td:first-child {
+        border-radius: 0 0 0 5px;
+    }
+    
+    table tbody tr:last-child td:last-child {
+        border-radius: 0 0 5px 0;
+    }
+</style>
+
+<body>
+    <header>
+        <img src="img\食健logo.png" alt="logo">
+        <div class="top_box">
+            <apean class="stage1">產品管理</apean>
+            <apean class="stage2">●全部商品</apean>
+        </div>
+    </header>
+    <main>
+
+        <div class="aside">
+            <nav>
+                <ul class="nav_list">
+                    <li>會員管理</li>
+
+                    <li>
+                        <a href="#">產品管理</a>
+                        <ul>
+                            <li><a href="insert_product.html">新增商品</a></li>
+                            <li><a href="search_product.html">搜尋、修改商品</a></li>
+                            <li><a href="searchAll_product.html">全部商品</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="#">食譜管理</a>
+                        <ul>
+                            <li><a href="Insert_Recipe.html">新增食譜</a></li>
+                            <li><a href="Search_Recipe.html">搜尋、修改食譜</a></li>
+                            <li><a href="searchAll_Recipe.html">全部食譜</a></li>
+                        </ul>
+                    </li>
+
+                    <li>訂單管理</li>
+                    <li>檢舉管理</li>
+                </ul>
+            </nav>
+        </div>
+
+
+        <div class="mainbox">
+
+            <table class="list">
+                <thead>
+                    <th>編號</th>
+                    <th>類別</th>
+                    <th width="120px">名稱</th>
+                    <th>進價</th>
+                    <th>售價</th>
+                    <th>單位</th>
+                    <th>克數</th>
+                    <th>銷量</th>
+                    <th width="200px">介紹</th>
+                    <th>上架</th>
+                    <th width="150px">照片</th>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </main>
+
+    <script type='text/javascript'>
+    
+        $.ajax({
+            type: 'post',
+            url: 'SearchAll_productServlet',
+            data: {},
+            success: function(data) {
+
+                var array = JSON.parse(data);
+                for (var i of array) {
+
+                    $(".list tbody").append("<tr><td>" + i.idIngre + "</td><td>" +
+                        i.typeName + "</td><td>" +
+                        i.name + "</td><td>" +
+                        i.purPrice + "</td><td>" +
+                        i.price + "</td><td>" +
+                        i.unit + "</td><td>" +
+                        i.gran + "</td><td>" +
+                        i.sell + "</td><td>" +
+                        i.descrip + "</td><td>" +
+                        (i.launch ? '上架中' : '未上架') + "</td><td>" +
+                        '<img src="Ingre_BlobServlet?id=' + i.idIngre + ' "width="140px" height="70"></td></tr>'
+                    );
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

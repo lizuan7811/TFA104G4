@@ -1,0 +1,227 @@
+<!DOCTYPE >
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <link href="css/insert_product.css" rel="stylesheet">
+    <link href="css/backstage.css" rel="stylesheet">
+    <title>商品上架</title>
+</head>
+
+<body>
+    <header>
+        <img src="img\食健logo.png" alt="logo">
+        <div class="top_box">
+            <apean class="stage1">產品管理</apean>
+            <apean class="stage2">●商品上架</apean>
+        </div>
+    </header>
+    <main>
+        <form method="post" action="" enctype="multipart/form-data" id="myform">
+
+            <div class="aside">
+                <nav>
+                    <ul class="nav_list">
+                        <li>會員管理</li>
+
+                        <li>
+                            <a href="#">產品管理</a>
+                            <ul>
+                                <li><a href="insert_product.html">新增商品</a></li>
+                                <li><a href="search_product.html">搜尋、修改商品</a></li>
+                                <li><a href="searchAll_product.html">全部商品</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#">食譜管理</a>
+                            <ul>
+                                <li><a href="Insert_Recipe.html">新增食譜</a></li>
+                                <li><a href="Search_Recipe.html">搜尋、修改食譜</a></li>
+                                <li><a href="searchAll_Recipe.html">全部食譜</a></li>
+                            </ul>
+                        </li>
+
+                        <li>訂單管理</li>
+                        <li>檢舉管理</li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="mainbox">
+
+                <div class="main_left">
+
+                    <div class="box1">
+                        <div class="item_name">商品圖片</div>
+                        <img id="view" src="img\上傳圖片.png"> <input type="file" id="file" name="file" onchange="readURL(this)" targetID="view" accept="image/gif, image/jpeg, image/png" />
+                    </div>
+
+                </div>
+                <div class="main_right">
+                    <div class="main_right_l">
+                        <div class="box1">
+                            <div class="item_name">商品編號</div>
+                            <input type="text" id="idIngre" name="idIngre" />
+                        </div>
+                        <div class="box1">
+                            <div class="item_name">商品類別</div>
+                            <select id="idIngreType">
+                                <option value="1">肉類</option>
+                                <option value="2">蔬菜</option>
+                                <option value="3">鮮果</option>
+                            </select>
+
+                        </div>
+                        <div class="box1">
+                            <div class="item_name">商品名稱</div>
+                            <input type="text" id="name" name="name" />
+                        </div>
+                        <div class="box1">
+                            <div class="item_name">商品介紹</div>
+                            <textarea class="descrip" id="descrip" name="descrip"></textarea>
+                        </div>
+                    </div>
+                    <div class="mian_right_r">
+                        <div class="box1">
+                            <div class="item_name">進貨價格</div>
+                            <input type="text" id="purPrice" name="purPrice" />
+                        </div>
+                        <div class="box1">
+                            <div class="item_name">售價</div>
+                            <input type="text" id="price" name="price" />
+                        </div>
+                        <div class="box1">
+                            <div class="item_name">單位</div>
+                            <input type="text" id="unit" name="unit" />
+                        </div>
+                        <div class="box1">
+                            <div class="item_name">克數</div>
+                            <input type="text" id="gran" name="gran" />
+                        </div>
+                        <div class="box1">
+                            <div class="item_name">銷售數量</div>
+                            <input type="text" id="sell" name="sell" value="0" readonly/>
+                        </div>
+                        <div class="box1">
+                            <div class="item_name">是否上架</div>
+                            <select id="launch">
+                                <option value="1" selected>上架</option>
+                                <option value="0">下架</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <button class="insert" type="button" onclick="insert()">新增商品</button>
+
+
+            </div>
+
+
+
+        </form>
+    </main>
+
+
+    <script type="text/javascript">
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+
+                var imageTagID = input.getAttribute("targetID");
+
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+
+                    var img = document.getElementById(imageTagID);
+
+                    img.setAttribute("src", e.target.result)
+
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+
+        }
+
+        function insert() {
+
+            let input_file = document.getElementById("file").files[0];
+            var idIngreType = $("#idIngreType").val();
+            var idIngre = $("#idIngre").val();
+            var name = $("#name").val();
+            var descrip = $("#descrip").val();
+            var purPrice = $("#purPrice").val();
+            var price = $("#price").val();
+            var unit = $("#unit").val();
+            var gran = $("#gran").val();
+            var sell = $("#sell").val();
+            var launch = $("#launch").val();
+
+            var formData = new FormData();
+
+            formData.append('file', input_file);
+            formData.append('idIngreType', idIngreType);
+            formData.append('idIngre', idIngre);
+            formData.append('name', name);
+            formData.append('descrip', descrip);
+            formData.append('purPrice', purPrice);
+            formData.append('price', price);
+            formData.append('unit', unit);
+            formData.append('gran', gran);
+            formData.append('sell', sell);
+            formData.append('launch', launch);
+
+            $.ajax({
+                type: 'post',
+                url: 'insert_productServlet2',
+                data: formData,
+                dataType: "json",
+                processData: false,
+                contentType: false,
+
+                success: function(data) {
+                	console.log(data);
+                	
+    				if (data.msg === "yes") {
+    					$(".errorMsg").empty();
+    					if(data.nameLength != null){
+    						$("#name").after("<div class='errorMsg'>" + data.nameLength + "</div>");
+    					}
+    					if(data.nameNull){
+    							$("#name").after("<div class='errorMsg'>" + data.nameNull + "</div>");
+    					}
+    					if(data.descripNull){
+    							$("#descrip").after("<div class='errorMsg'>" + data.descripNull + "</div>");
+    					}
+    					if(data.purPriceNull != null){
+    							$("#purPrice").after("<div class='errorMsg'>" + data.purPriceNull + "</div>");
+    					}
+    					if(data.priceNull != null){
+    							$("#price").after("<div class='errorMsg'>" + data.priceNull + "</div>");
+    					}
+    					if(data.unitNull != null){
+    							$("#unit").after("<div class='errorMsg'>" + data.unitNull + "</div>");
+    					}
+    					if(data.granNull != null){
+    							$("#gran").after("<div class='errorMsg'>" + data.granNull + "</div>");
+    					}
+    				
+    				} else {
+    					$(".errorMsg").empty();
+    					alert("更新成功");
+    				}
+
+                },
+                error: function(data) {
+                    alert("新增失敗");
+                }
+
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+@import url("header_footer.css");
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    z-index: 1;
+    position: relative;
+    top: 90px;
+    border: solid black;
+    box-sizing: border-box;
+    width: 100%;
+    /* height: 700px; */
+    /* background-color: #8E97A1; */
+}
+
+.mainbox {
+    /* border: 1px solid red; */
+    margin: auto;
+    width: 1100px;
+    /* height: 500px; */
+    /* display: flex;
+    flex-direction: row;
+    flex-direction: wrap; */
+}
+
+.card {
+    display: inline-block;
+    margin: 15px;
+    border: 1px solid #D0D0D0;
+    width: 330px;
+    /* height: 280px; */
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #D0D0D0;
+}
+
+.card:hover {
+    background-color: #eee;
+    box-shadow: 3px 3px 9px orange;
+    border-radius: 20px;
+    background-color: #D0D0D0;
+    cursor: pointer;
+    margin-left: 25px;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+}
+
+.recipeName {
+    /* border: 1px solid red; */
+    padding: 10px;
+    letter-spacing: 5px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bolder;
+    color: white;
+}
+
+.backShop_icon {
+    z-index: 3;
+    margin: 30px 0px 30px 100px;
+    /* border: solid blue; */
+    width: 150px;
+    height: 30px;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    color: darkblue;
+    border-radius: 20px;
+}
+
+.backShop_icon:hover {
+    cursor: pointer;
+    margin-left: 95px;
+    background-color: whitesmoke;
+    display: inline-block;
+    box-shadow: 3px 3px 9px darkblue;
+}
