@@ -257,6 +257,7 @@ var chk = function() {
 };
 // 送出訂單內容資料
 var sendOrderMsg = function(orderMp) {
+	console.log("送出訂單內容資料!");
 	$.ajax({
 		url: servletPath(),
 		data: {

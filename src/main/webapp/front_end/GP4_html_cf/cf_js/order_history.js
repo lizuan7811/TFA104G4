@@ -13,7 +13,7 @@ $(function(){
     function getUserOwnOrder(){
         $.ajax({
             url:servletPath()+"/finalorder/OrderServlet",
-            data:{"metChoice":"initUserOwnOrder","custID":1},
+            data:{"metChoice":"initUserOwnOrder"},
             type:"POST",
             success:function(data){
                 // console.log(data);

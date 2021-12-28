@@ -65,7 +65,7 @@ public class TransToOtherSiteServlet extends HttpServlet {
 			} else if ("historyOrder".equals(transToSite)) {
 //				System.out.println(realPath + "/order_history.html");
 //				pw.write(realPath + "/order_history.html");
-				jArr.put(realPath + "/order_history.html");
+				jArr.put(realPath + "/customer/order_history.html");
 				pw.write(jArr.toString());
 				return;
 			}else if("eatDiary".equals(transToSite)){
@@ -80,7 +80,7 @@ public class TransToOtherSiteServlet extends HttpServlet {
 				pw.write(jArr.toString());
 				
 			}else if("lookOrder".equals(transToSite)){
-				jArr.put(realPath + "/order_history.html");
+				jArr.put(realPath + "/customer/order_history.html");
 				System.out.println(jArr.toString());
 				pw.write(jArr.toString());
 			}else if("toShop".equals(transToSite)){
