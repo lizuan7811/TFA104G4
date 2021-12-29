@@ -10,11 +10,12 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="<%=request.getContextPath()%>/js/transToSite.js" type="text/javascript"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/customer/css/customerStyle.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/header&footer.css">
 </head>
 <body>
 	<header>
 		<div class="logo">
-			<a href="#首頁連結"> <img src="images/食健logo.png" alt="logo">
+			<a href="#首頁連結"> <img src="<%=request.getContextPath()%>/TFA104G4/customer/images/食健logo.png" alt="logo">
 			</a>
 		</div>
 		<ul class="header_li">

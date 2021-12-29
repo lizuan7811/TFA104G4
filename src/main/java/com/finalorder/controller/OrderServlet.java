@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import com.cart.controller.Ingre;
 import com.cart.controller.OrderToJSON;
+import com.customer.model.CustomerVO;
 import com.finalorder.model.FinalOrderVO;
 import com.google.gson.Gson;
 import com.pojo.model.UserVO;
@@ -36,6 +37,9 @@ public class OrderServlet extends HttpServlet {
 		System.out.println("執行OrderSevlet");
 		foService = new FinalOrderServiceimpl();
 		String metChoice = request.getParameter("metChoice");
+		
+		System.out.println("執行OrderSevlet的metChoice\t"+metChoice);
+		
 		Map<Integer, Integer> tmpIngreMap = new HashMap<Integer, Integer>();
 		HttpSession session = request.getSession();
 		Vector<Ingre> cart = (Vector<Ingre>) session.getAttribute("cart");
@@ -119,7 +123,11 @@ public class OrderServlet extends HttpServlet {
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
+<<<<<<< HEAD
 			Integer custID=Integer.valueOf(request.getParameter("custID"));
+=======
+			Integer custID=((CustomerVO)request.getSession().getAttribute("custVO")).getIdCustomer();
+>>>>>>> 31e71b82407e53bb32977367abb4c7e735080dab
 			pw=response.getWriter();
 			pw.write(foService.serviceInitOwnOrder(custID).toString());
 		} catch (IOException e) {
