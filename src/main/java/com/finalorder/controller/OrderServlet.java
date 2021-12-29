@@ -123,11 +123,7 @@ public class OrderServlet extends HttpServlet {
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
-<<<<<<< HEAD
-			Integer custID=Integer.valueOf(request.getParameter("custID"));
-=======
 			Integer custID=((CustomerVO)request.getSession().getAttribute("custVO")).getIdCustomer();
->>>>>>> 31e71b82407e53bb32977367abb4c7e735080dab
 			pw=response.getWriter();
 			pw.write(foService.serviceInitOwnOrder(custID).toString());
 		} catch (IOException e) {
