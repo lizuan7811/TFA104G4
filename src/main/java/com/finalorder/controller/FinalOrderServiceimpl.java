@@ -58,7 +58,7 @@ public class FinalOrderServiceimpl implements FinalOrderService {
 		jObj.put("UserOwnfinalOrdre",fodo.getInitOwnOrder(conn,ps,custID));
 		jObj.put("ingreAll",fodo.getIngreJsonArr());
 		jObj.put("orderIngreList",fodo.getOrderIngreList());
-		
+		System.out.println(jObj);
 		return jObj;
 	}
 }

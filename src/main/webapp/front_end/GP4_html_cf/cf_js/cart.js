@@ -58,24 +58,9 @@ $(function() {
 			$(".btn").css("visibility", "hidden");
 		})
 
-		$(".final_btn").on("click", function() {
-//			if (chk() == "" || payName.trim() == "" || payAddr.trim() == "" || payComm.trim() == "") {
-//				return null;
-//			}
+		$(".fb_btn").on("click", function() {
 			getPayDetail();
 		});
-
-
-
-		// $("card_info")
-		//     swal({
-		//         title: "HTML <small>信用卡支付</small>!",
-		//         text: "<input type='text'><label class='my-label'>Name</label>",
-		//         html: true 
-		//     });
-
-		// });
-
 
 		$(".qt-plus").click(function() {
 			$(this).parent().children(".qt").html(parseInt($(this).parent().children(".qt").html()) + 1);
@@ -214,9 +199,11 @@ var getPayDetail = function() {
 	payName = $(".payName").val();
 	payAddr = $(".payAddr").val();
 	payComm = $(".payComm").val();
-	if (chk() === "" || payName.trim()=== "" || payAddr.trim() === "" || payComm.trim() === "") {
+	if (chk() == "" || payName.trim()== "" || payAddr.trim() == "") {
 		return null;
 	}
+console.log("getPayDetail");
+
 	mp.set("recipient", payName);
 	mp.set("recipientAddress", payAddr);
 	mp.set("footnote", payComm);
@@ -229,16 +216,16 @@ var getPayDetail = function() {
 		url: "http://" + window.location.host + webContext + "/ClearCart",
 		data: { "action": "SENDORDER" },
 		type: "GET",
-		success: function() {
-			Swal.fire({
-				position: 'center',
-				icon: 'success',
-				title: '訂單已確認送出!',
-				text: '如欲取消訂單請至「訂單查詢」做取消',
-				showConfirmButton: false,
-				timer: 2000
-			})
-			
+		success: function(data) {
+//			Swal.fire({
+//				position: 'center',
+//				icon: 'success',
+//				title: '訂單已確認送出!',
+//				text: '如欲取消訂單請至「訂單查詢」做取消',
+//				showConfirmButton: false,
+//				timer: 2000
+//			})
+			window.location=data;
 			//			window.location.href ="http://"+ window.location.host+webContext+"/front_end/cart/shop.jsp";
 		}
 	})

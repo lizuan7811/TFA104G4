@@ -30,6 +30,7 @@ $(function(){
                 //     console.log(orderIngreObj[key]);
                 //     console.log(ingreObj[key]);
                 // }
+				newElemStr(finalOrderObj)
                 $(".order_body").append(newElemStr(finalOrderObj));
                 $(".mainbox tbody tr td .inp_btnSel").on("click",selFunc(this)).stopPropagation;
                 $(".mainbox tbody tr td .inp_btnSel").on("click",checkFunc(this)).stopPropagation;
@@ -100,6 +101,7 @@ var tmpRespStr;
         $(".inp_btnSel").click(function(){
             $(".repBox").html("");
             var idFinalOrder=$(this).attr("data-idFinalOrder");
+console.log("idFinalOrder\t"+idFinalOrder);
             var jsonOjj=finalOrderObj[idFinalOrder-1];
           
             if(inp_btnSelCnt>=1)
@@ -139,7 +141,7 @@ var tmpRespStr;
     function repStr(jsonOjj,idFinalOrder){
         var ingreNum;
         var tmpArr=new Array();
-console.log(jsonOjj.arrivalTime);
+console.log(jsonOjj);
         var tpTime=jsonOjj.arrivalTime==undefined?"":jsonOjj.arrivalTime;
         var newEleStr="<ul><li class='liID' data-idFinalOrder="+idFinalOrder+">訂單編號:\t"+idFinalOrder+"</li><li>收貨人:\t"+jsonOjj.recipient+"</li><li>收貨地址:\t"+jsonOjj.recipientAddress+"</li><li>消費金額:"+jsonOjj.orderAmount+"</li><li>訂單成立時間:\t"+jsonOjj.createdTime+"</li><li class='arrivalTime'>貨物送達時間:\t"+tpTime+"</li><li>備註:\t"+jsonOjj.footnote+"</li>";
         for(var key in orderIngreObj)

@@ -108,6 +108,7 @@ var tmpRespStr;
                     if(inp_btnSelCnt>=1)
                     {return;}
                     $(".showFinalOrder").addClass("tranToBigdv");
+                    console.log(jsonOjj);
                     $(".showFinalOrder").append(repStr(jsonOjj,idFinalOrder));
                     inp_btnSelCnt+=1;
                 },700);
@@ -156,6 +157,7 @@ var tmpRespStr;
             // console.log("tmpIngreObj\t"+tmpIngreObj[tmpArr[index]]);
             // tmpRespStr+=tmpIngreObj.index
             newEleStr+=tmpRespStr+"</ul>";
+console.log("newEleStr");
             
         }
         return newEleStr;

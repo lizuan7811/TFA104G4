@@ -24,14 +24,14 @@
 	
 }
 
-form label{
+main label{
 	margin:25px 0px 0px 15px;
-	font-size:22px;
+	font-size:24px;
 }
-form input{
+main input{
 	border:none;
 	outline:none;
-	font-size:20px;
+	font-size:24px;
 	margin-right:10px;
 }
 ul{
@@ -58,7 +58,7 @@ main .main_div_admindiv{
 	
 }
 .form_input_UserCP,.form_input_submitBtn{
-	margin:20px 20px;
+	margin:10px 20px 3px 20px;
 	width:85%;
 	height:30px;
 	background-color: white;
@@ -133,4 +133,11 @@ background-image: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26
 
 .mainbox .list{
 	font-size:18px;
+}
+.respMsg{
+	position:sticky;
+	color:red;
+	font-size:18px;
+	font-weight: 700;
+	margin-left:20px;
 }

@@ -34,8 +34,8 @@
 				<li>備註: <input name="payComm" class="paytxt payComm" type="text"> </li>
 				
 			</ul>
-			<form name="clearForm" action="<%=request.getContextPath()%>/ClearCart" method="GET">
-              	<input type="submit" name="clear" value="送出訂單" class="final_btn" style="color: rgb(241, 238, 238)" id="del_return" >
+			<form name="clearForm" >
+              	<input type="button" name="clear" value="送出訂單" class="final_btn fb_btn" style="color: rgb(241, 238, 238)" id="del_return" >
               	<input type="hidden" name="action" value="SENDORDER">
 			</form>
 		</div> 

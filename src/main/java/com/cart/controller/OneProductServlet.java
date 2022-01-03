@@ -20,7 +20,7 @@ public class OneProductServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		
-		System.out.println("Start-ShoppingCart");
+		System.out.println("Start-OneProductServlet ShoppingCart");
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html;charset=UTF-8");
 		JSONObject jjObj=req.getAttribute("JSONObj")==null?new JSONObject():(JSONObject)req.getAttribute("JSONObj");

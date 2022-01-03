@@ -5,6 +5,8 @@
 		<title>AdminLoginPage</title>
 		<link rel="stylesheet" href="css/adminLogin.css" type="text/css">
 		<script src="jquery/practice/vendors/jquery/jquery-3.6.0.min.js"></script>
+		<script src="js/adminLogin.js"></script>
+
 	</head>
 	<body>
 		<div class="html_flexdiv">
@@ -15,20 +17,29 @@
 						<div class="body_main_header_logodiv"></div>
 					</header>
 					<div class="main_div_admindiv">
-						<form action="LoginServlet" method="POST">
-							<label for="main_form_userName">User Name/Email-Address</label><br>
-							<input type="text" name="main_form_userName" value="" placeholder="請輸入管理者帳號"class="form_input_UserCP"><br>
-							<label for="main_form_Password">Password</label><br>
-							<input type="password" name="main_form_Password" value="" placeholder="請輸入管理者密碼"class="form_input_UserCP"><br>
+<!-- 						<form action="LoginServlet" method="POST"> -->
+							
+							<div>
+							<label>User Name/Email-Address</label><br>
+							<input id="adminUsername"type="text" name="main_form_userName" value="" placeholder="請輸入管理者帳號"class="form_input_UserCP"><br>
+							<div class="UNRespDiv respMsg"></div>								
+							</div>
+							
+							<div>
+							<label>Password</label><br>
+							<input id="adminPassword"type="password" name="main_form_Password" value="" placeholder="請輸入管理者密碼"class="form_input_UserCP"><br>
+							<div class="PSRespDiv respMsg"></div>
+							</div>
+							
 							<ul id="">
 								<li><input type="checkbox" name="" value="">Keep Login</li>
-								<li>Forget Password?</li>								
+								<li>Forget Password?</li>
 							</ul><br>
-							<input type="submit" name="sendAccount"value="login" class="form_input_submitBtn">
+							<input type="button" name="sendAccount"value="login" class="form_input_submitBtn">
 							<div class="main_form_fakediv">或註冊/Or Register</div>
 							
-							<input type="submit" value="Register" class="form_input_submitBtn">
-						</form>
+<!-- 							<input type="button" value="Register" class="form_input_submitBtn"> -->
+<!-- 						</form> -->
 					</div>
 				</main>
 			</div>

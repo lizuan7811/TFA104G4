@@ -124,6 +124,8 @@ public class OrderServlet extends HttpServlet {
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
 			Integer custID=((CustomerVO)request.getSession().getAttribute("custVO")).getIdCustomer();
+			
+			System.out.println("custID\t"+custID);
 			pw=response.getWriter();
 			pw.write(foService.serviceInitOwnOrder(custID).toString());
 		} catch (IOException e) {
