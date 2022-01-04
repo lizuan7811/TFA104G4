@@ -20,6 +20,7 @@ public class TransToOtherSiteServlet extends HttpServlet {
 				+ request.getContextPath();
 		try {
 			String transToSite = request.getParameter("transToSite");
+			String metChoice=request.getParameter("metChoice");
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter pw = response.getWriter();
@@ -35,36 +36,31 @@ public class TransToOtherSiteServlet extends HttpServlet {
 			jObj.put("custID", custVO.getIdCustomer());
 			jObj.put("account", custVO.getAccount());
 			jArr.put(jObj.toString());
-			System.out.println("aboutUs".equals(transToSite));
+			
+			if ("getCust".equals(metChoice)) {
+		System.out.println("jObj"+jObj);
+				pw.write(jObj.toString());
+				return;
+			}
+			
+			
 			if ("aboutUs".equals(transToSite)) {
-//				pw.write(realPath + "/front_end/GP4_html_cf/group4_home.html");
-//				System.out.println(realPath + "/front_end/GP4_html_cf/group4_home.html");
 				jArr.put(realPath + "/front_end/GP4_html_cf/group4_home.html");
 				pw.write(jArr.toString());
-//				pw.write(jObj.toString());
-				// System.out.println(realPath+"/front_end/GP4_html_cf/group4_home.html");
 				return;
 			} else if ("shopCity".equals(transToSite)) {
-//				System.out.println(realPath + "/front_end/cart/shop.jsp");
-//				pw.write(realPath + "/front_end/cart/shop.jsp");
 				jArr.put(realPath +  "/front_end/cart/shop.jsp");
 				pw.write(jArr.toString());
 				return;
 			} else if ("eatLife".equals(transToSite)) {
-//				System.out.println(realPath + "/front_end/GP4_html_cf/group4_diary.html");
-//				pw.write(realPath + "/front_end/GP4_html_cf/group4_diary.html");
 				jArr.put(realPath + "/front_end/GP4_html_cf/group4_diary.html");
 				pw.write(jArr.toString());
 				return;
 			} else if ("custLogin".equals(transToSite)) {
-//				System.out.println(realPath + "/customer/customerLogin.jsp");
-//				pw.write(realPath + "/customer/customerLogin.jsp");
 				jArr.put(realPath +"/customer/customerLogin.jsp");
 				pw.write(jArr.toString());
 				return;
 			} else if ("historyOrder".equals(transToSite)) {
-//				System.out.println(realPath + "/order_history.html");
-//				pw.write(realPath + "/order_history.html");
 				jArr.put(realPath + "/customer/order_history.html");
 				pw.write(jArr.toString());
 				return;

@@ -48,15 +48,19 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 	@Override
 	public JSONArray getInitOwnOrder(Connection conn,PreparedStatement ps,Integer custID) {
 	
+		System.out.println("getInitOwnOrder");
 		return selOwnOrder(conn,ps,custID);
 	}
 	@Override
 	public JSONArray getFinalOrderAll() {
-		
+		System.out.println("getFinalOrderAll");
+
 		return this.finalOrderArr;
 	}
 	@Override
 	public JSONArray getIngreJsonArr() {
+		System.out.println("getIngreJsonArr");
+
 		return this.ingreJsonArr;
 	}
 	@Override
@@ -83,10 +87,14 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 	
 	@Override
 	public JSONArray getOrderIngreList() {
+		System.out.println("getOrderIngreList");
+		System.out.println(this.orderIngreList);
 		return this.orderIngreList;
 	}
 	
 	private JSONArray selFinalOrderAll(Connection conn, PreparedStatement ps) {
+		System.out.println("selFinalOrderAll");
+
 		JSONArray jArr=null;
 		try {
 			ps=conn.prepareStatement(FinalStaticFile.FINALORDERALL_SELECT);
@@ -112,6 +120,7 @@ public class FinalOrderDaoImpl implements FinalOrderDao{
 	}
 	
 	public JSONArray selOwnOrder(Connection conn,PreparedStatement ps,Integer custID) {
+System.out.println("selOwnOrder");
 	JSONArray jArr=null;
 	try {	
 		ps=conn.prepareStatement(FinalStaticFile.FINALORDERSG_SELECT);

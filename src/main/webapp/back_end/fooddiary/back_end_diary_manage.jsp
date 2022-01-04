@@ -116,39 +116,41 @@
     </header>
     <main>
 
-        <div class="aside">
+		 <div class="aside">
             <nav>
                 <ul class="nav_list">
-                    <li>會員管理</li>
+                    <li><a href="customer/customerMgmt.jsp">會員管理</a></li>
 
                     <li>
-                        <a href="#">產品管理</a>
+                        <a href="<%=request.getContextPath()%>/search_product.html">產品管理</a>
                         <ul>
-                            <li><a href="insert_product.html">新增商品</a></li>
-                            <li><a href="search_product.html">搜尋、修改商品</a></li>
-                            <li><a href="searchAll_product.html">全部商品</a></li>
+                            <li><a href="<%=request.getContextPath()%>/insert_product.html">新增商品</a></li>
+                            <li><a href="<%=request.getContextPath()%>/search_product.html">搜尋、修改商品</a></li>
+                            <li><a href="<%=request.getContextPath()%>/searchAll_product.html">全部商品</a></li>
                         </ul>
                     </li>
 
-                    <li><a href="#">食譜管理</a>
+                    <li><a href="<%=request.getContextPath()%>/Search_Recipe.html">食譜管理</a>
                         <ul>
-                            <li><a href="Insert_Recipe.html">新增食譜</a></li>
-                            <li><a href="Search_Recipe.html">搜尋、修改食譜</a></li>
-                            <li><a href="searchAll_Recipe.html">全部食譜</a></li>
+                            <li><a href="<%=request.getContextPath()%>/Insert_Recipe.html">新增食譜</a></li>
+                            <li><a href="<%=request.getContextPath()%>/Search_Recipe.html">搜尋、修改食譜</a></li>
+                            <li><a href="<%=request.getContextPath()%>/searchAll_Recipe.html">全部食譜</a></li>
                         </ul>
                     </li>
 
-                    <li>訂單管理</li>
-                    <li><a href="#">日誌管理</a>
+                    <li><a href="finalOrder.html">訂單管理</a></li>
+                    <li><a href="back_end/fooddiary/back_end_diary_manage.jsp">日誌管理</a>
                         <ul>
-                            <li><a href="">全部日誌</a></li>
-                            <li><a href="">檢舉管理</a></li>
+                            <li><a href="back_end/fooddiary/back_end_diary_manage.jsp">全部日誌</a></li>
+                            <li><a href="<%=request.getContextPath()%>/diaryRepertResp.html">檢舉管理</a></li>
                             
                         </ul>
                     </li>
                 </ul>
             </nav>
         </div>
+
+
 
         <table class="mainbox">
             <tr class="list">

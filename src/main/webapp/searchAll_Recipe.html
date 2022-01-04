@@ -22,24 +22,14 @@
         height: 80px;
     }
     
-    table .td-descrip {
-        display: block;
-        max-height: 150px;
-        overflow: auto;
-        text-align: left;
-        padding-left: 20px;
-        text-indent: -15px;
-    }
-    
-    table .td-text {
-        text-align: left;
-        padding-left: 20px;
-    }
-    
-    table .td-img {
-        border-radius: 5px;
-        margin: auto;
-        border: 1px solid #adaaa6;
+    td {
+        /* color: red; */
+        text-overflow: ellipsis;
+        /* 將顯示不完的以...顯示 */
+        white-space: nowrap;
+        /* 禁止td換行 */
+        overflow: hidden;
+        /* 隱藏X,Y滾動條 */
     }
     
     th {
@@ -86,34 +76,34 @@
     </header>
     <main>
 
-        <div class="aside">
+ 		 <div class="aside">
             <nav>
                 <ul class="nav_list">
-                    <li>會員管理</li>
+                    <li><a href="customer/customerMgmt.jsp">會員管理</a></li>
 
                     <li>
-                        <a href="#">產品管理</a>
+                        <a href="<%=request.getContextPath()%>/search_product.html">產品管理</a>
                         <ul>
-                            <li><a href="insert_product.html">新增商品</a></li>
-                            <li><a href="search_product.html">搜尋、修改商品</a></li>
-                            <li><a href="searchAll_product.html">全部商品</a></li>
+                            <li><a href="<%=request.getContextPath()%>/insert_product.html">新增商品</a></li>
+                            <li><a href="<%=request.getContextPath()%>/search_product.html">搜尋、修改商品</a></li>
+                            <li><a href="<%=request.getContextPath()%>/searchAll_product.html">全部商品</a></li>
                         </ul>
                     </li>
 
-                    <li><a href="#">食譜管理</a>
+                    <li><a href="<%=request.getContextPath()%>/Search_Recipe.html">食譜管理</a>
                         <ul>
-                            <li><a href="Insert_Recipe.html">新增食譜</a></li>
-                            <li><a href="Search_Recipe.html">搜尋、修改食譜</a></li>
-                            <li><a href="searchAll_Recipe.html">全部食譜</a></li>
+                            <li><a href="<%=request.getContextPath()%>/Insert_Recipe.html">新增食譜</a></li>
+                            <li><a href="<%=request.getContextPath()%>/Search_Recipe.html">搜尋、修改食譜</a></li>
+                            <li><a href="<%=request.getContextPath()%>/searchAll_Recipe.html">全部食譜</a></li>
                         </ul>
                     </li>
 
-                    <li>訂單管理</li>
-                    <li><a href="#">日誌管理</a>
+                    <li><a href="finalOrder.html">訂單管理</a></li>
+                    <li><a href="back_end/fooddiary/back_end_diary_manage.jsp">日誌管理</a>
                         <ul>
-                            <li><a href="">全部日誌</a></li>
-                            <li><a href="">檢舉管理</a></li>
-
+                            <li><a href="back_end/fooddiary/back_end_diary_manage.jsp">全部日誌</a></li>
+                            <li><a href="<%=request.getContextPath()%>/diaryRepertResp.html">檢舉管理</a></li>
+                            
                         </ul>
                     </li>
                 </ul>
@@ -121,16 +111,17 @@
         </div>
 
 
+
+
         <div class="mainbox">
 
             <table class="list">
                 <thead>
-                    <th width="7%">編號</th>
-                    <th width="14%">食譜名稱</th>
-                    <th width="29%">食譜步驟</th>
-                    <th width="17%">食材清單(非上架)</th>
-                    <th width="15%">食材清單(已上架)</th>
-                    <th width="18%">照片</th>
+                    <th>食譜編號</th>
+                    <th width="200px">食譜名稱</th>
+                    <th width="250px">食譜介紹</th>
+                    <th width="250px">食材清單(非上架)</th>
+                    <th width="200px">照片</th>
                 </thead>
                 <tbody>
 
@@ -142,62 +133,21 @@
     </main>
 
     <script type='text/javascript'>
-        var z = 1;
-
         $.ajax({
             type: 'post',
             url: 'SearchAll_RecipeServlet',
             data: {},
             success: function(data) {
 
-                var array1 = JSON.parse(data);
-                console.log(array1);
-                for (var i of array1) {
-
-                    $(".list tbody").append("<tr><td id='id" + z + "' data-idRecipe='" + i.idRecipe + "'>" + i.idRecipe + "</td><td>" +
-                        i.name + "</td><td id='descrip" + z + "' class='td-descrip'>" +
-                        "</td><td id='text" + z + "' class='td-text'>" +
-                        "</td><td id='list" + z + "' class='td-text'>" +
-                        "</td><td>" +
-                        '<img class="td-img" src="Recipe_BlobServlet?id=' + i.idRecipe + ' "width="160px" height="120"></td>'
-                    );
-
-                    var descripArray = new Array();
-                    var descripArray = i.descrip.split("。");
-                    for (x = 0; x < descripArray.length; x++) {
-                        $("#descrip" + z).append('<div>' + descripArray[x] + '</div>');
-                    }
-
-                    var textArray = new Array();
-                    var textArray = i.text.split("、");
-                    for (i = 0; i < textArray.length; i++) {
-                        $("#text" + z).append('<div>◆ ' + textArray[i] + '</div>');
-                    }
-                    z++;
-                }
-
-
-
-            }
-        });
-
-        $.ajax({
-            type: 'post',
-            url: 'SearchAll_RecipeListServlet',
-            data: {},
-            success: function(data) {
                 var array = JSON.parse(data);
-                console.log(array);
-                console.log(z);
+                for (var i of array) {
 
-                for (var x = 1; x < z; x++) {
-                    for (var i of array) {
-                        if ($("#id" + x).data("idrecipe") == i.idRecipe) {
-                            //console.log(i.idRecipe)
-                            $("#list" + x).append("<div>◆ " + i.Name + i.ingreQuan + i.Unit + "</div>");
-                            console.log(x);
-                        }
-                    }
+                    $(".list tbody").append("<tr><td>" + i.idRecipe + "</td><td>" +
+                        i.name + "</td><td>" +
+                        i.descrip + "</td><td>" +
+                        i.text + "</td><td>" +
+                        '<img src="Recipe_BlobServlet?id=' + i.idRecipe + ' "width="140px" height="70"></td></tr>'
+                    );
                 }
             }
         });

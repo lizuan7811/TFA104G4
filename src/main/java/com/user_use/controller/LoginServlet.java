@@ -89,7 +89,7 @@ public class LoginServlet extends HttpServlet {
 //					resp.sendRedirect(req.getContextPath()+"/adminCtrlCustPage.html");
 					System.out.println(req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort()
 					+ req.getContextPath());
-					jObj.put("address",req.getContextPath()+"/finalOrder.html");
+					jObj.put("address",req.getContextPath()+"/customer/customerMgmt.jsp");
 					pw.write(jObj.toString());
 					return ;
 			}

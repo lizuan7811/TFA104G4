@@ -6,7 +6,7 @@
 
 header {
     border: solid black;
-    z-index: 2;
+    z-index: 18;
     /* align-items: center ; */
     position: fixed;
     width: 100%;
@@ -41,7 +41,7 @@ header img {
 }
 
 main {
-    z-index: 1;
+    z-index: 10;
     /* border: solid red; */
     position: relative;
     width: 100%;
@@ -51,60 +51,34 @@ main {
 
 .aside {
     position: fixed;
-    z-index: 7;
+    z-index: 2;
     border: solid black;
     left: 0;
     top: 100px;
     width: 200px;
     height: calc(100% - 100px);
     background-color: orange;
+    /* display: inline-block; */
 }
 
-nav ul {
+.nav_list {
     margin-top: 20px;
     font-size: 24px;
     font-weight: bolder;
     color: white;
+    list-style: none;
     text-align: center;
 }
 
-nav ul li {
-    margin-bottom: 15px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-}
-
-nav ul ul {
-    display: none;
-    margin: 0px;
-}
-
-nav ul li:hover>ul {
-    display: block;
-}
-
-nav ul ul li {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-nav ul ul li a {
-    position: absolute;
-    float: none;
-    left: 70px;
-    font-size: 16px;
-    color: red;
-    text-decoration: none;
+.nav_list li {
+    margin-bottom: 10px;
 }
 
 .mainbox {
     position: absolute;
     top: 110px;
-    left: 250px;
+    left: 210px;
     /* border: solid green; */
-    width: 1000px;
+    width: 56%;
     /* height: 100%; */
 }
