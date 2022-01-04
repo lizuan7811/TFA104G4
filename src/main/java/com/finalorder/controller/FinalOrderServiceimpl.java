@@ -51,6 +51,7 @@ public class FinalOrderServiceimpl implements FinalOrderService {
 	
 	@Override
 	public JSONObject serviceInitOwnOrder(Integer custID) {
+		System.out.println("Start ServiceInitOwnOrder!");
 		conn=Util.getConnection();
 		ps=null;
 		JSONObject jObj=new JSONObject();
@@ -58,7 +59,7 @@ public class FinalOrderServiceimpl implements FinalOrderService {
 		jObj.put("UserOwnfinalOrdre",fodo.getInitOwnOrder(conn,ps,custID));
 		jObj.put("ingreAll",fodo.getIngreJsonArr());
 		jObj.put("orderIngreList",fodo.getOrderIngreList());
-		
+//		System.out.println(jObj);
 		return jObj;
 	}
 }

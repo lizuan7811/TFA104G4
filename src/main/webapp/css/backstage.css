@@ -33,16 +33,15 @@ header img {
 }
 
 .stage1 {
-	font-size: 32px;
-	color:rgb(255, 154, 71);
-	font-family: "blackadder itc";
-	font-weight: 700;
-	display: inline-block;
+    font-size: 32px;
 }
 
+.stage2 {
+    font-size: 24px;
+}
 
 main {
-    z-index: 10;
+    z-index: 1;
     /* border: solid red; */
     position: relative;
     width: 100%;
@@ -81,6 +80,24 @@ nav ul li a {
 nav ul ul {
     display: none;
     margin: 0px;
+}
+
+nav ul li:hover>ul {
+    display: block;
+}
+
+nav ul ul li {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+nav ul ul li a {
+    position: absolute;
+    float: none;
+    left: 70px;
+    font-size: 16px;
+    color: red;
+    text-decoration: none;
 }
 
 .mainbox {

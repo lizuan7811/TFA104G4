@@ -7,6 +7,97 @@
 <link href="css/finalOrder.css" rel="stylesheet">
 <script src="js/finalOrder.js" type="text/javascript"></script>
 <title>訂單管理</title>
+
+<style>
+    table {
+        border-spacing: 0;
+        width: 100%;
+        table-layout: fixed;
+        word-break: break-all;
+    }
+    
+    tr {
+        text-align: center;
+        height: 80px;
+    }
+    
+    td {
+        /* color: red; */
+        text-overflow: ellipsis;
+        /* 將顯示不完的以...顯示 */
+        white-space: nowrap;
+        /* 禁止td換行 */
+        overflow: hidden;
+        /* 隱藏X,Y滾動條 */
+        border-bottom: 1px solid #8CE600;
+    }
+    
+    th {
+        padding: 10px;
+    }
+    
+    table tbody tr:nth-child(odd) {
+        background-color: #eee
+    }
+    
+    table th{
+        background-color: #8CE600;
+        color: white;
+        font-size: 16px;
+        font-weight: bolder;
+    }
+    
+    table th:first-child {
+        border-radius: 5px 0 0 0;
+        border: 1px solid #8CE600;
+    }
+    
+    table th:last-child {
+        border-radius: 0 5px 0 0;
+        border-right: 1px solid #8CE600;
+    }
+    
+    nav ul {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bolder;
+    color: white;
+    text-align: center;
+    }
+
+    nav ul li {
+        margin-bottom: 15px;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: white;
+    }
+
+    nav ul ul {
+        display: none;
+        margin: 0px;
+    }
+
+    nav ul li:hover>ul {
+        display: block;
+    }
+
+    nav ul ul li {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    nav ul ul li a {
+        position: absolute;
+        float: none;
+        left: 70px;
+        font-size: 16px;
+        color: red;
+        text-decoration: none;
+    }
+
+</style>
 </head>
 
 <body>
@@ -18,14 +109,42 @@
 	</header>
 	<main>
 
-		<div class="aside">
-			<ul class="nav_list">
-				<li>會員管理</li>
-				<li>產品管理</li>
-				<li>訂單管理</li>
-				<li>日誌管理</li>
-			</ul>
-		</div>
+
+		 <div class="aside">
+            <nav>
+                <ul class="nav_list">
+                    <li><a href="customer/customerMgmt.jsp">會員管理</a></li>
+
+                    <li>
+                        <a href="<%=request.getContextPath()%>/search_product.html">產品管理</a>
+                        <ul>
+                            <li><a href="<%=request.getContextPath()%>/insert_product.html">新增商品</a></li>
+                            <li><a href="<%=request.getContextPath()%>/search_product.html">搜尋、修改商品</a></li>
+                            <li><a href="<%=request.getContextPath()%>/searchAll_product.html">全部商品</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="<%=request.getContextPath()%>/Search_Recipe.html">食譜管理</a>
+                        <ul>
+                            <li><a href="<%=request.getContextPath()%>/Insert_Recipe.html">新增食譜</a></li>
+                            <li><a href="<%=request.getContextPath()%>/Search_Recipe.html">搜尋、修改食譜</a></li>
+                            <li><a href="<%=request.getContextPath()%>/searchAll_Recipe.html">全部食譜</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="finalOrder.html">訂單管理</a></li>
+                    <li><a href="back_end/fooddiary/back_end_diary_manage.jsp">日誌管理</a>
+                        <ul>
+                            <li><a href="back_end/fooddiary/back_end_diary_manage.jsp">全部日誌</a></li>
+                            <li><a href="<%=request.getContextPath()%>/diaryRepertResp.html">檢舉管理</a></li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+
 
 		<table class="mainbox">
 			<tr class="list">

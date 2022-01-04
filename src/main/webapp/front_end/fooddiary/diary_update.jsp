@@ -98,15 +98,15 @@
                     <textarea class="text" name="text" placeholder="請輸入文章內容..."><%= diaryVO.getText() %></textarea>
                     
                         <label class="add_pic_1">
-                            <div class="preview" id="preview"><img src="PicReader?diaryID=<%= diaryVO.getDiaryID() %>" id="view_1" title="請添加圖片" onerror="this.src='<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/食健logo.png;this.onerror=null'"/></div> 
+                            <div class="preview" id="preview"><img src="PicReader?diaryID=<%= diaryVO.getDiaryID() %>" id="view_1" title="請添加圖片" onerror="this.src='<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/f1.jpg;this.onerror=null'"/></div> 
                             <input name= "pic1" id="img" style="display:none;"  onchange="readURL(this)" targetID="view_1" type="file" accept="image/gif, image/jpeg, image/png"/>
                         </label>       
                         <label class="add_pic_2">
-                            <div class="preview" id="preview"><img src="PicReader2?diaryID=<%= diaryVO.getDiaryID() %>" id="view_2" title="請添加圖片" onerror="this.src='<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/食健logo.png;this.onerror=null'"/></div> 
+                            <div class="preview" id="preview"><img src="PicReader2?diaryID=<%= diaryVO.getDiaryID() %>" id="view_2" title="請添加圖片" onerror="this.src='<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/f2.jpg;this.onerror=null'"/></div> 
                             <input name= "pic2" id="img" style="display:none;"  onchange="readURL(this)" targetID="view_2" type="file" accept="image/gif, image/jpeg, image/png" />
                         </label> 
                         <label class="add_pic_3">
-                            <div class="preview" id="preview"><img src="PicReader3?diaryID=<%= diaryVO.getDiaryID() %>" id="view_3" title="請添加圖片" onerror="this.src='<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/食健logo.png;this.onerror=null'"/></div> 
+                            <div class="preview" id="preview"><img src="PicReader3?diaryID=<%= diaryVO.getDiaryID() %>" id="view_3" title="請添加圖片" onerror="this.src='<%=request.getContextPath()%>/front_end/GP4_html_cf/cf_css/f3.jpg;this.onerror=null'"/></div> 
                             <input name= "pic3" id="img" style="display:none;"  onchange="readURL(this)" targetID="view_3" type="file" accept="image/gif, image/jpeg, image/png" />
                         </label> 
                                          

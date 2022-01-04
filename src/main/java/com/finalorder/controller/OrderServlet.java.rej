@@ -1,0 +1,9 @@
+diff a/src/main/java/com/finalorder/controller/OrderServlet.java b/src/main/java/com/finalorder/controller/OrderServlet.java	(rejected hunks)
+@@ -82,7 +82,6 @@
+ //			FinalOrderVO fovo=gson.fromJson(tempStr,FinalOrderVO.class);
+ 			JSONObject fovo = new JSONObject(tempStr);
+ //			fovo.put("idCustomer",((UserVO)request.getAttribute("user")).getIdCustomer());
+-			fovo.put("idCustomer", 5);
+ 			fovo.put("idCustomer", custID);
+ 			JSONObject orderObj = new JSONObject();
+ 			orderObj.put("customer", fovo);

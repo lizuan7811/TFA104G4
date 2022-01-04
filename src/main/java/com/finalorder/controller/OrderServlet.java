@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import com.cart.controller.Ingre;
 import com.cart.controller.OrderToJSON;
+import com.customer.model.CustomerVO;
 import com.finalorder.model.FinalOrderVO;
 import com.google.gson.Gson;
 import com.pojo.model.UserVO;
@@ -36,6 +37,9 @@ public class OrderServlet extends HttpServlet {
 		System.out.println("執行OrderSevlet");
 		foService = new FinalOrderServiceimpl();
 		String metChoice = request.getParameter("metChoice");
+		
+		System.out.println("執行OrderSevlet的metChoice\t"+metChoice);
+		
 		Map<Integer, Integer> tmpIngreMap = new HashMap<Integer, Integer>();
 		HttpSession session = request.getSession();
 		Vector<Ingre> cart = (Vector<Ingre>) session.getAttribute("cart");
@@ -44,6 +48,7 @@ public class OrderServlet extends HttpServlet {
 		Gson gson = new Gson();
 //		Integer idFinalOrder=Integer.valueOf(request.getParameter("idFinalOrder"));
 		Integer executeNum = 0;
+		Integer custID=((CustomerVO)request.getSession().getAttribute("custVO")).getIdCustomer();
 
 		if ("buildOrder".equals(metChoice)) {
 			System.out.println("buildOrders");
@@ -77,7 +82,7 @@ public class OrderServlet extends HttpServlet {
 //			FinalOrderVO fovo=gson.fromJson(tempStr,FinalOrderVO.class);
 			JSONObject fovo = new JSONObject(tempStr);
 //			fovo.put("idCustomer",((UserVO)request.getAttribute("user")).getIdCustomer());
-			fovo.put("idCustomer", 5);
+			fovo.put("idCustomer", custID);
 			JSONObject orderObj = new JSONObject();
 			orderObj.put("customer", fovo);
 			orderObj.put("ingre", tmpIngreMap);
@@ -119,7 +124,10 @@ public class OrderServlet extends HttpServlet {
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
+//			Integer custID=((CustomerVO)request.getSession().getAttribute("custVO")).getIdCustomer();
 			Integer custID=Integer.valueOf(request.getParameter("custID"));
+
+			System.out.println("custID\t"+custID);
 			pw=response.getWriter();
 			pw.write(foService.serviceInitOwnOrder(custID).toString());
 		} catch (IOException e) {

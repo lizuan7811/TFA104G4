@@ -1,35 +1,41 @@
 $(function(){
-   
-    getUserOwnOrder();
     var fOderStr="";
     var inp_btnCheckCnt=0;
     var inp_btnSelCnt=0;
-
+    var custID;
+    var account;
 
     var finalOrderObj;
     var ingreObj;
     var orderIngreObj;
-    
-    function getUserOwnOrder(){
+    $(window).ready(function(){
+        console.log(servletPath()+"/otherWeb/TransToOther.html");
         $.ajax({
-            url:servletPath()+"/finalorder/OrderServlet",
-            data:{"metChoice":"initUserOwnOrder","custID":1},
+            url:servletPath()+"/otherWeb/TransToOther.html",
+            data:{"metChoice":"getCust"},
             type:"POST",
             success:function(data){
-                // console.log(data);
-                var jData=JSON.parse(data);
-                // console.log(jData["finalOrderAll"]);
-                // console.log(jData["ingreAll"]);
-                // console.log(jData["orderIngreList"]);
+                console.log("getCust");
+                var jsonObj=JSON.parse(data);
+                custID=jsonObj["custID"];
+                account=jsonObj["account"];
+                getUserOwnOrder(custID);
+            }
+        });
+    });
 
+  
+    function getUserOwnOrder(custID){
+        $.ajax({
+            url:servletPath()+"/finalorder/OrderServlet",
+            data:{"metChoice":"initUserOwnOrder","custID":custID},
+            type:"POST",
+            success:function(data){
+                var jData=JSON.parse(data);
                 finalOrderObj=jData["UserOwnfinalOrdre"];
                 ingreObj=jData["ingreAll"];
                 orderIngreObj=jData["orderIngreList"];
-                // for(var key in ingreObj)
-                // {
-                //     console.log(orderIngreObj[key]);
-                //     console.log(ingreObj[key]);
-                // }
+                
                 $(".order_body").append(newElemStr(finalOrderObj));
                 $(".mainbox tbody tr td .inp_btnSel").on("click",selFunc(this)).stopPropagation;
                 $(".mainbox tbody tr td .inp_btnSel").on("click",checkFunc(this)).stopPropagation;
@@ -73,13 +79,11 @@ $(function(){
 					},
 				});
 			})
-
-
             if(inp_btnCheckCnt>=1)
             {
                 return;
             }
-            if($(this).attr("data-idFinalOrder")==$(".showFinalOrder ul .liID").attr("data-idFinalOrder"))
+            if($(this).attr("data-idFinalOrder") == $(".showFinalOrder ul .liID").attr("data-idFinalOrder"))
             {
                 respRsID=$(this).attr("data-idFinalOrder");
                 inp_btnCheckCnt+=1;
@@ -91,25 +95,32 @@ $(function(){
             }
         });
     }
-
-var ingreNum=0;
+var jsonOjj;
 var timeoutID;
 var tmpRespStr;
     function selFunc(){
-        
+        jsonOjj=null;
         $(".inp_btnSel").click(function(){
             $(".repBox").html("");
             var idFinalOrder=$(this).attr("data-idFinalOrder");
-            var jsonOjj=finalOrderObj[idFinalOrder-1];
-          
+
+            for(var k in finalOrderObj)
+            {
+                if(finalOrderObj[k].idFinalOrder==idFinalOrder){
+                    jsonOjj=finalOrderObj[k];
+                }
+            }
+
+
+    
             if(inp_btnSelCnt>=1)
             {
-                    // $(".showFinalOrder").removeClass("tranToBigdv");
-                    // $(".showFinalOrder").html("<div class='repBox'></div>");
-                    // $(".commBox").addClass("dpNone");
-                    // window.clearInterval(timeoutID);
-                    // inp_btnCheckCnt=0;
-                    // inp_btnSelCnt=0;
+                    $(".showFinalOrder").removeClass("tranToBigdv");
+                    $(".showFinalOrder").html("<div class='repBox'></div>");
+                    $(".commBox").addClass("dpNone");
+                    window.clearInterval(timeoutID);
+                    inp_btnCheckCnt=0;
+                    inp_btnSelCnt=0;
             }
             
             if(inp_btnSelCnt<1)
@@ -139,17 +150,17 @@ var tmpRespStr;
     function repStr(jsonOjj,idFinalOrder){
         var ingreNum;
         var tmpArr=new Array();
-console.log(jsonOjj.arrivalTime);
+console.log("jsonOjj"+jsonOjj);
         var tpTime=jsonOjj.arrivalTime==undefined?"":jsonOjj.arrivalTime;
         var newEleStr="<ul><li class='liID' data-idFinalOrder="+idFinalOrder+">訂單編號:\t"+idFinalOrder+"</li><li>收貨人:\t"+jsonOjj.recipient+"</li><li>收貨地址:\t"+jsonOjj.recipientAddress+"</li><li>消費金額:"+jsonOjj.orderAmount+"</li><li>訂單成立時間:\t"+jsonOjj.createdTime+"</li><li class='arrivalTime'>貨物送達時間:\t"+tpTime+"</li><li>備註:\t"+jsonOjj.footnote+"</li>";
         for(var key in orderIngreObj)
         {
-            
             if(idFinalOrder==orderIngreObj[key].idFinalOrder)
             {
                 tmpArr.push(orderIngreObj[key].idIngre);
             }
         }
+        console.log("tmpArr"+tmpArr);
        var flag=false;
         for(var index in tmpArr)
         {
@@ -173,10 +184,8 @@ console.log(jsonOjj.arrivalTime);
                     break;
                 }
             }
-            // console.log("tmpIngreObj\t"+tmpIngreObj[tmpArr[index]]);
-            // tmpRespStr+=tmpIngreObj.index
             newEleStr+=tmpRespStr+"</ul>";
-            
+            console.log(newEleStr);
         }
         return newEleStr;
     }

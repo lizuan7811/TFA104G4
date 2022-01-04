@@ -41,7 +41,7 @@ public class ClearCart extends HttpServlet {
         	try {
 	            Thread thread = Thread.currentThread();
 
-        		thread.sleep(500);//在頁面停止1.5秒後 跳轉回商城
+        		thread.sleep(400);//在頁面停止1.5秒後 跳轉回商城
         		System.out.println("SENDORDER");
 	            Enumeration em = req.getSession().getAttributeNames();
 	            
@@ -52,10 +52,10 @@ public class ClearCart extends HttpServlet {
 	            	req.getSession().removeAttribute(em.nextElement().toString());
 	    		}
 	            //重定向
+	            req.getSession().setAttribute("custVO",custVO);
 	    		thread.sleep(1200);
-	    		req.getSession().setAttribute("custVO",custVO);
 	    		
-	            res.sendRedirect(req.getContextPath()+"/front_end/GP4_html_cf/sent_order.html");
+	            res.getWriter().write(req.getContextPath()+"/front_end/GP4_html_cf/sent_order.html");
 	            return; 
   
 	        }catch (InterruptedException e) {

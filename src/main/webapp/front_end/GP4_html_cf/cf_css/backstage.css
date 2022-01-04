@@ -6,7 +6,7 @@
 
 header {
     border: solid black;
-    z-index: 18;
+    z-index: 2;
     /* align-items: center ; */
     position: fixed;
     width: 100%;
@@ -41,7 +41,7 @@ header img {
 }
 
 main {
-    z-index: 10;
+    z-index: 1;
     /* border: solid red; */
     position: relative;
     width: 100%;
@@ -51,7 +51,7 @@ main {
 
 .aside {
     position: fixed;
-    z-index: 2;
+    z-index: 7;
     border: solid black;
     left: 0;
     top: 100px;
@@ -77,8 +77,8 @@ main {
 .mainbox {
     position: absolute;
     top: 110px;
-    left: 210px;
+    left: 235px;
     /* border: solid green; */
-    width: 56%;
+    width: 1000px;
     /* height: 100%; */
 }
